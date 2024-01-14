@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Lamp Bible App',
-  description: 'Bible Reading Companion',
+  title: 'Lamp Bible',
+  description: 'Bible Reading Companion App',
 }
 
 export default function RootLayout({
