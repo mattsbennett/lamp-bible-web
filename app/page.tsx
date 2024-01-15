@@ -20,7 +20,7 @@ export default function Home() {
       </div>
 
       <div className="relative flex place-items-center">
-        <a href="#" target="_blank">
+        <a href="https://apps.apple.com/us/app/lamp-bible/id6476050185" target="_blank">
           <Image
             src="/lampicon.png"
             alt="Lamp App Icon"
@@ -63,7 +63,7 @@ export default function Home() {
           </p>
         </a>
         <a
-          href="#"
+          href="https://apps.apple.com/us/app/lamp-bible/id6476050185"
           className="flex flex-wrap justify-center group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
         >
