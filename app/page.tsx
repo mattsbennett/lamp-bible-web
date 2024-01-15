@@ -44,7 +44,7 @@ export default function Home() {
               -&gt;
             </span>
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+          <p className={`m-0 max-w-[30ch] text-sm opacity-50 inline-block`}>
             Contact the developer with support or feature requests.
           </p>
         </a>
@@ -58,7 +58,7 @@ export default function Home() {
               -&gt;
             </span>
           </h2>
-          <p className={`m-0 text-sm opacity-50`}>
+          <p className={`m-0 text-sm opacity-50 inline-block`}>
             Read Lamp Bible&apos;s privacy policy.
           </p>
         </a>
