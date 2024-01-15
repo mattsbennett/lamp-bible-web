@@ -10,11 +10,11 @@ export default function Privacy() {
                 <Image
                     src="/lampflame.svg"
                     alt="Lamp Logo"
-                    width={20}
-                    height={40}
+                    width={25}
+                    height={50}
                     priority
                 />
-                <span className="pl-2 pt-2">Lamp Bible</span>
+                <span className="pl-2 pt-2 text-lg">Lamp Bible</span>
             </div>
         </Link>
         </div>
