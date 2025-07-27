@@ -6,7 +6,7 @@ export default function Privacy() {
       <main className="flex min-h-screen flex-col justify-between p-10 sm:p-24">
         <div className="z-10 max-w-5xl w-full font-mono items-center justify-between text-sm lg:flex">
         <Link href="/">
-            <div className="fixed bottom-0 left-0 flex h-48 w-full items-center justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+            <div className="fixed bottom-0 left-0 flex h-48 w-full items-center justify-center bg-linear-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
                 <Image
                     src="/lampflame.svg"
                     alt="Lamp Logo"
