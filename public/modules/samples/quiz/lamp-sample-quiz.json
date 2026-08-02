@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "id": "sample-quiz",
+    "type": "quiz",
+    "planId": "sample-plan",
+    "name": "Lamp Sample Quiz",
+    "description": "Questions for the Lamp Sample Plan, graded for two age groups.",
+    "questionsPerReading": 1,
+    "ageGroups": [
+      "junior",
+      "adult"
+    ]
+  },
+  "questions": [
+    {
+      "day": 1,
+      "sv": 1001001,
+      "ev": 1001031,
+      "ageGroup": "junior",
+      "questionIndex": 0,
+      "question": "What did God make on the first day?",
+      "answer": "Light. God said, Let there be light, and there was light.",
+      "theme": "Creation",
+      "christFocused": false,
+      "references": [
+        {
+          "sv": 1001003
+        }
+      ]
+    },
+    {
+      "day": 1,
+      "sv": 1001001,
+      "ev": 1001031,
+      "ageGroup": "adult",
+      "questionIndex": 0,
+      "question": "What does the choice of the verb \"created\" in verse 1 signal about the subject of the sentence?",
+      "answer": "The Hebrew verb bara is used only with God as its subject, so the grammar itself marks the act as uniquely divine.",
+      "theme": "Creation",
+      "christFocused": false,
+      "references": [
+        {
+          "sv": 1001001
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "sv": 43001001,
+      "ev": 43001051,
+      "ageGroup": "junior",
+      "questionIndex": 0,
+      "question": "Who is the Word that John writes about?",
+      "answer": "Jesus. John says the Word was with God, was God, and became flesh.",
+      "theme": "The Word",
+      "christFocused": true,
+      "references": [
+        {
+          "sv": 43001001
+        },
+        {
+          "sv": 43001014
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "sv": 43001001,
+      "ev": 43001051,
+      "ageGroup": "adult",
+      "questionIndex": 0,
+      "question": "Why does John open with \"In the beginning\"?",
+      "answer": "It echoes Genesis 1:1, framing the incarnation as an act of creation rather than merely the start of a life.",
+      "theme": "The Word",
+      "christFocused": true,
+      "references": [
+        {
+          "sv": 43001001
+        }
+      ],
+      "crossReferences": [
+        {
+          "sv": 1001001
+        }
+      ]
+    }
+  ]
+}

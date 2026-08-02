@@ -181,12 +181,21 @@ export default function Page() {
       </ul>
 
       <h2>Next</h2>
-      <p>
-        To build a module of your own, see{' '}
-        <Link href="/docs/modules/authoring">Authoring modules</Link>, which documents the{' '}
-        <code>.lamp</code> container, the JSON schemas for each type, and the conventions for verse
-        references and annotations.
-      </p>
+      <ul>
+        <li>
+          <Link href="/docs/modules/downloads">Downloads</Link> — an installable sample module of
+          every type, with its source JSON, the schemas and the table definitions. The quickest way
+          in is to take one apart.
+        </li>
+        <li>
+          <Link href="/docs/modules/building">Building a .lamp file</Link> — the mechanics:
+          tables, compression, verification and installation.
+        </li>
+        <li>
+          <Link href="/docs/modules/authoring">Authoring modules</Link> — the data model: verse
+          reference encoding, annotations, and the JSON shape of each type.
+        </li>
+      </ul>
     </DocPage>
   )
 }

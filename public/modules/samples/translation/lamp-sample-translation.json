@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "id": "SAMPLEs",
+    "type": "translation",
+    "name": "Lamp Sample Translation",
+    "abbreviation": "SAMPLE",
+    "description": "A handful of KJV verses demonstrating the translation schema.",
+    "language": "en",
+    "languageName": "English",
+    "textDirection": "ltr",
+    "translationPhilosophy": "formal",
+    "license": "Public Domain",
+    "versification": "standard",
+    "features": {
+      "strongs": true,
+      "morphology": false,
+      "redLetter": true,
+      "footnotes": true
+    }
+  },
+  "books": [
+    {
+      "id": "Gen",
+      "name": "Genesis",
+      "number": 1,
+      "testament": "OT",
+      "chapterCount": 50,
+      "chapters": [
+        {
+          "chapter": 1,
+          "headings": [
+            {
+              "text": "The Creation",
+              "beforeVerse": 1,
+              "level": 1
+            }
+          ],
+          "verses": [
+            {
+              "v": 1,
+              "ref": 1001001,
+              "paragraph": true,
+              "content": {
+                "text": "In the beginning God created the heaven and the earth.",
+                "annotations": [
+                  {
+                    "type": "strongs",
+                    "start": 7,
+                    "end": 16,
+                    "text": "beginning",
+                    "data": {
+                      "strongs": "H7225"
+                    }
+                  },
+                  {
+                    "type": "strongs",
+                    "start": 17,
+                    "end": 20,
+                    "text": "God",
+                    "data": {
+                      "strongs": "H430",
+                      "lemma": "אֱלֹהִים"
+                    }
+                  },
+                  {
+                    "type": "strongs",
+                    "start": 21,
+                    "end": 28,
+                    "text": "created",
+                    "data": {
+                      "strongs": "H1254"
+                    }
+                  }
+                ]
+              },
+              "footnotes": [
+                {
+                  "id": "1",
+                  "content": {
+                    "text": "Hebrew bara, used only of divine creating."
+                  }
+                }
+              ]
+            },
+            {
+              "v": 2,
+              "ref": 1001002,
+              "content": {
+                "text": "And the earth was without form, and void; and darkness was upon the face of the deep.",
+                "annotations": []
+              }
+            },
+            {
+              "v": 3,
+              "ref": 1001003,
+              "content": {
+                "text": "And God said, Let there be light: and there was light.",
+                "annotations": [
+                  {
+                    "type": "strongs",
+                    "start": 4,
+                    "end": 7,
+                    "text": "God",
+                    "data": {
+                      "strongs": "H430"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "John",
+      "name": "John",
+      "number": 43,
+      "testament": "NT",
+      "chapterCount": 21,
+      "chapters": [
+        {
+          "chapter": 1,
+          "headings": [
+            {
+              "text": "The Word Made Flesh",
+              "beforeVerse": 1,
+              "level": 1
+            }
+          ],
+          "verses": [
+            {
+              "v": 1,
+              "ref": 43001001,
+              "paragraph": true,
+              "content": {
+                "text": "In the beginning was the Word, and the Word was with God, and the Word was God.",
+                "annotations": [
+                  {
+                    "type": "strongs",
+                    "start": 25,
+                    "end": 29,
+                    "text": "Word",
+                    "data": {
+                      "strongs": "G3056",
+                      "lemma": "λόγος"
+                    }
+                  },
+                  {
+                    "type": "strongs",
+                    "start": 53,
+                    "end": 56,
+                    "text": "God",
+                    "data": {
+                      "strongs": "G2316"
+                    }
+                  },
+                  {
+                    "type": "strongs",
+                    "start": 75,
+                    "end": 78,
+                    "text": "God",
+                    "data": {
+                      "strongs": "G2316"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "v": 14,
+              "ref": 43001014,
+              "content": {
+                "text": "And the Word was made flesh, and dwelt among us.",
+                "annotations": [
+                  {
+                    "type": "strongs",
+                    "start": 8,
+                    "end": 12,
+                    "text": "Word",
+                    "data": {
+                      "strongs": "G3056"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Ps",
+      "name": "Psalms",
+      "number": 19,
+      "testament": "OT",
+      "chapterCount": 150,
+      "chapters": [
+        {
+          "chapter": 119,
+          "headings": [],
+          "verses": [
+            {
+              "v": 105,
+              "ref": 19119105,
+              "poetry": {
+                "indent": 1
+              },
+              "content": {
+                "text": "Thy word is a lamp unto my feet, and a light unto my path.",
+                "annotations": [
+                  {
+                    "type": "strongs",
+                    "start": 14,
+                    "end": 18,
+                    "text": "lamp",
+                    "data": {
+                      "strongs": "H5216"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

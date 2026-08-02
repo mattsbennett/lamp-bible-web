@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "series": "Simple Notes",
+    "title": "Study Notes on Matthew"
+  },
+
+  "book": "Matt",
+
+  "chapters": [
+    {
+      "chapter": 1,
+      "verses": [
+        {
+          "sv": 40001001,
+          "commentary": {
+            "text": "This verse introduces Jesus as Messiah and son of David."
+          }
+        },
+        {
+          "sv": 40001002,
+          "ev": 40001006,
+          "commentary": {
+            "text": "The genealogy traces Jesus' lineage through the patriarchs to King David, establishing his royal credentials.",
+            "annotations": [
+              { "type": "scripture", "start": 79, "end": 90, "text": "King David", "data": { "sv": 9016001 } }
+            ]
+          }
+        },
+        {
+          "sv": 40001016,
+          "commentary": {
+            "text": "Note the careful wording: Joseph is 'husband of Mary' not 'father of Jesus' - Matthew signals the virgin birth."
+          }
+        }
+      ]
+    }
+  ]
+}

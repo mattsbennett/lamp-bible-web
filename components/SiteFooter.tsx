@@ -28,7 +28,7 @@ export function SiteFooter() {
         <FooterColumn title="Documentation">
           <FooterLink href="/docs/getting-started">Getting started</FooterLink>
           <FooterLink href="/docs/modules">Modules</FooterLink>
-          <FooterLink href="/docs/modules/authoring">Authoring modules</FooterLink>
+          <FooterLink href="/docs/modules/building">Building a .lamp file</FooterLink>
           <FooterLink href="/docs/sync">Sync &amp; backup</FooterLink>
         </FooterColumn>
 
@@ -36,9 +36,7 @@ export function SiteFooter() {
           <FooterLink href={site.issuesUrl} external>
             Report an issue
           </FooterLink>
-          <FooterLink href={site.modulesRepoUrl} external>
-            Module sources
-          </FooterLink>
+          <FooterLink href="/docs/modules/downloads">Module downloads</FooterLink>
           <FooterLink href="/privacy">Privacy policy</FooterLink>
         </FooterColumn>
       </div>

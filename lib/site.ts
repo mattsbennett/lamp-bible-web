@@ -6,7 +6,6 @@ export const site = {
   url: 'https://lampbible.app',
   appStoreUrl: 'https://apps.apple.com/us/app/lamp-bible/id6476050185',
   issuesUrl: 'https://github.com/mattsbennett/lamp-bible-ios/issues',
-  modulesRepoUrl: 'https://github.com/mattsbennett/lamp-bible-modules',
   email: 'lampbibleapp[at]gmail[dot]com',
 } as const
 

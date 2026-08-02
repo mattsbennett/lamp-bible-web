@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "schemaVersion": "2.1",
+    "id": "sample-commentary",
+    "type": "commentary",
+    "name": "Lamp Sample Commentary",
+    "description": "Original notes on two verses, showing the section/pericope/verse nesting.",
+    "author": "Lamp Bible",
+    "seriesAbbrev": "LSC",
+    "seriesFull": "Lamp Sample Commentary",
+    "version": "1.0.0",
+    "language": "en"
+  },
+  "books": [
+    {
+      "book": "Gen",
+      "bookNumber": 1,
+      "title": "Genesis",
+      "units": [
+        {
+          "id": "gen-sec-1",
+          "unitType": "section",
+          "level": 1,
+          "book": 1,
+          "chapter": 1,
+          "sv": 1001001,
+          "ev": 1001003,
+          "title": "The Opening of the Account",
+          "introduction": {
+            "text": "The first three verses establish who acts, what is made, and by what means."
+          }
+        },
+        {
+          "id": "gen-per-1",
+          "unitType": "pericope",
+          "level": 2,
+          "parentId": "gen-sec-1",
+          "book": 1,
+          "chapter": 1,
+          "sv": 1001001,
+          "ev": 1001001,
+          "title": "In the beginning"
+        },
+        {
+          "id": "gen-v-1",
+          "unitType": "verse",
+          "level": 3,
+          "parentId": "gen-per-1",
+          "book": 1,
+          "chapter": 1,
+          "sv": 1001001,
+          "commentary": {
+            "text": "The verb translated created is reserved in Hebrew for divine activity. It is never used with a human subject, which is the first thing the sentence tells us about its subject.",
+            "annotations": [
+              {
+                "type": "strongs",
+                "start": 20,
+                "end": 27,
+                "text": "created",
+                "data": {
+                  "strongs": "H1254"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "book": "John",
+      "bookNumber": 43,
+      "title": "John",
+      "units": [
+        {
+          "id": "john-sec-1",
+          "unitType": "section",
+          "level": 1,
+          "book": 43,
+          "chapter": 1,
+          "sv": 43001001,
+          "ev": 43001014,
+          "title": "The Prologue"
+        },
+        {
+          "id": "john-v-1",
+          "unitType": "verse",
+          "level": 2,
+          "parentId": "john-sec-1",
+          "book": 43,
+          "chapter": 1,
+          "sv": 43001001,
+          "commentary": {
+            "text": "The opening phrase deliberately echoes Genesis 1:1. John is not starting a biography; he is starting a creation account.",
+            "annotations": [
+              {
+                "type": "scripture",
+                "start": 39,
+                "end": 50,
+                "text": "Genesis 1:1",
+                "data": {
+                  "sv": 1001001
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

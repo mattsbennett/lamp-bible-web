@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "schemaVersion": "2.1",
+    "id": "sample-lexicon",
+    "type": "dictionary",
+    "name": "Lamp Sample Lexicon",
+    "description": "Three public-domain Strong's entries demonstrating the lexicon schema.",
+    "author": "Public Domain",
+    "version": "1.0.0",
+    "keyType": "strongs",
+    "language": "en"
+  },
+  "entries": [
+    {
+      "key": "H430",
+      "lemma": "אֱלֹהִים",
+      "transliteration": "elohiym",
+      "pronunciation": "el-o-heem",
+      "senses": [
+        {
+          "id": 1,
+          "def": "God, the supreme God of Israel."
+        },
+        {
+          "id": 2,
+          "def": "gods, in the plural, of the gods of the nations."
+        }
+      ],
+      "metadata": {
+        "partOfSpeech": "noun masculine plural",
+        "gloss": "God, gods"
+      }
+    },
+    {
+      "key": "G3056",
+      "lemma": "λόγος",
+      "transliteration": "logos",
+      "pronunciation": "log-os",
+      "senses": [
+        {
+          "id": 1,
+          "def": "a word, spoken or written; the expression of a thought."
+        },
+        {
+          "id": 2,
+          "def": "the divine Word, used of Christ in John 1.",
+          "references": [
+            {
+              "sv": 43001001
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "partOfSpeech": "noun masculine",
+        "gloss": "word, account, reason"
+      }
+    },
+    {
+      "key": "H5216",
+      "lemma": "נִיר",
+      "transliteration": "niyr",
+      "pronunciation": "neer",
+      "senses": [
+        {
+          "id": 1,
+          "def": "a lamp; figuratively, the light of life or guidance.",
+          "references": [
+            {
+              "sv": 19119105
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "partOfSpeech": "noun masculine",
+        "gloss": "lamp, light"
+      }
+    }
+  ]
+}

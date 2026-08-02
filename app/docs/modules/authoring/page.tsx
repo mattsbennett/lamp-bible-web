@@ -1,47 +1,48 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { site } from '@/lib/site'
+import { DownloadList } from '@/components/docs/DownloadList'
+import { moduleDownloads } from '@/lib/module-downloads'
 
 export const metadata: Metadata = {
   title: 'Authoring modules',
   description:
-    'The .lamp package format, the JSON schemas for each module type, BBCCCVVV verse references, offset-based annotations and the SQLite layout.',
+    'The JSON schemas for each module type, BBCCCVVV verse references, and the offset-based annotation model shared across all of them.',
 }
 
 export default function Page() {
+  const schemaFiles = Array.from(
+    new Map(moduleDownloads.flatMap((m) => m.schemas).map((s) => [s.href, s])).values()
+  ).sort((a, b) => a.label.localeCompare(b.label))
+
   return (
     <DocPage
       href="/docs/modules/authoring"
       title="Authoring modules"
-      intro="How to build a .lamp package the app will install: the container, the schemas, and the conventions everything shares."
+      intro="The data model: how a module document is shaped, how verses are referenced, and how annotations attach to text. For the mechanics of producing the file, see Building a .lamp file."
     >
       <h2>The pipeline</h2>
       <p>
-        Modules are authored as JSON against a published schema, then converted to SQLite and
-        compressed. The conversion scripts, the schemas and the parsers used to build the bundled
-        content are all in the{' '}
-        <a href={site.modulesRepoUrl} target="_blank" rel="noopener noreferrer">
-          lamp-bible-modules
-        </a>{' '}
-        repository.
+        A module is authored as JSON against a published schema, then converted to SQLite and
+        compressed. This page covers the first step — the shape of the JSON. The conversion is on{' '}
+        <Link href="/docs/modules/building">Building a .lamp file</Link>.
       </p>
 
       <pre>
-        <code>{`source text  →  module JSON  →  SQLite  →  DEFLATE  →  module.lamp`}</code>
+        <code>{`source text  →  module JSON  →  SQLite  →  raw DEFLATE  →  module.lamp
+                └── this page ──┘  └──────── building a .lamp ───────┘`}</code>
       </pre>
 
-      <h2>The container</h2>
+      <h2>The container, briefly</h2>
       <p>
         A <code>.lamp</code> file is a SQLite database compressed with raw DEFLATE (zlib level 9,{' '}
-        <code>wbits=-15</code>), typically 80–85% smaller than the uncompressed database. One file
-        holds one module — one translation, one commentary series, one highlight set.
+        <code>wbits=-15</code>). One file holds one module — one translation, one commentary series,
+        one highlight set. Compression is typically 95% or better.
       </p>
       <p>
-        The bundled library uses the same structure in a single multi-module database
-        (<code>.db.zlib</code>) shipped inside the app. The practical difference is that bundled
-        tables carry a <code>translation_id</code> to separate co-resident modules, while a
-        standalone <code>.lamp</code> does not need one.
+        The library bundled inside the app uses the same structure in a single multi-module
+        database. The practical difference is that bundled tables carry an extra identifier column
+        to separate co-resident modules, which a standalone <code>.lamp</code> does not need.
       </p>
 
       <Callout title="Devotionals are a special case">
@@ -51,36 +52,6 @@ export default function Page() {
           the app detects which it is on open and previews the contents before importing.
         </p>
       </Callout>
-
-      <h3>Translation tables</h3>
-      <pre>
-        <code>{`CREATE TABLE translation_meta (key TEXT PRIMARY KEY, value TEXT);
-
-CREATE TABLE books (
-    id        TEXT PRIMARY KEY,   -- OSIS abbreviation, e.g. "Gen"
-    name      TEXT,
-    number    INTEGER,            -- 1-66
-    testament TEXT                -- "OT" | "NT"
-);
-
-CREATE TABLE verses (
-    ref          INTEGER PRIMARY KEY,  -- BBCCCVVV
-    book_id      TEXT,
-    chapter      INTEGER,
-    verse        INTEGER,
-    text         TEXT,                 -- plain text for display
-    content_json TEXT                  -- full content with annotations
-);
-
-CREATE VIRTUAL TABLE verses_fts USING fts5(
-    text, content=verses, content_rowid=ref
-);`}</code>
-      </pre>
-      <p>
-        The FTS5 virtual table is what makes a module searchable. Other module types follow the same
-        pattern: a metadata table, one or more content tables, and a full-text index over the
-        searchable text.
-      </p>
 
       <h2>Verse references</h2>
       <p>
@@ -136,10 +107,10 @@ CREATE VIRTUAL TABLE verses_fts USING fts5(
   "annotations": [
     {
       "type": "strongs",
-      "start": 0,
-      "end": 2,
-      "text": "In",
-      "data": { "strongs": "H7225", "morphology": "Ncfsa" }
+      "start": 7,
+      "end": 16,
+      "text": "beginning",
+      "data": { "strongs": "H7225" }
     },
     {
       "type": "strongs",
@@ -153,9 +124,20 @@ CREATE VIRTUAL TABLE verses_fts USING fts5(
       </pre>
 
       <p>
-        <code>start</code> is inclusive and <code>end</code> exclusive. Annotation types vary a
-        little by schema; the common ones are:
+        <code>start</code> is inclusive and <code>end</code> exclusive, so{' '}
+        <code>text[start:end]</code> must equal the annotation’s own <code>text</code> field. That
+        redundancy is deliberate — it is what lets a validator catch a bad offset.
       </p>
+
+      <Callout tone="warn" title="Never count offsets by hand">
+        <p>
+          Compute them: <code>start = text.find(phrase)</code>. A wrong offset produces a file that
+          imports cleanly and tags the wrong words, which is far harder to notice than a file that
+          fails outright.
+        </p>
+      </Callout>
+
+      <p>Annotation types vary a little by schema; the common ones are:</p>
 
       <Table>
         <thead>
@@ -214,9 +196,12 @@ CREATE VIRTUAL TABLE verses_fts USING fts5(
 
       <h2>The schemas</h2>
       <p>
-        Each module type has a JSON Schema file in the modules repository, sharing common
-        definitions for annotations, references, metadata and media.
+        Each module type has a JSON Schema, all sharing common definitions for annotations,
+        references, metadata and media. Every one is downloadable here, along with a worked sample
+        module that validates against it.
       </p>
+
+      <DownloadList files={schemaFiles} />
 
       <Table>
         <thead>
@@ -360,20 +345,24 @@ CREATE VIRTUAL TABLE verses_fts USING fts5(
       </p>
 
       <h2>Worked example: highlights</h2>
+      <p>
+        This one marks the words <em>God created</em> in Genesis 1:1, which in the KJV wording
+        begins at character 17 and ends at 28.
+      </p>
       <pre>
         <code>{`{
   "meta": {
     "schemaVersion": "1.0",
-    "id": "my_highlights_bsb",
+    "id": "my_highlights_kjv",
     "type": "highlights",
     "name": "My Highlights",
-    "translationId": "BSBs"
+    "translationId": "KJVs"
   },
   "verses": [
     {
-      "ref": 43003016,
+      "ref": 1001001,
       "highlights": [
-        { "sc": 0, "ec": 24, "style": 0, "color": "#FFE066" }
+        { "sc": 17, "ec": 28, "style": 0, "color": "#FFE066" }
       ]
     }
   ]
@@ -381,8 +370,8 @@ CREATE VIRTUAL TABLE verses_fts USING fts5(
       </pre>
       <p>
         <code>sc</code> and <code>ec</code> are character offsets within the verse text of the named
-        translation. <code>style</code> is 0 for a filled highlight, 1 for a solid underline, 2 for
-        dashed and 3 for dotted.
+        translation, start inclusive and end exclusive. <code>style</code> is 0 for a filled
+        highlight, 1 for a solid underline, 2 for dashed and 3 for dotted.
       </p>
 
       <Callout tone="warn" title="Offsets are tied to exact wording">
@@ -403,10 +392,15 @@ CREATE VIRTUAL TABLE verses_fts USING fts5(
 
       <h2>Building and installing</h2>
       <p>
-        The modules repository includes converters for each type — translation, commentary series,
-        highlights, and a generic converter for any module JSON — plus the bundling scripts used to
-        assemble the app’s built-in database. Once you have a <code>.lamp</code> file, install it
-        from the module manager in Settings, or open it from Files and let the app take it.
+        Once the JSON is right, turning it into an installable file is four steps: create the
+        tables, insert your rows, compress with raw DEFLATE, verify. That is covered in full — with
+        the table definitions for every type and a complete reference implementation — on{' '}
+        <Link href="/docs/modules/building">Building a .lamp file</Link>.
+      </p>
+      <p>
+        A working sample module of each type, with its source JSON, is on{' '}
+        <Link href="/docs/modules/downloads">Downloads</Link>. Starting from one of those is usually
+        faster than starting from the schema.
       </p>
 
       <Callout tone="warn" title="Rights">

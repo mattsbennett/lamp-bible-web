@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "schemaVersion": "1.1",
+    "id": "sample-devotional",
+    "type": "devotional",
+    "name": "Lamp Sample Devotional",
+    "description": "Two short original readings, keyed by month and day.",
+    "author": "Lamp Bible",
+    "version": "1.0.0",
+    "language": "en"
+  },
+  "entries": [
+    {
+      "monthDay": "01-01",
+      "title": "Before Anything Else",
+      "tags": [
+        "creation",
+        "beginnings"
+      ],
+      "content": "Scripture opens without argument. It does not prove God; it assumes him and describes what he does. The first thing we are told about God is not what he is like but that he makes.\n\nA year is about to begin. Start it the way the Bible does — not with a resolution, but with the fact that something exists which did not have to.",
+      "verseRefs": [
+        {
+          "sv": 1001001,
+          "ev": 1001003
+        }
+      ]
+    },
+    {
+      "monthDay": "01-02",
+      "title": "A Lamp for the Feet",
+      "tags": [
+        "guidance",
+        "scripture"
+      ],
+      "content": "A lamp in the ancient world lit the next step, not the whole road. That is the promise being made: enough light to move, not enough to see the end.\n\nMost of the frustration in reading Scripture for guidance comes from wanting a floodlight when what has been offered is a lamp.",
+      "verseRefs": [
+        {
+          "sv": 19119105
+        }
+      ]
+    }
+  ]
+}

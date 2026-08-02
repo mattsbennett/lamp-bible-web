@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "sync:modules": "node scripts/sync-module-assets.mjs",
+    "check:modules": "node scripts/sync-module-assets.mjs --check",
+    "build:samples": "python3 scripts/build_sample_modules.py && python3 scripts/verify_sample_modules.py"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

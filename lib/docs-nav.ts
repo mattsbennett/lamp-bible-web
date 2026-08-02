@@ -82,7 +82,17 @@ export const docsNav: DocSection[] = [
       {
         title: 'Authoring modules',
         href: '/docs/modules/authoring',
-        summary: 'The .lamp package format, JSON schemas, verse references and annotations.',
+        summary: 'JSON schemas, verse reference encoding and the annotation model.',
+      },
+      {
+        title: 'Building a .lamp file',
+        href: '/docs/modules/building',
+        summary: 'Turn module JSON into a compressed SQLite package the app will install.',
+      },
+      {
+        title: 'Downloads',
+        href: '/docs/modules/downloads',
+        summary: 'Sample modules of every type, JSON schemas, and SQLite table definitions.',
       },
       {
         title: 'Import & export',

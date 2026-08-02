@@ -121,169 +121,171 @@
   }
 }
 
-/*
- * Documentation prose. Scoping the styles here keeps the doc pages themselves
- * close to plain markup — headings, paragraphs, lists, tables — instead of a
- * wall of utility classes on every element.
- */
-.doc {
-  color: var(--text);
-  font-size: 1rem;
-  line-height: 1.75;
-}
+@layer base {
+  /*
+   * Documentation prose. Scoping the styles here keeps the doc pages themselves
+   * close to plain markup — headings, paragraphs, lists, tables — instead of a
+   * wall of utility classes on every element.
+   */
+  .doc {
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
 
-.doc > * + * {
-  margin-top: 1.25rem;
-}
+  .doc > * + * {
+    margin-top: 1.25rem;
+  }
 
-/* The first block never needs the heading's top margin. */
-.doc > :first-child {
-  margin-top: 0;
-}
+  /* The first block never needs the heading's top margin. */
+  .doc > :first-child {
+    margin-top: 0;
+  }
 
-.doc h2 {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin-top: 3.25rem;
-  padding-top: 0.25rem;
-  scroll-margin-top: 7rem;
-}
+  .doc h2 {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-top: 3.25rem;
+    padding-top: 0.25rem;
+    scroll-margin-top: 7rem;
+  }
 
-.doc h3 {
-  font-size: 1.075rem;
-  font-weight: 600;
-  margin-top: 2.25rem;
-  scroll-margin-top: 7rem;
-}
+  .doc h3 {
+    font-size: 1.075rem;
+    font-weight: 600;
+    margin-top: 2.25rem;
+    scroll-margin-top: 7rem;
+  }
 
-.doc h4 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-top: 1.75rem;
-}
+  .doc h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-top: 1.75rem;
+  }
 
-.doc p {
-  color: var(--text);
-}
+  .doc p {
+    color: var(--text);
+  }
 
-.doc a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
-  text-underline-offset: 3px;
-}
+  .doc a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    text-underline-offset: 3px;
+  }
 
-.doc a:hover {
-  text-decoration-color: var(--accent);
-}
+  .doc a:hover {
+    text-decoration-color: var(--accent);
+  }
 
-.doc ul,
-.doc ol {
-  padding-left: 1.35rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+  .doc ul,
+  .doc ol {
+    padding-left: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-.doc ul {
-  list-style: disc;
-}
+  .doc ul {
+    list-style: disc;
+  }
 
-.doc ol {
-  list-style: decimal;
-}
+  .doc ol {
+    list-style: decimal;
+  }
 
-.doc li::marker {
-  color: var(--text-faint);
-}
+  .doc li::marker {
+    color: var(--text-faint);
+  }
 
-.doc li > ul,
-.doc li > ol {
-  margin-top: 0.5rem;
-}
+  .doc li > ul,
+  .doc li > ol {
+    margin-top: 0.5rem;
+  }
 
-.doc code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.85em;
-  background-color: var(--bg-sunken);
-  border: 1px solid var(--line);
-  border-radius: 0.3rem;
-  padding: 0.1rem 0.35rem;
-  white-space: nowrap;
-}
+  .doc code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85em;
+    background-color: var(--bg-sunken);
+    border: 1px solid var(--line);
+    border-radius: 0.3rem;
+    padding: 0.1rem 0.35rem;
+    white-space: nowrap;
+  }
 
-.doc pre {
-  background-color: var(--bg-sunken);
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-  padding: 1rem 1.15rem;
-  overflow-x: auto;
-  font-size: 0.85rem;
-  line-height: 1.65;
-}
+  .doc pre {
+    background-color: var(--bg-sunken);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    padding: 1rem 1.15rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.65;
+  }
 
-.doc pre code {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: inherit;
-  white-space: pre;
-}
+  .doc pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    white-space: pre;
+  }
 
-.doc blockquote {
-  border-left: 3px solid var(--accent);
-  padding-left: 1rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
+  .doc blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
 
-.doc hr {
-  border-color: var(--line);
-  margin-top: 2.5rem;
-}
+  .doc hr {
+    border-color: var(--line);
+    margin-top: 2.5rem;
+  }
 
-/* Tables scroll on their own so the page body never does. */
-.doc .table-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-}
+  /* Tables scroll on their own so the page body never does. */
+  .doc .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+  }
 
-.doc table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  min-width: 30rem;
-}
+  .doc table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 30rem;
+  }
 
-.doc thead {
-  background-color: var(--bg-sunken);
-}
+  .doc thead {
+    background-color: var(--bg-sunken);
+  }
 
-.doc th {
-  text-align: left;
-  font-weight: 600;
-  padding: 0.7rem 1rem;
-  white-space: nowrap;
-}
+  .doc th {
+    text-align: left;
+    font-weight: 600;
+    padding: 0.7rem 1rem;
+    white-space: nowrap;
+  }
 
-.doc td {
-  padding: 0.7rem 1rem;
-  border-top: 1px solid var(--line);
-  vertical-align: top;
-}
+  .doc td {
+    padding: 0.7rem 1rem;
+    border-top: 1px solid var(--line);
+    vertical-align: top;
+  }
 
-.doc td:first-child {
-  white-space: nowrap;
-}
+  .doc td:first-child {
+    white-space: nowrap;
+  }
 
-.doc strong {
-  font-weight: 600;
+  .doc strong {
+    font-weight: 600;
+  }
 }
 
 /* A soft radial glow used behind the hero, echoing the lamp flame. */

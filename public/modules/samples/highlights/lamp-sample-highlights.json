@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "id": "sample-highlights",
+    "type": "highlights",
+    "name": "Lamp Sample Highlights",
+    "description": "Highlights against the sample translation, one per style.",
+    "translationId": "SAMPLEs",
+    "created": 1770000000,
+    "lastModified": 1770000000
+  },
+  "verses": [
+    {
+      "ref": 1001001,
+      "highlights": [
+        {
+          "sc": 17,
+          "ec": 28,
+          "style": 0,
+          "color": "#FFE066"
+        }
+      ]
+    },
+    {
+      "ref": 43001001,
+      "highlights": [
+        {
+          "sc": 62,
+          "ec": 78,
+          "style": 1,
+          "color": "#7FB3D5"
+        },
+        {
+          "sc": 48,
+          "ec": 56,
+          "style": 2,
+          "color": "#82C596"
+        }
+      ]
+    },
+    {
+      "ref": 19119105,
+      "highlights": [
+        {
+          "sc": 12,
+          "ec": 31,
+          "style": 3,
+          "color": "#D98BC3"
+        }
+      ]
+    }
+  ]
+}

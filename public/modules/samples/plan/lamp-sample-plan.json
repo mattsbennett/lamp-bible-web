@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "id": "sample-plan",
+    "type": "plan",
+    "name": "Lamp Sample Plan",
+    "description": "A seven day walk through the opening of Scripture.",
+    "author": "Lamp Bible",
+    "fullDescription": "A short demonstration plan: one reading a day for a week, covering the creation account and the prologue of John.",
+    "duration": 7,
+    "readingsPerDay": 1
+  },
+  "days": [
+    {
+      "day": 1,
+      "readings": [
+        {
+          "sv": 1001001,
+          "ev": 1001031,
+          "label": "Genesis 1"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "readings": [
+        {
+          "sv": 1002001,
+          "ev": 1002025,
+          "label": "Genesis 2"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "readings": [
+        {
+          "sv": 1003001,
+          "ev": 1003024,
+          "label": "Genesis 3"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "readings": [
+        {
+          "sv": 43001001,
+          "ev": 43001051,
+          "label": "John 1"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "readings": [
+        {
+          "sv": 43002001,
+          "ev": 43002025,
+          "label": "John 2"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "readings": [
+        {
+          "sv": 43003001,
+          "ev": 43003036,
+          "label": "John 3"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "readings": [
+        {
+          "sv": 19119097,
+          "ev": 19119112,
+          "label": "Psalm 119:97-112"
+        }
+      ]
+    }
+  ]
+}

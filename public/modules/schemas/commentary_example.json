@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "series": "NICNT",
+    "title": "The Gospel of Matthew",
+    "author": "R. T. France"
+  },
+
+  "book": "Matt",
+
+  "abbreviations": [
+    { "abbrev": "LXX", "expansion": "Septuagint", "category": "bible" },
+    { "abbrev": "BDAG", "expansion": "W. Bauer, A Greek-English Lexicon of the New Testament", "category": "publication" }
+  ],
+
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "id": "I",
+          "title": "Introducing The Messiah",
+          "level": 1,
+          "sv": 40001001,
+          "ev": 40004011,
+          "subsections": [
+            {
+              "id": "I.A",
+              "title": "The \"Book of Origin\" of the Messiah",
+              "level": 2,
+              "sv": 40001001,
+              "ev": 40001017,
+              "pericopae": [
+                {
+                  "id": "1:1-17",
+                  "title": "The Genealogy of Jesus",
+                  "sv": 40001001,
+                  "ev": 40001017,
+                  "translation": {
+                    "text": "1 The book of origin of Jesus the Messiah, the son of David, the son of Abraham.",
+                    "annotations": [
+                      { "type": "footnote", "start": 17, "end": 23, "id": "1", "text": "origin" }
+                    ]
+                  },
+                  "verses": [
+                    {
+                      "sv": 40001001,
+                      "commentary": {
+                        "text": "The opening verse is concerned with the \"origin\" (γένεσις) of the Messiah.",
+                        "annotations": [
+                          { "type": "greek", "start": 42, "end": 49, "text": "γένεσις", "data": { "transliteration": "genesis", "strongs": "G1078" } }
+                        ]
+                      }
+                    },
+                    {
+                      "sv": 40001002,
+                      "ev": 40001006,
+                      "suffix": "a",
+                      "commentary": {
+                        "text": "These verses cover the first period from Abraham to David. The names are found in 1 Chr 2:1-15 and Ruth 4:18-22.",
+                        "annotations": [
+                          { "type": "scripture", "start": 82, "end": 94, "text": "1 Chr 2:1-15", "data": { "sv": 13002001, "ev": 13002015 } },
+                          { "type": "scripture", "start": 99, "end": 111, "text": "Ruth 4:18-22", "data": { "sv": 8004018, "ev": 8004022 } }
+                        ]
+                      }
+                    }
+                  ],
+                  "footnotes": [
+                    {
+                      "id": "1",
+                      "content": {
+                        "text": "Βίβλος γενέσεως occurs in LXX Gen 2:4 and Gen 5:1.",
+                        "annotations": [
+                          { "type": "greek", "start": 0, "end": 15, "text": "Βίβλος γενέσεως", "data": { "transliteration": "biblos geneseōs" } },
+                          { "type": "abbrev", "start": 27, "end": 30, "text": "LXX", "data": { "expansion": "Septuagint" } },
+                          { "type": "scripture", "start": 31, "end": 38, "text": "Gen 2:4", "data": { "sv": 1002004 } },
+                          { "type": "scripture", "start": 43, "end": 50, "text": "Gen 5:1", "data": { "sv": 1005001 } }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

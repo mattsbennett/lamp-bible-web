@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "schemaVersion": "1.1",
+    "id": "sample-notes",
+    "type": "notes",
+    "name": "Lamp Sample Notes",
+    "description": "Sample verse-keyed study notes.",
+    "author": "Lamp Bible",
+    "version": "1.0.0",
+    "language": "en"
+  },
+  "entries": [
+    {
+      "verseId": 43001001,
+      "title": "John 1:1",
+      "content": "Three clauses, each raising the stakes: the Word existed, the Word was with God, the Word was God. Note that the third clause has no article in Greek, which is what keeps it from collapsing into modalism.",
+      "verseRefs": [
+        {
+          "sv": 43001001
+        }
+      ]
+    },
+    {
+      "verseId": 43001014,
+      "title": "John 1:14",
+      "content": "Dwelt is literally \"tabernacled\" — the same image as the tent in the wilderness. Worth reading alongside Exodus 40.",
+      "verseRefs": [
+        {
+          "sv": 43001014
+        },
+        {
+          "sv": 2040034,
+          "ev": 2040038
+        }
+      ]
+    },
+    {
+      "verseId": 1001001,
+      "title": "Genesis 1:1",
+      "content": "The whole doctrine of creation out of nothing rests on this sentence being a statement rather than a summary of what follows.",
+      "verseRefs": [
+        {
+          "sv": 1001001
+        }
+      ]
+    }
+  ]
+}
