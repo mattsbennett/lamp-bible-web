@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# lamp-bible-web
 
-## Getting Started
+Marketing site and documentation for [Lamp Bible](https://apps.apple.com/us/app/lamp-bible/id6476050185), built with Next.js (App Router) and Tailwind CSS v4.
 
-First, run the development server:
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+app/
+  page.tsx            Landing page
+  privacy/            Privacy policy
+  docs/               Documentation, one directory per page
+    layout.tsx        Sidebar + content shell
+components/
+  SiteHeader.tsx      Shared header
+  SiteFooter.tsx      Shared footer
+  docs/DocPage.tsx    Doc page shell, Callout and Table helpers
+  docs/DocsSidebar.tsx
+lib/
+  site.ts             Site metadata and platform availability
+  docs-nav.ts         Docs sidebar structure and page ordering
+```
 
-## Learn More
+### Adding a documentation page
 
-To learn more about Next.js, take a look at the following resources:
+1. Create `app/docs/<slug>/page.tsx` exporting `metadata` and a default component wrapped in `<DocPage>`.
+2. Add the page to `docsNav` in `lib/docs-nav.ts`. That single entry drives the sidebar, the docs index cards, and the previous/next links at the foot of each page.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Doc body content is plain markup — `h2`, `p`, `ul`, `pre`, `table` — styled by the `.doc` rules in `app/globals.css`. Wrap tables in the `<Table>` helper so wide content scrolls inside its own container.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Theming
 
-## Deploy on Vercel
+Colours are CSS custom properties defined in `app/globals.css`, with a `prefers-color-scheme` block for dark mode. Semantic utilities (`text-muted`, `border-line`, `bg-raised`, …) map onto those variables, so there are no `dark:` variants to keep in sync.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Platform availability
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`lib/site.ts` holds the platform list. Flipping a platform from `planned` to `available` and giving it an `href` updates the hero, the download section and the FAQ together.
+
+## Deployment
+
+Deployed on Vercel. Pushes to `main` deploy automatically.

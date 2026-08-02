@@ -1,25 +1,297 @@
 @import 'tailwindcss';
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@theme {
+  /* Brand — taken from the app icon: oxblood spine, crimson cover, pale flame */
+  --color-flame-50: #fdf3f3;
+  --color-flame-100: #fbe3e4;
+  --color-flame-200: #f6c8ca;
+  --color-flame-300: #eda1a5;
+  --color-flame-400: #e06e75;
+  --color-flame-500: #db344a;
+  --color-flame-600: #c1272d;
+  --color-flame-700: #a01f26;
+  --color-flame-800: #6d1717;
+  --color-flame-900: #4a1010;
+  --color-flame-950: #2c0909;
+
+  /* Paper — warm neutrals for the light theme */
+  --color-paper-50: #fdfbf8;
+  --color-paper-100: #f8f4ee;
+  --color-paper-200: #ece5db;
+  --color-paper-300: #d9cfc1;
+  --color-paper-400: #b3a695;
+  --color-paper-500: #8b7f6e;
+  --color-paper-600: #6a6053;
+  --color-paper-700: #4e463c;
+  --color-paper-800: #322d27;
+  --color-paper-900: #1e1a17;
+  --color-paper-950: #12100e;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif-display), ui-serif, Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --bg: var(--color-paper-50);
+    --bg-raised: #ffffff;
+    --bg-sunken: var(--color-paper-100);
+    --text: var(--color-paper-900);
+    --text-muted: var(--color-paper-600);
+    --text-faint: var(--color-paper-500);
+    --line: var(--color-paper-200);
+    --line-strong: var(--color-paper-300);
+    --accent: var(--color-flame-600);
+    --accent-soft: var(--color-flame-50);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141110;
+      --bg-raised: #1c1817;
+      --bg-sunken: #100d0c;
+      --text: #f2ece6;
+      --text-muted: #a9a099;
+      --text-faint: #857c75;
+      --line: #2c2624;
+      --line-strong: #3b3330;
+      --accent: #e8646f;
+      --accent-soft: #241615;
+      color-scheme: dark;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: #fff;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer utilities {
+  .bg-canvas {
+    background-color: var(--bg);
+  }
+  .bg-raised {
+    background-color: var(--bg-raised);
+  }
+  .bg-sunken {
+    background-color: var(--bg-sunken);
+  }
+  .text-ink {
+    color: var(--text);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+  .text-faint {
+    color: var(--text-faint);
+  }
+  .text-accent {
+    color: var(--accent);
+  }
+  .border-line {
+    border-color: var(--line);
+  }
+  .border-line-strong {
+    border-color: var(--line-strong);
+  }
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  .bg-accent-soft {
+    background-color: var(--accent-soft);
+  }
+
+  /* Translucent canvas for the sticky header; the theme colours are CSS
+     variables, so opacity has to come from color-mix rather than a /85. */
+  .bg-canvas-blur {
+    background-color: color-mix(in srgb, var(--bg) 85%, transparent);
+  }
+}
+
+/*
+ * Documentation prose. Scoping the styles here keeps the doc pages themselves
+ * close to plain markup — headings, paragraphs, lists, tables — instead of a
+ * wall of utility classes on every element.
+ */
+.doc {
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.doc > * + * {
+  margin-top: 1.25rem;
+}
+
+/* The first block never needs the heading's top margin. */
+.doc > :first-child {
+  margin-top: 0;
+}
+
+.doc h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-top: 3.25rem;
+  padding-top: 0.25rem;
+  scroll-margin-top: 7rem;
+}
+
+.doc h3 {
+  font-size: 1.075rem;
+  font-weight: 600;
+  margin-top: 2.25rem;
+  scroll-margin-top: 7rem;
+}
+
+.doc h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-top: 1.75rem;
+}
+
+.doc p {
+  color: var(--text);
+}
+
+.doc a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  text-underline-offset: 3px;
+}
+
+.doc a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.doc ul,
+.doc ol {
+  padding-left: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.doc ul {
+  list-style: disc;
+}
+
+.doc ol {
+  list-style: decimal;
+}
+
+.doc li::marker {
+  color: var(--text-faint);
+}
+
+.doc li > ul,
+.doc li > ol {
+  margin-top: 0.5rem;
+}
+
+.doc code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+  background-color: var(--bg-sunken);
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.35rem;
+  white-space: nowrap;
+}
+
+.doc pre {
+  background-color: var(--bg-sunken);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.doc pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  white-space: pre;
+}
+
+.doc blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.doc hr {
+  border-color: var(--line);
+  margin-top: 2.5rem;
+}
+
+/* Tables scroll on their own so the page body never does. */
+.doc .table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+}
+
+.doc table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 30rem;
+}
+
+.doc thead {
+  background-color: var(--bg-sunken);
+}
+
+.doc th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  white-space: nowrap;
+}
+
+.doc td {
+  padding: 0.7rem 1rem;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.doc td:first-child {
+  white-space: nowrap;
+}
+
+.doc strong {
+  font-weight: 600;
+}
+
+/* A soft radial glow used behind the hero, echoing the lamp flame. */
+.hero-glow {
+  background:
+    radial-gradient(
+      60rem 32rem at 50% -8rem,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 70%
+    );
 }
