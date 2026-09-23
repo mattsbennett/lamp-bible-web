@@ -2,12 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
-import { availablePlatforms, plannedPlatforms, site } from '@/lib/site'
+import { AppStoreBadge, MacDownloadButton } from '@/components/DownloadButtons'
+import { availablePlatforms, isMacAvailable, macRelease, plannedPlatforms, site } from '@/lib/site'
 
 const features = [
   {
     title: 'A study-grade reader',
-    body: 'Six public-domain translations, most tagged with Strong’s numbers and morphology. Tap any tagged word for its lexicon entry. Red-letter text, section headings, poetry and paragraph formatting are preserved.',
+    body: 'The audited replacement library uses translations under documented public-domain and open distribution terms, most tagged with Strong’s numbers and morphology. Tap any tagged word for its lexicon entry. Red-letter text, section headings, poetry and paragraph formatting are preserved.',
     href: '/docs/reader',
   },
   {
@@ -17,7 +18,7 @@ const features = [
   },
   {
     title: 'Reading plans that keep up',
-    body: 'The Bible Companion and two graded children’s plans, with per-reading completion, estimated reading time tuned to your pace, a daily reminder and a home-screen widget.',
+    body: 'Follow three included public-domain Companion plans—or plans you import yourself—with per-reading completion, estimated reading time tuned to your pace, a daily reminder and a home-screen widget.',
     href: '/docs/reading-plans',
   },
   {
@@ -83,37 +84,40 @@ function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">
-              <Image
-                src="/appstore.svg"
-                alt="Download on the App Store"
-                width={160}
-                height={53}
-                priority
-              />
-            </a>
-            <Link
-              href="/docs"
-              className="rounded-full border border-line-strong px-5 py-3 text-sm font-medium transition-colors hover:bg-sunken"
-            >
-              Read the docs
-            </Link>
+            {isMacAvailable && <MacDownloadButton />}
+            <AppStoreBadge priority />
+            {!isMacAvailable && (
+              <Link
+                href="/docs"
+                className="rounded-full border border-line-strong px-5 py-3 text-sm font-medium transition-colors hover:bg-sunken"
+              >
+                Read the docs
+              </Link>
+            )}
           </div>
 
-          {plannedPlatforms.length > 0 && (
-            <p className="mt-5 text-sm text-faint">
-              {plannedPlatforms.map((p) => p.name).join(' and ')} version in development.
-            </p>
-          )}
+          <p className="mt-5 text-sm text-faint">
+            {isMacAvailable ? (
+              <>
+                Free. Mac requires {macRelease.minimumOS}.{' '}
+                <Link href="/docs" className="text-muted underline-offset-4 hover:underline">
+                  Read the docs →
+                </Link>
+              </>
+            ) : (
+              plannedPlatforms.length > 0 &&
+              `${plannedPlatforms.map((p) => p.name).join(' and ')} version in development.`
+            )}
+          </p>
         </div>
 
         <div className="justify-self-center lg:justify-self-end">
           <Image
             src="/lampicon.png"
             alt="Lamp Bible app icon"
-            width={224}
-            height={224}
-            className="rounded-[3rem] shadow-2xl shadow-black/20"
+            width={256}
+            height={256}
+            className="h-56 w-56 rounded-[22%] ring-1 ring-black/10 shadow-[0_30px_70px_-20px_rgba(28,18,8,0.55)] sm:h-64 sm:w-64"
             priority
           />
         </div>
@@ -233,7 +237,9 @@ function Privacy() {
         <SectionHeading
           eyebrow="Your data"
           title="No account. No tracking. No network required."
-          body="The app has no sign-in, collects nothing about you, and does not phone home. Bundled content is on the device after install, so the whole library works in airplane mode."
+          body={`The app has no sign-in and collects nothing about you. Bundled content is on the device after install, so the whole library works in airplane mode.${
+            isMacAvailable ? ' The Mac app checks for updates only if you allow it.' : ''
+          }`}
         />
 
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
@@ -267,10 +273,9 @@ function Download() {
           Free, with the full library included. {availablePlatforms.map((p) => p.name).join(', ')}.
         </p>
 
-        <div className="mt-9 flex justify-center">
-          <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">
-            <Image src="/appstore.svg" alt="Download on the App Store" width={172} height={57} />
-          </a>
+        <div className="mt-9 flex flex-wrap justify-center gap-4">
+          {isMacAvailable && <MacDownloadButton size="lg" />}
+          <AppStoreBadge size="lg" />
         </div>
 
         <p className="mt-10 text-sm text-muted">

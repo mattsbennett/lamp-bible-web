@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { site } from '@/lib/site'
+import { downloadPaths, isMacAvailable, site } from '@/lib/site'
 
 export function SiteFooter() {
   return (
@@ -20,6 +20,8 @@ export function SiteFooter() {
         <FooterColumn title="App">
           <FooterLink href="/#features">Features</FooterLink>
           <FooterLink href="/#modules">Module system</FooterLink>
+          <FooterLink href={downloadPaths.page}>Download</FooterLink>
+          {isMacAvailable && <FooterLink href={downloadPaths.mac}>Mac download</FooterLink>}
           <FooterLink href={site.appStoreUrl} external>
             App Store
           </FooterLink>
@@ -37,7 +39,10 @@ export function SiteFooter() {
             Report an issue
           </FooterLink>
           <FooterLink href="/docs/modules/downloads">Module downloads</FooterLink>
-          <FooterLink href="/privacy">Privacy policy</FooterLink>
+          <FooterLink href="/privacy/apps">App privacy</FooterLink>
+          <FooterLink href="/privacy/website">Website privacy</FooterLink>
+          <FooterLink href="/content-licences">Content licences</FooterLink>
+          <FooterLink href="/software-licences">Software licences</FooterLink>
         </FooterColumn>
       </div>
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { site } from '@/lib/site'
+import { downloadPaths, isMacAvailable, site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Getting started',
@@ -22,6 +22,12 @@ export default function Page() {
         <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">
           App Store
         </a>
+        {isMacAvailable && (
+          <>
+            {' '}for iPhone and iPad, and a <Link href={downloadPaths.mac}>direct download</Link>{' '}
+            for Mac
+          </>
+        )}
         . There is nothing to sign up for and nothing to buy. The first launch unpacks the bundled
         module database onto the device, which takes a few seconds; after that the entire library
         works with no network connection.
@@ -29,9 +35,15 @@ export default function Page() {
 
       <Callout title="What you get on day one">
         <p>
-          Six translations, four lexicons, a complete cross-reference set and three reading plans
-          are included in the install. See{' '}
-          <Link href="/docs/included-content">What ships in the app</Link> for the full list.
+          Six translations, four lexicons, two cross-reference sets and three public-domain reading
+          plans are included in the install. See{' '}
+          <Link href="/docs/included-content">Bundled content</Link> for the full list and rights
+          status.
+        </p>
+        <p>
+          The legacy live release also contains plain-text BBE and KJV. BBE is retired for the next
+          release, with BSB as its recommended replacement. The upcoming bundle contains plain KJV
+          and CrossWire KJV with Strong&apos;s; both are unavailable for UK and unresolved storefronts.
         </p>
       </Callout>
 
@@ -92,10 +104,10 @@ export default function Page() {
         default. Change it from the translation control in the reader, or in Settings.
       </p>
       <p>
-        Translations whose identifier ends in <code>s</code> — <code>BSBs</code>, <code>KJVs</code>,{' '}
-        <code>ASVs</code>, <code>WEBs</code> — carry Strong’s numbers on individual words. In those
-        translations you can tap a word to open its lexicon entry. Translations without tagging read
-        perfectly well but have no word-level lookups.
+        Translations whose identifier ends in <code>s</code> — <code>BSBs</code>, <code>ASVs</code>,{' '}
+        <code>WEBs</code> and <code>KJVs</code> in the upcoming bundle — carry Strong’s numbers on
+        individual words. In those translations you can tap a word to open its lexicon entry.
+        Translations without tagging read perfectly well but have no word-level lookups.
       </p>
       <p>
         If you never use some of the bundled translations, hide them in Settings rather than

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage } from '@/components/docs/DocPage'
-import { site, plannedPlatforms } from '@/lib/site'
+import { downloadPaths, isMacAvailable, macRelease, site, plannedPlatforms } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'FAQ',
@@ -30,25 +30,38 @@ export default function Page() {
 
       <h2>What data do you collect?</h2>
       <p>
-        None. The app collects no personal information, uses no analytics or tracking, and
-        integrates with no third-party data collection services. The full statement is on the{' '}
-        <Link href="/privacy">privacy policy</Link> page.
+        The app collects no personal information and has no analytics or tracking SDK. Optional
+        sync connects directly to your iCloud Drive or WebDAV provider.
+        {isMacAvailable && (
+          <>
+            {' '}
+            On the Mac, update checks — made only if you allow them — download a small feed from
+            this website, which, like any web request, reveals your IP address to its host.
+          </>
+        )}{' '}
+        This website uses Vercel
+        Web Analytics and Speed Insights for aggregate traffic and performance measurements. The
+        separate app and website disclosures are in the <Link href="/privacy">privacy policy</Link>.
       </p>
 
       <h2>Does it work offline?</h2>
       <p>
-        Completely. Translations, lexicons, cross-references and reading plans are on the device
-        after install. A connection is only involved if you have chosen a cloud sync backend, or if
-        you hand a passage off to another Bible app.
+        Completely. Bundled translations, lexicons, cross-references and reading plans — plus any
+        modules you install — are on the device. The app connects to the network only for things
+        you turn on: cloud sync and handing a passage to another Bible app
+        {isMacAvailable && <>, and on the Mac, update checks and AI chat</>}.
       </p>
 
       <h2>Why isn’t my usual translation there?</h2>
       <p>
-        Modern translations are under copyright and cannot be redistributed. Lamp Bible ships six
-        public-domain translations instead — see{' '}
-        <Link href="/docs/included-content">What ships in the app</Link>. If you hold a licence for
-        another text, the <Link href="/docs/modules">module system</Link> lets you build and install
-        it yourself.
+        Modern translations are normally protected by copyright and cannot be bundled without
+        permission. The audited replacement library uses translations with documented
+        public-domain or open distribution terms. The legacy live app&apos;s plain-text BBE is retired
+        for the next release. Plain KJV and CrossWire KJV with Strong&apos;s are included outside the
+        United Kingdom — see <Link href="/content-licences">Content licences</Link>. If your licence
+        permits making a converted copy, the{' '}
+        <Link href="/docs/modules">module system</Link> lets you build and install it yourself.
+        Sharing that module also requires redistribution rights.
       </p>
 
       <h2>What is a <code>.lamp</code> file?</h2>
@@ -73,11 +86,18 @@ export default function Page() {
 
       <h2>Which devices does it run on?</h2>
       <p>
-        iPhone and iPad today, from the{' '}
+        iPhone and iPad, from the{' '}
         <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">
           App Store
         </a>
-        .
+        {isMacAvailable ? (
+          <>
+            , and Mac, as a <Link href={downloadPaths.mac}>direct download</Link> for{' '}
+            {macRelease.minimumOS}.
+          </>
+        ) : (
+          '.'
+        )}
         {plannedPlatforms.length > 0 && (
           <> A {plannedPlatforms.map((p) => p.name).join(' and ')} version is in development.</>
         )}
@@ -85,9 +105,9 @@ export default function Page() {
 
       <h2>Can I sync between my devices?</h2>
       <p>
-        Yes — through iCloud Drive or a WebDAV server. Your notes, devotionals, highlights and
-        settings travel; the bundled library does not need to, since it is already on every install.
-        See <Link href="/docs/sync">Sync &amp; backup</Link>.
+        Yes — through iCloud Drive or a WebDAV server. Your imported modules, notes, devotionals,
+        highlights and settings travel; the bundled library does not need to, since it is already on
+        every install. See <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
 
       <h2>How do I report a bug or ask for a feature?</h2>

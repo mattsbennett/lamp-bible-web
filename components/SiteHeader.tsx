@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { site } from '@/lib/site'
+import { downloadPaths, site } from '@/lib/site'
 
 const nav = [
   { href: '/#features', label: 'Features' },
@@ -26,14 +26,13 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <a
-          href={site.appStoreUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Goes to the download page rather than one store, so every platform is one click away. */}
+        <Link
+          href={downloadPaths.page}
           className="ml-auto rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:ml-0"
         >
           Download
-        </a>
+        </Link>
       </div>
 
       {/* Compact nav row for narrow screens — no JS, just a scrollable strip. */}
