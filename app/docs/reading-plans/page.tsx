@@ -15,7 +15,7 @@ export default function Page() {
       title="Reading plans"
       intro="Follow one plan or several at once, track each reading separately, and keep today’s portion on your home screen."
     >
-      <h2>The bundled plans</h2>
+      <h2>Included companion plans</h2>
 
       <Table>
         <thead>
@@ -42,6 +42,14 @@ export default function Page() {
           </tr>
         </tbody>
       </Table>
+
+      <Callout title="Public-domain plans">
+        <p>
+          All three companion plans are public domain and included in new release bundles. Their
+          original author and committee credits are retained under{' '}
+          <Link href="/content-licences">Content licences</Link>.
+        </p>
+      </Callout>
 
       <p>
         Plans are modules, so this list is not fixed. A plan you author yourself installs exactly
@@ -85,10 +93,20 @@ export default function Page() {
 
       <h2>Quizzes</h2>
       <p>
-        Some plans ship with a companion quiz module: questions tied to specific readings, graded by
-        age group. When the passage you are reading has questions available, the reader offers them
-        from the bottom toolbar.
+        A plan can have a companion quiz module: questions tied to specific readings, graded by age
+        group. When the passage you are reading has questions available, the reader offers them from
+        the bottom toolbar.
       </p>
+      <Callout title="Quiz content cleared">
+        <p>
+          The Bible Companion quiz module is included in new release bundles. Its identified
+          ESV-specific wording was replaced through a reviewed, targeted process using the CC0
+          Berean Standard Bible; the existing questions and answers were preserved rather than
+          wholesale regenerated. The final audit found no explicit ESV naming and no ESV-only exact
+          run of eight or more words. Other works used during original generation remain recorded
+          as provenance, not as release blockers.
+        </p>
+      </Callout>
       <p>
         Set your default age group in Settings. If a reading has no questions for the selected
         group, the app says so and suggests trying another group rather than showing an empty quiz.

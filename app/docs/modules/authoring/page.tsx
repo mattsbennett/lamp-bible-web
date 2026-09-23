@@ -302,10 +302,10 @@ export default function Page() {
       <pre>
         <code>{`{
   "meta": {
-    "id": "KJVs",
+    "id": "MYBIBLEs",
     "type": "translation",
-    "name": "King James Version",
-    "abbreviation": "KJV",
+    "name": "My Bible",
+    "abbreviation": "MYBIBLE",
     "language": "en",
     "textDirection": "ltr",
     "translationPhilosophy": "formal",
@@ -326,7 +326,7 @@ export default function Page() {
             {
               "v": 1,
               "ref": 1001001,
-              "content": { "text": "In the beginning...", "annotations": [] },
+              "content": { "text": "At first, God made the sky and the land.", "annotations": [] },
               "paragraph": true
             }
           ]
@@ -339,30 +339,29 @@ export default function Page() {
 
       <h3>Translation identifiers</h3>
       <p>
-        By convention a trailing <code>s</code> marks a Strong’s-tagged edition — <code>KJVs</code>{' '}
-        is the tagged King James, <code>KJV</code> the plain one. The identifier must be unique
-        across installed modules, since it is what highlights and settings refer to.
+        By convention a trailing <code>s</code> marks a Strong’s-tagged edition. The identifier must
+        be unique across installed modules, since it is what highlights and settings refer to.
       </p>
 
       <h2>Worked example: highlights</h2>
       <p>
-        This one marks the words <em>God created</em> in Genesis 1:1, which in the KJV wording
-        begins at character 17 and ends at 28.
+        This one marks the words <em>God made</em> in the example above, beginning at character 10
+        and ending at 18.
       </p>
       <pre>
         <code>{`{
   "meta": {
     "schemaVersion": "1.0",
-    "id": "my_highlights_kjv",
+    "id": "my_highlights",
     "type": "highlights",
     "name": "My Highlights",
-    "translationId": "KJVs"
+    "translationId": "MYBIBLEs"
   },
   "verses": [
     {
       "ref": 1001001,
       "highlights": [
-        { "sc": 17, "ec": 28, "style": 0, "color": "#FFE066" }
+        { "sc": 10, "ec": 18, "style": 0, "color": "#FFE066" }
       ]
     }
   ]
@@ -406,8 +405,11 @@ export default function Page() {
       <Callout tone="warn" title="Rights">
         <p>
           The format makes almost any text importable. That is not permission to redistribute one.
-          The content bundled with the app is public domain for exactly this reason; keep modules
-          built from licensed material to yourself.
+          Create a module only from content you made, content that is public domain where you use
+          it, or content whose licence expressly permits the copying and conversion. Share a module
+          only when you also have redistribution rights, and preserve every required credit,
+          licence notice, source offer and share-alike term. Bundled-content examples are listed
+          under <Link href="/content-licences">Content licences</Link>.
         </p>
       </Callout>
     </DocPage>

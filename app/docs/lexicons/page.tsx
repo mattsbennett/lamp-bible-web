@@ -50,9 +50,11 @@ export default function Page() {
       </Table>
 
       <p>
-        All four are public domain and ship inside the app. A mapping table connects Strong’s Hebrew
-        numbers to their BDB entries, since the two systems do not correspond one-to-one — a single
-        Strong’s number can resolve to several BDB entries for different words or homographs.
+        All four have public-domain source records and ship inside the app. The exact source and
+        rights basis for each is listed under <Link href="/content-licences">Content licences</Link>.
+        A mapping table connects Strong’s Hebrew numbers to their BDB entries, since the two systems
+        do not correspond one-to-one — a single Strong’s number can resolve to several BDB entries
+        for different words or homographs.
       </p>
 
       <h2>Looking a word up</h2>
@@ -102,8 +104,9 @@ export default function Page() {
       <Callout tone="warn" title="Licensing">
         <p>
           The bundled lexicons are public domain. Other well-known dictionaries are not, and
-          redistributing them is not something the module format makes lawful — build private
-          modules for texts you have the right to use.
+          the module format does not grant copying rights. Create a module only when you made the
+          content, it is public domain where you use it, or its licence permits the conversion.
+          Share it only if you also have redistribution rights.
         </p>
       </Callout>
     </DocPage>

@@ -55,15 +55,15 @@ export default function Page() {
 
       <h2>What syncs</h2>
       <p>
-        Sync covers the editable module types — <Link href="/docs/notes">notes</Link>,{' '}
-        <Link href="/docs/devotionals">devotionals</Link> and{' '}
-        <Link href="/docs/highlights">highlights</Link> — along with your user settings, so a second
-        device picks up your translation, lexicon order and highlight palette too.
+        Sync covers your modules, including read-only translations, dictionaries, commentaries,
+        reading plans and quizzes you have imported yourself. Editable modules —{' '}
+        <Link href="/docs/notes">notes</Link>, <Link href="/docs/devotionals">devotionals</Link> and{' '}
+        <Link href="/docs/highlights">highlights</Link> — sync too, along with your user settings, so
+        a second device picks up your translation, lexicon order and highlight palette.
       </p>
       <p>
-        Read-only library content is not synced. Bundled content is already on every install, and
-        modules you imported yourself can be re-imported; there is no value in copying a hundred
-        megabytes of commentary between devices.
+        Bundled modules are already present on every install, so they do not need to be transferred.
+        Everything you import or create follows you to your other devices when sync is enabled.
       </p>
 
       <h2>Setting up WebDAV</h2>

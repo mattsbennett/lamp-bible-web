@@ -30,9 +30,13 @@ export default function DocsIndex() {
 
         <h2>The short version</h2>
         <p>
-          Lamp Bible is an offline Bible reader for close study. It ships with six public-domain
-          translations, a set of lexicons, a full cross-reference apparatus and several reading
-          plans. On top of that you write your own notes, devotionals and highlights.
+          Lamp Bible is an offline Bible reader for close study. Its audited replacement library
+          uses translations under documented public-domain and open distribution terms, a set of
+          lexicons and a full cross-reference apparatus. The legacy live app&apos;s plain-text BBE is
+          retired for the next release. Plain KJV and CrossWire KJV with Strong&apos;s are included
+          outside the United Kingdom under the terms on the{' '}
+          <Link href="/content-licences">Content licences</Link> page. On top of that you write your
+          own notes, devotionals and highlights.
         </p>
         <p>
           All of it — the content that ships with the app and the content you create — is stored in

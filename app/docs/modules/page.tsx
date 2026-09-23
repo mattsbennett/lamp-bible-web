@@ -89,9 +89,9 @@ export default function Page() {
       </Table>
 
       <p>
-        The editable types are the ones the app writes to and the ones that{' '}
-        <Link href="/docs/sync">sync</Link> and conflict resolution apply to. The read-only types are
-        library content — installed, indexed, and otherwise left alone.
+        Both read-only and editable modules <Link href="/docs/sync">sync</Link>. Conflict resolution
+        applies to editable types, since those are the modules the app can change. Read-only types
+        are library content — installed, indexed, and otherwise left alone.
       </p>
 
       <h2>Bundled and installed modules</h2>

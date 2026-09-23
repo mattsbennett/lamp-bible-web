@@ -61,7 +61,7 @@ const TYPES: Array<
     editable: false,
     summary: 'Verse text with Strong’s tagging, headings, footnotes and poetry markers.',
     sampleContents:
-      'Six KJV verses across Genesis, John and Psalms, with Strong’s annotations, two section headings, a translator footnote and a full-text index.',
+      'Six CC0 Berean Standard Bible verses across Genesis, John and Psalms, with Strong’s annotations, two section headings, a translator footnote and a full-text index.',
     schemaFiles: ['translation_schema.json'],
   },
   {

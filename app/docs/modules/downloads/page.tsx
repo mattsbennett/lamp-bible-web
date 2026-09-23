@@ -33,9 +33,10 @@ export default function Page() {
 
       <Callout title="What is in them">
         <p>
-          Verse text is the King James Version and the lexicon glosses are Strong’s, both public
-          domain. Commentary, notes, devotional and quiz content was written for these samples.
-          Nothing here reproduces licensed material, so you can use any of it as a starting point.
+          Verse text is from the Berean Standard Bible under its CC0 1.0 public-domain dedication,
+          and the lexicon glosses are from public-domain Strong’s data. Commentary, notes,
+          devotional and quiz content was written for these samples. See{' '}
+          <Link href="/content-licences">Content licences</Link> for the source records.
         </p>
       </Callout>
 

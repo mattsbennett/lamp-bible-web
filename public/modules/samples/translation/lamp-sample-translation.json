@@ -5,12 +5,17 @@
     "type": "translation",
     "name": "Lamp Sample Translation",
     "abbreviation": "SAMPLE",
-    "description": "A handful of KJV verses demonstrating the translation schema.",
+    "description": "Six Berean Standard Bible verses demonstrating the translation schema.",
     "language": "en",
     "languageName": "English",
     "textDirection": "ltr",
     "translationPhilosophy": "formal",
-    "license": "Public Domain",
+    "publisher": "Berean Bible",
+    "copyright": "Dedicated to the public domain under CC0 1.0.",
+    "license": "CC0 1.0",
+    "sourceTexts": [
+      "Berean Standard Bible"
+    ],
     "versification": "standard",
     "features": {
       "strongs": true,
@@ -42,7 +47,7 @@
               "ref": 1001001,
               "paragraph": true,
               "content": {
-                "text": "In the beginning God created the heaven and the earth.",
+                "text": "In the beginning God created the heavens and the earth.",
                 "annotations": [
                   {
                     "type": "strongs",
@@ -87,7 +92,7 @@
               "v": 2,
               "ref": 1001002,
               "content": {
-                "text": "And the earth was without form, and void; and darkness was upon the face of the deep.",
+                "text": "Now the earth was formless and void, and darkness was over the surface of the deep. And the Spirit of God was hovering over the surface of the waters.",
                 "annotations": []
               }
             },
@@ -95,7 +100,7 @@
               "v": 3,
               "ref": 1001003,
               "content": {
-                "text": "And God said, Let there be light: and there was light.",
+                "text": "And God said, “Let there be light,” and there was light.",
                 "annotations": [
                   {
                     "type": "strongs",
@@ -172,12 +177,12 @@
               "v": 14,
               "ref": 43001014,
               "content": {
-                "text": "And the Word was made flesh, and dwelt among us.",
+                "text": "The Word became flesh and made His dwelling among us. We have seen His glory, the glory of the one and only Son from the Father, full of grace and truth.",
                 "annotations": [
                   {
                     "type": "strongs",
-                    "start": 8,
-                    "end": 12,
+                    "start": 4,
+                    "end": 8,
                     "text": "Word",
                     "data": {
                       "strongs": "G3056"
@@ -208,12 +213,12 @@
                 "indent": 1
               },
               "content": {
-                "text": "Thy word is a lamp unto my feet, and a light unto my path.",
+                "text": "Your word is a lamp to my feet and a light to my path.",
                 "annotations": [
                   {
                     "type": "strongs",
-                    "start": 14,
-                    "end": 18,
+                    "start": 15,
+                    "end": 19,
                     "text": "lamp",
                     "data": {
                       "strongs": "H5216"

@@ -15,7 +15,7 @@ Outputs, all committed to the repo:
     public/modules/samples/<type>/lamp-sample-<type>.json   the source document
     public/modules/sqlite/<type>.sql                        the table definitions
 
-All sample content is either public domain (KJV verse text, Strong's glosses)
+All sample content is either public domain (CC0 BSB verse text, Strong's glosses)
 or written for this purpose. Nothing here reproduces licensed material.
 """
 
@@ -387,20 +387,21 @@ def build(kind: str, ddl: str, source: dict, populate) -> None:
 # ---------------------------------------------------------------------------
 # Sample source documents
 #
-# Verse text is the King James Version (public domain). Commentary, notes,
+# Verse text is the Berean Standard Bible (CC0 1.0). Commentary, notes,
 # devotional and quiz content is original, written for these samples.
 # ---------------------------------------------------------------------------
 
 # Verse text, named so that annotations and highlights can be positioned by
 # phrase rather than by hand-counted offset.
-GEN_1_1 = 'In the beginning God created the heaven and the earth.'
-GEN_1_2 = ('And the earth was without form, and void; and darkness was upon the face '
-           'of the deep.')
-GEN_1_3 = 'And God said, Let there be light: and there was light.'
+GEN_1_1 = 'In the beginning God created the heavens and the earth.'
+GEN_1_2 = ('Now the earth was formless and void, and darkness was over the surface of the deep. '
+           'And the Spirit of God was hovering over the surface of the waters.')
+GEN_1_3 = 'And God said, “Let there be light,” and there was light.'
 JOHN_1_1 = ('In the beginning was the Word, and the Word was with God, and the Word '
             'was God.')
-JOHN_1_14 = 'And the Word was made flesh, and dwelt among us.'
-PSALM_119_105 = 'Thy word is a lamp unto my feet, and a light unto my path.'
+JOHN_1_14 = ('The Word became flesh and made His dwelling among us. We have seen His glory, the '
+             'glory of the one and only Son from the Father, full of grace and truth.')
+PSALM_119_105 = 'Your word is a lamp to my feet and a light to my path.'
 
 TRANSLATION = {
     'meta': {
@@ -409,12 +410,15 @@ TRANSLATION = {
         'type': 'translation',
         'name': 'Lamp Sample Translation',
         'abbreviation': 'SAMPLE',
-        'description': 'A handful of KJV verses demonstrating the translation schema.',
+        'description': 'Six Berean Standard Bible verses demonstrating the translation schema.',
         'language': 'en',
         'languageName': 'English',
         'textDirection': 'ltr',
         'translationPhilosophy': 'formal',
-        'license': 'Public Domain',
+        'publisher': 'Berean Bible',
+        'copyright': 'Dedicated to the public domain under CC0 1.0.',
+        'license': 'CC0 1.0',
+        'sourceTexts': ['Berean Standard Bible'],
         'versification': 'standard',
         'features': {'strongs': True, 'morphology': False, 'redLetter': True, 'footnotes': True},
     },
@@ -541,11 +545,13 @@ def populate_translation(cur, src):
     cur.execute(
         """INSERT INTO translation_meta (
                id, name, abbreviation, description, language, language_name,
-               text_direction, translation_philosophy, license, features_json, versification
-           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+               text_direction, translation_philosophy, publisher, copyright, license,
+               source_texts_json, features_json, versification
+           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (meta['id'], meta['name'], meta['abbreviation'], meta.get('description'),
          meta['language'], meta.get('languageName'), meta['textDirection'],
-         meta.get('translationPhilosophy'), meta.get('license'),
+         meta.get('translationPhilosophy'), meta.get('publisher'), meta.get('copyright'),
+         meta.get('license'), json.dumps(meta.get('sourceTexts')),
          json.dumps(meta.get('features')), meta.get('versification', 'standard')),
     )
 
@@ -970,7 +976,7 @@ HIGHLIGHTS = {
             highlight(JOHN_1_1, 'with God', 2, '#82C596'),
         ]},
         {'ref': 19119105, 'highlights': [
-            highlight(PSALM_119_105, 'a lamp unto my feet', 3, '#D98BC3'),
+            highlight(PSALM_119_105, 'a lamp to my feet', 3, '#D98BC3'),
         ]},
     ],
 }
