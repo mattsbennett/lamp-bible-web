@@ -1,50 +1,111 @@
+import type { ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { AppStoreBadge, MacDownloadButton } from '@/components/DownloadButtons'
+import {
+  AgentWorkspaceArt,
+  HighlightsArt,
+  MacEditorArt,
+  NotesArt,
+  PhoneWritingArt,
+  PlansArt,
+  ReaderArt,
+  SearchArt,
+  SlideArt,
+  StudyArt,
+  SyncArt,
+} from '@/components/home/art'
+import {
+  AgentIcon,
+  ChatIcon,
+  FolderIcon,
+  FootnoteIcon,
+  FullScreenIcon,
+  HighlightIcon,
+  HistoryIcon,
+  type IconComponent,
+  MicIcon,
+  ModuleIcon,
+  NoteIcon,
+  PanelIcon,
+  PlanIcon,
+  ReaderIcon,
+  RemoteIcon,
+  SearchIcon,
+  SkillIcon,
+  SlidesIcon,
+  SyncIcon,
+  TableIcon,
+  TerminalIcon,
+  WindowsIcon,
+} from '@/components/home/icons'
 import { availablePlatforms, isMacAvailable, macRelease, plannedPlatforms, site } from '@/lib/site'
 
-const features = [
+type Feature = {
+  title: string
+  body: string
+  href?: string
+  icon: IconComponent
+  art: ReactNode
+  /** Grid span: `wide` takes two columns and sets the art beside the text on large screens. */
+  span?: 'wide' | 'full-small'
+  badge?: string
+}
+
+const features: Feature[] = [
   {
     title: 'A study-grade reader',
-    body: 'The audited replacement library uses translations under documented public-domain and open distribution terms, most tagged with Strong’s numbers and morphology. Tap any tagged word for its lexicon entry. Red-letter text, section headings, poetry and paragraph formatting are preserved.',
+    body: 'Five public-domain and openly licensed translations, most tagged with Strong’s numbers and morphology. Tap a tagged word for its lexicon entry. Red letters, headings, poetry and paragraphs are kept as published.',
     href: '/docs/reader',
+    icon: ReaderIcon,
+    art: <ReaderArt />,
+    span: 'wide',
   },
   {
     title: 'Study tools beside the text',
-    body: 'Put commentary, cross-references, your notes or a devotional in a panel beside the passage — scroll-linked to the verse you are on.',
+    body: 'Commentary, cross-references, your notes or your own writing in a panel beside the passage, scrolling with the verse you are on.',
     href: '/docs/reader',
+    icon: PanelIcon,
+    art: <StudyArt />,
   },
   {
     title: 'Reading plans that keep up',
-    body: 'Follow three included public-domain Companion plans—or plans you import yourself—with per-reading completion, estimated reading time tuned to your pace, a daily reminder and a home-screen widget.',
+    body: 'Three public-domain Companion plans, or your own: tick off each reading, see how long the day will take at your pace, and get a reminder and a widget.',
     href: '/docs/reading-plans',
+    icon: PlanIcon,
+    art: <PlansArt />,
   },
   {
     title: 'Highlights with meaning',
-    body: 'Four styles and any colour you like, organised into sets per translation. Name a colour — “Promises”, “Commands” — and the meaning travels with your highlights.',
+    body: 'Four styles and any colour, kept in sets. Name a colour — “Promises”, “Calling” — and the meaning travels with your highlights.',
     href: '/docs/highlights',
+    icon: HighlightIcon,
+    art: <HighlightsArt />,
   },
   {
     title: 'Notes anchored to verses',
-    body: 'Write on a verse, a verse range, or a whole chapter, with proper footnotes. Notes live beside the passage and export to clean markdown.',
+    body: 'Write on a verse, a range or a whole chapter, in formatted text that sits beside the passage and exports as plain markdown.',
     href: '/docs/notes',
-  },
-  {
-    title: 'Devotionals and sermons',
-    body: 'A real editor for long-form writing: headings, scripture quotes, footnotes, tables, images, recorded audio and linked scripture. Present mode makes it readable from a lectern.',
-    href: '/docs/devotionals',
+    icon: NoteIcon,
+    art: <NotesArt />,
   },
   {
     title: 'Search that reaches everything',
-    body: 'One full-text index across translations, lexicons, commentaries, books, notes, devotionals and highlights — filtered by module, tag, Strong’s number or highlight colour.',
+    body: 'One index across translations, lexicons, commentaries, books, notes, writing and highlights — by word, phrase or Strong’s number, narrowed by module, tag or highlight colour.',
     href: '/docs/search',
+    icon: SearchIcon,
+    art: <SearchArt />,
+    span: 'wide',
   },
   {
     title: 'Sync on your terms',
-    body: 'Keep everything on device, sync through iCloud Drive, or point the app at your own WebDAV server. No account, ever.',
+    body: 'Keep everything on the device, sync through iCloud Drive, or use your own WebDAV server. No account, ever.',
     href: '/docs/sync',
+    icon: SyncIcon,
+    art: <SyncArt />,
+    span: 'full-small',
   },
 ]
 
@@ -55,6 +116,7 @@ export default function Home() {
       <main>
         <Hero />
         <Features />
+        <Writing />
         {isMacAvailable && <MacFeatures />}
         <Modules />
         <Privacy />
@@ -137,10 +199,258 @@ function Features() {
           body="Not a verse-of-the-day app. Lamp Bible is for people who read a passage, look up a word, check a commentary, and write down what they found."
         />
 
-        <div className="mt-14 grid gap-x-10 gap-y-11 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
-            <div key={feature.title}>
-              <h3 className="font-serif text-xl tracking-tight">{feature.title}</h3>
+            <FeatureCard key={feature.title} feature={feature} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function FeatureCard({ feature }: { feature: Feature }) {
+  const { title, body, href, icon, art, span, badge } = feature
+  const wide = span === 'wide'
+  return (
+    <article
+      className={`flex flex-col overflow-hidden rounded-2xl border border-line bg-raised ${
+        wide
+          ? 'sm:col-span-2 lg:grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]'
+          : span === 'full-small'
+            ? 'sm:col-span-2 lg:col-span-1'
+            : ''
+      }`}
+    >
+      <div className="p-6 sm:p-7">
+        <div className="flex items-center justify-between gap-3">
+          <IconChip icon={icon} />
+          {badge && <Badge>{badge}</Badge>}
+        </div>
+        <h3 className="mt-5 font-serif text-xl tracking-tight">{title}</h3>
+        <p className="mt-2.5 text-sm leading-relaxed text-muted">{body}</p>
+        {href && (
+          <Link
+            href={href}
+            className="mt-3 inline-block text-sm font-medium text-accent hover:underline"
+          >
+            Learn more →
+          </Link>
+        )}
+      </div>
+      <div
+        className={`mt-auto border-t border-line bg-sunken p-5 sm:p-6 ${
+          wide ? 'lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:border-l lg:border-t-0' : ''
+        }`}
+      >
+        {art}
+      </div>
+    </article>
+  )
+}
+
+/** What writing on iPhone and iPad already does, shown beside the phone editor. */
+const phoneWriting: Array<{ title: string; body: string; icon: IconComponent }> = [
+  {
+    title: 'Footnotes that keep count',
+    body: 'Numbered in order of first mention, with any label you like. Tap a marker to reach its note.',
+    icon: FootnoteIcon,
+  },
+  {
+    title: 'Tables and scripture',
+    body: 'Quote a passage, link a reference, and lay a comparison out in a table.',
+    icon: TableIcon,
+  },
+  {
+    title: 'Pictures and recordings',
+    body: 'Add photos, or record audio straight into the piece.',
+    icon: MicIcon,
+  },
+  {
+    title: 'Present mode',
+    body: 'Full screen, at a size you can read from a lectern.',
+    icon: FullScreenIcon,
+  },
+  {
+    title: 'Slides in your pocket',
+    body: 'Open decks made on the Mac, and run a Mac presentation as its remote, with speaker notes, a timer and black-out.',
+    icon: RemoteIcon,
+  },
+]
+
+const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = [
+  {
+    title: 'Chat',
+    body: 'Ask for a draft, a cut or a check. Its edits show as differences, and every one lands in Revisions to undo.',
+    icon: ChatIcon,
+  },
+  {
+    title: 'Terminal',
+    body: 'Your provider’s own tool, continuing the same session.',
+    icon: TerminalIcon,
+  },
+  {
+    title: 'Context',
+    body: 'Sources, an earlier talk, research notes — read-only copies for the agent to work from.',
+    icon: FolderIcon,
+  },
+  {
+    title: 'Workspace Skills',
+    body: 'Instructions it can follow. Build Lamp Deck, built in, turns the writing into slides.',
+    icon: SkillIcon,
+  },
+]
+
+function Writing() {
+  // Until the Mac app ships, its writing tools are a preview: badged, and without links into the
+  // Mac docs, which are hidden until then.
+  const macBadge = isMacAvailable ? 'Mac' : 'Coming to Mac'
+  const macWriting: Feature[] = [
+    {
+      title: 'A writing desk on the Mac',
+      body: 'Visual and Markdown editing, find and replace, a Details pane for series, tags and key scriptures, footnotes edited beside their marker, companion files as tabs, and a Revision History for every change.',
+      href: isMacAvailable ? '/docs/mac' : undefined,
+      icon: HistoryIcon,
+      art: <MacEditorArt />,
+      badge: macBadge,
+    },
+    {
+      title: 'Slide Studio',
+      body: 'Build a deck from the writing — scripture, quotations and speaker notes drawn from the manuscript — in eight layouts. Present full screen, export a PDF, and drive it from your iPhone.',
+      href: isMacAvailable ? '/docs/presenting' : undefined,
+      icon: SlidesIcon,
+      art: <SlideArt />,
+      badge: macBadge,
+    },
+  ]
+
+  return (
+    <section id="writing" className="border-b border-line">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
+        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.7fr)]">
+          <div>
+            <SectionHeading
+              eyebrow="Writing"
+              title="Write, then present"
+              body="Devotionals, sermons and studies get a proper editor rather than a notes field, and go from manuscript to slides without leaving Lamp Bible."
+            />
+            <p className="mt-10 text-xs font-semibold uppercase tracking-wider text-faint">
+              On iPhone and iPad
+            </p>
+            <ul className="mt-5 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+              {phoneWriting.map((item) => (
+                <li key={item.title} className="flex gap-3.5">
+                  <IconChip icon={item.icon} size="sm" />
+                  <div>
+                    <p className="text-sm font-medium">{item.title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">{item.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/docs/devotionals"
+              className="mt-8 inline-block text-sm font-medium text-accent hover:underline"
+            >
+              Writing on iPhone and iPad →
+            </Link>
+          </div>
+          <PhoneWritingArt />
+        </div>
+
+        <div className="mt-20 overflow-hidden rounded-3xl border border-line bg-raised">
+          <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
+            <div>
+              <div className="flex items-center justify-between gap-3">
+                <IconChip icon={AgentIcon} />
+                <Badge>{macBadge}</Badge>
+              </div>
+              <h3 className="mt-5 font-serif text-2xl tracking-tight sm:text-3xl">
+                An agent at your writing desk
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+                Open a workspace beside any piece of writing and work on it with the AI you already
+                use — Codex, Claude Code or OpenCode, signed in with your own account. It works on
+                the same text you do, and looks things up in your library through read-only tools.
+              </p>
+              <p className="mt-5 text-xs leading-relaxed text-faint">
+                The workspace syncs with your library, so it follows the writing to your other
+                Macs. Your messages go to the provider you choose, never to Lamp Bible.
+              </p>
+              {isMacAvailable && (
+                <Link
+                  href="/docs/ai"
+                  className="mt-4 inline-block text-sm font-medium text-accent hover:underline"
+                >
+                  How agents work →
+                </Link>
+              )}
+            </div>
+            <ul className="grid content-start gap-x-8 gap-y-6 sm:grid-cols-2">
+              {agentParts.map((part) => (
+                <li key={part.title} className="flex gap-3.5">
+                  <IconChip icon={part.icon} size="sm" />
+                  <div>
+                    <p className="text-sm font-medium">{part.title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">{part.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="border-t border-line bg-sunken px-5 py-8 sm:px-10 sm:py-10">
+            <div className="mx-auto max-w-3xl">
+              <AgentWorkspaceArt />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-5 grid gap-5 md:grid-cols-2">
+          {macWriting.map((feature) => (
+            <FeatureCard key={feature.title} feature={feature} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const macFeatures: Array<{ title: string; body: string; href: string; icon: IconComponent }> = [
+  {
+    title: 'A reader built for the Mac',
+    body: 'Tabs and separate windows, a study column with commentary, verse notes, original language and dictionary, up to three other translations side by side, and today’s readings in the menu bar.',
+    href: '/docs/mac',
+    icon: WindowsIcon,
+  },
+  {
+    title: 'Reader Chat',
+    body: 'Ask about the chapter in front of you. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account.',
+    href: '/docs/ai',
+    icon: ChatIcon,
+  },
+  {
+    title: 'Make your own modules',
+    body: 'Drop in module JSON, see it validated, and build an integrity-checked .lamp of any of the nine types, ready to install or share.',
+    href: '/docs/mac#make-a-module',
+    icon: ModuleIcon,
+  },
+]
+
+function MacFeatures() {
+  return (
+    <section id="mac" className="border-b border-line">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
+        <SectionHeading
+          eyebrow="On the Mac"
+          title="Study with room to spread out"
+          body="The Mac app reads the same library and syncs with your iPhone and iPad, and adds the tools that want a bigger screen and a keyboard."
+        />
+
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {macFeatures.map((feature) => (
+            <div key={feature.title} className="rounded-2xl border border-line bg-raised p-6 sm:p-7">
+              <IconChip icon={feature.icon} />
+              <h3 className="mt-5 font-serif text-xl tracking-tight">{feature.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">{feature.body}</p>
               <Link
                 href={feature.href}
@@ -156,55 +466,23 @@ function Features() {
   )
 }
 
-const macFeatures = [
-  {
-    title: 'A reader built for the Mac',
-    body: 'Tabs and windows, a study column with commentary, verse notes, original language and dictionary, up to three other translations side by side, and today’s readings in the menu bar.',
-    href: '/docs/mac',
-  },
-  {
-    title: 'Slide Studio',
-    body: 'Turn a devotional into a slide deck with scripture, quotations and speaker notes drawn from your manuscript. Present full screen and drive it from your iPhone.',
-    href: '/docs/presenting',
-  },
-  {
-    title: 'AI that reads your library',
-    body: 'Ask about the chapter in front of you, or draft with an agent beside your writing — through your own Codex, Claude Code or OpenCode account, with read-only access to your modules.',
-    href: '/docs/ai',
-  },
-  {
-    title: 'Make your own modules',
-    body: 'Drop in module JSON, see it validated, and build an integrity-checked .lamp of any of the nine types, ready to install or share.',
-    href: '/docs/mac#make-a-module',
-  },
-]
-
-function MacFeatures() {
+function IconChip({ icon: Icon, size = 'md' }: { icon: IconComponent; size?: 'sm' | 'md' }) {
   return (
-    <section id="mac" className="border-b border-line">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
-        <SectionHeading
-          eyebrow="On the Mac"
-          title="Study, write and present"
-          body="The Mac app reads the same library and syncs with your iPhone and iPad, and adds the tools that want a bigger screen and a keyboard."
-        />
+    <span
+      className={`grid shrink-0 place-items-center bg-accent-soft text-accent ${
+        size === 'sm' ? 'h-9 w-9 rounded-lg' : 'h-11 w-11 rounded-xl'
+      }`}
+    >
+      <Icon className={size === 'sm' ? 'h-[18px] w-[18px]' : 'h-[22px] w-[22px]'} />
+    </span>
+  )
+}
 
-        <div className="mt-14 grid gap-x-10 gap-y-11 sm:grid-cols-2 lg:grid-cols-4">
-          {macFeatures.map((feature) => (
-            <div key={feature.title}>
-              <h3 className="font-serif text-xl tracking-tight">{feature.title}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-muted">{feature.body}</p>
-              <Link
-                href={feature.href}
-                className="mt-3 inline-block text-sm font-medium text-accent hover:underline"
-              >
-                Learn more →
-              </Link>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+function Badge({ children }: { children: ReactNode }) {
+  return (
+    <span className="rounded-full border border-line-strong px-2.5 py-0.5 text-xs font-medium text-muted">
+      {children}
+    </span>
   )
 }
 
