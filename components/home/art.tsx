@@ -1,23 +1,22 @@
 /**
- * Illustrated screens for the homepage. They borrow the apps' own labels and
- * layout but are drawn, not captured, so they stay sharp, follow the site's
- * light and dark themes, and never show anyone's library. Each is one image to
- * assistive technology, described by its label.
+ * Illustrated screens for the homepage, drawn to match the apps rather than
+ * captured from them: Apple's system font and colours, the apps' accent, their
+ * SF Symbols (as stand-ins from ./sf), and the layouts and labels in the
+ * iOS and Mac source. Drawn, they stay sharp, follow light and dark mode, need
+ * no re-shooting when a release moves a pixel, and never show anyone's
+ * library. Each is one image to assistive technology, described by its label.
+ *
+ * iPhone screens are drawn at about 0.72 of their point size, so a 17pt body
+ * is 12px here.
  */
-import type { ReactNode } from 'react'
-import {
-  ChatIcon,
-  FolderIcon,
-  FootnoteIcon,
-  HistoryIcon,
-  MicIcon,
-  SearchIcon,
-  SkillIcon,
-  TableIcon,
-  TerminalIcon,
-} from './icons'
+import type { CSSProperties, ReactNode } from 'react'
+import { Sym, type SymbolName } from './sf'
 
-const screen = 'rounded-xl border border-line bg-raised art-shadow'
+const label2 = 'text-[color:var(--sys-label2)]'
+const label3 = 'text-[color:var(--sys-label3)]'
+const tint = 'text-[color:var(--sys-tint)]'
+const blue = 'text-[color:var(--sys-blue)]'
+const sep = 'border-[color:var(--sys-sep)]'
 
 function Art({ label, className = '', children }: { label: string; className?: string; children: ReactNode }) {
   return (
@@ -27,496 +26,958 @@ function Art({ label, className = '', children }: { label: string; className?: s
   )
 }
 
-function VerseNumber({ n }: { n: number }) {
-  return <sup className="mr-1 font-sans text-[9px] font-semibold text-accent">{n}</sup>
+// ——— iPhone ———————————————————————————————————————————————————————————————
+
+/**
+ * An iPhone, cut off by the bottom of its card unless `whole`. The screen is the
+ * system background; children lay out from the top.
+ */
+function Phone({
+  height = 'h-[290px]',
+  whole = false,
+  className = '',
+  children,
+}: {
+  /** Height classes, so a phone in a wide card can grow on large screens. */
+  height?: string
+  whole?: boolean
+  className?: string
+  children: ReactNode
+}) {
+  return (
+    <div
+      className={`app-ui relative mx-auto w-full max-w-[18.5rem] overflow-hidden border-[7px] border-[color:var(--bezel)] bg-[var(--sys-bg)] ${height} ${
+        whole ? 'rounded-[2.6rem] art-shadow' : 'rounded-t-[2.6rem] border-b-0'
+      } ${className}`}
+    >
+      <div className="mx-auto mt-[7px] h-[17px] w-[74px] rounded-full bg-black" />
+      {children}
+    </div>
+  )
 }
 
-/** Placeholder text: a grey bar standing in for a line of copy. */
-function Line({ w, className = '' }: { w: string; className?: string }) {
-  return <span className={`block h-1.5 rounded-full bg-[var(--line-strong)] ${className}`} style={{ width: w }} />
-}
-
-function Chip({ active = false, children }: { active?: boolean; children: ReactNode }) {
+/** iOS 26's glass: a translucent circle or capsule with a hairline edge. */
+function Glass({ round = false, className = '', children }: { round?: boolean; className?: string; children: ReactNode }) {
   return (
     <span
-      className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${
-        active ? 'bg-accent text-white' : 'border border-line text-muted'
-      }`}
+      className={`flex shrink-0 items-center justify-center border-[0.5px] border-[color:var(--sys-glass-edge)] bg-[var(--sys-glass)] shadow-[0_1px_4px_rgb(0_0_0/0.08)] ${
+        round ? 'h-[30px] w-[30px] rounded-full' : 'h-[30px] rounded-full px-[11px]'
+      } ${className}`}
     >
       {children}
     </span>
   )
 }
 
+/** The reader's own header: back, the translation-and-chapter capsule, the ellipsis menu. */
+function ReaderHeader({ translation, chapter }: { translation: string; chapter: string }) {
+  return (
+    <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
+      <Glass round>
+        <Sym name="arrowBackward" className="h-[13px] w-[13px]" />
+      </Glass>
+      <div className="flex flex-1 justify-center">
+        <Glass className="flex-col !px-[14px] leading-none">
+          <span className="text-[10px] font-bold">{translation}</span>
+          <span className={`mt-[2px] text-[8px] ${label2}`}>{chapter}</span>
+        </Glass>
+      </div>
+      <Glass round>
+        <Sym name="ellipsis" className="h-[13px] w-[13px]" />
+      </Glass>
+    </div>
+  )
+}
+
+/** A verse number: superscript, three-quarters size, secondary label colour. */
+function V({ n }: { n: number }) {
+  return <sup className={`mr-[0.25em] text-[0.75em] ${label2}`}>{n}</sup>
+}
+
+/** The split between the reader and the tool panel: a hairline and a grab pill. */
+function PanelDivider() {
+  return (
+    <div className="relative my-[6px] h-[8px]">
+      <span className="absolute inset-x-0 top-1/2 h-px bg-[var(--sys-sep)]" />
+      <span className="absolute left-1/2 top-1/2 h-[3.5px] w-[30px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--sys-gray3)]" />
+    </div>
+  )
+}
+
+const highlightFill = (hex: string): CSSProperties => ({
+  backgroundColor: `${hex}66`,
+  borderRadius: 3,
+  boxDecorationBreak: 'clone',
+  WebkitBoxDecorationBreak: 'clone',
+})
+
 export function ReaderArt() {
   return (
-    <Art label="The reader at John 1:1 in the KJV with Strong’s numbers, with the lexicon entry for “Word”, G3056 logos, open beneath the verse.">
-      <div className={`${screen} mx-auto max-w-lg p-5`}>
-        <div className="flex items-center justify-between text-[11px]">
-          <span className="rounded-full border border-line px-2.5 py-0.5 font-medium text-muted">
-            John 1
-          </span>
-          <span className="text-faint">KJVs</span>
-        </div>
-        <p className="mt-4 font-serif text-[15px] leading-7">
-          <VerseNumber n={1} />
-          In the beginning was the{' '}
-          <span className="rounded bg-accent-soft px-0.5 text-accent underline decoration-dotted underline-offset-4">
-            Word
-          </span>
-          , and the Word was with God, and the Word was God. <VerseNumber n={2} />
-          The same was in the beginning with God.
-        </p>
-        <div className="mt-3 rounded-lg border border-line bg-sunken p-3.5">
-          <div className="flex flex-wrap items-baseline gap-x-2">
-            <span className="text-[11px] font-semibold text-accent">G3056</span>
-            <span className="font-serif text-lg leading-none">λόγος</span>
-            <span className="text-xs italic text-muted">logos</span>
-            <span className="ml-auto text-[10px] text-faint">N-NSM · noun</span>
-          </div>
-          <p className="mt-2 text-xs leading-relaxed text-muted">
-            Something said, including the thought; … specially, with the article in John, the
-            Divine Expression (i.e. Christ).
+    <Art label="Lamp Bible on iPhone at John 1 in the KJV, with the Strong’s entry for “Word” — G3056, λόγος — open in a sheet over the text.">
+      <Phone height="h-[360px] lg:h-[530px]">
+        <ReaderHeader translation="KJVs" chapter="John 1" />
+        <div className="px-[11px]">
+          <p className="mt-[4px] text-center text-[14.5px] font-bold">John 1</p>
+          <p className="mt-[8px] text-[13px] leading-[1.8]">
+            <V n={1} />
+            In the beginning was the Word, and the Word was with God, and the Word was God.{' '}
+            <V n={2} />
+            The same was in the beginning with God. <V n={3} />
+            All things were made by him; and without him was not any thing made that was made.
           </p>
         </div>
-      </div>
+        <div className="absolute inset-0 bg-black/25" />
+        <div className="absolute inset-x-0 bottom-0 top-[158px] rounded-t-[14px] bg-[var(--sys-sheet)] shadow-[0_-6px_24px_rgb(0_0_0/0.18)]">
+          <div className="flex items-center px-[10px] pt-[9px]">
+            <Glass round className="!h-[26px] !w-[26px]">
+              <Sym name="xmark" className="h-[10px] w-[10px]" />
+            </Glass>
+            <span className="flex-1 pr-[26px] text-center text-[12px] font-semibold">Word</span>
+          </div>
+          <div className="px-[14px] pt-[10px]">
+            <div className="flex flex-wrap items-center gap-x-[7px] gap-y-1">
+              <span className="text-[17px] leading-none">λόγος</span>
+              <span className={`rounded-full bg-[var(--sys-fill)] px-[7px] py-[2px] text-[9.5px] ${label2}`}>
+                G3056
+              </span>
+              <span className={`flex items-center gap-[3px] text-[10px] ${tint}`}>
+                <Sym name="magnifyingglass" className="h-[10px] w-[10px]" />
+                330x
+              </span>
+            </div>
+            <p className={`mt-[5px] text-[8px] ${label3}`}>Strong’s Greek</p>
+            <p className={`mt-[3px] text-[10.5px] italic ${label2}`}>logos · noun</p>
+            <p className="mt-[7px] text-[11px] leading-[1.55]">
+              something said (including the thought); by implication a topic (subject of
+              discourse), also reasoning (the mental faculty) or motive; … specially, (with the
+              article in John) the Divine Expression (i.e. Christ).
+            </p>
+            <p className={`mt-[8px] text-[9px] ${label2}`}>KJV Usage</p>
+            <p className="text-[9.5px] leading-[1.45]">
+              account, cause, communication, doctrine, matter, preaching, reason, saying, speech,
+              talk, thing, utterance, word, work…
+            </p>
+            <p className={`mt-[8px] text-[9px] ${label2}`}>Morphology</p>
+            <p className="font-mono text-[9px]">N-NSM</p>
+            <div className="mt-[10px] flex justify-center gap-[4px]">
+              <span className="h-[5px] w-[13px] rounded-full bg-[var(--sys-label)]" />
+              <span className="h-[5px] w-[5px] rounded-full bg-[var(--sys-label2)]" />
+            </div>
+          </div>
+        </div>
+      </Phone>
     </Art>
   )
 }
 
 export function StudyArt() {
   return (
-    <Art label="Romans 8 beside the tool panel, which shows cross-references for verse 28 from the Treasury of Scripture Knowledge.">
-      <div className={`${screen} grid grid-cols-[1fr_1.15fr] overflow-hidden`}>
-        <div className="space-y-2.5 p-3.5">
-          <p className="text-[10px] font-medium text-faint">Romans 8</p>
-          <Line w="92%" />
-          <Line w="78%" />
-          <div className="-mx-1.5 rounded-md border-l-2 border-[var(--accent)] bg-accent-soft px-1.5 py-1.5">
-            <p className="font-serif text-[11px] leading-snug">
-              <VerseNumber n={28} />
-              And we know that all things work together for good…
-            </p>
-          </div>
-          <Line w="85%" />
-          <Line w="64%" />
+    <Art label="Lamp Bible on iPhone at Romans 8, with the tool panel below the text showing the Treasury of Scripture Knowledge’s cross-references for verse 28 as blue links.">
+      <Phone>
+        <ReaderHeader translation="KJVs" chapter="Romans 8" />
+        <p className="px-[11px] text-[12.5px] leading-[1.75]">
+          <V n={28} />
+          And we know that all things work together for good to them that love God, to them who
+          are the called according to his purpose.
+        </p>
+        <PanelDivider />
+        <div className="flex items-center gap-2 px-[9px]">
+          <Glass className="min-w-0 !justify-start gap-[5px]">
+            <span className="truncate text-[10.5px] font-medium">
+              Treasury of Scripture Knowledge (Enhanced)
+            </span>
+            <Sym name="chevronUpDown" className={`h-[9px] w-[9px] shrink-0 ${label2}`} />
+          </Glass>
+          <Glass round className="ml-auto">
+            <Sym name="ellipsis" className="h-[13px] w-[13px]" />
+          </Glass>
         </div>
-        <div className="border-l border-line bg-sunken p-3.5">
-          <div className="flex gap-1 overflow-hidden">
-            <Chip>Notes</Chip>
-            <Chip active>Commentary</Chip>
-          </div>
-          <p className="mt-3 text-[9px] font-semibold uppercase tracking-wider text-faint">
-            TSKe · verse 28
+        <div className="px-[13px] pt-[9px]">
+          <p className={`text-[9.5px] font-semibold ${label2}`}>v. 28</p>
+          <p className="mt-[3px] text-[11.5px] leading-[1.6]">
+            we know. <span className={blue}>Rom 8:22; 2 Cor 5:1.</span> all things.{' '}
+            <span className={blue}>Gen 50:20; Deut 8:16; Ps 119:71; 2 Cor 4:17.</span> the called.{' '}
+            <span className={blue}>Rom 1:6; 9:24; 2 Tim 1:9.</span>
           </p>
-          <p className="mt-1.5 text-[11px] leading-relaxed text-muted">
-            <span className="text-ink">all things.</span>{' '}
-            <span className="text-accent">Gen 50:20</span> ·{' '}
-            <span className="text-accent">Deut 8:16</span> ·{' '}
-            <span className="text-accent">Ps 119:71</span> ·{' '}
-            <span className="text-accent">2 Cor 4:17</span>
-          </p>
-          <div className="mt-2.5 space-y-2">
-            <Line w="90%" />
-            <Line w="70%" />
-          </div>
         </div>
-      </div>
+      </Phone>
     </Art>
   )
 }
 
 export function PlansArt() {
   const readings = [
-    { passage: 'Ezekiel 33', minutes: 6, done: true },
-    { passage: 'Psalm 119:1–40', minutes: 7, done: false },
-    { passage: '1 Peter 3', minutes: 4, done: false },
+    { passage: 'Ezekiel 33', detail: 'Prophecy · 6 min', read: true },
+    { passage: 'Psalm 119:1–40', detail: 'Poetry · 7 min', read: false },
+    { passage: '1 Peter 3', detail: 'Epistle · 4 min', read: false },
   ]
   return (
-    <Art label="Today’s readings from The Bible Companion: Ezekiel 33 ticked off, two more to go, about seventeen minutes in all, with a Continue Reading button.">
-      <div className={`${screen} p-4`}>
-        <div className="flex items-baseline justify-between">
-          <p className="font-serif text-base">Today</p>
-          <p className="text-[10px] text-faint">17 min</p>
+    <Art label="The Today screen on iPhone: The Bible Companion’s three readings for the day, one ticked, about seventeen minutes in all, under a Continue Reading button.">
+      <Phone>
+        <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
+          <Glass round>
+            <Sym name="chevronLeft" className="h-[12px] w-[12px]" />
+          </Glass>
+          <div className="flex flex-1 justify-center">
+            <Glass className="gap-[5px]">
+              <Sym name="calendar" className={`h-[12px] w-[12px] ${tint}`} />
+              <span className="text-[11.5px]">Wed, Oct 28</span>
+            </Glass>
+          </div>
+          <Glass round>
+            <Sym name="chevronRight" className="h-[12px] w-[12px]" />
+          </Glass>
         </div>
-        <p className="text-[10px] text-faint">The Bible Companion</p>
-        <ul className="mt-3 space-y-2">
-          {readings.map((r) => (
-            <li key={r.passage} className="flex items-center gap-2.5 text-xs">
-              <span
-                className={`grid h-4 w-4 shrink-0 place-items-center rounded-full border ${
-                  r.done ? 'border-[var(--accent)] bg-accent text-white' : 'border-line-strong'
-                }`}
+        <div className="px-[14px]">
+          <div className={`flex items-center justify-between border-b ${sep} pb-[5px] pt-[4px]`}>
+            <span className={`text-[11px] font-semibold ${label2}`}>Plans</span>
+            <span className={`flex items-center gap-[3px] text-[11px] ${tint}`}>
+              <Sym name="plusCircleFill" className="h-[11px] w-[11px]" />
+              Add
+            </span>
+          </div>
+          <p className="mt-[9px] text-[16px] font-black leading-tight">The Bible Companion</p>
+          <div className={`mt-[3px] flex justify-between text-[10.5px] ${label2}`}>
+            <span>3 readings · 17 min</span>
+            <span>1 of 3 read</span>
+          </div>
+          <span className="mt-[8px] flex items-center justify-center gap-[5px] rounded-full bg-[var(--sys-tint)] py-[8px] text-[12px] font-semibold text-white">
+            <Sym name="bookFill" className="h-[12px] w-[12px]" />
+            Continue Reading
+          </span>
+          <div className="mt-[9px] space-y-[6px]">
+            {readings.map((r) => (
+              <div
+                key={r.passage}
+                className="flex items-center gap-[9px] rounded-[11px] border-[1.2px] border-[rgb(142_142_147/0.3)] px-[10px] py-[6px]"
               >
-                {r.done && (
-                  <svg viewBox="0 0 12 12" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth={2}>
-                    <path d="m2.5 6 2.5 2.5 4.5-5" />
-                  </svg>
-                )}
-              </span>
-              <span className={r.done ? 'text-faint line-through' : ''}>{r.passage}</span>
-              <span className="ml-auto text-[10px] text-faint">{r.minutes} min</span>
-            </li>
-          ))}
-        </ul>
-        <span className="mt-4 block rounded-full bg-accent py-1.5 text-center text-[11px] font-medium text-white">
-          Continue Reading
-        </span>
-      </div>
+                <Sym
+                  name={r.read ? 'checkmarkCircleFill' : 'circle'}
+                  className={`h-[19px] w-[19px] shrink-0 ${tint}`}
+                />
+                <div className="min-w-0 flex-1 leading-tight">
+                  <p className={`text-[12px] font-semibold ${r.read ? label2 : ''}`}>{r.passage}</p>
+                  <p className={`text-[9px] ${label2}`}>{r.detail}</p>
+                </div>
+                <Sym name="chevronRight" className={`h-[9px] w-[9px] ${label3}`} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </Phone>
     </Art>
   )
 }
 
 export function HighlightsArt() {
+  const styles: SymbolName[] = ['highlighter', 'underline', 'underlineDashed', 'underlineDotted']
+  const colours = [
+    { hex: '#FFCC00', theme: 'Promises', on: true },
+    { hex: '#34C759' },
+    { hex: '#007AFF', theme: 'Calling' },
+    { hex: '#FF2D55' },
+  ]
   return (
-    <Art label="Romans 8:28 with two highlights: a yellow fill from the theme “Promises” and a blue underline from the theme “Calling”, above the four highlight styles.">
-      <div className={`${screen} p-4`}>
-        <p className="font-serif text-[13px] leading-6">
-          <VerseNumber n={28} />
-          And we know that{' '}
-          <span className="rounded-sm bg-(--art-yellow) px-0.5">
-            all things work together for good
-          </span>{' '}
+    <Art label="Romans 8:28 on iPhone with a yellow highlight and a blue underline, and the reader’s menu open on the highlight picker: four styles, and colours named Promises and Calling.">
+      <Phone>
+        <ReaderHeader translation="KJVs" chapter="Romans 8" />
+        <p className="px-[11px] text-[13px] leading-[1.8]">
+          <V n={28} />
+          And we know that <span style={highlightFill('#FFCC00')}>all things work together for good</span>{' '}
           to them that love God, to them who are the{' '}
-          <span className="underline decoration-(--art-blue) decoration-2 underline-offset-[3px]">
+          <span className="underline decoration-[#007AFF] decoration-[1.5px] underline-offset-[3px]">
             called according to his purpose
           </span>
           .
         </p>
-        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-line pt-2.5 text-[10px] text-muted">
-          <span className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-sm bg-(--art-yellow)" />
-            Promises
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="h-0.5 w-3 bg-(--art-blue)" />
-            Calling
-          </span>
+        <div className="absolute right-[8px] top-[150px] w-[196px] rounded-[14px] bg-[var(--sys-bg2)] p-[7px] shadow-[0_10px_30px_rgb(0_0_0/0.22)]">
+          <div className="rounded-[11px] bg-[var(--sys-cell-elev)] p-[7px]">
+            <div className="grid grid-cols-4 gap-[3px]">
+              {styles.map((s, i) => (
+                <span
+                  key={s}
+                  className={`flex h-[24px] items-center justify-center rounded-[5px] ${
+                    i === 0 ? 'bg-[var(--sys-fill)]' : ''
+                  }`}
+                >
+                  <Sym name={s} className="h-[13px] w-[13px]" />
+                </span>
+              ))}
+            </div>
+            <div className="mt-[7px] flex items-start gap-[7px]">
+              {colours.map((c) => (
+                <span key={c.hex} className="flex w-[26px] flex-col items-center">
+                  <span
+                    className="h-[20px] w-[20px] rounded-full"
+                    style={{
+                      backgroundColor: c.hex,
+                      boxShadow: c.on ? '0 0 0 2px var(--sys-cell-elev), 0 0 0 4px var(--sys-label)' : undefined,
+                    }}
+                  />
+                  {c.theme && <span className={`mt-[3px] text-[6.5px] font-medium ${label2}`}>{c.theme}</span>}
+                </span>
+              ))}
+              <span className={`flex h-[20px] w-[20px] items-center justify-center rounded-full bg-[var(--sys-fill)] ${label2}`}>
+                <Sym name="plus" className="h-[10px] w-[10px]" />
+              </span>
+            </div>
+          </div>
+          <div className="mt-[6px] flex items-center gap-[6px] rounded-[11px] bg-[var(--sys-cell-elev)] px-[9px] py-[7px] text-[10.5px]">
+            <Sym name="folder" className={`h-[11px] w-[11px] ${tint}`} />
+            My Highlights
+            <Sym name="chevronUpDown" className={`ml-auto h-[9px] w-[9px] ${label2}`} />
+          </div>
         </div>
-        <div className="mt-2.5 flex flex-wrap gap-1.5 text-[10px] text-muted">
-          <span className="rounded border border-line px-1.5 py-0.5">
-            <span className="bg-(--art-green) px-0.5">Highlight</span>
-          </span>
-          <span className="rounded border border-line px-1.5 py-0.5">
-            <span className="underline decoration-(--art-pink) decoration-2">Underline</span>
-          </span>
-          <span className="rounded border border-line px-1.5 py-0.5">
-            <span className="underline decoration-(--art-blue) decoration-dashed decoration-2">Dashed</span>
-          </span>
-          <span className="rounded border border-line px-1.5 py-0.5">
-            <span className="underline decoration-[var(--accent)] decoration-dotted decoration-2">Dotted</span>
-          </span>
-        </div>
-      </div>
+      </Phone>
     </Art>
   )
 }
 
 export function NotesArt() {
   return (
-    <Art label="A note on Romans 8:28–30 in formatted text, with a footnote giving the Greek word for “called”.">
-      <div className={`${screen} p-4`}>
-        <div className="flex items-baseline justify-between">
-          <p className="text-[11px] font-semibold text-accent">Romans 8:28–30</p>
-          <p className="text-[10px] text-faint">Note</p>
-        </div>
-        <p className="mt-2 text-xs leading-relaxed">
-          <strong>Called</strong> is the word Paul uses of himself in 1:1.
-          <sup className="ml-0.5 text-[9px] font-semibold text-accent">1</sup> Those he called he
-          also justified — <em>the chain never breaks</em>.
+    <Art label="The Notes panel on iPhone below Romans 8: a note on verses 28 to 30 in formatted text, with its footnote giving the Greek word for “called”.">
+      <Phone>
+        <ReaderHeader translation="KJVs" chapter="Romans 8" />
+        <p className="px-[11px] text-[12.5px] leading-[1.75]">
+          <V n={28} />
+          And we know that all things work together for good to them that love God…
         </p>
-        <p className="mt-3 border-t border-line pt-2 text-[10px] text-faint">
-          1. κλητός, G2822 — invited, appointed.
-        </p>
-        <div className="mt-3 flex gap-1.5">
-          <Chip>Markdown</Chip>
-          <Chip>.lamp</Chip>
+        <PanelDivider />
+        <div className="flex items-center gap-[6px] px-[9px]">
+          <Glass className="gap-[5px]">
+            <span className="text-[10.5px] font-medium">My Notes</span>
+            <Sym name="chevronUpDown" className={`h-[9px] w-[9px] ${label2}`} />
+          </Glass>
+          <Sym name="checkmarkIcloudFill" className="ml-auto h-[15px] w-[15px] text-[color:var(--sys-green)]" />
+          <Glass round>
+            <Sym name="plus" className="h-[12px] w-[12px]" />
+          </Glass>
+          <Glass round>
+            <Sym name="ellipsis" className="h-[13px] w-[13px]" />
+          </Glass>
         </div>
-      </div>
+        <div className="px-[13px] pt-[10px]">
+          <div className="flex items-center justify-between">
+            <span className={`text-[11px] font-medium ${blue}`}>vv.28-30</span>
+            <Sym name="ellipsis" className={`h-[11px] w-[11px] ${label2}`} />
+          </div>
+          <p className="mt-[4px] text-[12px] leading-[1.55]">
+            <strong>Called</strong> is the word Paul uses of himself in 1:1.
+            <sup className={`ml-[1px] text-[0.7em] ${label2}`}>[1]</sup> Those he called he also
+            justified — <em>the chain never breaks</em>.
+          </p>
+          <div className={`mt-[6px] flex gap-[5px] text-[10.5px] ${label2}`}>
+            <span className="w-[16px] shrink-0 text-right text-[9.5px]">[1]</span>
+            <span>κλητός, G2822 — invited, appointed.</span>
+          </div>
+        </div>
+      </Phone>
     </Art>
   )
 }
 
 export function SearchArt() {
   const results = [
-    { group: 'Translations', ref: 'John 1:1', text: 'In the beginning was the Word…', note: 'KJVs' },
-    { group: 'Lexicons', ref: 'G3056 λόγος', text: 'Something said, including the thought…', note: 'Strong’s' },
-    { group: 'Your notes', ref: 'John 1:14', text: 'The Word became flesh — the same logos…', note: 'Note' },
+    {
+      ref: 'John 1:1',
+      parts: ['In the beginning was the ', 'Word', ', and the ', 'Word', ' was with God, and the ', 'Word', ' was God.'],
+    },
+    { ref: 'John 1:14', parts: ['And the ', 'Word', ' was made flesh, and dwelt among us, (and we beheld his glory…'] },
+    { ref: 'Hebrews 4:12', parts: ['For the ', 'word', ' of God is quick, and powerful, and sharper than any twoedged sword…'] },
+    { ref: '1 John 1:1', parts: ['That which was from the beginning, … which our hands have handled, of the ', 'Word', ' of life;'] },
+    { ref: 'Revelation 19:13', parts: ['And he was clothed with a vesture dipped in blood: and his name is called The ', 'Word', ' of God.'] },
   ]
   return (
-    <Art label="Search for Strong’s number G3056 returning a verse, a lexicon entry and one of your own notes, with filter chips for each kind of content.">
-      <div className={`${screen} p-4`}>
-        <div className="flex items-center gap-2 rounded-lg border border-line bg-sunken px-3 py-2">
-          <SearchIcon className="h-3.5 w-3.5 text-faint" />
-          <span className="text-xs">G3056</span>
+    <Art label="Search on iPhone for Strong’s number G3056 in the KJV, listing John 1:1, John 1:14 and Hebrews 4:12 with each match highlighted.">
+      <Phone height="h-[330px] lg:h-[500px]">
+        <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
+          <Glass round>
+            <Sym name="arrowBackward" className="h-[13px] w-[13px]" />
+          </Glass>
+          <span className="flex flex-1 items-center justify-center gap-[4px] text-[12px] font-semibold">
+            <Sym name="bookClosed" className="h-[12px] w-[12px]" />
+            KJVs
+            <Sym name="chevronDown" className={`h-[8px] w-[8px] ${label2}`} />
+          </span>
+          <Glass round>
+            <Sym name="ellipsis" className="h-[13px] w-[13px]" />
+          </Glass>
         </div>
-        <div className="mt-2.5 flex gap-1.5 overflow-hidden [mask-image:linear-gradient(to_right,black_80%,transparent)]">
-          <Chip active>All</Chip>
-          <Chip>Translations</Chip>
-          <Chip>Lexicons</Chip>
-          <Chip>Notes</Chip>
-          <Chip>Books</Chip>
-          <Chip>Commentaries</Chip>
+        <div className="mx-[11px] flex items-center gap-[6px] rounded-[9px] bg-[var(--sys-bg2)] px-[9px] py-[6px]">
+          <Sym name="number" className={`h-[12px] w-[12px] ${tint}`} />
+          <span className="text-[12px]">G3056</span>
+          <Sym name="xmarkCircleFill" className={`ml-auto h-[13px] w-[13px] ${label3}`} />
         </div>
-        <ul className="mt-3 divide-y divide-[var(--line)]">
+        <p className={`px-[13px] pb-[3px] pt-[10px] text-[9.5px] ${label2}`}>330 results</p>
+        <div className={`divide-y divide-[color:var(--sys-sep)] ${sep} border-t ${sep} pl-[13px]`}>
           {results.map((r) => (
-            <li key={r.ref} className="flex items-baseline gap-3 py-2 first:pt-0 last:pb-0">
-              <span className="w-20 shrink-0 text-[9px] font-semibold uppercase tracking-wider text-faint">
-                {r.group}
-              </span>
-              <span className="min-w-0 flex-1 truncate text-xs">
-                <span className="font-medium text-accent">{r.ref}</span>{' '}
-                <span className="text-muted">{r.text}</span>
-              </span>
-              <span className="hidden shrink-0 text-[10px] text-faint sm:inline">{r.note}</span>
-            </li>
+            <div key={r.ref} className="py-[7px] pr-[13px]">
+              <p className="text-[12.5px] font-semibold">{r.ref}</p>
+              <p className={`mt-[2px] line-clamp-2 text-[10.5px] leading-[1.45] ${label2}`}>
+                {r.parts.map((part, i) =>
+                  i % 2 === 1 ? (
+                    <span key={i} className="rounded-[2px] bg-[rgb(255_204_0/0.4)] font-semibold text-[color:var(--sys-label)]">
+                      {part}
+                    </span>
+                  ) : (
+                    <span key={i}>{part}</span>
+                  ),
+                )}
+              </p>
+            </div>
           ))}
-        </ul>
-      </div>
+        </div>
+      </Phone>
     </Art>
   )
 }
 
 export function SyncArt() {
-  const options = [
-    { name: 'Local Only', detail: 'Nothing leaves this device' },
-    { name: 'iCloud Drive', detail: 'Synced just now', on: true },
-    { name: 'WebDAV', detail: 'Your own server' },
+  const rows: Array<{ label: ReactNode; value: ReactNode }> = [
+    {
+      label: 'Sync Method',
+      value: (
+        <span className={`flex items-center gap-[4px] ${label2}`}>
+          iCloud Drive
+          <Sym name="chevronUpDown" className="h-[9px] w-[9px]" />
+        </span>
+      ),
+    },
+    {
+      label: 'Status',
+      value: (
+        <span className={`flex items-center gap-[4px] ${label2}`}>
+          <Sym name="checkmarkIcloudFill" className="h-[13px] w-[13px] text-[color:var(--sys-green)]" />
+          Connected
+        </span>
+      ),
+    },
+    {
+      label: 'Modules',
+      value: (
+        <span className={`flex items-center gap-[4px] ${label2}`}>
+          4 modules
+          <Sym name="checkmarkCircleFill" className="h-[11px] w-[11px] text-[color:var(--sys-green)]" />
+        </span>
+      ),
+    },
+    {
+      label: (
+        <span className={`flex items-center gap-[5px] ${tint}`}>
+          <Sym name="circlepath" className="h-[12px] w-[12px]" />
+          Sync Now
+        </span>
+      ),
+      value: null,
+    },
   ]
   return (
-    <Art label="Sync settings with three choices — Local Only, iCloud Drive and WebDAV — and iCloud Drive chosen and synced just now.">
-      <div className={`${screen} divide-y divide-[var(--line)]`}>
-        {options.map((o) => (
-          <div key={o.name} className="flex items-center gap-3 px-4 py-2.5">
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-medium">{o.name}</p>
-              <p className="text-[10px] text-faint">{o.detail}</p>
+    <Art label="Lamp Bible’s Sync settings on iPhone: iCloud Drive chosen as the sync method, connected, with four modules synced and a Sync Now button.">
+      <Phone className="!bg-[var(--sys-grouped)]">
+        <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
+          <Glass round>
+            <Sym name="arrowBackward" className="h-[13px] w-[13px]" />
+          </Glass>
+          <span className="flex-1 pr-[30px] text-center text-[12px] font-semibold">Settings</span>
+        </div>
+        <p className={`px-[22px] pb-[4px] pt-[8px] text-[9px] uppercase ${label2}`}>Sync</p>
+        <div className="mx-[11px] overflow-hidden rounded-[11px] bg-[var(--sys-cell)]">
+          {rows.map((row, i) => (
+            <div key={i} className={`flex items-center px-[12px] py-[8px] text-[12px] ${i > 0 ? `border-t ${sep}` : ''}`}>
+              {row.label}
+              <span className="ml-auto text-[11px]">{row.value}</span>
             </div>
-            {o.on && (
-              <svg viewBox="0 0 12 12" className="h-3 w-3 text-accent" fill="none" stroke="currentColor" strokeWidth={2}>
-                <path d="m2.5 6 2.5 2.5 4.5-5" />
-              </svg>
-            )}
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+        <p className={`px-[22px] pt-[5px] text-[9px] ${label2}`}>Modules sync via iCloud Drive.</p>
+        <p className={`px-[22px] pb-[4px] pt-[14px] text-[9px] uppercase ${label2}`}>Reading Plan Settings</p>
+        <div className="mx-[11px] rounded-[11px] bg-[var(--sys-cell)] px-[12px] py-[8px] text-[12px]">
+          Reading Rate (WPM)
+        </div>
+      </Phone>
     </Art>
   )
 }
 
-/** The iPhone writing editor: a sermon with a footnote, a table and a recording. */
+/** The iPhone writing editor in Visual Edit, with its formatting bar. */
 export function PhoneWritingArt() {
+  const bar: Array<SymbolName | 'Aa' | 'B' | 'I' | '|'> = [
+    'Aa', 'B', 'I', '|', 'listBullet', 'listNumber', '|', 'textQuote', '|', 'tablecells', '|', 'noteText', 'photoBadgePlus',
+  ]
   return (
-    <Art label="The writing editor on iPhone: a piece called Abide in the Vine with a scripture quotation, a footnote marker, a small table and an audio recording, above the formatting bar.">
-      <div className="mx-auto w-full max-w-[17rem] rounded-[2.2rem] border-[7px] border-[var(--line-strong)] bg-raised p-4 art-shadow">
-        <div className="flex items-center justify-between text-[11px]">
-          <span className="font-medium text-accent">Done</span>
-          <span className="text-faint">Synced</span>
-        </div>
-        <p className="mt-4 font-serif text-lg leading-tight">Abide in the Vine</p>
-        <p className="mt-0.5 text-[10px] text-faint">Exhortation · John 15</p>
-        <blockquote className="mt-3 border-l-2 border-[var(--accent)] pl-2.5 font-serif text-[12px] italic leading-snug text-muted">
-          “I am the vine, ye are the branches.”{' '}
-          <span className="not-italic text-accent">John 15:5</span>
-        </blockquote>
-        <p className="mt-3 text-[11px] leading-relaxed">
-          Fruit is never the branch’s own work; it is what the vine does through it.
-          <sup className="ml-0.5 text-[9px] font-semibold text-accent">1</sup>
-        </p>
-        <div className="mt-3 grid grid-cols-2 overflow-hidden rounded-md border border-line text-[10px]">
-          <span className="border-b border-r border-line bg-sunken px-2 py-1 font-medium">Abide</span>
-          <span className="border-b border-line bg-sunken px-2 py-1 font-medium">Bear fruit</span>
-          <span className="border-r border-line px-2 py-1 text-muted">v. 4</span>
-          <span className="px-2 py-1 text-muted">v. 5, 8</span>
-        </div>
-        <div className="mt-3 flex items-center gap-2 rounded-full border border-line px-2.5 py-1.5">
-          <span className="grid h-4 w-4 place-items-center rounded-full bg-accent">
-            <span className="ml-px h-0 w-0 border-y-[3px] border-l-[5px] border-y-transparent border-l-white" />
+    <Art label="The writing editor on iPhone: a piece called Abide in the Vine with a scripture quotation of John 15:5, a footnote, a table and an audio recording, above the formatting bar.">
+      <Phone height="h-[560px]" whole>
+        <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
+          <Glass round>
+            <Sym name="chevronLeft" className="h-[12px] w-[12px]" />
+          </Glass>
+          <span className="min-w-0 flex-1 truncate text-center text-[12px] font-semibold">
+            Abide in the Vine
           </span>
-          <span className="flex h-3 flex-1 items-center gap-[2px]">
-            {[3, 6, 9, 5, 11, 7, 4, 8, 12, 6, 3, 7, 10, 5, 8, 4, 6, 9, 5, 3].map((h, i) => (
-              <span key={i} className="w-[2px] rounded-full bg-[var(--line-strong)]" style={{ height: h }} />
-            ))}
-          </span>
-          <span className="text-[9px] text-faint">0:42</span>
+          <Glass className="gap-[10px]">
+            <Sym name="checkmarkIcloudFill" className="h-[14px] w-[14px] text-[color:var(--sys-green)]" />
+            <Sym name="squareAndArrowUp" className="h-[13px] w-[13px]" />
+          </Glass>
         </div>
-        <div className="mt-4 flex items-center justify-between rounded-xl bg-sunken px-3 py-2 text-muted">
-          <span className="text-[11px] font-bold">B</span>
-          <span className="font-serif text-[11px] italic">I</span>
-          <span className="text-[11px] font-semibold">H</span>
-          <FootnoteIcon className="h-3.5 w-3.5" />
-          <TableIcon className="h-3.5 w-3.5" />
-          <MicIcon className="h-3.5 w-3.5" />
-          <span className="text-sm leading-none">+</span>
+        <div className="px-[14px] pt-[6px] text-[13px] leading-[1.6]">
+          <p className="text-[22px] font-bold leading-tight">Abide in the Vine</p>
+          <div className="mt-[9px] rounded-r-[6px] border-l-[3px] border-[color:var(--ed-rule)] bg-[var(--ed-wash)] px-[9px] py-[6px]">
+            <p className="text-[12px] italic text-[color:var(--ed-muted)]">John 15:5</p>
+            <p className="text-[12.5px] leading-[1.5]">
+              I am the vine, ye are the branches: He that abideth in me, and I in him, the same
+              bringeth forth much fruit.
+            </p>
+          </div>
+          <p className="mt-[9px]">
+            Fruit is never the branch’s own work; it is what the vine does through it.
+            <sup className={`ml-[1px] text-[0.75em] font-semibold ${blue}`}>[1]</sup>
+          </p>
+          <div className="mt-[9px] grid grid-cols-2 overflow-hidden rounded-[2px] border border-[color:var(--ed-rule)] text-[11px]">
+            <span className="border-b border-r border-[color:var(--ed-rule)] bg-[var(--ed-wash)] px-[8px] py-[4px] font-semibold">Abide</span>
+            <span className="border-b border-[color:var(--ed-rule)] bg-[var(--ed-wash)] px-[8px] py-[4px] font-semibold">Bear fruit</span>
+            <span className="border-r border-[color:var(--ed-rule)] px-[8px] py-[4px]">v. 4</span>
+            <span className="px-[8px] py-[4px]">vv. 5, 8</span>
+          </div>
+          <div className="mt-[9px] flex items-center gap-[8px] rounded-[10px] border border-[color:var(--ed-rule)] bg-[var(--ed-wash)] px-[10px] py-[6px]">
+            <span className="text-[17px] leading-none">🎵</span>
+            <span className="text-[11px] text-[color:var(--ed-muted)]">Audio</span>
+          </div>
+          <div className="mt-[10px] border-t border-[color:var(--ed-rule)] pt-[5px] text-[11px] text-[color:var(--ed-muted)]">
+            <span className={`font-semibold ${blue}`}>1.</span> Compare 1 John 2:6.
+          </div>
         </div>
-      </div>
+        <div className="absolute inset-x-0 bottom-[44px] flex items-center gap-[4px] overflow-hidden bg-[var(--sys-bg2)] px-[6px] py-[6px] [mask-image:linear-gradient(to_right,black_85%,transparent)]">
+          {bar.map((item, i) =>
+            item === '|' ? (
+              <span key={i} className="mx-[2px] h-[17px] w-px shrink-0 bg-[var(--sys-sep)]" />
+            ) : (
+              <span
+                key={i}
+                className="flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-[5px] bg-[var(--sys-bg)] text-[11px]"
+              >
+                {item === 'Aa' ? (
+                  <span className="font-medium">Aa</span>
+                ) : item === 'B' ? (
+                  <span className="font-bold">B</span>
+                ) : item === 'I' ? (
+                  <span className="italic">I</span>
+                ) : (
+                  <Sym name={item} className="h-[12px] w-[12px]" />
+                )}
+              </span>
+            ),
+          )}
+        </div>
+        <div className="absolute bottom-[8px] right-[10px]">
+          <Glass round>
+            <Sym name="eye" className="h-[13px] w-[13px]" />
+          </Glass>
+        </div>
+      </Phone>
     </Art>
   )
 }
 
-/** The Mac writing editor with an agent workspace open beside it. */
+// ——— Mac ——————————————————————————————————————————————————————————————————
+
+/** A Mac window: traffic lights, a title with its subtitle, and toolbar items. */
+function MacWindow({
+  title,
+  subtitle,
+  toolbar,
+  className = '',
+  children,
+}: {
+  title: string
+  subtitle?: string
+  toolbar?: ReactNode
+  className?: string
+  children: ReactNode
+}) {
+  return (
+    <div className={`app-ui @container overflow-hidden rounded-[10px] border ${sep} bg-[var(--mac-window)] art-shadow ${className}`}>
+      <div className={`flex items-center gap-3 border-b ${sep} bg-[var(--mac-bar)] px-[10px] py-[7px]`}>
+        <span className="flex shrink-0 gap-[6px]">
+          <span className="h-[10px] w-[10px] rounded-full bg-[#ff5f57]" />
+          <span className="h-[10px] w-[10px] rounded-full bg-[#febc2e]" />
+          <span className="h-[10px] w-[10px] rounded-full bg-[#28c840]" />
+        </span>
+        <div className="min-w-0 leading-tight">
+          <p className="truncate text-[11px] font-semibold">{title}</p>
+          {subtitle && <p className={`text-[9px] ${label2}`}>{subtitle}</p>}
+        </div>
+        <div className="ml-auto flex shrink-0 items-center gap-[6px]">{toolbar}</div>
+      </div>
+      {children}
+    </div>
+  )
+}
+
+function ToolButton({ name, on = false }: { name: SymbolName; on?: boolean }) {
+  return (
+    <span
+      className={`flex h-[22px] w-[24px] items-center justify-center rounded-[6px] ${
+        on ? `bg-[var(--sys-fill)] ${tint}` : label2
+      }`}
+    >
+      <Sym name={name} className="h-[13px] w-[13px]" />
+    </span>
+  )
+}
+
+function Segmented({ items }: { items: ReactNode[] }) {
+  return (
+    <span className="flex rounded-[6px] bg-[var(--sys-fill)] p-[2px] text-[9.5px]">
+      {items.map((item, i) => (
+        <span
+          key={i}
+          className={`flex items-center gap-[3px] rounded-[4.5px] px-[7px] py-[2px] ${
+            i === 0 ? 'bg-[var(--mac-control)] shadow-[0_1px_1px_rgb(0_0_0/0.12)]' : label2
+          }`}
+        >
+          {item}
+        </span>
+      ))}
+    </span>
+  )
+}
+
+/** A bordered macOS button. */
+function MacButton({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return (
+    <span
+      className={`flex h-[19px] shrink-0 items-center gap-[4px] rounded-[5px] border ${sep} bg-[var(--mac-control)] px-[7px] text-[9.5px] shadow-[0_1px_1px_rgb(0_0_0/0.05)] ${className}`}
+    >
+      {children}
+    </span>
+  )
+}
+
+/** The writing editor's toolbar: Revision History, Visual | Markdown, Details, Agent, the deck. */
+function EditorToolbar({ details = false, agent = false }: { details?: boolean; agent?: boolean }) {
+  return (
+    <>
+      <ToolButton name="clockArrow" />
+      <span className="hidden @sm:flex">
+        <Segmented items={['Visual', 'Markdown']} />
+      </span>
+      <ToolButton name="infoCircle" on={details} />
+      <ToolButton name="sparkles" on={agent} />
+      <span className="hidden @sm:flex">
+        <ToolButton name="slideDeck" />
+      </span>
+    </>
+  )
+}
+
+/** The Mac writing editor with its agent workspace open beside it. */
 export function AgentWorkspaceArt() {
   return (
     <Art
       className="@container"
-      label="A Mac window with a piece of writing on the left and the agent workspace on the right: a request to tighten the opening, the agent’s reply, the edit it made shown as a difference, and the workspace’s revisions, context files and skills."
+      label="The Mac writing editor with the agent workspace open beside it: the draft on the left; on the right the workspace’s draft status, context file and skills, and a chat in which the agent describes its edit with a diff."
     >
-      <div className={`${screen} overflow-hidden`}>
-        <div className="flex items-center gap-1.5 border-b border-line px-3 py-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--line-strong)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--line-strong)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--line-strong)]" />
-          <span className="flex-1 truncate text-center text-[11px] text-faint">Abide in the Vine</span>
-        </div>
-        <div className="grid grid-cols-[minmax(0,1fr)] @lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="p-4">
-            <div className="flex flex-wrap gap-1.5">
-              <span className="flex overflow-hidden rounded-md border border-line text-[10px]">
-                <span className="bg-sunken px-2 py-0.5 font-medium">Visual</span>
-                <span className="px-2 py-0.5 text-muted">Markdown</span>
+      <MacWindow title="Abide in the Vine" subtitle="Saved" toolbar={<EditorToolbar agent />}>
+        <div className="grid grid-cols-[minmax(0,1fr)] @xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+          <div className="flex flex-col">
+            <div className={`flex h-[24px] items-stretch border-b ${sep} bg-[var(--mac-bar)] text-[10px]`}>
+              <span className="flex items-center gap-[4px] border-b-2 border-[color:var(--sys-tint)] bg-[var(--mac-window)] px-[10px]">
+                <Sym name="docText" className="h-[11px] w-[11px]" />
+                Main Prose
               </span>
-              <Chip>Footnote</Chip>
-              <Chip>Scripture</Chip>
-              <Chip active>Agent</Chip>
+              <span className={`flex items-center px-[9px] ${label2}`}>
+                <Sym name="plus" className="h-[10px] w-[10px]" />
+              </span>
             </div>
-            <p className="mt-4 font-serif text-lg leading-tight">Abide in the Vine</p>
-            <p className="mt-2 text-[11px] leading-relaxed">
-              <span className="rounded-sm bg-(--art-add) px-0.5">
-                Fruit is never the branch’s own work.
-              </span>{' '}
-              It is what the vine does through a branch that stays.
-              <sup className="ml-0.5 text-[9px] font-semibold text-accent">1</sup>
-            </p>
-            <div className="mt-2.5 space-y-2">
-              <Line w="94%" />
-              <Line w="88%" />
-              <Line w="52%" />
+            <div className="flex gap-[10px] overflow-hidden bg-[var(--mac-control)] px-[10px] py-[6px] [mask-image:linear-gradient(to_right,black_85%,transparent)]">
+              {[
+                { group: 'Style', items: [<MacButton key="s">Body <Sym name="chevronDown" className="h-[7px] w-[7px]" /></MacButton>] },
+                { group: 'Text', items: [<MacButton key="b"><span className="font-bold">B</span></MacButton>, <MacButton key="i"><span className="italic">I</span></MacButton>] },
+                {
+                  group: 'Insert',
+                  items: [
+                    <MacButton key="sc"><Sym name="book" className="h-[10px] w-[10px]" />Scripture</MacButton>,
+                    <MacButton key="fn">Footnote</MacButton>,
+                    <MacButton key="md"><Sym name="paperclip" className="h-[10px] w-[10px]" />Media</MacButton>,
+                  ],
+                },
+              ].map((g) => (
+                <div key={g.group} className="shrink-0">
+                  <p className={`mb-[3px] text-[7px] font-semibold uppercase ${label2}`}>{g.group}</p>
+                  <div className="flex gap-[3px]">{g.items}</div>
+                </div>
+              ))}
             </div>
-            <p className="mt-3 border-t border-line pt-2 text-[10px] text-faint">
-              1. Compare 1 John 2:6.
-            </p>
-            <p className="mt-3 text-[10px] text-faint">642 words · 4 min read · 5 min aloud</p>
-          </div>
-          <div className="border-t border-line bg-sunken p-4 @lg:border-l @lg:border-t-0">
-            <span className="flex w-fit overflow-hidden rounded-md border border-line text-[10px]">
-              <span className="flex items-center gap-1 bg-raised px-2 py-0.5 font-medium">
-                <ChatIcon className="h-3 w-3" />
-                Chat
-              </span>
-              <span className="flex items-center gap-1 px-2 py-0.5 text-muted">
-                <TerminalIcon className="h-3 w-3" />
-                Terminal
-              </span>
-            </span>
-            <p className="mt-3 ml-auto w-fit max-w-[85%] rounded-xl rounded-br-sm bg-accent px-2.5 py-1.5 text-[11px] leading-snug text-white">
-              Tighten the opening, and find where else John uses “abide”.
-            </p>
-            <p className="mt-2 max-w-[92%] rounded-xl rounded-bl-sm border border-line bg-raised px-2.5 py-1.5 text-[11px] leading-snug">
-              Shortened the first sentence. The cross-references tie verse 4 to 1 John 2:6 — added
-              it as a footnote.
-            </p>
-            <div className="mt-2 overflow-hidden rounded-lg border border-line bg-raised font-mono text-[10px] leading-relaxed">
-              <p className="truncate bg-(--art-del) px-2 py-0.5 text-(--art-del-text)">
-                − Jesus says a great deal in this chapter about fruit.
+            <div className="flex-1 px-[14px] py-[12px] text-[11px] leading-[1.6]">
+              <p className="text-[18px] font-bold leading-tight">Abide in the Vine</p>
+              <p className="mt-[7px]">
+                Fruit is never the branch’s own work. It is what the vine does through a branch
+                that stays.
+                <sup className={`ml-[1px] text-[0.75em] font-semibold ${blue}`}>[1]</sup>
               </p>
-              <p className="truncate bg-(--art-add) px-2 py-0.5 text-(--art-add-text)">
-                + Fruit is never the branch’s own work.
+              <div className="mt-[8px] space-y-[6px]">
+                <span className="block h-[5px] w-[94%] rounded-full bg-[var(--sys-fill)]" />
+                <span className="block h-[5px] w-[88%] rounded-full bg-[var(--sys-fill)]" />
+                <span className="block h-[5px] w-[56%] rounded-full bg-[var(--sys-fill)]" />
+              </div>
+              <p className={`mt-[10px] border-t ${sep} pt-[5px] text-[9.5px] ${label2}`}>
+                <span className={`font-semibold ${blue}`}>1</span> Compare 1 John 2:6.
               </p>
             </div>
-            <div className="mt-3 space-y-1 border-t border-line pt-2.5 text-[10px] text-faint">
-              <p className="flex items-center gap-1.5">
-                <HistoryIcon className="h-3 w-3" />
-                Revisions · 3 changes
-              </p>
-              <p className="flex items-center gap-1.5">
-                <FolderIcon className="h-3 w-3" />
-                Context · earlier-talk.md, sources.pdf
-              </p>
-              <p className="flex items-center gap-1.5">
-                <SkillIcon className="h-3 w-3" />
-                Workspace Skills · Build Lamp Deck
-              </p>
+            <div className={`flex justify-between border-t ${sep} bg-[var(--mac-control)] px-[10px] py-[4px] text-[9px] ${label2}`}>
+              <span>Saved</span>
+              <span>642 words · 4 min read</span>
             </div>
           </div>
+
+          <div className={`flex flex-col border-t ${sep} @xl:border-l @xl:border-t-0`}>
+            <div className={`flex items-center gap-[6px] border-b ${sep} px-[9px] py-[6px]`}>
+              <MacButton>
+                Claude <Sym name="chevronUpDown" className="h-[7px] w-[7px]" />
+              </MacButton>
+              <Segmented
+                items={[
+                  <>
+                    <Sym name="bubbles" className="h-[10px] w-[10px]" />
+                    Chat
+                  </>,
+                  <>
+                    <Sym name="terminal" className="h-[10px] w-[10px]" />
+                    Terminal
+                  </>,
+                ]}
+              />
+              <Sym name="folder" className={`ml-auto h-[12px] w-[12px] ${label2}`} />
+            </div>
+            <div className="space-y-[8px] px-[10px] py-[8px] text-[10px]">
+              <div>
+                <p className="flex items-center gap-[4px] font-semibold">
+                  <Sym name="docText" className="h-[11px] w-[11px]" />
+                  Draft
+                </p>
+                <div className="mt-[3px] flex items-center gap-[4px]">
+                  <Sym name="checkmarkCircleFill" className="h-[10px] w-[10px] text-[color:var(--sys-green)]" />
+                  <span className={`text-[9px] ${label2}`}>Live sync is active</span>
+                  <MacButton className="ml-auto !h-[17px] !text-[8.5px]">
+                    <Sym name="clockArrow" className="h-[9px] w-[9px]" />
+                    Revisions (3)
+                  </MacButton>
+                </div>
+              </div>
+              <div>
+                <p className="flex items-center gap-[4px] font-semibold">
+                  <Sym name="paperclip" className="h-[11px] w-[11px]" />
+                  Context
+                </p>
+                <p className="mt-[3px] flex items-center gap-[4px] text-[9.5px]">
+                  <Sym name="doc" className={`h-[10px] w-[10px] ${label2}`} />
+                  earlier-talk.md
+                  <span className={`text-[8px] ${label3}`}>12 KB</span>
+                </p>
+              </div>
+              <div>
+                <p className="flex items-center gap-[4px] font-semibold">
+                  <Sym name="wandStars" className="h-[11px] w-[11px]" />
+                  Workspace Skills
+                </p>
+                <p className="mt-[3px] flex items-center gap-[5px] text-[9.5px] font-medium">
+                  Build Lamp Deck
+                  <span className={`flex items-center gap-[2px] text-[8px] font-normal ${label2}`}>
+                    <Sym name="lockFill" className="h-[7px] w-[7px]" />
+                    Built-in
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className={`flex-1 space-y-[6px] border-t ${sep} bg-[var(--mac-control)] px-[10px] py-[8px] text-[10px] leading-[1.45]`}>
+              <div className="flex items-center gap-[6px]">
+                <span className="flex items-center gap-[4px] font-semibold">
+                  <Sym name="sparkles" className="h-[10px] w-[10px]" />
+                  Claude
+                </span>
+                <span className="flex items-center gap-[3px] text-[8.5px] text-[color:var(--sys-green)]">
+                  <Sym name="checkmarkCircleFill" className="h-[8px] w-[8px]" />
+                  Connected
+                </span>
+              </div>
+              <p className="ml-auto w-fit max-w-[88%] rounded-[12px] rounded-tr-none border border-[color-mix(in_srgb,var(--sys-tint)_38%,transparent)] bg-[color-mix(in_srgb,var(--sys-tint)_16%,transparent)] px-[9px] py-[5px]">
+                Tighten the opening, and find where else John uses “abide”.
+              </p>
+              <div className="max-w-[94%] rounded-[12px] rounded-tl-none border border-[color:var(--sys-primary-b)] bg-[var(--sys-primary-a)] px-[9px] py-[6px]">
+                <p>Shortened the first sentence. The cross-references tie verse 4 to 1 John 2:6, so I added it as a footnote.</p>
+                <div className={`mt-[5px] overflow-hidden rounded-[7px] border ${sep}`}>
+                  <div className={`flex justify-between bg-[var(--sys-primary-a)] px-[7px] py-[2px] text-[8px] ${label2}`}>
+                    <span>diff</span>
+                    <span>Copy</span>
+                  </div>
+                  <p className="truncate bg-[rgb(255_59_48/0.14)] px-[7px] font-mono text-[8.5px] text-[color:var(--sys-red)]">
+                    - Jesus says a great deal in this chapter about fruit.
+                  </p>
+                  <p className="truncate bg-[rgb(52_199_89/0.14)] px-[7px] font-mono text-[8.5px] text-[color:var(--sys-green)]">
+                    + Fruit is never the branch’s own work.
+                  </p>
+                </div>
+              </div>
+              <div className={`flex items-center gap-[6px] rounded-[10px] border ${sep} px-[9px] py-[5px]`}>
+                <span className={label3}>Message Claude</span>
+                <span className="ml-auto flex h-[17px] w-[17px] items-center justify-center rounded-full bg-[var(--sys-tint)] text-white">
+                  <Sym name="arrowUp" className="h-[10px] w-[10px]" />
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </MacWindow>
     </Art>
   )
 }
 
-/** Find and replace above the revision history, from the Mac writing editor. */
+/** The writing editor finding and replacing, with its Details pane open. */
 export function MacEditorArt() {
-  const revisions = [
-    { when: 'Today, 9:41', who: 'You' },
-    { when: 'Today, 9:38', who: 'Agent' },
-    { when: 'Yesterday, 21:02', who: 'You' },
-  ]
+  const match = 'rounded-[2px] bg-[rgb(255_204_0/0.4)]'
   return (
-    <Art label="The Mac writing editor: the Details of a piece in a series, its find and replace bar replacing “abide” with “remain”, and a revision history listing changes by you and by the agent.">
-      <div className={`${screen} p-4`}>
-        <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 border-b border-line pb-3 text-[11px]">
-          <dt className="text-faint">Series</dt>
-          <dd>Studies in John · part 4</dd>
-          <dt className="text-faint">Key scriptures</dt>
-          <dd className="text-accent">John 15:1–8</dd>
-          <dt className="text-faint">Tags</dt>
-          <dd className="text-muted">abide, fruit</dd>
-        </dl>
-        <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px]">
-          <span className="rounded-md border border-line bg-sunken px-2 py-1">abide</span>
-          <span className="text-faint">→</span>
-          <span className="rounded-md border border-line bg-sunken px-2 py-1">remain</span>
-          <span className="text-[10px] text-faint">4 matches</span>
-          <span className="ml-auto rounded-md bg-accent px-2 py-1 text-[10px] font-medium text-white">
-            Replace All
-          </span>
+    <Art
+      className="@container"
+      label="The Mac writing editor replacing “abide” with “remain”, its matches highlighted in yellow, beside the Details pane: the piece’s title, category, series and key scripture."
+    >
+      <MacWindow title="Abide in the Vine" subtitle="Saved" toolbar={<EditorToolbar details />}>
+        <div className="grid grid-cols-[minmax(0,1fr)] @md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+          <div>
+            <div className={`space-y-[4px] border-b ${sep} bg-[var(--mac-control)] px-[8px] py-[6px] text-[9.5px]`}>
+              <div className="flex items-center gap-[4px]">
+                <MacButton>
+                  Replace <Sym name="chevronUpDown" className="h-[7px] w-[7px]" />
+                </MacButton>
+                <span className="flex h-[19px] min-w-0 flex-1 items-center gap-[4px] rounded-[5px] border-2 border-[color-mix(in_srgb,var(--sys-tint)_70%,transparent)] bg-[var(--mac-control)] px-[5px]">
+                  <Sym name="magnifyingglass" className={`h-[9px] w-[9px] ${label2}`} />
+                  abide
+                  <span className={`ml-auto font-mono text-[8.5px] ${label2}`}>2 of 4</span>
+                </span>
+                <MacButton>Done</MacButton>
+              </div>
+              <div className="flex items-center gap-[4px]">
+                <span className={`flex h-[19px] min-w-0 flex-1 items-center rounded-[5px] border ${sep} bg-[var(--mac-control)] px-[6px]`}>
+                  remain
+                </span>
+                <MacButton>Replace</MacButton>
+                <MacButton>Replace All</MacButton>
+              </div>
+            </div>
+            <div className="px-[12px] py-[10px] text-[11px] leading-[1.65]">
+              A branch bears fruit only while it <span className={match}>abide</span>s in the vine.{' '}
+              <span className="rounded-[2px] bg-[#ffcc00] text-black">Abide</span> in me, he says,
+              and the fruit takes care of itself. To <span className={match}>abide</span> is to
+              stay.
+            </div>
+          </div>
+          <div className={`space-y-[8px] border-t ${sep} px-[9px] py-[8px] text-[9.5px] @md:border-l @md:border-t-0`}>
+            {[
+              {
+                section: 'Details',
+                rows: [
+                  ['Title', 'Abide in the Vine'],
+                  ['Category', <span key="c" className="flex items-center gap-[3px]">Exhortation <Sym name="chevronUpDown" className="h-[7px] w-[7px]" /></span>],
+                ],
+              },
+              {
+                section: 'Series',
+                rows: [
+                  ['Series', 'Studies in John'],
+                  ['Order: 4', <span key="o" className={`rounded-[4px] border ${sep} px-[5px]`}>− +</span>],
+                ],
+              },
+              {
+                section: 'Key Scripture',
+                rows: [['John 15:1–8', <Sym key="m" name="minusCircle" className={`h-[10px] w-[10px] ${label2}`} />]],
+              },
+            ].map((s) => (
+              <div key={s.section}>
+                <p className={`mb-[3px] px-[2px] text-[9px] font-semibold ${label2}`}>{s.section}</p>
+                <div className={`divide-y divide-[color:var(--sys-sep)] ${sep} rounded-[7px] border ${sep} bg-[var(--mac-control)]`}>
+                  {s.rows.map(([k, v], i) => (
+                    <div key={i} className="flex items-center justify-between gap-2 px-[7px] py-[4px]">
+                      <span>{k}</span>
+                      <span className={`truncate ${label2}`}>{v}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <p className="mt-4 flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-wider text-faint">
-          <HistoryIcon className="h-3 w-3" />
-          Revision History
-        </p>
-        <ul className="mt-1.5 divide-y divide-[var(--line)] text-[11px]">
-          {revisions.map((r) => (
-            <li key={r.when} className="flex items-center justify-between py-1.5">
-              <span>{r.when}</span>
-              <span className={r.who === 'Agent' ? 'text-accent' : 'text-faint'}>{r.who}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      </MacWindow>
     </Art>
   )
 }
 
-/** A Scripture slide in Slide Studio, with the slide list beneath it. */
+/** Slide Studio: the slide list, and a Scripture slide in the Lamp Dark theme. */
 export function SlideArt() {
+  const thumbs = [
+    { caption: '1. Abide in the Vine' },
+    { caption: '2. John 15:5', on: true },
+    { caption: '3. Fruit', hidden: true },
+  ]
+  const rounded: CSSProperties = { fontFamily: "ui-rounded, 'SF Pro Rounded', system-ui, sans-serif" }
   return (
-    <Art label="A dark Scripture slide quoting John 15:5, above a strip of slide thumbnails, one of them hidden.">
-      <div className={`${screen} mx-auto max-w-sm p-3`}>
-        <div className="flex aspect-video flex-col justify-center rounded-lg bg-[#1d1714] px-6 text-[#f2ece6]">
-          <p className="font-serif text-[15px] leading-snug sm:text-lg">
-            “I am the vine, ye are the branches: He that abideth in me, and I in him, the same
-            bringeth forth much fruit.”
-          </p>
-          <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-[#e8646f]">John 15:5</p>
-        </div>
-        <div className="mt-2.5 grid grid-cols-5 gap-1.5">
-          {['Title', 'Scripture', 'Body', 'Quote', 'Closing'].map((name, i) => (
-            <span
-              key={name}
-              className={`grid aspect-video place-items-center rounded border text-[8px] ${
-                i === 1
-                  ? 'border-[var(--accent)] bg-[#1d1714] text-[#f2ece6]'
-                  : i === 3
-                    ? 'border-dashed border-line-strong text-faint opacity-60'
-                    : 'border-line bg-sunken text-faint'
-              }`}
-            >
-              {i === 3 ? 'Hidden' : name}
+    <Art label="Slide Studio on the Mac: the slide list, with one slide hidden, beside a Scripture slide in the Lamp Dark theme quoting John 15:5 with an amber citation.">
+      <MacWindow
+        title="Abide in the Vine"
+        toolbar={
+          <>
+            <ToolButton name="uturnBackward" />
+            <ToolButton name="uturnForward" />
+            <span className="flex h-[20px] items-center gap-[4px] rounded-[6px] bg-[var(--sys-tint)] px-[8px] text-[9.5px] font-medium text-white">
+              <Sym name="playFill" className="h-[8px] w-[8px]" />
+              Play
             </span>
-          ))}
+          </>
+        }
+      >
+        <div className="grid grid-cols-[86px_minmax(0,1fr)]">
+          <div className={`space-y-[7px] border-r ${sep} bg-[var(--mac-bar)] p-[7px]`}>
+            {thumbs.map((t) => (
+              <div key={t.caption}>
+                <div
+                  className={`relative aspect-video rounded-[4px] bg-[#111827] p-[5px] ${
+                    t.on ? 'ring-2 ring-[color:var(--sys-tint)]' : 'ring-1 ring-[color:var(--sys-label3)]'
+                  }`}
+                >
+                  <span className="block h-[3px] w-[70%] rounded-full bg-[#F9FAFB]/70" />
+                  <span className="mt-[3px] block h-[3px] w-[50%] rounded-full bg-[#F9FAFB]/50" />
+                  <span className="mt-[3px] block h-[2px] w-[30%] rounded-full bg-[#F59E0B]" />
+                  {t.hidden && (
+                    <span className="absolute right-[2px] top-[2px] flex h-[11px] w-[11px] items-center justify-center rounded-full bg-[var(--sys-glass)]">
+                      <Sym name="eyeSlashFill" className="h-[7px] w-[7px]" />
+                    </span>
+                  )}
+                </div>
+                <p className={`mt-[2px] truncate text-[7.5px] ${label2}`}>{t.caption}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col">
+            <div className="flex flex-1 items-center bg-[var(--mac-under)] p-[14px]">
+              <div className="flex aspect-video w-full items-center bg-[#111827] px-[8%] shadow-[0_6px_14px_rgb(0_0_0/0.22)]" style={rounded}>
+                <div className="flex gap-[6%]">
+                  <span className="w-[3px] shrink-0 rounded-full bg-[#F59E0B]" />
+                  <div>
+                    <p className="text-[12px] leading-[1.35] text-[#F9FAFB] sm:text-[13px]">
+                      “I am the vine, ye are the branches: He that abideth in me, and I in him, the
+                      same bringeth forth much fruit…”
+                    </p>
+                    <p className="mt-[6px] text-[8.5px] font-medium text-[#F59E0B]">John 15:5</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={`flex items-center gap-[4px] border-t ${sep} bg-[var(--mac-bar)] px-[8px] py-[4px] text-[8.5px] ${label2}`}>
+              <Sym name="checkmarkCircleFill" className="h-[9px] w-[9px] text-[color:var(--sys-green)]" />
+              Saved
+              <span className="ml-auto">6 slides</span>
+            </div>
+          </div>
         </div>
-      </div>
+      </MacWindow>
     </Art>
   )
 }

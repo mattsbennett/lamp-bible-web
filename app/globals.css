@@ -44,16 +44,8 @@
     --accent: var(--color-flame-600);
     --accent-soft: var(--color-flame-50);
 
-    /* Homepage illustrations: the app's highlight colours, a diff, and a dark slide. */
-    --art-yellow: rgb(250 204 21 / 0.4);
-    --art-green: rgb(34 197 94 / 0.28);
-    --art-blue: #2563eb;
-    --art-pink: #db2777;
-    --art-add: rgb(34 197 94 / 0.14);
-    --art-add-text: #15803d;
-    --art-del: rgb(220 38 38 / 0.1);
-    --art-del-text: #b91c1c;
-    --art-shadow: 0 18px 40px -26px rgb(28 18 8 / 0.5);
+    /* Lift under the homepage's illustrated screens. */
+    --art-shadow: 0 22px 44px -28px rgb(28 18 8 / 0.55);
     color-scheme: light;
   }
 
@@ -70,15 +62,7 @@
       --accent: #e8646f;
       --accent-soft: #241615;
 
-      --art-yellow: rgb(250 204 21 / 0.26);
-      --art-green: rgb(34 197 94 / 0.22);
-      --art-blue: #60a5fa;
-      --art-pink: #f472b6;
-      --art-add: rgb(34 197 94 / 0.14);
-      --art-add-text: #4ade80;
-      --art-del: rgb(248 113 113 / 0.12);
-      --art-del-text: #f87171;
-      --art-shadow: 0 18px 40px -26px rgb(0 0 0 / 0.8);
+      --art-shadow: 0 22px 44px -28px rgb(0 0 0 / 0.9);
       color-scheme: dark;
     }
   }
@@ -144,6 +128,86 @@
   /* The lift under the homepage's illustrated screens. */
   .art-shadow {
     box-shadow: var(--art-shadow);
+  }
+
+  /*
+   * The apps' own look, for the homepage illustrations: Apple's system font and
+   * the iOS and macOS system colours, with the apps' accent (AccentColor:
+   * #DB344A, #EF4F63 dark) and Lamp's palette from lamp-bible-core. Scoped to
+   * the illustrations so the site's paper-and-flame theme stays the site's.
+   */
+  .app-ui {
+    --sys-bg: #ffffff;
+    --sys-bg2: #f2f2f7;
+    --sys-grouped: #f2f2f7;
+    --sys-cell: #ffffff;
+    --sys-sheet: #ffffff;
+    --sys-label: #000000;
+    --sys-label2: rgb(60 60 67 / 0.6);
+    --sys-label3: rgb(60 60 67 / 0.3);
+    --sys-sep: rgb(60 60 67 / 0.2);
+    --sys-fill: rgb(120 120 128 / 0.12);
+    --sys-gray3: #c7c7cc;
+    --sys-glass: rgb(255 255 255 / 0.78);
+    --sys-glass-edge: rgb(0 0 0 / 0.08);
+    --sys-blue: #007aff;
+    --sys-green: #34c759;
+    --sys-red: #ff3b30;
+    --sys-purple: #af52de;
+    --sys-tint: #db344a;
+    --sys-red-letter: #bf4848;
+    --sys-primary-a: rgb(0 0 0 / 0.055);
+    --sys-primary-b: rgb(0 0 0 / 0.1);
+    --sys-cell-elev: #ffffff;
+    /* The writing editor's web view (tiptap-editor/src/editor.css). */
+    --ed-rule: rgb(0 0 0 / 0.15);
+    --ed-wash: rgb(0 0 0 / 0.04);
+    --ed-muted: rgb(0 0 0 / 0.5);
+    --mac-window: #ececec;
+    --mac-control: #ffffff;
+    --mac-bar: #f5f5f5;
+    --mac-under: #a9a9ab;
+    --bezel: #1d1d1f;
+    color: var(--sys-label);
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Helvetica Neue', Arial,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .app-ui {
+      --sys-bg: #000000;
+      --sys-bg2: #1c1c1e;
+      --sys-grouped: #000000;
+      --sys-cell: #1c1c1e;
+      --sys-sheet: #1c1c1e;
+      --sys-label: #ffffff;
+      --sys-label2: rgb(235 235 245 / 0.6);
+      --sys-label3: rgb(235 235 245 / 0.3);
+      --sys-sep: rgb(84 84 88 / 0.6);
+      --sys-fill: rgb(118 118 128 / 0.24);
+      --sys-gray3: #48484a;
+      --sys-glass: rgb(44 44 46 / 0.8);
+      --sys-glass-edge: rgb(255 255 255 / 0.1);
+      --sys-blue: #0a84ff;
+      --sys-green: #30d158;
+      --sys-red: #ff453a;
+      --sys-purple: #bf5af2;
+      --sys-tint: #ef4f63;
+      --sys-red-letter: #e07272;
+      --sys-primary-a: rgb(255 255 255 / 0.055);
+      --sys-primary-b: rgb(255 255 255 / 0.1);
+      --sys-cell-elev: #2c2c2e;
+      --ed-rule: rgb(255 255 255 / 0.18);
+      --ed-wash: rgb(255 255 255 / 0.06);
+      --ed-muted: rgb(255 255 255 / 0.55);
+      --mac-window: #2b2b2d;
+      --mac-control: #1e1e1e;
+      --mac-bar: #323234;
+      --mac-under: #18181a;
+      --bezel: #3a3a3c;
+    }
   }
 }
 

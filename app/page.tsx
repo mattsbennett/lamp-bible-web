@@ -52,6 +52,8 @@ type Feature = {
   /** Grid span: `wide` takes two columns and sets the art beside the text on large screens. */
   span?: 'wide' | 'full-small'
   badge?: string
+  /** The art runs off the bottom of the card, as an iPhone cut off at the edge. */
+  bleed?: boolean
 }
 
 const features: Feature[] = [
@@ -61,6 +63,7 @@ const features: Feature[] = [
     href: '/docs/reader',
     icon: ReaderIcon,
     art: <ReaderArt />,
+    bleed: true,
     span: 'wide',
   },
   {
@@ -69,6 +72,7 @@ const features: Feature[] = [
     href: '/docs/reader',
     icon: PanelIcon,
     art: <StudyArt />,
+    bleed: true,
   },
   {
     title: 'Reading plans that keep up',
@@ -76,6 +80,7 @@ const features: Feature[] = [
     href: '/docs/reading-plans',
     icon: PlanIcon,
     art: <PlansArt />,
+    bleed: true,
   },
   {
     title: 'Highlights with meaning',
@@ -83,6 +88,7 @@ const features: Feature[] = [
     href: '/docs/highlights',
     icon: HighlightIcon,
     art: <HighlightsArt />,
+    bleed: true,
   },
   {
     title: 'Notes anchored to verses',
@@ -90,6 +96,7 @@ const features: Feature[] = [
     href: '/docs/notes',
     icon: NoteIcon,
     art: <NotesArt />,
+    bleed: true,
   },
   {
     title: 'Search that reaches everything',
@@ -97,6 +104,7 @@ const features: Feature[] = [
     href: '/docs/search',
     icon: SearchIcon,
     art: <SearchArt />,
+    bleed: true,
     span: 'wide',
   },
   {
@@ -105,6 +113,7 @@ const features: Feature[] = [
     href: '/docs/sync',
     icon: SyncIcon,
     art: <SyncArt />,
+    bleed: true,
     span: 'full-small',
   },
 ]
@@ -210,7 +219,7 @@ function Features() {
 }
 
 function FeatureCard({ feature }: { feature: Feature }) {
-  const { title, body, href, icon, art, span, badge } = feature
+  const { title, body, href, icon, art, span, badge, bleed } = feature
   const wide = span === 'wide'
   return (
     <article
@@ -239,8 +248,14 @@ function FeatureCard({ feature }: { feature: Feature }) {
         )}
       </div>
       <div
-        className={`mt-auto border-t border-line bg-sunken p-5 sm:p-6 ${
-          wide ? 'lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:border-l lg:border-t-0' : ''
+        className={`mt-auto border-t border-line bg-sunken ${
+          bleed ? 'px-5 pt-7 sm:px-6' : 'p-5 sm:p-6'
+        } ${
+          wide
+            ? `lg:mt-0 lg:flex lg:flex-col lg:border-l lg:border-t-0 ${
+                bleed ? 'lg:justify-end lg:pt-10' : 'lg:justify-center'
+              }`
+            : ''
         }`}
       >
         {art}
