@@ -107,16 +107,6 @@ export default function Page() {
         group. When a plan reading has questions, a <strong>Quiz Available</strong> card appears
         after its last verse, and the Readings menu in the reader’s toolbar offers it too.
       </p>
-      <Callout title="Quiz content cleared">
-        <p>
-          The Bible Companion quiz module is included in new release bundles. Its identified
-          ESV-specific wording was replaced through a reviewed, targeted process using the CC0
-          Berean Standard Bible; the existing questions and answers were preserved rather than
-          wholesale regenerated. The final audit found no explicit ESV naming and no ESV-only exact
-          run of eight or more words. Other works used during original generation remain recorded
-          as provenance, not as release blockers.
-        </p>
-      </Callout>
       <p>
         The bundled quiz has five questions a reading for each of five age groups, from young
         children to adults. Choose a group at the top of the quiz; your choice is remembered. Each

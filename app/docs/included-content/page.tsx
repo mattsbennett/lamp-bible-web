@@ -81,15 +81,6 @@ export default function Page() {
         licences</Link> for sources, versions, notices and links to the governing terms.
       </p>
 
-      <Callout title="Upgrading from version 1.0">
-        <p>
-          Earlier releases also carried plain-text <code>BBE</code> and <code>KJV</code>. BBE is
-          retired, and plain KJV is superseded by <code>KJVs</code>, the same translation with
-          Strong&apos;s numbers and morphology. If your reader was set to either, the update opens
-          BSB instead; choose <code>KJVs</code> from the translation picker to go back to the KJV.
-        </p>
-      </Callout>
-
       <h2>Lexicons</h2>
 
       <Table>
@@ -170,10 +161,7 @@ export default function Page() {
 
       <p>
         The Bible Companion quizzes — 27,375 questions across five age groups, from young children
-        to adults — are included. Their identified
-        ESV-specific wording was replaced through a reviewed, targeted process using the CC0 Berean
-        Standard Bible; the questions were not wholesale regenerated. See{' '}
-        <Link href="/docs/reading-plans">Reading plans</Link>.
+        to adults — are included. See <Link href="/docs/reading-plans">Reading plans</Link>.
       </p>
 
       <h2>What is not included</h2>

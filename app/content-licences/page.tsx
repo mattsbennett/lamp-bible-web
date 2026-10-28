@@ -22,7 +22,7 @@ export default function ContentLicences() {
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
             The exact sources and distribution terms for the library bundled with Lamp Bible.
           </p>
-          <p className="mt-3 text-sm text-faint">Last reviewed October 27, 2026.</p>
+          <p className="mt-3 text-sm text-faint">Last reviewed October 28, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -32,16 +32,6 @@ export default function ContentLicences() {
               permission-based licence. The terms and source record for each work control. Lamp
               Bible&apos;s software and module format do not change the rights in the underlying
               content.
-            </p>
-          </Callout>
-
-          <Callout title="Live app and replacement bundle">
-            <p>
-              The current live iPhone and iPad app includes plain-text BBE and KJV, without
-              Strong&apos;s or morphology data. The next release removes both. BBE is retired, with BSB
-              as its recommended replacement. Plain <code>KJV</code> is superseded by CrossWire-enhanced{' '}
-              <code>KJVs</code>, which carries the same translation with Strong&apos;s and morphology
-              data and takes its place.
             </p>
           </Callout>
 
@@ -63,12 +53,6 @@ export default function ContentLicences() {
                 <td>Cleared</td>
               </tr>
               <tr>
-                <td><code>BBE</code> — Bible in Basic English</td>
-                <td>Legacy live-app plain text; historical CrossWire SWORD v1.3 record</td>
-                <td>Retired by product decision; historical source asserts US public-domain status</td>
-                <td>Present in legacy live app; removed from the next release</td>
-              </tr>
-              <tr>
                 <td><code>BSBs</code> — Berean Standard Bible</td>
                 <td>Official Strong&apos;s USFM archive, obtained August 12, 2026</td>
                 <td>
@@ -76,12 +60,6 @@ export default function ContentLicences() {
                   public-domain dedication
                 </td>
                 <td>Cleared</td>
-              </tr>
-              <tr>
-                <td><code>KJV</code> — King James Version, plain text</td>
-                <td>Scrollmapper <code>t_kjv.json</code>, commit <code>7dce14a</code>; edition not identified by source</td>
-                <td>Authorized Version base text</td>
-                <td>Present in legacy live app; replaced by <code>KJVs</code> in the next release</td>
               </tr>
               <tr>
                 <td><code>KJVs</code> — King James Version with Strong&apos;s and morphology</td>
@@ -110,25 +88,6 @@ export default function ContentLicences() {
             <a href="https://berean.bible/licensing.htm" {...externalProps}>licensing page</a>.
             The World English Bible&apos;s dedication and trademark request are on its{' '}
             <a href="https://ebible.org/eng-web/copyright.htm" {...externalProps}>copyright page</a>.
-          </p>
-
-          <h3>Bible in Basic English retirement</h3>
-          <p>
-            BBE was retired on August 9, 2026. It will not be included in the replacement bundle or
-            offered as a standalone Lamp Bible download. The CC0 Berean Standard Bible is the
-            recommended modern-language replacement.
-          </p>
-
-          <h3>Plain-text KJV</h3>
-          <p>
-            The current live Apple app&apos;s KJV is plain text without Strong&apos;s or morphology. Its
-            immediate electronic source is Scrollmapper&apos;s{' '}
-            <a href="https://github.com/scrollmapper/bible_databases/blob/7dce14ad7b94561943d42e02e93eed9b35bffb9a/json/t_kjv.json" {...externalProps}>
-              <code>json/t_kjv.json</code> at commit <code>7dce14a</code>
-            </a>
-            . The source calls it King James Version but does not identify a specific print or
-            electronic edition. The next release does not include it: <code>KJVs</code> carries the
-            same translation with Strong&apos;s and morphology data, so the plain copy is redundant.
           </p>
 
           <h3>CrossWire KJV v3.1 notice</h3>
@@ -257,7 +216,7 @@ export default function ContentLicences() {
               <tr>
                 <td>The Bible Companion Quizzes</td>
                 <td>Lamp Bible</td>
-                <td>Cleared after reviewed ESV-to-BSB wording remediation</td>
+                <td>Cleared</td>
               </tr>
             </tbody>
           </Table>
@@ -265,16 +224,6 @@ export default function ContentLicences() {
             The three reading plans are public domain. Lamp Bible retains their author and committee
             credits as provenance.
           </p>
-          <Callout title="Quiz remediation complete">
-            <p>
-              The quiz module was cleared on August 12, 2026 through targeted, reviewed replacement
-              of fields that named the ESV or contained ESV-specific wording. It was not wholesale
-              regenerated. The final audit found no explicit ESV naming and no exact ESV run of
-              eight or more words absent from the corresponding CC0 Berean Standard Bible verse.
-              Other works used during the original generation remain recorded as provenance, not
-              as release blockers.
-            </p>
-          </Callout>
 
           <h2>User-created modules</h2>
           <p>
