@@ -41,7 +41,7 @@ export default function ContentLicences() {
               Strong&apos;s or morphology data. The next release removes both. BBE is retired, with BSB
               as its recommended replacement. Plain <code>KJV</code> is superseded by CrossWire-enhanced{' '}
               <code>KJVs</code>, which carries the same translation with Strong&apos;s and morphology
-              data and is included wherever the app is available, the United Kingdom included.
+              data and takes its place.
             </p>
           </Callout>
 
@@ -80,14 +80,14 @@ export default function ContentLicences() {
               <tr>
                 <td><code>KJV</code> — King James Version, plain text</td>
                 <td>Scrollmapper <code>t_kjv.json</code>, commit <code>7dce14a</code>; edition not identified by source</td>
-                <td>Base Authorized Version; treated as public domain outside the UK</td>
+                <td>Authorized Version base text</td>
                 <td>Present in legacy live app; replaced by <code>KJVs</code> in the next release</td>
               </tr>
               <tr>
                 <td><code>KJVs</code> — King James Version with Strong&apos;s and morphology</td>
                 <td>CrossWire KJV module v3.1</td>
-                <td>CrossWire any-purpose grant; source metadata also labels it GPL; UK Crown rights apply to the base text</td>
-                <td>Included by the project&apos;s distribution decision of September 22, 2026</td>
+                <td>CrossWire any-purpose grant; source metadata also labels it GPL</td>
+                <td>Included in the next release</td>
               </tr>
               <tr>
                 <td><code>WEBs</code> — World English Bible</td>
@@ -136,8 +136,7 @@ export default function ContentLicences() {
             The source module states that any copyright in CrossWire&apos;s digital work is held by
             CrossWire Bible Society © 2003–2023 and grants a general public licence to use the text
             for any purpose. Version 3.1 labels its distribution licence “GPL.” Its modern OSIS
-            markup and New Testament Strong&apos;s tagging are CrossWire work. The base Authorized
-            Version remains subject to Crown rights in the United Kingdom. Lamp Bible relies on the
+            markup and New Testament Strong&apos;s tagging are CrossWire work. Lamp Bible relies on the
             express any-purpose grant for its converted <code>KJVs</code> content while preserving the
             module&apos;s GPL label rather than calling the enhanced dataset public domain.
           </p>
@@ -149,11 +148,7 @@ export default function ContentLicences() {
             , and Lamp Bible keeps the archive and its conversion script as a provenance record. Full
             contributor provenance and the original OSIS source are linked from the{' '}
             <a href="https://wiki.crosswire.org/CrossWire_KJV" {...externalProps}>CrossWire KJV project</a>.
-          </p>
-          <p>
-            The next release includes <code>KJVs</code> wherever the app is available, the United
-            Kingdom included. That is a distribution decision, not a claim of Crown permission. Lamp
-            Bible does not offer <code>KJVs</code> as a standalone website download.
+            Lamp Bible does not offer <code>KJVs</code> as a standalone website download.
           </p>
 
           <h2>Lexicons</h2>
