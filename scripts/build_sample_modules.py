@@ -748,10 +748,12 @@ def populate_translation(cur, src):
     )
 
     for book in src['books']:
-        # chapter_count is the number of chapters this module carries.
+        # chapter_count is the book's highest chapter, as core counts it, so a book
+        # carried only in part (Psalm 119 alone) still reaches its last chapter.
         cur.execute(
             'INSERT INTO books (id, book_id, name, testament, chapter_count) VALUES (?, ?, ?, ?, ?)',
-            (book['number'], book['id'], book['name'], book['testament'], len(book['chapters'])),
+            (book['number'], book['id'], book['name'], book['testament'],
+             max(c['chapter'] for c in book['chapters'])),
         )
         for chapter in book['chapters']:
             for heading in chapter.get('headings', []):

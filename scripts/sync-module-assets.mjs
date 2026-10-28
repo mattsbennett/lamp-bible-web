@@ -47,11 +47,12 @@ const COPY_GLOB = { dir: 'schemas', match: (f) => f.endsWith('.json') }
  * plain file copy would never catch.
  */
 const WATCHED = [
-  ['scripts/json_to_sqlite.py', 'DDL for dictionary, commentary, notes and devotional modules'],
+  ['scripts/core_module_builder.py', "Hands module JSON to core's lamp-module build"],
+  ['scripts/json_to_sqlite.py', 'Builds dictionary, commentary, notes and devotional modules'],
   ['scripts/commentary_units.py', 'How commentary JSON becomes commentary_units rows'],
   ['scripts/bundle_book_modules.py', 'DDL for long-form book modules'],
-  ['scripts/translation_to_sqlite.py', 'DDL for translation modules'],
-  ['scripts/highlights_to_sqlite.py', 'DDL for highlight modules'],
+  ['scripts/translation_to_sqlite.py', 'Builds translation modules'],
+  ['scripts/highlights_to_sqlite.py', 'Builds highlight modules'],
   ['scripts/bundle_plans.py', 'DDL for reading plan modules'],
   ['scripts/bundle_quizzes.py', 'DDL for quiz modules'],
 ]

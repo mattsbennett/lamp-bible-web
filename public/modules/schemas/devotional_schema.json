@@ -234,7 +234,7 @@
         },
         "category": {
           "type": "string",
-          "enum": ["devotional", "exhortation", "reflection", "study", "prayer", "other"],
+          "enum": ["devotional", "exhortation", "reflection", "study", "prayer", "testimony", "other"],
           "description": "Content category"
         },
         "series": {

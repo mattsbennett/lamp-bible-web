@@ -217,7 +217,8 @@ assert conn.execute('SELECT count(*) FROM verses').fetchone()[0] > 0`}</code>
 CREATE TABLE books (
     id INTEGER PRIMARY KEY,             -- book number, 1-66
     book_id TEXT NOT NULL, name TEXT NOT NULL,
-    testament TEXT NOT NULL, chapter_count INTEGER NOT NULL
+    testament TEXT NOT NULL,
+    chapter_count INTEGER NOT NULL      -- the book's highest chapter, even if some are absent
 );
 
 CREATE TABLE verses (

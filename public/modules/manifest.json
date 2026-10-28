@@ -4,7 +4,7 @@
   "source": {
     "repo": "lamp-bible-modules",
     "private": true,
-    "commit": "a1d0d8f8af4a104aed28f79078688a85950f99b5"
+    "commit": "98291056062e5e65a1b2f8696013d0454e9d841d"
   },
   "assets": [
     {
@@ -40,8 +40,8 @@
     {
       "path": "schemas/devotional_schema.json",
       "from": "schemas/devotional_schema.json",
-      "bytes": 12406,
-      "sha256": "7f4c48a00c80820a12cb4693ec12758305c97542ced50ea979d66ab5b960f189"
+      "bytes": 12419,
+      "sha256": "84225bc77c2aa9e0582d13fe18cf0c7bbd34167a0654ea2c6f57fea236ec2cd3"
     },
     {
       "path": "schemas/highlight_schema.json",
@@ -88,9 +88,14 @@
   ],
   "watched": [
     {
+      "from": "scripts/core_module_builder.py",
+      "note": "Hands module JSON to core's lamp-module build",
+      "sha256": "efcef24451f22866712f090c44f5cf9aec6990a9309929d9e6550c160e2bf381"
+    },
+    {
       "from": "scripts/json_to_sqlite.py",
-      "note": "DDL for dictionary, commentary, notes and devotional modules",
-      "sha256": "9de54ef1da0280b458fcce8cd3c4d66851a70e8f6cd12286d138948c59625054"
+      "note": "Builds dictionary, commentary, notes and devotional modules",
+      "sha256": "7e58e8f8259392fdc3c5041df2d134a1233629ea78954617f648d66cefffcc04"
     },
     {
       "from": "scripts/commentary_units.py",
@@ -104,13 +109,13 @@
     },
     {
       "from": "scripts/translation_to_sqlite.py",
-      "note": "DDL for translation modules",
-      "sha256": "a74642c642396dfc51998ea888531ebbb77a794a5105dc392957bae6d85dcf7c"
+      "note": "Builds translation modules",
+      "sha256": "5772a458184a3f1128e7c20d92accf19bef55788e4df351dcd080e203ef1aa08"
     },
     {
       "from": "scripts/highlights_to_sqlite.py",
-      "note": "DDL for highlight modules",
-      "sha256": "fe1852b02078ad00396c4e1445e02481489a4e7e7902c1baeb48193b42cbf139"
+      "note": "Builds highlight modules",
+      "sha256": "ccf28942e5db35c6c49fc96ab9beb4ed6a0e1bfbc68cdd580bc3d3663b6d13e0"
     },
     {
       "from": "scripts/bundle_plans.py",

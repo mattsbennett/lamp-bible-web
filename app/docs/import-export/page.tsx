@@ -245,8 +245,10 @@ Life brings unexpected storms...[^wind]
 
       <p>
         <code>category</code> is one of <code>devotional</code>, <code>exhortation</code>,{' '}
-        <code>reflection</code>, <code>study</code>, <code>prayer</code> or <code>other</code>; an
-        older file’s <code>sermon</code> is read as <code>exhortation</code>. A{' '}
+        <code>reflection</code>, <code>study</code>, <code>prayer</code>, <code>testimony</code> or{' '}
+        <code>other</code>; an older file’s <code>sermon</code> is read as{' '}
+        <code>exhortation</code>. The iPhone and iPad app keeps <code>testimony</code> but does not
+        yet offer it as a choice. A{' '}
         <code>## Summary</code> section at the top becomes the devotional’s summary.
       </p>
 
