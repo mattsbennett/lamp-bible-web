@@ -168,10 +168,12 @@ export default function Page() {
       <p>Changing the sync method asks what to do with what is already on this device:</p>
       <ul>
         <li>
-          <strong>Migrate</strong> — keep your library and publish it to the new location on the
-          first sync there: notes, devotionals, highlights, their media, and your settings.
-          Modules you imported earlier stay installed on this device but are not copied across, so
-          import them again if your other devices need them.
+          <strong>Migrate</strong> — keep your library and send it to the new location on the
+          first sync there: notes, devotionals, highlights, their media, and your settings. It is
+          merged with any library already there, and nothing on the server is removed. Modules you
+          imported earlier stay installed on this device but are not copied across, so import them
+          again if your other devices need them. Migrating to Local Only simply keeps your library
+          on the device.
         </li>
         <li>
           <strong>Switch Only</strong> — start fresh. After a second confirmation,{' '}
@@ -194,9 +196,16 @@ export default function Page() {
       </p>
       <p>
         A true conflict — the same entry, different text, and the same change time — is not settled
-        silently. Sync keeps this device’s copy, sets the other aside, and carries on. For notes, a
-        banner in the Notes panel offers <strong>Resolve</strong>, where you can keep either
-        version, keep both in one note, or settle every conflict at once.
+        silently. Sync keeps this device’s copy, sets the other aside, and carries on. A banner
+        offers <strong>Resolve</strong> — in the Notes panel for notes, and in the list of your
+        writing for devotionals, which opens the conflicts on its own when one arrives. Settings →
+        Sync lists every conflict with a Resolve button too.
+      </p>
+      <p>
+        You can keep either version, keep both, or settle every conflict at once. Both versions of
+        a note are kept in the one note; both versions of a devotional become two devotionals, the
+        other device’s marked “[From other device]”. A devotional collection with a conflict
+        waiting does not upload until you choose.
       </p>
       <p>
         A highlight set syncs as a whole, and the newer copy wins. Settings are merged item by
@@ -223,7 +232,8 @@ export default function Page() {
         <li>
           <strong>A library only your iPhone or iPad kept</strong> — the app asks{' '}
           <em>Move to the new sync?</em> Choose <strong>Move</strong> once your other devices are
-          up to date. Until you do, nothing syncs.
+          up to date. Until you do, nothing syncs: the app asks again the next time it opens, and
+          Settings → Sync explains why, with a <strong>Move Library</strong> button.
         </li>
         {isMacAvailable && (
           <li>

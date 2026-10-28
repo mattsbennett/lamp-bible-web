@@ -19,7 +19,7 @@ export default function AppPrivacy() {
           <h1 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
             Lamp Bible app privacy
           </h1>
-          <p className="mt-3 text-muted">Last updated October 27, 2026.</p>
+          <p className="mt-3 text-muted">Last updated October 28, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -57,8 +57,14 @@ export default function AppPrivacy() {
             protection your provider gives them.
           </p>
           <p>
-            You can stop future syncing by choosing Local Only. Removing cloud copies is done in
-            iCloud Drive or on your WebDAV server.
+            You can stop future syncing by choosing Local Only.
+            {isMacAvailable && (
+              <>
+                {' '}On a Mac, turning sync off keeps the server details and the password in the
+                Keychain until you choose Forget Sync Details in Settings → Sync.
+              </>
+            )}{' '}
+            Removing cloud copies is done in iCloud Drive or on your WebDAV server.
           </p>
 
           <h2>Presentation remote</h2>
@@ -107,7 +113,8 @@ export default function AppPrivacy() {
                 tool that you install and sign in to yourself. Lamp Bible starts that tool on your
                 Mac; it does not read or store your provider credentials. When you use it, your
                 messages are sent to that provider, together with the chapter and translation you
-                are reading in Reader Chat and any module content the agent looks up. Your own
+                are reading in Reader Chat and any module content the agent looks up. Both look
+                only in the modules your Module Access setting allows. Your own
                 notes, highlights and other writing are looked up only if you allow that in Settings
                 → AI &amp; Agents. A writing agent always has access to the writing it was opened
                 from and the files you add to its workspace. The provider&apos;s terms and privacy

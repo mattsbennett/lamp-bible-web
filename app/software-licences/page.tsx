@@ -13,7 +13,9 @@ const externalProps = { target: '_blank', rel: 'noopener noreferrer' } as const
 
 /**
  * Swift packages in the Mac app and its lamp-mcp helper. Generated notices live in the Mac repo
- * (scripts/generate_third_party_notices.py); keep this list in step with its README.txt.
+ * (scripts/generate_third_party_notices.py); keep this list in step with its README.txt. The
+ * generator also writes the reference-data notices it reads out of lamp-bible-core, so check
+ * that section of the README too.
  */
 const macPackages: Array<{ name: string; version: string; licence: string; url: string }> = [
   { name: 'EventSource', version: '1.4.1', licence: 'MIT', url: 'https://github.com/mattt/eventsource' },
@@ -43,7 +45,7 @@ export default function SoftwareLicences() {
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
             Open-source components used by the current Lamp Bible apps.
           </p>
-          <p className="mt-3 text-sm text-faint">Last reviewed October 27, 2026.</p>
+          <p className="mt-3 text-sm text-faint">Last reviewed October 28, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -139,6 +141,31 @@ export default function SoftwareLicences() {
               </Table>
             </>
           )}
+
+          <h2>Reference data</h2>
+          <p>
+            {isMacAvailable ? 'Both apps' : 'The app'} also{' '}
+            {isMacAvailable ? 'include' : 'includes'} this data, which lines up verses that
+            translations number differently.
+          </p>
+          <Table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Version</th>
+                <th>Licence</th>
+                <th>Project</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SIL libpalaso standard versifications</td>
+                <td>Commit b4f7a6d</td>
+                <td>MIT</td>
+                <td><a href="https://github.com/sillsdev/libpalaso" {...externalProps}>Source</a></td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
       </main>
       <SiteFooter />

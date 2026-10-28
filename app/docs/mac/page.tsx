@@ -62,8 +62,17 @@ export default function Page() {
       <p>
         The <strong>Reader Appearance</strong> menu chooses how a chapter is laid out —{' '}
         <strong>Continuous Paragraph Flow</strong>, <strong>Verse per Line</strong>, or{' '}
-        <strong>Side by Side</strong>, which reads a <strong>Companion</strong> translation verse by
-        verse beside the main one — along with typeface, text size and line spacing.
+        <strong>Side by Side</strong> — along with typeface, text size and line spacing.
+      </p>
+      <p>
+        Side by Side reads up to three other translations verse by verse beside the one you are
+        reading. Each column’s title is a menu that changes its translation, makes it the one you
+        are reading, or removes its column; the <strong>+</strong> beside the titles adds another.
+        Verses are paired through each translation’s own numbering, so a verse that two
+        translations number differently still sits beside its match. Each column shows its own
+        highlights and translator’s notes. Where the columns would be too narrow — with the study
+        column open, say — the other translations move beneath each verse, labelled with their
+        short names.
       </p>
 
       <h3>Marks in the margin</h3>
@@ -172,7 +181,7 @@ export default function Page() {
       <h2>The study column</h2>
       <p>
         <strong>Study Tools</strong> (⇧⌘I) opens a column beside the text, which you can widen by
-        dragging. It has four tabs:
+        dragging. It has five tabs, which become a pop-up menu when the column is narrow:
       </p>
       <Table>
         <thead>
@@ -204,13 +213,21 @@ export default function Page() {
             </td>
           </tr>
           <tr>
+            <td>Another translation</td>
+            <td>
+              The chapter in a second translation, in paragraphs. The tab is named for the
+              translation, with a menu to choose it
+            </td>
+          </tr>
+          <tr>
             <td>Dictionary</td>
             <td>Lexicon lookups by word, lemma or Strong’s number</td>
           </tr>
         </tbody>
       </Table>
       <p>
-        Commentary and notes follow the reader as you scroll, unless you turn off{' '}
+        Commentary, notes and the second translation follow the reader as you scroll, and the
+        reader follows the second translation, unless you turn off{' '}
         <strong>Link Study Tool Scrolling</strong>. A scripture reference anywhere in the column
         opens a preview, with buttons to open it in the current tab or a new one.
       </p>
@@ -341,6 +358,13 @@ export default function Page() {
         syncs when it opens and when you press <strong>Sync Now</strong>; it does not sync in the
         background. When a note or a piece of writing changed on two devices, the Sync pane shows it
         under <strong>Needs Your Decision</strong>, where you compare the versions and keep one.
+      </p>
+      <p>
+        Turning sync <strong>Off</strong> pauses it but keeps the folder, server address, username
+        and password, so you can turn it back on without entering them again. To disconnect for
+        good — leaving a server, or handing over a shared Mac — choose{' '}
+        <strong>Forget Sync Details…</strong>, which removes them and turns sync off. Neither
+        deletes anything already synced, on the Mac or on the server.
       </p>
       <p>
         The Mac also syncs what only it makes: slide decks and their pictures, and each writing’s

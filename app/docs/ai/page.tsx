@@ -85,7 +85,10 @@ export default function Page() {
           <tr>
             <td>Module Access</td>
             <td>Enabled modules</td>
-            <td>Whether a writing agent sees only modules you have enabled, or all of them</td>
+            <td>
+              Whether Reader Chat and writing agents see only modules you have enabled, or all of
+              them
+            </td>
           </tr>
           <tr>
             <td>Include personal writing, notes, and highlights</td>
@@ -106,6 +109,11 @@ export default function Page() {
         Ask about the chapter on screen, or name any other passage; each message tells the AI which
         chapter and translation you are reading. It answers from your modules through the read-only
         tools, and cannot edit files or run commands. Choose the provider at the top of the chat.
+      </p>
+      <p>
+        The chat looks only in the modules your Module Access setting allows, so a module you have
+        hidden stays out of its answers unless you choose all installed modules. A line under the
+        chat says what it can reach.
       </p>
       <p>
         Each reader window keeps its own conversation, which picks up where it left off when you
