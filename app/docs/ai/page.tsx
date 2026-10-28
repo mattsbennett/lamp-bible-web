@@ -130,8 +130,9 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>Chat</strong> is a conversation with the agent, with its edits shown as
-          differences. When Claude Code needs permission — to run a command or fetch a web page,
+          <strong>Chat</strong> is a conversation with the agent. Its edits go straight into the
+          draft, and each one is in Revisions. When Claude Code needs permission — to run a
+          command or fetch a web page,
           say — it asks in the chat: <strong>Allow</strong>, <strong>Always Allow</strong> for
           that exact kind of request, or <strong>Deny</strong>.
         </li>

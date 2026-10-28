@@ -296,7 +296,7 @@ const phoneWriting: Array<{ title: string; body: string; icon: IconComponent }> 
 const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = [
   {
     title: 'Chat',
-    body: 'Ask for a draft, a cut or a check. Its edits show as differences, and every one lands in Revisions to undo.',
+    body: 'Ask for a draft, a cut or a check. Its edits go straight into the draft, and every one lands in Revisions, where you can undo it.',
     icon: ChatIcon,
   },
   {
