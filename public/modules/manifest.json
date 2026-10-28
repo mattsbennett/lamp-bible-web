@@ -4,7 +4,7 @@
   "source": {
     "repo": "lamp-bible-modules",
     "private": true,
-    "commit": "24d42a7ea68305aa26804e5faf17a3a3bce97a3a"
+    "commit": "a1d0d8f8af4a104aed28f79078688a85950f99b5"
   },
   "assets": [
     {
@@ -82,8 +82,8 @@
     {
       "path": "schemas/translation_schema.json",
       "from": "schemas/translation_schema.json",
-      "bytes": 10118,
-      "sha256": "0b603b2eee69d959dd9083d62bb4692a08d3383add399f0e998d0b28e2fe6b24"
+      "bytes": 10574,
+      "sha256": "2a53a5a4e30679c6fb82d2198aa1b24b4be4c48f6c7805ace876c3833a71a2df"
     }
   ],
   "watched": [

@@ -159,7 +159,7 @@ function Features() {
 const macFeatures = [
   {
     title: 'A reader built for the Mac',
-    body: 'Tabs and windows, a study column with commentary, verse notes, original language and dictionary, a companion translation side by side, and today’s readings in the menu bar.',
+    body: 'Tabs and windows, a study column with commentary, verse notes, original language and dictionary, up to three other translations side by side, and today’s readings in the menu bar.',
     href: '/docs/mac',
   },
   {

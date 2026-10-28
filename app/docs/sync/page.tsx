@@ -69,10 +69,7 @@ export default function Page() {
           <Link href="/docs/devotionals">devotionals</Link> with their images and audio, and every{' '}
           <Link href="/docs/highlights">highlight set</Link> with its themes.
         </li>
-        <li>
-          Reading plan progress, and which plans you follow
-          {isMacAvailable && <> — between iPhones and iPads; a Mac keeps its own for now</>}.
-        </li>
+        <li>Reading plan progress, and which plans you follow.</li>
         <li>
           Your settings: translation and text size, hidden translations and lexicons, lexicon order,
           word hints, highlight colours, reading rate, reminder, quiz age group and devotional text
@@ -208,9 +205,10 @@ export default function Page() {
         waiting does not upload until you choose.
       </p>
       <p>
-        A highlight set syncs as a whole, and the newer copy wins. Settings are merged item by
-        item; if two devices disagree about a shared preference such as text size, each keeps its
-        own until they agree.
+        A highlight set syncs as a whole, and the newer copy wins. Settings are merged one at a
+        time: each takes the value from the device that changed it, and one changed on both takes
+        the later change. Ticking or unticking a reading, and following or dropping a plan, is
+        merged the same way, so an untick on one device is not undone by another.
       </p>
 
       <h2>Deletions</h2>

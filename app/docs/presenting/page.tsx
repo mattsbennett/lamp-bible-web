@@ -30,7 +30,10 @@ export default function Page() {
         The slide list down the side reorders, duplicates, hides and deletes slides. The inspector
         sets the deck’s aspect ratio (16:9 or 4:3), theme — <strong>Lamp Dark</strong> or{' '}
         <strong>Parchment</strong> — and typeface, and each slide’s layout and content. Decks save
-        themselves as you work.
+        themselves as you work; the <strong>Undo Edit</strong> and <strong>Redo Edit</strong>{' '}
+        toolbar buttons take back a change, a burst of typing at a time. A deck that can’t be saved
+        yet — a title cleared to retype it, say — is kept as a draft on the Mac, and comes back when
+        you reopen it.
       </p>
 
       <h3>Layouts and content</h3>
@@ -180,7 +183,8 @@ export default function Page() {
       <ul>
         <li>
           <strong>Export PDF</strong> makes a PDF of the slides, one per page, or of each slide above
-          its speaker notes for printing.
+          its speaker notes for printing. Hidden slides are left out, and the pages are numbered as
+          the slides are presented.
         </li>
         <li>
           <strong>Export Deck</strong> saves a <code>.lampdeck</code> file, which another Mac can

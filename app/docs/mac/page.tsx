@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { DocPage, Callout, Table } from '@/components/docs/DocPage'
+import { DocPage, Table } from '@/components/docs/DocPage'
 import { downloadPaths, isMacAvailable, macRelease } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -56,6 +56,12 @@ export default function Page() {
         passage or at a passage you choose. Tabs, with each one’s translation and chapter, come back
         when you relaunch. <strong>Reading History</strong> keeps the last hundred places you have
         been, across launches.
+      </p>
+      <p>
+        <strong>New Reader Window</strong> (⌥⌘N) opens another reader. Each window has its own
+        place in scripture, its own tabs, its own back and forward, and its own Reader Chat, so two
+        windows can sit on different chapters. Notes and highlights are shared: one made in either
+        window shows in both at once.
       </p>
 
       <h3>Layout and text</h3>
@@ -238,7 +244,10 @@ export default function Page() {
         verses within the chapter. Save with <strong>⌘S</strong>; saving an empty note deletes it.
         To highlight part of a verse, use <strong>Highlight Words…</strong>: choose the set, a
         style and a colour, or apply a <Link href="/docs/highlights">theme</Link> — and save a new
-        theme from there.
+        theme from there. It also lists what the verse is already highlighted with, each with a{' '}
+        <strong>Remove</strong> button, and <strong>Delete Set…</strong> removes one of your sets
+        and every highlight in it, in every translation. <strong>Remove Highlight</strong> in a
+        verse’s menu clears all of your own highlights from that verse; a module’s highlights stay.
       </p>
       <p>
         The <strong>Study Data</strong> menu at the foot of the Notes tab exports a book’s notes or a
@@ -311,14 +320,9 @@ export default function Page() {
         or opened in an <Link href="/docs/reader">external Bible app</Link>. Opening a plan enters
         plan reading: only the day’s passages, a bar to move between readings and mark them
         complete, and the day’s quiz in a panel. Settings → Reading Plans sets the reading speed and
-        a daily reminder.
+        a daily reminder. The plans you follow and the readings you tick sync with your iPhone and
+        iPad.
       </p>
-      <Callout title="Plan progress stays on each Mac">
-        <p>
-          The Mac keeps its own choice of plans and its own record of what you have read; neither
-          syncs to your other devices yet.
-        </p>
-      </Callout>
 
       <h2 id="make-a-module">Modules, importing and building</h2>
       <p>
@@ -355,8 +359,10 @@ export default function Page() {
       <p>
         Settings → Sync chooses <strong>iCloud Drive or Folder</strong> or{' '}
         <strong>WebDAV</strong>, and connects to the same library as your iPhone and iPad. The Mac
-        syncs when it opens and when you press <strong>Sync Now</strong>; it does not sync in the
-        background. When a note or a piece of writing changed on two devices, the Sync pane shows it
+        syncs when it opens, sends your changes a few seconds after you make them, and checks every
+        half-minute for changes from your other devices while it is open;{' '}
+        <strong>Sync Now</strong> forces a pass. When a note or a piece of writing changed on two
+        devices, the Sync pane shows it
         under <strong>Needs Your Decision</strong>, where you compare the versions and keep one.
       </p>
       <p>

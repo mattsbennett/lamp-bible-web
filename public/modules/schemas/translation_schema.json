@@ -239,9 +239,15 @@
 
         "versification": {
           "type": "string",
-          "enum": ["standard", "lxx", "vulgate", "orthodox"],
+          "enum": ["standard", "kjv", "eng", "org", "lxx", "vul", "vulgate", "rsc", "rso", "orthodox"],
           "default": "standard",
-          "description": "Versification system used"
+          "description": "Versification system used: Paratext's code (eng, org, lxx, vul, rsc, rso) or a name Lamp reads as one ('standard' and 'kjv' are eng)"
+        },
+
+        "versificationMappings": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Verses the translation places differently from its versification, as Paratext mapping lines from its numbering to the original's, e.g. 'ROM 14:24-26 = ROM 16:25-27'"
         }
       },
       "required": ["schemaVersion", "id", "type", "name", "abbreviation", "language"]
