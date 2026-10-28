@@ -22,7 +22,7 @@ export default function ContentLicences() {
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
             The exact sources and distribution terms for the library bundled with Lamp Bible.
           </p>
-          <p className="mt-3 text-sm text-faint">Last reviewed August 12, 2026.</p>
+          <p className="mt-3 text-sm text-faint">Last reviewed October 27, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -37,11 +37,11 @@ export default function ContentLicences() {
 
           <Callout title="Live app and replacement bundle">
             <p>
-              The current live Apple app already includes plain-text BBE and KJV, without
-              Strong&apos;s or morphology data. BBE has been retired and will be removed in the next
-              release, with BSB as its recommended replacement. The upcoming bundle includes both
-              plain <code>KJV</code> and CrossWire-enhanced <code>KJVs</code>; both are unavailable for
-              United Kingdom and unresolved App Store storefronts.
+              The current live iPhone and iPad app includes plain-text BBE and KJV, without
+              Strong&apos;s or morphology data. The next release removes both. BBE is retired, with BSB
+              as its recommended replacement. Plain <code>KJV</code> is superseded by CrossWire-enhanced{' '}
+              <code>KJVs</code>, which carries the same translation with Strong&apos;s and morphology
+              data and is included wherever the app is available, the United Kingdom included.
             </p>
           </Callout>
 
@@ -81,13 +81,13 @@ export default function ContentLicences() {
                 <td><code>KJV</code> — King James Version, plain text</td>
                 <td>Scrollmapper <code>t_kjv.json</code>, commit <code>7dce14a</code>; edition not identified by source</td>
                 <td>Base Authorized Version; treated as public domain outside the UK</td>
-                <td>Included; unavailable for UK and unresolved storefronts</td>
+                <td>Present in legacy live app; replaced by <code>KJVs</code> in the next release</td>
               </tr>
               <tr>
                 <td><code>KJVs</code> — King James Version with Strong&apos;s and morphology</td>
                 <td>CrossWire KJV module v3.1</td>
                 <td>CrossWire any-purpose grant; source metadata also labels it GPL; UK Crown rights apply to the base text</td>
-                <td>Included; unavailable for UK and unresolved storefronts</td>
+                <td>Included by the project&apos;s distribution decision of September 22, 2026</td>
               </tr>
               <tr>
                 <td><code>WEBs</code> — World English Bible</td>
@@ -127,8 +127,8 @@ export default function ContentLicences() {
               <code>json/t_kjv.json</code> at commit <code>7dce14a</code>
             </a>
             . The source calls it King James Version but does not identify a specific print or
-            electronic edition. The upcoming app makes this first-party bundled edition unavailable
-            for UK and unresolved App Store storefronts.
+            electronic edition. The next release does not include it: <code>KJVs</code> carries the
+            same translation with Strong&apos;s and morphology data, so the plain copy is redundant.
           </p>
 
           <h3>CrossWire KJV v3.1 notice</h3>
@@ -144,15 +144,16 @@ export default function ContentLicences() {
           <p>
             Lamp Bible converted the SWORD representation to Lamp translation JSON and then to its
             bundled SQLite database. This changes the container and annotation representation, not
-            the intended biblical wording. The exact input archive and conversion script are in the{' '}
-            <a href="https://github.com/mattsbennett/lamp-bible-modules" {...externalProps}>
-              public Lamp Bible modules repository
-            </a>
-            ; full contributor provenance and original OSIS source are linked from the{' '}
+            the intended biblical wording. The input was CrossWire&apos;s v3.1 module archive, SHA-256{' '}
+            <code className="break-all">873815aa4b4123025616d1f41eae75f412111275f4c3884e36f92d4f46dcba1d</code>
+            , and Lamp Bible keeps the archive and its conversion script as a provenance record. Full
+            contributor provenance and the original OSIS source are linked from the{' '}
             <a href="https://wiki.crosswire.org/CrossWire_KJV" {...externalProps}>CrossWire KJV project</a>.
-            The upcoming app makes both first-party bundled KJV editions unavailable for UK and
-            unresolved App Store storefronts. Lamp Bible does not offer either edition as a
-            standalone website download.
+          </p>
+          <p>
+            The next release includes <code>KJVs</code> wherever the app is available, the United
+            Kingdom included. That is a distribution decision, not a claim of Crown permission. Lamp
+            Bible does not offer <code>KJVs</code> as a standalone website download.
           </p>
 
           <h2>Lexicons</h2>

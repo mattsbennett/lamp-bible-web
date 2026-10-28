@@ -12,8 +12,8 @@ const features = [
     href: '/docs/reader',
   },
   {
-    title: 'Split panes and a tool panel',
-    body: 'Read two passages side by side, or put commentary, your notes or a devotional beside the text — scroll-linked to the verse you are on.',
+    title: 'Study tools beside the text',
+    body: 'Put commentary, cross-references, your notes or a devotional in a panel beside the passage — scroll-linked to the verse you are on.',
     href: '/docs/reader',
   },
   {
@@ -33,12 +33,12 @@ const features = [
   },
   {
     title: 'Devotionals and sermons',
-    body: 'A real editor for long-form writing: headings, quotes, lists, images, recorded audio and linked scripture. Present mode makes it readable from a lectern.',
+    body: 'A real editor for long-form writing: headings, scripture quotes, footnotes, tables, images, recorded audio and linked scripture. Present mode makes it readable from a lectern.',
     href: '/docs/devotionals',
   },
   {
     title: 'Search that reaches everything',
-    body: 'One full-text index across translations, lexicons, commentaries, notes, devotionals and highlights — filtered by type, series, tag, Strong’s number or highlight colour.',
+    body: 'One full-text index across translations, lexicons, commentaries, books, notes, devotionals and highlights — filtered by module, tag, Strong’s number or highlight colour.',
     href: '/docs/search',
   },
   {
@@ -55,6 +55,7 @@ export default function Home() {
       <main>
         <Hero />
         <Features />
+        {isMacAvailable && <MacFeatures />}
         <Modules />
         <Privacy />
         <Download />
@@ -155,6 +156,58 @@ function Features() {
   )
 }
 
+const macFeatures = [
+  {
+    title: 'A reader built for the Mac',
+    body: 'Tabs and windows, a study column with commentary, verse notes, original language and dictionary, a companion translation side by side, and today’s readings in the menu bar.',
+    href: '/docs/mac',
+  },
+  {
+    title: 'Slide Studio',
+    body: 'Turn a devotional into a slide deck with scripture, quotations and speaker notes drawn from your manuscript. Present full screen and drive it from your iPhone.',
+    href: '/docs/presenting',
+  },
+  {
+    title: 'AI that reads your library',
+    body: 'Ask about the chapter in front of you, or draft with an agent beside your writing — through your own Codex, Claude Code or OpenCode account, with read-only access to your modules.',
+    href: '/docs/ai',
+  },
+  {
+    title: 'Make your own modules',
+    body: 'Drop in module JSON, see it validated, and build an integrity-checked .lamp of any of the nine types, ready to install or share.',
+    href: '/docs/mac#make-a-module',
+  },
+]
+
+function MacFeatures() {
+  return (
+    <section id="mac" className="border-b border-line">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
+        <SectionHeading
+          eyebrow="On the Mac"
+          title="Study, write and present"
+          body="The Mac app reads the same library and syncs with your iPhone and iPad, and adds the tools that want a bigger screen and a keyboard."
+        />
+
+        <div className="mt-14 grid gap-x-10 gap-y-11 sm:grid-cols-2 lg:grid-cols-4">
+          {macFeatures.map((feature) => (
+            <div key={feature.title}>
+              <h3 className="font-serif text-xl tracking-tight">{feature.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted">{feature.body}</p>
+              <Link
+                href={feature.href}
+                className="mt-3 inline-block text-sm font-medium text-accent hover:underline"
+              >
+                Learn more →
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Modules() {
   return (
     <section id="modules" className="border-b border-line bg-sunken">
@@ -163,7 +216,7 @@ function Modules() {
           <SectionHeading
             eyebrow="The module system"
             title="Every piece of content is a module"
-            body="Translations, dictionaries, commentaries, reading plans, quizzes, highlights, notes and devotionals all use the same container: a compressed SQLite package with a .lamp extension. The app treats what ships with it and what you make yourself exactly the same way."
+            body="Translations, dictionaries, commentaries, books, reading plans, quizzes, highlights, notes and devotionals all use the same container: a compressed SQLite package with a .lamp extension. The app treats what ships with it and what you make yourself exactly the same way."
           />
 
           <div className="mt-8 space-y-5 text-sm leading-relaxed text-muted">
@@ -177,6 +230,18 @@ function Modules() {
               It also means the library is extensible. Build a <code className="rounded border border-line bg-canvas px-1.5 py-0.5 text-[0.85em]">.lamp</code>{' '}
               file from the published JSON schemas and the app will install it, index it for search
               and show it in the reader beside everything else.
+            </p>
+            <p>
+              Or bring what you already own.{' '}
+              <Link href="/docs/modules/import-bible" className="text-accent hover:underline">
+                Import a Bible
+              </Link>{' '}
+              as USFM, OSIS, Zefania or a SWORD module — locked ones included — and it gets the same
+              word lookups and search as the bundled translations. Long-form{' '}
+              <Link href="/docs/books" className="text-accent hover:underline">
+                books
+              </Link>{' '}
+              install the same way, with their contents, footnotes and live scripture references.
             </p>
           </div>
 
@@ -205,6 +270,7 @@ function Modules() {
               ['Translation', 'Verse text with Strong’s, morphology, headings and footnotes', 'Read-only'],
               ['Dictionary', 'Lexicon entries keyed by Strong’s number or lemma', 'Read-only'],
               ['Commentary', 'Verse- or pericope-keyed exposition, grouped into series', 'Read-only'],
+              ['Book', 'Long-form publications in chapters and sections', 'Read-only'],
               ['Plan', 'Dated reading assignments across the year', 'Read-only'],
               ['Quiz', 'Age-graded questions tied to a plan’s readings', 'Read-only'],
               ['Notes', 'Your verse-anchored study notes', 'You edit'],

@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'Import & export',
   description:
-    'Markdown round-trips for notes and devotionals, the folder layout, frontmatter fields, footnote handling and embedded media.',
+    'Markdown round-trips for notes and devotionals: where to export and import, the file layout, frontmatter fields, footnote handling and embedded media.',
 }
 
 export default function Page() {
@@ -13,205 +13,200 @@ export default function Page() {
     <DocPage
       href="/docs/import-export"
       title="Import & export"
-      intro="Notes and devotionals round-trip through plain markdown, media included. This is the format."
+      intro="Notes and devotionals round-trip through plain markdown, media included. This is where to find it, and the format."
     >
-      <h2>Where files go</h2>
-      <p>
-        Import and export use the app’s iCloud Documents container, so the folders are visible in
-        the Files app and on any Mac signed into the same account.
-      </p>
-
-      <pre>
-        <code>{`iCloud Drive/Lamp Bible/
-├── Import/
-│   ├── Notes/
-│   │   ├── Matthew.md
-│   │   └── media/
-│   └── Devotionals/
-│       ├── my-devotional.md
-│       └── media/
-└── Export/
-    ├── Notes/
-    │   ├── Genesis.md
-    │   ├── All_Notes.md
-    │   └── media/
-    └── Devotionals/
-        ├── walking-by-faith.md
-        ├── All_Devotionals.md
-        └── media/`}</code>
-      </pre>
-
-      <p>
-        Drop files into the relevant <code>Import/</code> folder and open the app; import runs
-        automatically on sync. Files that import successfully are removed from the folder. A file
-        that fails to parse is left in place so you can fix it.
-      </p>
+      <h2>Where to find it</h2>
+      <Table>
+        <thead>
+          <tr>
+            <th>To</th>
+            <th>Go to</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Export a notes or devotional collection</td>
+            <td>
+              Settings → Modules → Manager, then the collection’s menu → <strong>Export
+              (Markdown)</strong>. One combined file.
+            </td>
+          </tr>
+          <tr>
+            <td>Export devotionals file by file</td>
+            <td>
+              The devotional library’s menu → <strong>Export All</strong> (one file each, with
+              media) or <strong>Export to Single File</strong>. Both write to{' '}
+              <code>iCloud Drive/Lamp Bible/Export/Devotionals/</code>, so they need iCloud Drive
+              sync.
+            </td>
+          </tr>
+          <tr>
+            <td>Share one devotional</td>
+            <td>
+              The devotional’s share menu → <strong>Share as Markdown</strong>, or{' '}
+              <strong>Share Devotional File</strong> for a <code>.lamp</code> that keeps its media.
+            </td>
+          </tr>
+          <tr>
+            <td>Import notes or devotionals</td>
+            <td>
+              Settings → Modules → Manager → <strong>+</strong> → Import Module →{' '}
+              <strong>Import Notes from Markdown</strong> or{' '}
+              <strong>Import Devotionals from Markdown</strong>. Choose one file or a folder of
+              files, then the collection it goes into, or a new one.
+            </td>
+          </tr>
+          <tr>
+            <td>Import a devotional file someone sent</td>
+            <td>
+              Open it from Files, Mail or AirDrop, or use the devotional library’s menu →{' '}
+              <strong>Import Devotional</strong>. You see a preview before anything is added.
+            </td>
+          </tr>
+        </tbody>
+      </Table>
 
       <h2>Notes</h2>
       <p>
-        Notes use YAML frontmatter followed by headings that encode the passage structure. One file
-        can hold one book, or every book.
+        An exported notes collection is one file: the collection’s name, then a heading for each
+        book, each chapter, and each note. Footnotes are gathered at the end.
+      </p>
+
+      <pre>
+        <code>{`# My Notes
+
+---
+
+## John
+
+### Chapter 1
+
+#### Introduction
+
+The Gospel of John opens with...
+
+#### 1:1
+
+"In the beginning was the Word" echoes Genesis 1:1.[^John-1:1-1]
+
+#### 1:14-18
+
+The Word became flesh.
+
+---
+
+[^John-1:1-1]: Greek λόγος — word, reason, plan.`}</code>
+      </pre>
+
+      <h3>What the importer reads</h3>
+      <p>
+        Import is more forgiving than export. It reads the layout above, a file holding one book,
+        and the layout earlier versions exported, which starts with YAML frontmatter naming the
+        book:
       </p>
 
       <pre>
         <code>{`---
-id: notes
 type: notes
-name: "My Notes"
-author: "Jane Doe"
 book: John
 bookNumber: 43
 ---
 
 # John
 
-## Chapter 1
+## Chapter 3
 
-### Introduction
+### 3:16
 
-The Gospel of John opens with...
-
-### 1:1
-
-"In the beginning was the Word" echoes Genesis 1:1.[^1]
-
-### 1:14-18
-
-The Word became flesh.[^2]
-
----
-
-[^1:1-1]: Greek λόγος — word, reason, plan.
-
-[^1:14-1]: The incarnation.`}</code>
+For God so loved the world...`}</code>
       </pre>
 
-      <h3>Structure</h3>
       <Table>
         <thead>
           <tr>
-            <th>Element</th>
+            <th>Heading</th>
             <th>Meaning</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <code># Book</code>
+              <code>John</code>
             </td>
-            <td>Book title, or the collection name in a combined file</td>
+            <td>A book. Use standard names — <code>1 Samuel</code>, not <code>1st Samuel</code></td>
           </tr>
           <tr>
             <td>
-              <code>## Chapter N</code>
+              <code>Chapter 3</code>
             </td>
-            <td>Chapter heading</td>
+            <td>A chapter</td>
           </tr>
           <tr>
             <td>
-              <code>### Introduction</code>
+              <code>Introduction</code>
             </td>
-            <td>Chapter-level note</td>
+            <td>The chapter note</td>
           </tr>
           <tr>
             <td>
-              <code>### 1:1</code>
+              <code>3:16</code>
             </td>
             <td>A note on a single verse</td>
           </tr>
           <tr>
             <td>
-              <code>### 1:2-5</code>
+              <code>3:16-18</code>
             </td>
             <td>A note on a verse range</td>
           </tr>
           <tr>
             <td>
-              <code>### 1:28-2:3</code>
+              <code>1:28-2:3</code>
             </td>
             <td>A range crossing a chapter boundary</td>
+          </tr>
+          <tr>
+            <td>
+              <code>John 3:16</code>
+            </td>
+            <td>A full reference, which sets the book and chapter as well</td>
           </tr>
         </tbody>
       </Table>
 
       <p>
-        In a combined file each book gets an <code>##</code> heading and the levels below shift down
-        by one.
+        Heading levels do not matter, so a single book’s notes and a combined file both work. A
+        heading that looks like a reference but is not a real verse fails the import with the
+        heading named, rather than guessing.
       </p>
 
       <h3>Footnotes</h3>
       <p>
         Footnotes use standard markdown syntax — <code>[^id]</code> inline,{' '}
         <code>[^id]: text</code> for the definition, with four-space indentation for continuation
-        lines. Inside the app footnotes are numbered per note; on export those numbers are rewritten
-        into unique identifiers so that a combined file cannot collide with itself.
-      </p>
-
-      <Table>
-        <thead>
-          <tr>
-            <th>Context</th>
-            <th>In app</th>
-            <th>Exported</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Notes, one book</td>
-            <td>
-              <code>[^1]</code>
-            </td>
-            <td>
-              <code>[^1:5-1]</code>
-            </td>
-          </tr>
-          <tr>
-            <td>Notes, all books</td>
-            <td>
-              <code>[^1]</code>
-            </td>
-            <td>
-              <code>[^Gen-1:5-1]</code>
-            </td>
-          </tr>
-          <tr>
-            <td>Devotionals</td>
-            <td>
-              <code>[^1]</code>
-            </td>
-            <td>
-              <code>[^1]</code>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-
-      <p>
-        On import, footnote identifiers are renumbered back to sequential values. A consequence
-        worth knowing: re-exporting after an import generates fresh identifiers, so diffing two
-        exports of the same notes will show footnote id churn.
+        lines. On export each marker is rewritten into an identifier made from the book, verse and
+        footnote, so that a combined file cannot collide with itself. Import also reads definitions
+        written directly under a note, and Obsidian-style <code>&gt; [!footnote]</code> callouts.
       </p>
 
       <h3>Import behaviour</h3>
       <ul>
-        <li>A single-book file creates or updates the notes for that book.</li>
-        <li>A combined file imports every book it contains.</li>
-        <li>Existing notes are merged by verse reference rather than replaced wholesale.</li>
+        <li>Every book in the file is imported.</li>
         <li>
-          An unrecognised book name fails the import — use standard names, and note that{' '}
-          <code>1 Samuel</code> works where <code>1st Samuel</code> does not.
+          An imported note replaces the note that starts at the same verse; other notes in the
+          collection are left alone.
         </li>
+        <li>Markdown inside code blocks is never mistaken for a heading or a footnote.</li>
       </ul>
 
       <h2>Devotionals</h2>
       <p>
-        Devotionals use richer frontmatter and ordinary markdown body content. Everything except{' '}
-        <code>id</code> and <code>title</code> is optional.
+        A single devotional is ordinary markdown with YAML frontmatter. Everything except{' '}
+        <code>title</code> is optional.
       </p>
 
       <pre>
         <code>{`---
-id: "d4f8a2b1-3c5e-4d7f-9a8b-6c1e2f3d4a5b"
 title: "Finding Peace in the Storm"
 subtitle: "When life feels overwhelming"
 author: "Pastor Michael"
@@ -219,7 +214,6 @@ date: "2025-01-15"
 tags: ["peace", "trust", "anxiety"]
 category: "devotional"
 series:
-  id: "series-uuid"
   name: "Storms"
   order: 1
 keyScriptures:
@@ -231,13 +225,11 @@ keyScriptures:
 
 Peace comes from trusting the One who commands the wind.
 
-## Content
-
 ### The Storm
 
 ![Stormy sea](media/storm-sea.jpg)
 
-Life brings unexpected storms...
+Life brings unexpected storms...[^wind]
 
 > "Peace, be still."
 > — Mark 4:39
@@ -246,19 +238,43 @@ Life brings unexpected storms...
 2. Trust His power
 3. Rest in His love
 
-[Morning meditation](media/peace-meditation.m4a)`}</code>
+[Morning meditation](media/peace-meditation.m4a)
+
+[^wind]: The Sea of Galilee is known for sudden squalls.`}</code>
       </pre>
 
       <p>
-        <code>category</code> must be one of <code>devotional</code>, <code>sermon</code>,{' '}
-        <code>reflection</code>, <code>study</code>, <code>prayer</code>, <code>testimony</code> or{' '}
-        <code>other</code>.
+        <code>category</code> is one of <code>devotional</code>, <code>exhortation</code>,{' '}
+        <code>reflection</code>, <code>study</code>, <code>prayer</code> or <code>other</code>; an
+        older file’s <code>sermon</code> is read as <code>exhortation</code>. A{' '}
+        <code>## Summary</code> section at the top becomes the devotional’s summary.
+      </p>
+
+      <h3>Several devotionals in one file</h3>
+      <p>
+        <strong>Export to Single File</strong> and a collection’s markdown export write each
+        devotional as a <code>##</code> heading, with its details on one line beneath it, and the
+        importer reads the same layout back:
+      </p>
+      <pre>
+        <code>{`## Finding Peace in the Storm
+
+*When life feels overwhelming*
+
+**Author:** Pastor Michael | **Date:** 2025-01-15 | **Tags:** peace, trust | **Category:** devotional
+
+Life brings unexpected storms...`}</code>
+      </pre>
+      <p>
+        Entries can also be separated by a <code>---</code> line. In an export, each
+        devotional’s footnotes are numbered 1, 2, 3 in reading order under a{' '}
+        <code>### Footnotes</code> heading.
       </p>
 
       <h3>Blocks</h3>
       <p>
-        Paragraphs, headings, blockquotes, and bulleted and numbered lists map directly to the
-        editor’s block types. Two conventions are worth memorising:
+        Paragraphs, headings, blockquotes, tables, and bulleted and numbered lists map directly to
+        the editor. Two conventions are worth memorising:
       </p>
       <ul>
         <li>
@@ -273,17 +289,14 @@ Life brings unexpected storms...
       <h3>Import behaviour</h3>
       <ul>
         <li>Each file becomes one devotional; a folder of files becomes that many entries.</li>
-        <li>
-          A single file with entries separated by <code>---</code> imports as multiple entries.
-        </li>
-        <li>New identifiers are generated on import, so importing twice creates duplicates.</li>
+        <li>Imports always add new devotionals, so importing twice creates duplicates.</li>
         <li>Media files are copied into the app’s storage.</li>
       </ul>
 
       <h2>Media</h2>
       <p>
-        Media referenced by markdown lives in a <code>media/</code> folder alongside it. Filenames
-        are UUID-prefixed on export to avoid collisions when several sources are consolidated.
+        Media referenced by markdown lives in a <code>media/</code> folder alongside it, and the
+        markdown links to each file by name.
       </p>
 
       <Table>
@@ -305,35 +318,17 @@ Life brings unexpected storms...
         </tbody>
       </Table>
 
-      <Callout title="Missing media does not block an import">
+      <Callout title="Markdown shared alone carries no media">
         <p>
-          If a referenced file is not present, the text still imports and the reference is
-          preserved. Add the file and re-import to fill it in.
+          Share as Markdown sends the text without its images and audio, so their links will not
+          resolve elsewhere. Use Share Devotional File, or an export with its media folder, when
+          the media matters.
         </p>
       </Callout>
 
-      <h2>Exporting</h2>
-      <ul>
-        <li>
-          <strong>One book of notes</strong> — from the notes view for that book.
-        </li>
-        <li>
-          <strong>All notes</strong> — from Settings; produces a file per book plus{' '}
-          <code>All_Notes.md</code>, with media consolidated.
-        </li>
-        <li>
-          <strong>One devotional</strong> — from the devotional’s share menu.
-        </li>
-        <li>
-          <strong>All devotionals</strong> — from Settings; produces a file each plus{' '}
-          <code>All_Devotionals.md</code>.
-        </li>
-      </ul>
-
       <p>
-        For binary transfer that preserves identifiers and media exactly, export as a{' '}
-        <code>.lamp</code> package instead — see{' '}
-        <Link href="/docs/modules">The module system</Link>.
+        For transfer that preserves identifiers and media exactly, use a <code>.lamp</code> package
+        instead — see <Link href="/docs/modules">The module system</Link>.
       </p>
     </DocPage>
   )

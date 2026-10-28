@@ -24,8 +24,14 @@ export default function Page() {
 
       <h2>Do I need an account?</h2>
       <p>
-        No. There is no sign-in anywhere in the app. Sync, when you turn it on, uses your iCloud
-        Drive or your own WebDAV server — never an account with us, because there isn’t one.
+        No. There is no Lamp Bible account. Sync, when you turn it on, uses your iCloud Drive or
+        your own WebDAV server — never an account with us, because there isn’t one.
+        {isMacAvailable && (
+          <>
+            {' '}The Mac’s optional <Link href="/docs/ai">AI chat</Link> signs in to an AI provider
+            account of your own.
+          </>
+        )}
       </p>
 
       <h2>What data do you collect?</h2>
@@ -48,26 +54,26 @@ export default function Page() {
       <p>
         Completely. Bundled translations, lexicons, cross-references and reading plans — plus any
         modules you install — are on the device. The app connects to the network only for things
-        you turn on: cloud sync and handing a passage to another Bible app
-        {isMacAvailable && <>, and on the Mac, update checks and AI chat</>}.
+        you turn on: cloud sync, handing a passage to another Bible app, and the presentation
+        remote, which uses only your local network
+        {isMacAvailable && <>; on the Mac, also update checks and AI chat</>}.
       </p>
 
       <h2>Why isn’t my usual translation there?</h2>
       <p>
         Modern translations are normally protected by copyright and cannot be bundled without
-        permission. The audited replacement library uses translations with documented
-        public-domain or open distribution terms. The legacy live app&apos;s plain-text BBE is retired
-        for the next release. Plain KJV and CrossWire KJV with Strong&apos;s are included outside the
-        United Kingdom — see <Link href="/content-licences">Content licences</Link>. If your licence
-        permits making a converted copy, the{' '}
-        <Link href="/docs/modules">module system</Link> lets you build and install it yourself.
-        Sharing that module also requires redistribution rights.
+        permission. The bundled library uses translations with documented public-domain or open
+        distribution terms — see <Link href="/content-licences">Content licences</Link>. If you
+        already own a Bible in USFM, OSIS, Zefania or SWORD form, you can import it as your own
+        translation module; see <Link href="/docs/modules">The module system</Link>. Sharing that
+        module with anyone else requires redistribution rights.
       </p>
 
       <h2>What is a <code>.lamp</code> file?</h2>
       <p>
-        It is a module: a compressed SQLite database holding one translation, commentary, dictionary,
-        plan, note collection, devotional or highlight set. The format is documented in{' '}
+        It is a module: a compressed SQLite database holding one translation, dictionary,
+        commentary, book, reading plan, quiz, notes collection, devotional collection or highlight
+        set. The format is documented in{' '}
         <Link href="/docs/modules/authoring">Authoring modules</Link>.
       </p>
 
@@ -106,8 +112,9 @@ export default function Page() {
       <h2>Can I sync between my devices?</h2>
       <p>
         Yes — through iCloud Drive or a WebDAV server. Your imported modules, notes, devotionals,
-        highlights and settings travel; the bundled library does not need to, since it is already on
-        every install. See <Link href="/docs/sync">Sync &amp; backup</Link>.
+        highlights, reading progress and settings travel; the bundled library does not need to,
+        since it is already on every install. Every device sharing a library needs version 1.2 or
+        later. See <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
 
       <h2>How do I report a bug or ask for a feature?</h2>

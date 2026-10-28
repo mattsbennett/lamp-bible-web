@@ -23,7 +23,7 @@ export default function DocsIndex() {
         <p>
           If you have just installed the app, read{' '}
           <Link href="/docs/getting-started">Getting started</Link> — it covers choosing a
-          translation and gives you a tour of the five tabs. If you want to understand how Lamp
+          translation and gives you a tour of the home screen. If you want to understand how Lamp
           Bible is built, start with <Link href="/docs/modules">The module system</Link>: almost
           every other feature is a consequence of that one design decision.
         </p>
@@ -32,9 +32,7 @@ export default function DocsIndex() {
         <p>
           Lamp Bible is an offline Bible reader for close study. Its audited replacement library
           uses translations under documented public-domain and open distribution terms, a set of
-          lexicons and a full cross-reference apparatus. The legacy live app&apos;s plain-text BBE is
-          retired for the next release. Plain KJV and CrossWire KJV with Strong&apos;s are included
-          outside the United Kingdom under the terms on the{' '}
+          lexicons and a full cross-reference apparatus; the terms for each are on the{' '}
           <Link href="/content-licences">Content licences</Link> page. On top of that you write your
           own notes, devotionals and highlights.
         </p>

@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'The module system',
   description:
-    'Every piece of content in Lamp Bible — translations, lexicons, commentaries, plans, quizzes, notes, devotionals and highlights — is a module in the same open format.',
+    'Every piece of content in Lamp Bible — translations, lexicons, commentaries, books, plans, quizzes, notes, devotionals and highlights — is a module in the same open format.',
 }
 
 export default function Page() {
@@ -28,7 +28,7 @@ export default function Page() {
         all modules, all in the same container, all managed in the same place.
       </p>
 
-      <h2>The eight types</h2>
+      <h2>The nine types</h2>
 
       <Table>
         <thead>
@@ -61,6 +61,14 @@ export default function Page() {
             <td>No</td>
           </tr>
           <tr>
+            <td>Book</td>
+            <td>
+              A long-form publication in parts, chapters and sections, with footnotes and media —
+              see <Link href="/docs/books">Books</Link>
+            </td>
+            <td>No</td>
+          </tr>
+          <tr>
             <td>Plan</td>
             <td>Reading assignments across a cycle, with per-day readings</td>
             <td>No</td>
@@ -72,7 +80,7 @@ export default function Page() {
           </tr>
           <tr>
             <td>Notes</td>
-            <td>Your verse-keyed study notes, one module per book</td>
+            <td>Your verse-keyed study notes</td>
             <td>Yes</td>
           </tr>
           <tr>
@@ -100,22 +108,31 @@ export default function Page() {
         launch. Everything else — modules you import, modules you create — is a separate{' '}
         <code>.lamp</code> file in the app’s storage. The reader does not distinguish between them:
         a commentary you built yourself appears in the tool panel’s series list next to the ones
-        that came with the app.
+        that came with the app. A module you install with the same identifier as a bundled one
+        takes its place.
       </p>
 
       <h2>Managing modules</h2>
       <p>
-        Settings has a module manager, grouped by type, showing what is installed with a summary of
-        each — verse counts, entry counts, how many books a commentary series covers, how many
-        highlights a set holds, how many days a plan runs, which age groups a quiz supports.
+        The module manager is in Settings → Modules → <strong>Manager</strong>. It lists what is
+        installed, grouped by type and filterable by type or by source — bundled or your own — with
+        a summary of each: verse counts, entry counts, how many books a commentary series covers,
+        how many highlights a set holds, how many days a plan runs.
       </p>
 
       <h3>Importing</h3>
-      <p>The manager accepts three kinds of import:</p>
+      <p>
+        <strong>+</strong> → <strong>Import Module</strong> accepts four kinds of import:
+      </p>
       <ul>
         <li>
-          <strong>A <code>.lamp</code> package</strong> — any module type. If a module with the same
-          identifier is already installed you are asked whether to overwrite it.
+          <strong>A <code>.lamp</code> package</strong> — any module type. Its integrity is checked
+          first, and if a module with the same identifier is already installed you are asked
+          whether to overwrite it.
+        </li>
+        <li>
+          <strong>A Bible you own</strong>, as USFM, OSIS, Zefania, plain XML or a SWORD module —
+          see <Link href="/docs/modules/import-bible">Importing a Bible</Link>.
         </li>
         <li>
           <strong>Notes as markdown</strong> — verse-linked study notes, from a single file or a
@@ -123,40 +140,45 @@ export default function Page() {
         </li>
         <li>
           <strong>Devotionals as markdown</strong> — either a folder of files, one entry each, or a
-          single file with entries separated by <code>---</code>.
+          single file with several entries.
         </li>
       </ul>
       <p>
-        Because <code>.lamp</code> is registered as a document type, you can also open a module from
-        Files, Mail or a share sheet and it will be handed to the app.
+        Books import from the <Link href="/docs/books">Books</Link> library, which also accepts a
+        book’s source JSON and compiles it on the device. Other module types install from{' '}
+        <code>.lamp</code> files only; to turn JSON into one, see{' '}
+        <Link href="/docs/modules/building">Building a .lamp file</Link>. Because{' '}
+        <code>.lamp</code> is registered as a document type, you can also open a module from Files,
+        Mail or a share sheet and it will be handed to the app.
       </p>
 
       <h3>Creating</h3>
       <p>
-        You can create an empty editable module from the manager: a notes module, a devotional
-        collection, or a highlight set. Highlight sets ask which translation they belong to, since{' '}
-        <Link href="/docs/highlights">highlights are translation-specific</Link>. Modules can be
-        renamed and their metadata edited afterwards.
+        <strong>+</strong> → <strong>Create New Module</strong> makes an empty notes module,
+        devotional collection or highlight set. Highlight sets ask which translation they belong
+        to, since <Link href="/docs/highlights">highlights are translation-specific</Link>. Modules
+        can be renamed and their descriptions edited afterwards.
       </p>
 
       <h3>Exporting</h3>
       <p>
-        Editable modules export as markdown for editing elsewhere, or as <code>.lamp</code> packages
-        for backup and transfer. Devotionals additionally share individually through the system
-        share sheet.
+        Notes and devotional modules export as markdown from their menu in the manager, for editing
+        elsewhere. A single devotional also shares through the system share sheet as a{' '}
+        <code>.lamp</code> file that carries its media. See{' '}
+        <Link href="/docs/import-export">Import &amp; export</Link>.
       </p>
 
       <h3>Deleting and resetting</h3>
       <p>
-        Modules can be deleted individually. There is also a reset that clears a module’s contents
-        while keeping the module itself, and — for genuine trouble — a full module database reset in
-        Settings that rebuilds from the bundled content.
+        Modules can be deleted individually. My Notes and My Devotionals cannot be deleted, but{' '}
+        <strong>Reset</strong> clears their contents while keeping the module itself. With sync on,
+        a deletion or reset reaches your other devices too.
       </p>
 
-      <Callout tone="warn" title="Reset is destructive">
+      <Callout tone="warn" title="Delete and reset are destructive">
         <p>
-          Resetting the module database discards installed modules. Export anything you care about
-          first, or make sure it has synced.
+          A deleted module and the entries a reset clears are removed from every synced device.
+          Export anything you care about first.
         </p>
       </Callout>
 
@@ -182,6 +204,10 @@ export default function Page() {
 
       <h2>Next</h2>
       <ul>
+        <li>
+          <Link href="/docs/modules/import-bible">Importing a Bible</Link> — turn a Bible you
+          already own into a translation module, no JSON required.
+        </li>
         <li>
           <Link href="/docs/modules/downloads">Downloads</Link> — an installable sample module of
           every type, with its source JSON, the schemas and the table definitions. The quickest way

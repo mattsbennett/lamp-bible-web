@@ -6,7 +6,7 @@ import { downloadPaths, isMacAvailable, site } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Getting started',
   description:
-    'Install Lamp Bible, choose a translation, and find your way around the reader, plans, search, writing and settings tabs.',
+    'Install Lamp Bible, choose a translation, and find your way around the home screen, the reader, search, books, writing and settings.',
 }
 
 export default function Page() {
@@ -14,7 +14,7 @@ export default function Page() {
     <DocPage
       href="/docs/getting-started"
       title="Getting started"
-      intro="Install the app, pick a translation, and learn what lives behind each of the five tabs."
+      intro="Install the app, pick a translation, and learn what lives behind each button on the home screen."
     >
       <h2>Install</h2>
       <p>
@@ -35,28 +35,23 @@ export default function Page() {
 
       <Callout title="What you get on day one">
         <p>
-          Six translations, four lexicons, two cross-reference sets and three public-domain reading
-          plans are included in the install. See{' '}
+          Five translations, four lexicons, two cross-reference sets, three public-domain reading
+          plans and a quiz module are included in the install. See{' '}
           <Link href="/docs/included-content">Bundled content</Link> for the full list and rights
           status.
         </p>
-        <p>
-          The legacy live release also contains plain-text BBE and KJV. BBE is retired for the next
-          release, with BSB as its recommended replacement. The upcoming bundle contains plain KJV
-          and CrossWire KJV with Strong&apos;s; both are unavailable for UK and unresolved storefronts.
-        </p>
       </Callout>
 
-      <h2>The five tabs</h2>
+      <h2>The home screen</h2>
       <p>
-        Everything in the app hangs off a tab bar at the bottom of the screen. Most of your time is
-        spent in the first two.
+        Lamp Bible opens on today: the readings from the plans you follow, with a date at the top
+        to step through the days. Everything else is a button along the bottom of the screen.
       </p>
 
       <Table>
         <thead>
           <tr>
-            <th>Tab</th>
+            <th>Button</th>
             <th>What it is for</th>
           </tr>
         </thead>
@@ -64,15 +59,8 @@ export default function Page() {
           <tr>
             <td>Read</td>
             <td>
-              The reader itself — passage text, highlighting, the tool panel, split panes and read
-              aloud. See <Link href="/docs/reader">The reader</Link>.
-            </td>
-          </tr>
-          <tr>
-            <td>Plans</td>
-            <td>
-              Today’s readings from whichever plans you follow, with completion tracking and
-              reminders. See <Link href="/docs/reading-plans">Reading plans</Link>.
+              The reader itself — passage text, highlighting, the tool panel and word lookups. See{' '}
+              <Link href="/docs/reader">The reader</Link>.
             </td>
           </tr>
           <tr>
@@ -82,51 +70,69 @@ export default function Page() {
             </td>
           </tr>
           <tr>
+            <td>Books</td>
+            <td>
+              Long-form books you have installed. See <Link href="/docs/books">Books</Link>.
+            </td>
+          </tr>
+          <tr>
             <td>Write</td>
             <td>
-              Your devotionals, sermons and reflections. See{' '}
+              Your devotionals, studies and reflections. See{' '}
               <Link href="/docs/devotionals">Devotionals</Link>.
             </td>
           </tr>
           <tr>
             <td>Settings</td>
             <td>
-              Translation preferences, lexicon order, highlight colours, sync, and the module
-              manager.
+              Sync, the module manager, translation and lexicon preferences, reading rate, read
+              aloud and reminders.
             </td>
           </tr>
         </tbody>
       </Table>
+      <p>
+        The readings themselves are covered in <Link href="/docs/reading-plans">Reading plans</Link>.
+        {isMacAvailable && (
+          <>
+            {' '}On a Mac, the sidebar takes the place of the home screen — see{' '}
+            <Link href="/docs/mac">The Mac app</Link>.
+          </>
+        )}
+      </p>
 
       <h2>Choose your translation</h2>
       <p>
         The reader opens on the Berean Standard Bible with Strong’s tagging (<code>BSBs</code>) by
-        default. Change it from the translation control in the reader, or in Settings.
+        default. To switch, tap the title at the top of the reader and use the translation menu
+        above the list of books; to change the default, go to Settings → Modules → Settings.
       </p>
       <p>
         Translations whose identifier ends in <code>s</code> — <code>BSBs</code>, <code>ASVs</code>,{' '}
-        <code>WEBs</code> and <code>KJVs</code> in the upcoming bundle — carry Strong’s numbers on
-        individual words. In those translations you can tap a word to open its lexicon entry.
-        Translations without tagging read perfectly well but have no word-level lookups.
+        <code>WEBs</code> and <code>KJVs</code> — carry Strong’s numbers on individual words. In
+        those translations you can tap a word to open its lexicon entry. Translations without
+        tagging read perfectly well but have no word-level lookups.
       </p>
       <p>
-        If you never use some of the bundled translations, hide them in Settings rather than
-        deleting anything. Hidden translations disappear from the picker but stay installed.
+        If you never use some of the bundled translations, hide them in the same settings screen
+        rather than deleting anything. Hidden translations disappear from the picker but stay
+        installed. If you own another Bible as a file, you can{' '}
+        <Link href="/docs/modules/import-bible">import it</Link>.
       </p>
 
       <h2>Set your reading pace</h2>
       <p>
         Reading plans estimate how long today’s portion will take. That estimate comes from a
         words-per-minute figure in Settings, which defaults to 183 wpm — roughly the average adult
-        silent reading rate. Presets are provided for silent reading and reading aloud, or you can
-        set the number yourself. It only affects the time estimates.
+        rate for reading aloud. A preset sets the silent-reading average instead, or you can set the
+        number yourself. The same figure sets the pace of read aloud.
       </p>
 
       <h2>Decide where your work lives</h2>
       <p>
         Before you write much, go to Settings and choose a sync method. The options are local-only,
         iCloud Drive, or a WebDAV server of your own. Switching later is supported and the app will
-        offer to migrate your existing data, but making the choice up front saves a step. See{' '}
+        offer to bring your library with it, but making the choice up front saves a step. See{' '}
         <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
 
@@ -140,22 +146,28 @@ export default function Page() {
 
       <h2>A first pass through the app</h2>
       <ol>
-        <li>Open <strong>Read</strong> and navigate to a passage using the book and chapter controls.</li>
         <li>
-          Tap a word with a Strong’s number to see the lexicon entry, then swipe through the related
-          entries.
+          On the home screen, tap <strong>Add</strong> under Plans and choose a reading plan.
         </li>
         <li>
-          Select a phrase and apply a highlight; give the colour a name in Settings so it means
+          Tap <strong>Start Reading</strong>, or open <strong>Read</strong> and tap the title to
+          choose a book and chapter.
+        </li>
+        <li>
+          Tap a word with a Strong’s number to see the lexicon entry, then swipe to the same word in
+          the other lexicons.
+        </li>
+        <li>
+          Select a phrase and choose Highlight. Long-press a colour to give it a name, so it means
           something later.
         </li>
         <li>
-          Open the tool panel and switch it to <strong>Notes</strong>, then write a note on the
-          verse you are looking at.
+          Choose <strong>Show Tools</strong> from the reader’s menu, switch the panel to{' '}
+          <strong>Notes</strong>, and write a note on the verse you are looking at.
         </li>
         <li>
-          Go to <strong>Plans</strong>, pick a reading plan, and add the widget to your home screen
-          so today’s portion is one tap away.
+          Add the <strong>Today’s Readings</strong> widget to your Home Screen so today’s portion
+          is one tap away.
         </li>
       </ol>
     </DocPage>

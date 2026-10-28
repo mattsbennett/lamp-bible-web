@@ -1,7 +1,11 @@
+import { isMacAvailable } from '@/lib/site'
+
 export type DocLink = {
   title: string
   href: string
   summary: string
+  /** Mac-only pages stay out of the docs until the Mac app is released (see lib/site.ts). */
+  mac?: boolean
 }
 
 export type DocSection = {
@@ -9,7 +13,7 @@ export type DocSection = {
   links: DocLink[]
 }
 
-export const docsNav: DocSection[] = [
+const allSections: DocSection[] = [
   {
     title: 'Start here',
     links: [
@@ -21,7 +25,13 @@ export const docsNav: DocSection[] = [
       {
         title: 'Getting started',
         href: '/docs/getting-started',
-        summary: 'Install the app, pick a translation, and find your way around the five tabs.',
+        summary: 'Install the app, pick a translation, and find your way around the home screen.',
+      },
+      {
+        title: 'The Mac app',
+        href: '/docs/mac',
+        summary: 'Tabs, layouts, the study column, writing, building modules and sync on the Mac.',
+        mac: true,
       },
     ],
   },
@@ -32,7 +42,7 @@ export const docsNav: DocSection[] = [
         title: 'The reader',
         href: '/docs/reader',
         summary:
-          'Translations, Strong’s numbers, split panes, the tool panel, read aloud, and navigation.',
+          'Translations, Strong’s numbers, the tool panel, cross-references, read aloud and navigation.',
       },
       {
         title: 'Reading plans',
@@ -42,7 +52,12 @@ export const docsNav: DocSection[] = [
       {
         title: 'Search',
         href: '/docs/search',
-        summary: 'Full-text search across every module, with filters for type, series, tag and colour.',
+        summary: 'Full-text search across every module, with filters for module, tag and colour.',
+      },
+      {
+        title: 'Books',
+        href: '/docs/books',
+        summary: 'Long-form studies and reference works, with contents, footnotes and live references.',
       },
       {
         title: 'Lexicons',
@@ -62,12 +77,24 @@ export const docsNav: DocSection[] = [
       {
         title: 'Notes',
         href: '/docs/notes',
-        summary: 'Verse and chapter notes with footnotes, written beside the text you are reading.',
+        summary: 'Verse and chapter notes in markdown, written beside the text you are reading.',
       },
       {
         title: 'Devotionals',
         href: '/docs/devotionals',
-        summary: 'Long-form writing with images, audio, scripture links, present mode and sharing.',
+        summary: 'Long-form writing with footnotes, images, audio, scripture links and present mode.',
+      },
+      {
+        title: 'Slides & presenting',
+        href: '/docs/presenting',
+        summary: 'Slide Studio decks from your writing, and an iPhone remote with your speaker notes.',
+        mac: true,
+      },
+      {
+        title: 'AI chat & agents',
+        href: '/docs/ai',
+        summary: 'Reader Chat and writing agents through your own AI account, with read-only access.',
+        mac: true,
       },
     ],
   },
@@ -78,6 +105,11 @@ export const docsNav: DocSection[] = [
         title: 'The module system',
         href: '/docs/modules',
         summary: 'Everything in the app is a module. What that means and how to manage them.',
+      },
+      {
+        title: 'Importing a Bible',
+        href: '/docs/modules/import-bible',
+        summary: 'Turn a USFM, OSIS, Zefania or SWORD Bible you own into a translation module.',
       },
       {
         title: 'Authoring modules',
@@ -97,12 +129,12 @@ export const docsNav: DocSection[] = [
       {
         title: 'Import & export',
         href: '/docs/import-export',
-        summary: 'Markdown round-trips for notes and devotionals, including embedded media.',
+        summary: 'Markdown round-trips for notes and devotionals, and where to find them.',
       },
       {
         title: 'Sync & backup',
         href: '/docs/sync',
-        summary: 'Local-only, iCloud Drive, or your own WebDAV server. Conflicts and migration.',
+        summary: 'Local-only, iCloud Drive, or your own WebDAV server. What syncs, conflicts and upgrading.',
       },
     ],
   },
@@ -122,5 +154,12 @@ export const docsNav: DocSection[] = [
     ],
   },
 ]
+
+export const docsNav: DocSection[] = allSections
+  .map((section) => ({
+    ...section,
+    links: section.links.filter((link) => isMacAvailable || !link.mac),
+  }))
+  .filter((section) => section.links.length > 0)
 
 export const allDocLinks: DocLink[] = docsNav.flatMap((s) => s.links)

@@ -52,9 +52,11 @@ export default function Page() {
 
       <h2>Colours</h2>
       <p>
-        Colours are stored as hex values, so you are not limited to a fixed palette. The set of
-        colours shown in the reader’s inline strip, and the order they appear in, is configured in
-        Settings. Colours you use often go first; the rest fold into an overflow control.
+        Colours are stored as hex values, so you are not limited to a fixed palette. The highlight
+        controls in the reader’s menu start with yellow, green, blue and pink; <strong>+</strong>{' '}
+        adds any colour from the system colour picker. Drag colours to put the ones you use most
+        first — the rest fold into an overflow control — and long-press one to remove it. Your
+        palette syncs with your settings.
       </p>
 
       <h2>Precision</h2>
@@ -76,7 +78,9 @@ export default function Page() {
         A highlight set is a named collection of highlights for one translation — and it is a{' '}
         <Link href="/docs/modules">module</Link> like everything else. That means you can keep more
         than one: a personal set and a set for a class you teach, a set for a study series you are
-        working through. Sets can be created, renamed, exported and imported independently.
+        working through. The first highlight you make in a translation creates a set for it
+        automatically; create, rename and delete others in the module manager, and choose the
+        active set from the highlight controls.
       </p>
 
       <h2>Themes: naming what a colour means</h2>
@@ -98,16 +102,18 @@ export default function Page() {
         </li>
       </ul>
       <p>
-        Themes are managed per set, with a live preview of how the colour and style combination will
-        look against verse text.
+        To add one, long-press a colour in the highlight controls and choose{' '}
+        <strong>Add Theme</strong>; the name then shows under that colour. Themes belong to the
+        active set, so a class set and a personal set can mean different things by the same colour.
       </p>
 
       <h2>Portability</h2>
       <p>
-        Highlight sets export as <code>.lamp</code> modules containing the verse references,
-        character offsets, styles, colours and theme names. Import brings the whole set in, themes
-        included. If your sync method is iCloud Drive or WebDAV, sets sync automatically along with
-        your other editable content — see <Link href="/docs/sync">Sync &amp; backup</Link>.
+        A highlight set is a <code>.lamp</code> module containing the verse references, character
+        offsets, styles, colours and theme names, so installing a set’s <code>.lamp</code> file
+        brings the whole set in, themes included. If your sync method is iCloud Drive or WebDAV,
+        each set syncs as its own file along with your other editable content — see{' '}
+        <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
     </DocPage>
   )

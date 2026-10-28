@@ -26,7 +26,7 @@ const macPackages: Array<{ name: string; version: string; licence: string; url: 
   { name: 'Swift System', version: '1.8.0', licence: 'Apache 2.0', url: 'https://github.com/apple/swift-system' },
   { name: 'SwiftLog', version: '1.15.0', licence: 'Apache 2.0', url: 'https://github.com/apple/swift-log' },
   { name: 'SwiftNIO', version: '2.101.3', licence: 'Apache 2.0', url: 'https://github.com/apple/swift-nio' },
-  { name: 'SwiftTerm', version: '1.11.2', licence: 'MIT', url: 'https://github.com/migueldeicaza/SwiftTerm' },
+  { name: 'SwiftTerm', version: '1.20.0', licence: 'MIT', url: 'https://github.com/migueldeicaza/SwiftTerm' },
   // Ships through SwiftyChat by project-owner decision (ACCEPTED_GAPS in the Mac repo's notice
   // script). Update this row if the author publishes a licence.
   { name: 'SwiftUIEKtensions', version: '0.4.0', licence: 'No licence published', url: 'https://github.com/EnesKaraosman/SwiftUIEKtensions' },
@@ -43,7 +43,7 @@ export default function SoftwareLicences() {
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
             Open-source components used by the current Lamp Bible apps.
           </p>
-          <p className="mt-3 text-sm text-faint">Last reviewed August 8, 2026.</p>
+          <p className="mt-3 text-sm text-faint">Last reviewed October 27, 2026.</p>
         </header>
 
         <div className="doc mt-10">

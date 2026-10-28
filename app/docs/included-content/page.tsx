@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/included-content"
       title="Bundled content"
-      intro="The offline library and its release status. Legacy BBE is retired for the next release; both KJV editions are included outside the United Kingdom."
+      intro="The offline library in the current release: five translations, four lexicons, two cross-reference sets, three reading plans and a quiz module."
     >
       <h2>Translations</h2>
       <p>
@@ -42,19 +42,11 @@ export default function Page() {
           </tr>
           <tr>
             <td>
-              <code>KJV</code>
-            </td>
-            <td>King James Version — plain text</td>
-            <td>No</td>
-            <td>Included; unavailable for UK and unresolved storefronts</td>
-          </tr>
-          <tr>
-            <td>
               <code>KJVs</code>
             </td>
             <td>CrossWire King James Version v3.1</td>
             <td>Yes</td>
-            <td>Any-purpose grant/GPL source record; unavailable for UK and unresolved storefronts</td>
+            <td>Any-purpose grant/GPL source record</td>
           </tr>
           <tr>
             <td>
@@ -80,14 +72,6 @@ export default function Page() {
             <td>—</td>
             <td>Public domain</td>
           </tr>
-          <tr>
-            <td>
-              <code>BBE</code>
-            </td>
-            <td>Bible in Basic English</td>
-            <td>No</td>
-            <td>Retired; present in the legacy live app and removed from the next release</td>
-          </tr>
         </tbody>
       </Table>
 
@@ -96,6 +80,15 @@ export default function Page() {
         picker in Settings without uninstalling them. See <Link href="/content-licences">Content
         licences</Link> for sources, versions, notices and links to the governing terms.
       </p>
+
+      <Callout title="Upgrading from version 1.0">
+        <p>
+          Earlier releases also carried plain-text <code>BBE</code> and <code>KJV</code>. BBE is
+          retired, and plain KJV is superseded by <code>KJVs</code>, the same translation with
+          Strong&apos;s numbers and morphology. If your reader was set to either, the update opens
+          BSB instead; choose <code>KJVs</code> from the translation picker to go back to the KJV.
+        </p>
+      </Callout>
 
       <h2>Lexicons</h2>
 
@@ -116,7 +109,7 @@ export default function Page() {
           <tr>
             <td>Strong’s Greek Dictionary</td>
             <td>Greek</td>
-            <td>5,600</td>
+            <td>5,500</td>
           </tr>
           <tr>
             <td>Brown-Driver-Briggs, unabridged</td>
@@ -126,7 +119,7 @@ export default function Page() {
           <tr>
             <td>Dodson Greek Lexicon</td>
             <td>Greek</td>
-            <td>5,500</td>
+            <td>5,400</td>
           </tr>
         </tbody>
       </Table>
@@ -141,8 +134,8 @@ export default function Page() {
       <p>
         The Treasury of Scripture Knowledge, Enhanced v1.2 is distributed under Timothy S.
         Morton&apos;s permission terms. Lamp Bible also adapts the OpenBible.info cross-reference
-        dataset under CC BY 4.0. References can be sorted by relevance or canonically, and each one
-        is a link into the reader. Full notices are under{' '}
+        dataset under CC BY 4.0. Both appear as commentary series in the reader’s tool panel, and
+        each reference is a link into the reader. Full notices are under{' '}
         <Link href="/content-licences">Content licences</Link>.
       </p>
 
@@ -176,7 +169,8 @@ export default function Page() {
       </Table>
 
       <p>
-        The Bible Companion quizzes are included in new release bundles. Their identified
+        The Bible Companion quizzes — 27,375 questions across five age groups, from young children
+        to adults — are included. Their identified
         ESV-specific wording was replaced through a reviewed, targeted process using the CC0 Berean
         Standard Bible; the questions were not wholesale regenerated. See{' '}
         <Link href="/docs/reading-plans">Reading plans</Link>.

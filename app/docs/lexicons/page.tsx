@@ -34,7 +34,7 @@ export default function Page() {
           <tr>
             <td>Strong’s Greek Dictionary</td>
             <td>Greek</td>
-            <td>~5,600</td>
+            <td>~5,500</td>
           </tr>
           <tr>
             <td>Brown-Driver-Briggs (unabridged)</td>
@@ -44,7 +44,7 @@ export default function Page() {
           <tr>
             <td>Dodson Greek Lexicon</td>
             <td>Greek</td>
-            <td>~5,500</td>
+            <td>~5,400</td>
           </tr>
         </tbody>
       </Table>
@@ -59,19 +59,20 @@ export default function Page() {
 
       <h2>Looking a word up</h2>
       <p>
-        In a Strong’s-tagged translation, tap a word. The lexicon view opens on the entry for that
-        word’s Strong’s number, and you can page through the other entries reachable from the same
-        passage without going back to the text.
+        In a Strong’s-tagged translation, tap a word — in the reader, in a commentary or in a book.
+        The lexicon view opens on the entry for that word’s Strong’s number; swipe to see the same
+        word in each of your other lexicons. A count beside the entry shows how often the number
+        occurs, and tapping it searches for every verse that uses it.
       </p>
       <p>An entry can include:</p>
       <ul>
         <li>The lemma in its original script, with transliteration and pronunciation.</li>
         <li>A definition, and for BDB a full article with numbered senses.</li>
-        <li>Part of speech and morphology.</li>
+        <li>Part of speech, and the word’s morphology code.</li>
         <li>KJV usage — the range of English words used to render it.</li>
         <li>Derivation notes.</li>
         <li>
-          Scripture references, which are live links back into the reader, and cross-references to
+          Scripture references, which open a preview you can page through, and cross-references to
           other lexicon entries.
         </li>
       </ul>
@@ -86,10 +87,11 @@ export default function Page() {
 
       <h2>Ordering and hiding</h2>
       <p>
-        Hebrew and Greek each have their own lexicon order, set in Settings. The default puts
-        Strong’s first, followed by BDB for Hebrew and Dodson for Greek. Reorder them so that the
-        dictionary you actually trust appears first, and hide the ones you never read — hidden
-        lexicons stay installed and searchable, they just stop appearing in lookups.
+        Hebrew and Greek each have their own lexicon order, set in Settings → Modules → Settings.
+        The default puts Strong’s first, followed by BDB for Hebrew and Dodson for Greek. Drag them
+        so that the dictionary you actually trust appears first, and swipe to hide the ones you
+        never read — hidden lexicons stay installed and searchable, they just stop appearing in
+        lookups.
       </p>
 
       <h2>Adding your own</h2>

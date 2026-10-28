@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'Search',
   description:
-    'Full-text search across translations, lexicons, commentaries, notes, devotionals and highlights, with filters for type, series, tag, Strong’s number and colour.',
+    'Full-text search across translations, lexicons, commentaries, books, notes, devotionals and highlights, with filters for module, tag, Strong’s number and colour.',
 }
 
 export default function Page() {
@@ -15,11 +15,21 @@ export default function Page() {
       title="Search"
       intro="One index over everything installed — the text you read and the text you wrote."
     >
-      <h2>What gets searched</h2>
+      <h2>Two scopes</h2>
       <p>
-        Search covers six module types at once. Reading plans and quizzes are excluded because they
-        have their own interfaces.
+        Search opens from the home screen, from the search field in the reader’s toolbar, from{' '}
+        <strong>Search</strong> on selected text, and from the occurrence count in a{' '}
+        <Link href="/docs/lexicons">lexicon entry</Link>. Its menu switches between two scopes:
       </p>
+      <ul>
+        <li>
+          <strong>Bible</strong> searches the verses of one translation, by text or by Strong’s
+          number.
+        </li>
+        <li>
+          <strong>Modules</strong> searches everything else you have installed or written.
+        </li>
+      </ul>
 
       <Table>
         <thead>
@@ -35,11 +45,15 @@ export default function Page() {
           </tr>
           <tr>
             <td>Dictionaries</td>
-            <td>Definitions, glosses and usage — or directly by key or lemma</td>
+            <td>Definitions, glosses and usage — or directly by Strong’s or BDB key</td>
           </tr>
           <tr>
             <td>Commentaries</td>
             <td>Commentary text, resolved back to the section or pericope it belongs to</td>
+          </tr>
+          <tr>
+            <td>Books</td>
+            <td>Section titles and text, opening the book at that section</td>
           </tr>
           <tr>
             <td>Notes</td>
@@ -55,16 +69,14 @@ export default function Page() {
           </tr>
         </tbody>
       </Table>
+      <p>Reading plans and quizzes are left out because they have their own screens.</p>
 
       <h2>Filters</h2>
-      <p>Results are grouped by type and can be narrowed before or after searching:</p>
+      <p>In the Modules scope, results are grouped by type and can be narrowed:</p>
       <ul>
         <li>
-          <strong>Module type</strong> — restrict to translations only, notes only, and so on.
-        </li>
-        <li>
-          <strong>Specific modules</strong> — search one commentary series or one dictionary rather
-          than all of them.
+          <strong>Specific modules</strong> — every dictionary, one commentary series, one notes
+          module, and so on.
         </li>
         <li>
           <strong>Translation</strong> — which translation verse results come from.
@@ -81,32 +93,75 @@ export default function Page() {
       <Callout title="Colour search is the payoff for naming your themes">
         <p>
           If you have named a highlight colour “Promises” in a{' '}
-          <Link href="/docs/highlights">highlight theme</Link>, filtering by that colour effectively
+          <Link href="/docs/highlights">highlight theme</Link>, searching by that colour effectively
           gives you a list of every promise you have marked while reading.
         </p>
       </Callout>
 
-      <h2>Query behaviour</h2>
+      <h2>Writing a query</h2>
+      <Table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Finds</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>love neighbour</code>
+            </td>
+            <td>Results containing every word</td>
+          </tr>
+          <tr>
+            <td>
+              <code>lov</code>
+            </td>
+            <td>Words starting with it — love, loved, lovingkindness</td>
+          </tr>
+          <tr>
+            <td>
+              <code>&quot;faith works&quot;</code>
+            </td>
+            <td>The exact phrase</td>
+          </tr>
+          <tr>
+            <td>
+              <code>self-control</code>
+            </td>
+            <td>The hyphenated word</td>
+          </tr>
+        </tbody>
+      </Table>
+      <p>
+        There are no operators: <code>AND</code>, <code>OR</code> and <code>NOT</code> are searched
+        as ordinary words. Bible searches run when you press Search and need at least two
+        characters.
+      </p>
+
+      <h3>Results</h3>
       <ul>
+        <li>Text results are ranked by relevance, with the match highlighted in a snippet.</li>
         <li>
-          Queries run against SQLite full-text indexes, so multi-word searches match on all terms.
+          Tap a result to preview it. The preview’s context — one verse, three, or the whole
+          chapter — is adjustable, and a button takes you to the passage.
         </li>
         <li>
-          Results carry a snippet with the match in context; the amount of surrounding context is
-          adjustable from a preview control.
+          Results load a hundred at a time; <strong>Load More Results</strong> extends the list.
         </li>
         <li>
-          Results load in pages — a <strong>Load more</strong> control extends the list rather than
-          fetching thousands of rows at once.
+          <strong>Recent Searches</strong> keeps your last twenty searches that found something, for
+          each scope, on this device. They can be cleared.
         </li>
-        <li>Recent searches are kept for quick reuse, and can be cleared.</li>
       </ul>
 
       <h3>Searching by Strong’s number</h3>
       <p>
-        Entering a Strong’s number searches two ways: it finds the dictionary entries for that
-        number, and it finds every verse in the current translation tagged with it. That is the
-        fastest route from “what does this word mean here” to “where else is this word used”.
+        Type a number such as <code>H430</code> or <code>G2316</code> in the Bible scope and the
+        search switches to Strong’s, finding every verse in the translation tagged with it — the
+        fastest route from “what does this word mean here” to “where else is this word used”. In the
+        Modules scope, <strong>Strong’s Key</strong> finds the dictionary entries for a number. Zero
+        padding does not matter: <code>H07225</code> and <code>H7225</code> are the same word.
       </p>
     </DocPage>
   )

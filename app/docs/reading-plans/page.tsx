@@ -58,30 +58,40 @@ export default function Page() {
 
       <h2>Following plans</h2>
       <p>
-        You can select more than one plan at a time; the Plans tab merges the day’s readings from
-        all of them. Each individual reading is completed on its own, so a three-reading day can be
-        half done. Completions are recorded per plan, per year, so restarting a plan next year gives
-        you a fresh slate without erasing history.
+        The home screen is today’s readings. Under <strong>Plans</strong>, tap{' '}
+        <strong>Add</strong> to choose which plans you follow — more than one at a time is fine, and
+        each appears with its own readings, the day’s total time, and how many you have read. Tap
+        the circle beside a reading to mark it read; a three-reading day can be half done.
+        Completions are recorded per plan, per year, so restarting a plan next year gives you a
+        fresh slate without erasing history.
       </p>
       <p>
-        The date can be moved backwards and forwards from the plan view, which is how you catch up
-        on a missed day or read ahead.
+        The date at the top moves backwards and forwards a day at a time, or tap it to pick one —
+        which is how you catch up on a missed day or read ahead.
       </p>
 
       <h3>Reading time estimates</h3>
       <p>
         Every reading shows a verse count and an estimated time. The estimate is your
         words-per-minute setting applied to the actual word count of the passage in your chosen
-        translation. The default is 183 wpm; presets cover average adult silent reading and reading
-        aloud, and the value is adjustable directly.
+        translation. The default is 183 wpm, the average adult rate for reading aloud; a{' '}
+        <strong>Silent</strong> preset sets 238 wpm, and the slider goes from 70 to 400. The same
+        rate sets the pace of <Link href="/docs/reader">read aloud</Link>.
       </p>
 
       <h3>Where readings open</h3>
       <p>
-        By default, tapping a reading opens it in the in-app reader in Portion mode, which scopes
-        the passage to exactly the assigned verses. If you would rather read in Accordance, e-Sword
-        LT, Logos, Olive Tree or YouVersion, set that app in Settings and readings will hand off to
-        it instead. Both buttons can be shown at once.
+        Tapping a reading opens it in the reader, scoped to exactly the assigned verses; pulling
+        past the end moves on to the next reading. Each plan also has a{' '}
+        <strong>Start Reading</strong> button that goes through the day’s readings in order from
+        the first one you have not read, and becomes <strong>Continue Reading</strong> and then{' '}
+        <strong>Read Again</strong>.
+      </p>
+      <p>
+        If you would rather read in Accordance, e-Sword LT, Logos, Olive Tree or YouVersion, choose
+        that app under <strong>External Bible</strong> in Settings, and each reading gets a button
+        named for it. Opening a reading there marks it read. Turn off{' '}
+        <strong>In-app Bible</strong> to make the external app the default.
       </p>
 
       <h2>Daily reminder</h2>
@@ -94,8 +104,8 @@ export default function Page() {
       <h2>Quizzes</h2>
       <p>
         A plan can have a companion quiz module: questions tied to specific readings, graded by age
-        group. When the passage you are reading has questions available, the reader offers them from
-        the bottom toolbar.
+        group. When a plan reading has questions, a <strong>Quiz Available</strong> card appears
+        after its last verse, and the Readings menu in the reader’s toolbar offers it too.
       </p>
       <Callout title="Quiz content cleared">
         <p>
@@ -108,23 +118,29 @@ export default function Page() {
         </p>
       </Callout>
       <p>
-        Set your default age group in Settings. If a reading has no questions for the selected
-        group, the app says so and suggests trying another group rather than showing an empty quiz.
-        There is also an option to always reveal answers, for use with a group.
+        The bundled quiz has five questions a reading for each of five age groups, from young
+        children to adults. Choose a group at the top of the quiz; your choice is remembered. Each
+        question has a theme and its references, which open a preview, and{' '}
+        <strong>Show Answer</strong> reveals the answer — it is a set of questions to discuss rather
+        than a test, with no scoring. The quiz menu can <strong>Always Show Answers</strong>, for
+        use with a group, and the quiz can be read aloud. If a reading has no questions for the
+        selected group, the app says so and suggests another.
       </p>
 
       <h2>The home-screen widget</h2>
       <p>
-        A <strong>Today’s Readings</strong> widget shows the current plan’s readings, how many you
-        have completed, and the total estimated time. Tapping a reading opens it directly in the
-        app.
+        A <strong>Today’s Readings</strong> widget shows a plan’s readings, how many you have
+        completed, and the total estimated time. It comes in small and medium Home Screen sizes and
+        three Lock Screen sizes. Edit the widget to choose the plan and whether readings open in
+        Lamp Bible or your external Bible app; in the medium size, each reading opens directly.
       </p>
+      <p>The widget needs iOS 26.2 or later; the rest of the app runs on iOS 18.</p>
 
       <Callout title="If the widget looks empty">
         <p>
           The widget reads from a shared data store that the app writes to. If it says no plan is
-          selected, open the app and choose a plan in the Plans tab; the widget will fill in on its
-          next refresh.
+          selected, open the app and add a plan under Plans; the widget will fill in on its next
+          refresh.
         </p>
       </Callout>
     </DocPage>

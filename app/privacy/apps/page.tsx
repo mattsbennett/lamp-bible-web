@@ -19,7 +19,7 @@ export default function AppPrivacy() {
           <h1 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
             Lamp Bible app privacy
           </h1>
-          <p className="mt-3 text-muted">Last updated August 8, 2026.</p>
+          <p className="mt-3 text-muted">Last updated October 27, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -34,9 +34,11 @@ export default function AppPrivacy() {
           <p>
             The apps store your modules, reading progress, notes, devotionals, highlights and
             settings locally. Photos, camera images and audio recordings are accessed only when you
-            choose to add them to your own content. WebDAV passwords are stored in Apple&apos;s
-            Keychain. You can remove individual content in the app and remove local app data by
-            deleting the app.
+            choose to add them to your own content; the camera is also used to scan a presentation
+            pairing code. WebDAV passwords and presentation pairings are stored in Apple&apos;s
+            Keychain, on that device only. Unlock keys for SWORD modules you import are used once
+            and not stored. You can remove individual content in the app and remove local app data
+            by deleting the app.
           </p>
 
           <h2>Optional sync</h2>
@@ -49,8 +51,31 @@ export default function AppPrivacy() {
             Your chosen provider&apos;s privacy policy and retention practices apply.
           </p>
           <p>
+            What syncs includes your notes, devotionals and their media, highlights, reading
+            progress, settings, and modules you imported — including Bibles you imported yourself.
+            Synced files are compressed but not encrypted by Lamp Bible, so their protection is the
+            protection your provider gives them.
+          </p>
+          <p>
             You can stop future syncing by choosing Local Only. Removing cloud copies is done in
             iCloud Drive or on your WebDAV server.
+          </p>
+
+          <h2>Presentation remote</h2>
+          <p>
+            An iPhone or iPad can act as a remote for a presentation running in Lamp Bible on a Mac.
+            When you open the remote, the app asks for permission to use the local network, and
+            finds presenters with Bonjour on that network or by nearby peer-to-peer discovery. It
+            does not connect to the internet for this. After pairing with a code shown on the Mac,
+            the connection is encrypted with a key derived from that code. The Mac sends the remote
+            the deck&apos;s titles and the current and next slides, including their speaker notes;
+            the remote sends its commands and its device name. Nothing is sent to Lamp Bible.
+            {isMacAvailable && (
+              <>
+                {' '}While presenting, the Mac advertises itself on the local network as “Lamp Bible
+                on” followed by the Mac&apos;s computer name, until you quit the app.
+              </>
+            )}
           </p>
 
           <h2>Links and external Bible apps</h2>
@@ -78,12 +103,17 @@ export default function AppPrivacy() {
 
               <h2>AI chat on Mac</h2>
               <p>
-                The Mac app&apos;s AI chat works only with an AI provider account you sign in to.
-                When you use it, your messages are sent to that provider, together with any module
-                content the agent looks up. Your own notes, highlights and devotionals are included
-                only if you allow that in Settings → AI &amp; Agents. The provider&apos;s terms and
-                privacy policy apply. Lamp Bible does not operate or proxy these services and does
-                not receive your conversations.
+                The Mac app&apos;s AI features work only through an AI provider&apos;s command-line
+                tool that you install and sign in to yourself. Lamp Bible starts that tool on your
+                Mac; it does not read or store your provider credentials. When you use it, your
+                messages are sent to that provider, together with the chapter and translation you
+                are reading in Reader Chat and any module content the agent looks up. Your own
+                notes, highlights and other writing are looked up only if you allow that in Settings
+                → AI &amp; Agents. A writing agent always has access to the writing it was opened
+                from and the files you add to its workspace. The provider&apos;s terms and privacy
+                policy apply. Lamp Bible does not operate or proxy these services and does not
+                receive your conversations. Writing-agent workspaces, including their
+                conversations, sync with your library; Reader Chat conversations stay on the Mac.
               </p>
             </>
           )}
