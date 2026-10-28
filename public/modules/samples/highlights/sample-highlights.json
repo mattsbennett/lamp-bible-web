@@ -7,7 +7,19 @@
     "description": "Highlights against the sample translation, one per style.",
     "translationId": "SAMPLEs",
     "created": 1770000000,
-    "lastModified": 1770000000
+    "lastModified": 1770000000,
+    "themes": [
+      {
+        "color": "FFE066",
+        "style": 0,
+        "name": "God at work"
+      },
+      {
+        "color": "7FB3D5",
+        "style": 1,
+        "name": "Who Christ is"
+      }
+    ]
   },
   "verses": [
     {
@@ -17,7 +29,7 @@
           "sc": 17,
           "ec": 28,
           "style": 0,
-          "color": "#FFE066"
+          "color": "FFE066"
         }
       ]
     },
@@ -28,13 +40,13 @@
           "sc": 62,
           "ec": 78,
           "style": 1,
-          "color": "#7FB3D5"
+          "color": "7FB3D5"
         },
         {
           "sc": 48,
           "ec": 56,
           "style": 2,
-          "color": "#82C596"
+          "color": "82C596"
         }
       ]
     },
@@ -45,7 +57,7 @@
           "sc": 13,
           "ec": 30,
           "style": 3,
-          "color": "#D98BC3"
+          "color": "D98BC3"
         }
       ]
     }

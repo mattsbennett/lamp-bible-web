@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "schemaVersion": "1.1",
+    "id": "sample-devotional",
+    "type": "devotional",
+    "title": "A Lamp for the Feet",
+    "author": "Lamp Bible",
+    "tags": [
+      "guidance",
+      "scripture"
+    ],
+    "category": "devotional",
+    "keyScriptures": [
+      {
+        "sv": 19119105,
+        "label": "Psalm 119:105"
+      }
+    ],
+    "created": 1770000000,
+    "lastModified": 1770000000
+  },
+  "summary": "Scripture promises light for the next step, not for the whole road.",
+  "content": [
+    {
+      "type": "blockquote",
+      "content": {
+        "text": "Your word is a lamp to my feet and a light to my path."
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": {
+        "text": "A lamp in the ancient world lit the next step, not the whole road. That is the promise being made: enough light to move, not enough to see the end."
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": {
+        "text": "Most of the frustration in reading Scripture for guidance comes from wanting a floodlight when what has been offered is a lamp."
+      }
+    }
+  ]
+}

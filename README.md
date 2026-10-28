@@ -60,9 +60,8 @@ file. `--check` compares three things and fails if any has moved:
 
 1. upstream schemas against the recorded hashes,
 2. the committed copies against the recorded hashes (catches hand-edits),
-3. the converter scripts the docs are *derived* from — the SQLite DDL on `/docs/modules/building` is
-   transcribed out of them, so a change upstream flags the prose as needing review even though no
-   file is copied.
+3. the upstream converter scripts, which are hashed but not copied, so that a change to how modules
+   are produced upstream flags the prose as needing review.
 
 It looks for the repo at `../lamp-bible-modules`, overridable with `LAMP_MODULES_REPO` or
 `--source`. If the repo is absent it prints a note and exits 0, so it is safe to run anywhere.
@@ -71,14 +70,32 @@ Run `npm run check:modules` before a release; run `npm run sync:modules` when it
 
 ### Sample modules
 
-`scripts/build_sample_modules.py` builds one small `.lamp` of each module type, plus the source JSON
-and the DDL, using only the Python standard library. It doubles as the reference implementation the
-docs walk through, so it is written to be read.
+`scripts/build_sample_modules.py` builds one small `.lamp` of each of the nine module types, plus
+the source JSON and the DDL, using only the Python standard library. It doubles as the reference
+implementation the docs walk through, so it is written to be read. Each sample is named
+`<module id>.lamp`, which the iOS app requires, and carries the `module_format` row the apps read
+first.
 
-`scripts/verify_sample_modules.py` decompresses each result, runs `PRAGMA integrity_check`, queries
-it, and asserts that every annotation and highlight offset still covers the text it claims. Offsets
-are the one thing that can be wrong in a file that otherwise looks perfect, so they are checked
-rather than trusted.
+The tables and rows it writes are transcribed from the module compiler in `lamp-bible-core`, the
+Swift package the apps share. That compiler is the source of truth for the format, over the
+converter scripts in `lamp-bible-modules`. The SQLite DDL on `/docs/modules/building` is a condensed
+copy of the same definitions.
+
+`scripts/verify_sample_modules.py` decompresses each result, runs `PRAGMA integrity_check`, checks
+the `module_format` row against the file name, queries it, and asserts that every annotation,
+footnote marker and highlight offset still covers the text it claims. Offsets are the one thing that
+can be wrong in a file that otherwise looks perfect, so they are checked rather than trusted.
+
+When core's command-line tool is available (`$LAMP_CORE_CLI`, or
+`../lamp-bible-core/.build/debug/lamp-module`, built by `swift build` in that repo), the verifier
+also checks every sample against the apps' own code:
+
+- `lamp-module inspect` must accept the source JSON;
+- `lamp-module build`, given the same JSON, must produce the same tables, columns and rows;
+- `lamp-module verify`, which installs the `.lamp` the way the apps do, must report the expected
+  type and module ID.
+
+Without the tool it prints a note and skips those checks.
 
 ### Platform availability
 

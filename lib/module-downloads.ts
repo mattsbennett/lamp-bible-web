@@ -7,6 +7,7 @@ export type ModuleTypeId =
   | 'translation'
   | 'dictionary'
   | 'commentary'
+  | 'book'
   | 'plan'
   | 'quiz'
   | 'notes'
@@ -27,6 +28,8 @@ export type ModuleTypeDownloads = {
   summary: string
   /** What the sample module actually contains. */
   sampleContents: string
+  /** The sample's module ID, which is also its file name: the apps require the two to match. */
+  sampleId: string
   sample: DownloadFile
   source: DownloadFile
   sql: DownloadFile
@@ -62,6 +65,7 @@ const TYPES: Array<
     summary: 'Verse text with Strong’s tagging, headings, footnotes and poetry markers.',
     sampleContents:
       'Six CC0 Berean Standard Bible verses across Genesis, John and Psalms, with Strong’s annotations, two section headings, a translator footnote and a full-text index.',
+    sampleId: 'SAMPLEs',
     schemaFiles: ['translation_schema.json'],
   },
   {
@@ -70,16 +74,18 @@ const TYPES: Array<
     editable: false,
     summary: 'Lexicon entries keyed by Strong’s number or lemma, with numbered senses.',
     sampleContents:
-      'Three public-domain Strong’s entries — two Hebrew, one Greek — each with senses, transliteration and part of speech.',
+      'Three public-domain Strong’s entries — two Hebrew, one Greek — each with numbered senses, glosses, transliteration and part of speech.',
+    sampleId: 'sample-lexicon',
     schemaFiles: ['lexicon_schema.json', 'lexicon_mapping_schema.json'],
   },
   {
     id: 'commentary',
     name: 'Commentary',
     editable: false,
-    summary: 'Exposition keyed to verses or pericopae, nested inside sections and series.',
+    summary: 'Exposition keyed to verses or pericopae, one book of a series per file.',
     sampleContents:
-      'Original notes on Genesis 1:1 and John 1:1, showing the section → pericope → verse nesting and both Strong’s and scripture annotations.',
+      'Original notes on the opening of Genesis, showing the section → pericope → verse nesting and both Strong’s and scripture annotations.',
+    sampleId: 'sample-commentary',
     schemaFiles: [
       'commentary_schema.json',
       'commentary_series_schema.json',
@@ -88,11 +94,22 @@ const TYPES: Array<
     ],
   },
   {
+    id: 'book',
+    name: 'Book',
+    editable: false,
+    summary: 'A long-form publication in nested sections, with footnotes shared across the book.',
+    sampleContents:
+      'An original preface and chapter, with a section nested in the chapter, a book-wide footnote and scripture reference annotations.',
+    sampleId: 'sample-book',
+    schemaFiles: ['book_schema.json'],
+  },
+  {
     id: 'plan',
     name: 'Reading plan',
     editable: false,
     summary: 'Dated reading assignments across a cycle.',
     sampleContents: 'A seven-day plan, one reading per day, through the creation account and the prologue of John.',
+    sampleId: 'sample-plan',
     schemaFiles: ['plan_schema.json'],
   },
   {
@@ -101,23 +118,26 @@ const TYPES: Array<
     editable: false,
     summary: 'Age-graded questions tied to a reading plan’s readings.',
     sampleContents:
-      'Four questions against the sample plan, covering two age groups, with themes and cross-references.',
+      'Ten questions on day one of the sample plan — five for each of two age groups — with themes and cross-references.',
+    sampleId: 'sample-quiz',
     schemaFiles: ['quiz_schema.json'],
   },
   {
     id: 'notes',
     name: 'Notes',
     editable: true,
-    summary: 'Verse-keyed study notes.',
-    sampleContents: 'Three sample notes anchored to Genesis 1:1, John 1:1 and John 1:14.',
+    summary: 'Verse-keyed study notes, one book per file.',
+    sampleContents: 'A chapter introduction and two notes on John 1, anchored to verses 1 and 14.',
+    sampleId: 'sample-notes',
     schemaFiles: ['notes_schema.json'],
   },
   {
     id: 'devotional',
     name: 'Devotional',
     editable: true,
-    summary: 'Long-form documents, not tied to a single passage.',
-    sampleContents: 'Two short original readings keyed by month and day, with tags and key scriptures.',
+    summary: 'A long-form document, not tied to a single passage.',
+    sampleContents: 'One short original reading, with a summary, tags and a key scripture.',
+    sampleId: 'sample-devotional',
     schemaFiles: ['devotional_schema.json'],
   },
   {
@@ -126,7 +146,8 @@ const TYPES: Array<
     editable: true,
     summary: 'Highlight spans and colour themes for one translation.',
     sampleContents:
-      'Four highlights against the sample translation — one in each of the four styles, with character offsets that land on real words.',
+      'Four highlights against the sample translation — one in each of the four styles, with character offsets that land on real words — and two colour themes.',
+    sampleId: 'sample-highlights',
     schemaFiles: ['highlight_schema.json'],
   },
 ]
@@ -137,14 +158,9 @@ export const moduleDownloads: ModuleTypeDownloads[] = TYPES.map((t) => ({
   editable: t.editable,
   summary: t.summary,
   sampleContents: t.sampleContents,
-  sample: file(
-    `lamp-sample-${t.id}.lamp`,
-    `samples/${t.id}/lamp-sample-${t.id}.lamp`
-  ),
-  source: file(
-    `lamp-sample-${t.id}.json`,
-    `samples/${t.id}/lamp-sample-${t.id}.json`
-  ),
+  sampleId: t.sampleId,
+  sample: file(`${t.sampleId}.lamp`, `samples/${t.id}/${t.sampleId}.lamp`),
+  source: file(`${t.sampleId}.json`, `samples/${t.id}/${t.sampleId}.json`),
   sql: file(`${t.id}.sql`, `sqlite/${t.id}.sql`),
   schemas: t.schemaFiles.map(schema),
 }))

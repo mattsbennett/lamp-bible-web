@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "id": "sample-quiz",
+    "type": "quiz",
+    "planId": "sample-plan",
+    "name": "Lamp Sample Quiz",
+    "description": "Questions on the first day of the Lamp Sample Plan, graded for two age groups.",
+    "questionsPerReading": 5,
+    "ageGroups": [
+      {
+        "id": "junior",
+        "label": "Junior",
+        "ageRange": "8-12"
+      },
+      {
+        "id": "adult",
+        "label": "Adult",
+        "ageRange": "18+"
+      }
+    ]
+  },
+  "days": [
+    {
+      "day": 1,
+      "readings": [
+        {
+          "sv": 1001001,
+          "ev": 1001031,
+          "quizzes": {
+            "junior": [
+              {
+                "question": "What did God make on the first day?",
+                "answer": "Light. God said, Let there be light, and there was light.",
+                "theme": "narrative",
+                "christFocused": false,
+                "references": [
+                  1001003
+                ]
+              },
+              {
+                "question": "What names did God give to the light and the darkness?",
+                "answer": "He called the light day, and the darkness night.",
+                "theme": "narrative",
+                "christFocused": false,
+                "references": [
+                  1001005
+                ]
+              },
+              {
+                "question": "On which day did God make the sun, the moon and the stars?",
+                "answer": "On the fourth day.",
+                "theme": "narrative",
+                "christFocused": false,
+                "references": [
+                  1001016,
+                  1001019
+                ]
+              },
+              {
+                "question": "What did God make to fill the sea and the sky?",
+                "answer": "Sea creatures and birds, on the fifth day.",
+                "theme": "narrative",
+                "christFocused": false,
+                "references": [
+                  1001020,
+                  1001021,
+                  1001023
+                ]
+              },
+              {
+                "question": "In whose image did God make people?",
+                "answer": "In His own image, the image of God.",
+                "theme": "doctrine",
+                "christFocused": false,
+                "references": [
+                  1001027
+                ]
+              }
+            ],
+            "adult": [
+              {
+                "question": "What does the choice of the verb \"created\" in verse 1 signal about the subject of the sentence?",
+                "answer": "The Hebrew verb bara is used only with God as its subject, so the grammar itself marks the act as uniquely divine.",
+                "theme": "doctrine",
+                "christFocused": false,
+                "references": [
+                  1001001
+                ]
+              },
+              {
+                "question": "Which refrain closes each of the six days?",
+                "answer": "There was evening, and there was morning, followed by the number of the day.",
+                "theme": "narrative",
+                "christFocused": false,
+                "references": [
+                  1001005,
+                  1001031
+                ]
+              },
+              {
+                "question": "What does God do with light and darkness, and with the waters, in the first two days?",
+                "answer": "He separates them: light from darkness on the first day, and the waters above from the waters below on the second.",
+                "theme": "narrative",
+                "christFocused": false,
+                "references": [
+                  1001004,
+                  1001006,
+                  1001007
+                ]
+              },
+              {
+                "question": "What charge does God give the first people in verse 28?",
+                "answer": "To be fruitful and multiply, to fill the earth and subdue it, and to rule over every living creature.",
+                "theme": "commandment",
+                "christFocused": false,
+                "references": [
+                  1001028
+                ]
+              },
+              {
+                "question": "Which Gospel opens with the same words as Genesis 1:1, and what does the echo suggest?",
+                "answer": "John. In the beginning was the Word: the coming of Christ is framed as an act of creation rather than merely the start of a life.",
+                "theme": "doctrine",
+                "christFocused": true,
+                "references": [
+                  1001001
+                ],
+                "crossReferences": [
+                  43001001,
+                  43001003
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

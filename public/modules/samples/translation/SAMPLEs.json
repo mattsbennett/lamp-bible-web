@@ -13,9 +13,6 @@
     "publisher": "Berean Bible",
     "copyright": "Dedicated to the public domain under CC0 1.0.",
     "license": "CC0 1.0",
-    "sourceTexts": [
-      "Berean Standard Bible"
-    ],
     "versification": "standard",
     "features": {
       "strongs": true,
@@ -30,7 +27,6 @@
       "name": "Genesis",
       "number": 1,
       "testament": "OT",
-      "chapterCount": 50,
       "chapters": [
         {
           "chapter": 1,
@@ -76,6 +72,12 @@
                     "data": {
                       "strongs": "H1254"
                     }
+                  }
+                ],
+                "footnote_refs": [
+                  {
+                    "id": "1",
+                    "offset": 28
                   }
                 ]
               },
@@ -123,7 +125,6 @@
       "name": "John",
       "number": 43,
       "testament": "NT",
-      "chapterCount": 21,
       "chapters": [
         {
           "chapter": 1,
@@ -200,7 +201,6 @@
       "name": "Psalms",
       "number": 19,
       "testament": "OT",
-      "chapterCount": 150,
       "chapters": [
         {
           "chapter": 119,

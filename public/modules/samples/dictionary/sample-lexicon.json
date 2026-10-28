@@ -19,17 +19,17 @@
       "senses": [
         {
           "id": 1,
-          "def": "God, the supreme God of Israel."
+          "partOfSpeech": "noun masculine plural",
+          "gloss": "God",
+          "definition": "God, the supreme God of Israel."
         },
         {
           "id": 2,
-          "def": "gods, in the plural, of the gods of the nations."
+          "partOfSpeech": "noun masculine plural",
+          "gloss": "gods",
+          "definition": "gods, in the plural, of the gods of the nations."
         }
-      ],
-      "metadata": {
-        "partOfSpeech": "noun masculine plural",
-        "gloss": "God, gods"
-      }
+      ]
     },
     {
       "key": "G3056",
@@ -39,22 +39,22 @@
       "senses": [
         {
           "id": 1,
-          "def": "a word, spoken or written; the expression of a thought."
+          "partOfSpeech": "noun masculine",
+          "gloss": "word, account, reason",
+          "definition": "a word, spoken or written; the expression of a thought."
         },
         {
           "id": 2,
-          "def": "the divine Word, used of Christ in John 1.",
+          "partOfSpeech": "noun masculine",
+          "gloss": "the Word",
+          "definition": "the divine Word, used of Christ in John 1.",
           "references": [
             {
               "sv": 43001001
             }
           ]
         }
-      ],
-      "metadata": {
-        "partOfSpeech": "noun masculine",
-        "gloss": "word, account, reason"
-      }
+      ]
     },
     {
       "key": "H5216",
@@ -64,18 +64,16 @@
       "senses": [
         {
           "id": 1,
-          "def": "a lamp; figuratively, the light of life or guidance.",
+          "partOfSpeech": "noun masculine",
+          "gloss": "lamp, light",
+          "definition": "a lamp; figuratively, the light of life or guidance.",
           "references": [
             {
               "sv": 19119105
             }
           ]
         }
-      ],
-      "metadata": {
-        "partOfSpeech": "noun masculine",
-        "gloss": "lamp, light"
-      }
+      ]
     }
   ]
 }

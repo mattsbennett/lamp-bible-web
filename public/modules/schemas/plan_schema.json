@@ -52,6 +52,8 @@
         "name": { "type": "string", "description": "Full plan name" },
         "description": { "type": "string", "description": "Brief description of the plan" },
         "author": { "type": "string", "description": "Plan author" },
+        "source": { "type": "string", "description": "Source work or edition" },
+        "license": { "type": "string", "description": "Content licence or public-domain status" },
         "fullDescription": { "type": "string", "description": "Full description/introduction text" },
         "duration": { "type": "integer", "description": "Number of days in the plan (typically 366)" },
         "readingsPerDay": { "type": "integer", "description": "Typical number of readings per day" }

@@ -1,4 +1,12 @@
-CREATE TABLE IF NOT EXISTS plans (
+-- Every module names itself and its type here. The apps read this row first;
+-- without it they guess the type from the other tables, and can guess wrong.
+CREATE TABLE module_format (
+    format_version TEXT NOT NULL,
+    module_type TEXT NOT NULL,
+    module_id TEXT NOT NULL
+);
+
+CREATE TABLE plans (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
     description TEXT,
@@ -8,12 +16,10 @@ CREATE TABLE IF NOT EXISTS plans (
     readings_per_day INTEGER
 );
 
-CREATE TABLE IF NOT EXISTS plan_days (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE plan_days (
     plan_id TEXT NOT NULL REFERENCES plans(id) ON DELETE CASCADE,
     day INTEGER NOT NULL,
     readings_json TEXT NOT NULL,
-    UNIQUE(plan_id, day)
+    PRIMARY KEY (plan_id, day)
 );
-CREATE INDEX IF NOT EXISTS idx_plan_days_plan ON plan_days(plan_id);
-CREATE INDEX IF NOT EXISTS idx_plan_days_day ON plan_days(plan_id, day);
+CREATE INDEX idx_plan_days_plan ON plan_days(plan_id, day);

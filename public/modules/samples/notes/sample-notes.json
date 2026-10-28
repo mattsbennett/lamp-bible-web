@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "schemaVersion": "1.1",
+    "id": "sample-notes",
+    "type": "notes",
+    "name": "Lamp Sample Notes",
+    "description": "Sample verse-keyed study notes.",
+    "author": "Lamp Bible"
+  },
+  "book": "John",
+  "bookNumber": 43,
+  "chapters": [
+    {
+      "chapter": 1,
+      "introduction": "The prologue, verses 1 to 18, reads as a second Genesis. It opens with the same words, moves from creation to light, and arrives at the Word making His dwelling among us.",
+      "lastModified": 1770000000,
+      "verses": [
+        {
+          "sv": 43001001,
+          "title": "John 1:1",
+          "commentary": "Three clauses, each raising the stakes: the Word existed, the Word was with God, the Word was God. Note that the third clause has no article in Greek, which is what keeps it from collapsing into modalism.",
+          "lastModified": 1770000000
+        },
+        {
+          "sv": 43001014,
+          "title": "John 1:14",
+          "commentary": "Made His dwelling is literally \"tabernacled\" — the same image as the tent in the wilderness. Worth reading alongside Exodus 40.",
+          "lastModified": 1770000000
+        }
+      ]
+    }
+  ]
+}

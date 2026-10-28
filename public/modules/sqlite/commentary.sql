@@ -1,22 +1,12 @@
-CREATE TABLE IF NOT EXISTS module_metadata (
-    id TEXT PRIMARY KEY,
-    name TEXT NOT NULL,
-    description TEXT,
-    author TEXT,
-    version TEXT,
-    key_type TEXT,
-    schema_version TEXT,
-    type TEXT,
-    series_abbrev TEXT,
-    series_full TEXT,
-    editor TEXT,
-    publisher TEXT,
-    year INTEGER,
-    isbn TEXT,
-    language TEXT
+-- Every module names itself and its type here. The apps read this row first;
+-- without it they guess the type from the other tables, and can guess wrong.
+CREATE TABLE module_format (
+    format_version TEXT NOT NULL,
+    module_type TEXT NOT NULL,
+    module_id TEXT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS commentary_books (
+CREATE TABLE commentary_books (
     id TEXT PRIMARY KEY,
     module_id TEXT NOT NULL,
     book_number INTEGER NOT NULL,
@@ -31,10 +21,10 @@ CREATE TABLE IF NOT EXISTS commentary_books (
     front_matter_json TEXT,
     indices_json TEXT
 );
-CREATE INDEX IF NOT EXISTS idx_comm_books_module ON commentary_books(module_id);
-CREATE INDEX IF NOT EXISTS idx_comm_books_book ON commentary_books(book_number);
+CREATE INDEX idx_comm_books_module ON commentary_books(module_id);
+CREATE INDEX idx_comm_books_book ON commentary_books(book_number);
 
-CREATE TABLE IF NOT EXISTS commentary_units (
+CREATE TABLE commentary_units (
     id TEXT PRIMARY KEY,
     module_id TEXT NOT NULL,
     book INTEGER NOT NULL,
@@ -53,8 +43,8 @@ CREATE TABLE IF NOT EXISTS commentary_units (
     search_text TEXT NOT NULL DEFAULT '',
     order_index INTEGER NOT NULL DEFAULT 0
 );
-CREATE INDEX IF NOT EXISTS idx_comm_units_module ON commentary_units(module_id);
-CREATE INDEX IF NOT EXISTS idx_comm_units_verse ON commentary_units(sv, ev);
-CREATE INDEX IF NOT EXISTS idx_comm_units_book_chapter ON commentary_units(book, chapter);
-CREATE INDEX IF NOT EXISTS idx_comm_units_parent ON commentary_units(parent_id);
-CREATE INDEX IF NOT EXISTS idx_comm_units_type ON commentary_units(unit_type);
+CREATE INDEX idx_comm_units_module ON commentary_units(module_id);
+CREATE INDEX idx_comm_units_verse ON commentary_units(sv, ev);
+CREATE INDEX idx_comm_units_book_chapter ON commentary_units(book, chapter);
+CREATE INDEX idx_comm_units_parent ON commentary_units(parent_id);
+CREATE INDEX idx_comm_units_type ON commentary_units(unit_type);

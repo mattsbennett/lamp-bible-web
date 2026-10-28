@@ -112,6 +112,10 @@
           "type": "integer",
           "description": "End verse for ranges (optional)"
         },
+        "title": {
+          "type": "string",
+          "description": "Optional title for this note"
+        },
         "commentary": {
           "oneOf": [
             { "type": "string" },
@@ -151,6 +155,10 @@
           "type": "array",
           "items": { "$ref": "#/definitions/footnote" },
           "description": "Chapter-level footnotes (shared across verses)"
+        },
+        "lastModified": {
+          "type": "integer",
+          "description": "Unix timestamp of the chapter introduction's last modification"
         }
       },
       "required": ["chapter"]

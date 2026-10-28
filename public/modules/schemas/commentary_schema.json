@@ -1,10 +1,39 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "commentary-schema-v2.1",
+  "$id": "commentary-schema-v2.2",
   "title": "Bible Commentary Schema",
-  "description": "Schema for structured Bible commentary data (NICNT/NICOT format). Version 2.1 adds media support for embedded images and audio.",
+  "description": "Schema for Bible commentaries. Version 2.2 adds source-ordered classified blocks, published-volume provenance, and globally scoped footnotes. Legacy chapter/section/verse structures remain supported.",
 
   "definitions": {
+    "sourceLocation": {
+      "type": "object",
+      "properties": {
+        "volumeId": { "type": "string" },
+        "sourceFile": { "type": "string" },
+        "lineStart": { "type": "integer", "minimum": 1 },
+        "lineEnd": { "type": "integer", "minimum": 1 },
+        "pageStart": { "type": ["string", "null"] },
+        "pageEnd": { "type": ["string", "null"] },
+        "textStart": { "type": "integer", "minimum": 0 },
+        "textEnd": { "type": "integer", "minimum": 0 },
+        "removedMarkers": { "type": "array", "items": { "type": "object", "required": ["id", "label", "sourceStart", "sourceEnd"] } }
+      },
+      "required": ["volumeId", "sourceFile", "lineStart", "lineEnd"]
+    },
+    "contentBlock": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["heading", "translation", "commentary", "paragraph", "bibliography", "abbreviations", "index"] },
+        "content": { "$ref": "#/definitions/annotatedText" },
+        "source": { "$ref": "#/definitions/sourceLocation" },
+        "sv": { "$ref": "#/definitions/verseRef" },
+        "ev": { "$ref": "#/definitions/verseRef" },
+        "classification": { "type": "object" },
+        "displayPrefixLength": { "type": "integer", "minimum": 0, "description": "Printed verse label retained canonically; trim in reader projections and adjust code-point offsets." },
+        "sourceChapter": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["type", "content", "source"]
+    },
     "mediaReference": {
       "type": "object",
       "description": "Reference to a media file (image or audio)",
@@ -142,6 +171,10 @@
       "properties": {
         "id": { "type": "string", "description": "Pericope identifier like '1:1-17'" },
         "title": { "type": "string" },
+        "content": { "type": "array", "items": { "$ref": "#/definitions/contentBlock" }, "description": "Canonical source-ordered blocks for schema 2.2; do not reorder by role or verse." },
+        "source": { "$ref": "#/definitions/sourceLocation" },
+        "sourceOrder": { "type": "integer" },
+        "footnoteIds": { "type": "array", "items": { "type": "string" }, "description": "Definitions in the top-level footnotes array." },
         "sv": { "$ref": "#/definitions/verseRef", "description": "Start verse of pericope" },
         "ev": { "$ref": "#/definitions/verseRef", "description": "End verse of pericope" },
         "introduction": { "$ref": "#/definitions/annotatedText", "description": "Section introduction before verse commentary" },
@@ -231,7 +264,7 @@
       "type": "object",
       "description": "Module metadata - harmonized with lexicon schema v2.0",
       "properties": {
-        "schemaVersion": { "type": "string", "enum": ["1.0", "2.0", "2.1"], "description": "Schema version" },
+        "schemaVersion": { "type": "string", "enum": ["1.0", "2.0", "2.1", "2.2"], "description": "Schema version" },
         "id": { "type": "string", "description": "Unique module identifier (e.g., NIC_Matt)" },
         "type": { "type": "string", "enum": ["dictionary", "commentary"], "default": "commentary" },
         "name": { "type": "string", "description": "Full module name" },
@@ -268,6 +301,8 @@
     "frontMatter": {
       "type": "object",
       "properties": {
+        "text": { "type": "string", "description": "Readable compatibility projection of the front-matter blocks." },
+        "content": { "type": "array", "items": { "$ref": "#/definitions/contentBlock" } },
         "dedication": { "type": "string" },
         "editorPreface": { "$ref": "#/definitions/annotatedText" },
         "authorPreface": { "$ref": "#/definitions/annotatedText" },
@@ -290,6 +325,8 @@
       "type": "array",
       "items": { "$ref": "#/definitions/chapterCommentary" }
     },
+    "sourceVolumes": { "type": "array", "items": { "type": "object" }, "description": "Published-volume metadata; compiled volumes and split volumes retain separate source identities." },
+    "footnotes": { "type": "array", "items": { "$ref": "#/definitions/footnote" }, "description": "Unique book-wide definitions for source-scoped note runs." },
 
     "media": {
       "type": "array",
@@ -301,6 +338,7 @@
       "type": "object",
       "description": "Optional indices for quick lookup",
       "properties": {
+        "content": { "type": "array", "items": { "$ref": "#/definitions/contentBlock" }, "description": "Source-tracked printed indexes; retain page numbers, never invent scripture hyperlinks or last-verse commentary." },
         "subjects": {
           "type": "object",
           "additionalProperties": {

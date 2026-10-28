@@ -1,4 +1,12 @@
-CREATE TABLE IF NOT EXISTS quiz_modules (
+-- Every module names itself and its type here. The apps read this row first;
+-- without it they guess the type from the other tables, and can guess wrong.
+CREATE TABLE module_format (
+    format_version TEXT NOT NULL,
+    module_type TEXT NOT NULL,
+    module_id TEXT NOT NULL
+);
+
+CREATE TABLE quiz_modules (
     id TEXT PRIMARY KEY,
     plan_id TEXT NOT NULL,
     name TEXT NOT NULL,
@@ -7,7 +15,7 @@ CREATE TABLE IF NOT EXISTS quiz_modules (
     age_groups_json TEXT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS quiz_questions (
+CREATE TABLE quiz_questions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     quiz_module_id TEXT NOT NULL REFERENCES quiz_modules(id) ON DELETE CASCADE,
     day INTEGER NOT NULL,
@@ -23,6 +31,7 @@ CREATE TABLE IF NOT EXISTS quiz_questions (
     cross_references_json TEXT,
     UNIQUE(quiz_module_id, day, sv, ev, age_group, question_index)
 );
-CREATE INDEX IF NOT EXISTS idx_quiz_questions_module ON quiz_questions(quiz_module_id);
-CREATE INDEX IF NOT EXISTS idx_quiz_questions_day ON quiz_questions(quiz_module_id, day);
-CREATE INDEX IF NOT EXISTS idx_quiz_questions_age ON quiz_questions(age_group);
+CREATE INDEX idx_quiz_questions_module_day ON quiz_questions(quiz_module_id, day);
+CREATE INDEX idx_quiz_questions_module_age ON quiz_questions(quiz_module_id, age_group);
+CREATE INDEX idx_quiz_questions_reading
+    ON quiz_questions(quiz_module_id, day, sv, ev, age_group);

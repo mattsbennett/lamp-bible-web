@@ -39,13 +39,17 @@ const MANIFEST = join(webRepo, 'public/modules/manifest.json')
 const COPY_GLOB = { dir: 'schemas', match: (f) => f.endsWith('.json') }
 
 /**
- * Files that are not copied, but that the documentation is derived from — the
- * SQLite DDL on /docs/modules/building is transcribed out of these converters.
- * Hashing them means a change upstream shows up as drift and prompts a review
- * of the prose, which a plain file copy would never catch.
+ * Files that are not copied, but that the documentation describes. The SQLite
+ * DDL on /docs/modules/building is transcribed from lamp-bible-core's compilers,
+ * and scripts/verify_sample_modules.py checks the samples against core's own
+ * CLI. These converters build the bundled library, so a change here can still
+ * mean the prose needs review — hashing them shows that up as drift, which a
+ * plain file copy would never catch.
  */
 const WATCHED = [
   ['scripts/json_to_sqlite.py', 'DDL for dictionary, commentary, notes and devotional modules'],
+  ['scripts/commentary_units.py', 'How commentary JSON becomes commentary_units rows'],
+  ['scripts/bundle_book_modules.py', 'DDL for long-form book modules'],
   ['scripts/translation_to_sqlite.py', 'DDL for translation modules'],
   ['scripts/highlights_to_sqlite.py', 'DDL for highlight modules'],
   ['scripts/bundle_plans.py', 'DDL for reading plan modules'],

@@ -36,13 +36,15 @@ export default function Page() {
       <h2>The container, briefly</h2>
       <p>
         A <code>.lamp</code> file is a SQLite database compressed with raw DEFLATE (zlib level 9,{' '}
-        <code>wbits=-15</code>). One file holds one module — one translation, one commentary series,
-        one highlight set. Compression is typically 95% or better.
+        <code>wbits=-15</code>). One file holds one module — one translation, one book of a
+        commentary, one highlight set — and is named after it. Compression is typically 95% or
+        better.
       </p>
       <p>
-        The library bundled inside the app uses the same structure in a single multi-module
-        database. The practical difference is that bundled tables carry an extra identifier column
-        to separate co-resident modules, which a standalone <code>.lamp</code> does not need.
+        The library bundled inside the app keeps many modules in a single database, so its tables
+        carry identifier columns to separate co-resident modules. A standalone <code>.lamp</code>{' '}
+        names its one module in a <code>module_format</code> table instead; where its tables keep a{' '}
+        <code>module_id</code> column as well, every row must carry that same ID.
       </p>
 
       <Callout title="Devotionals are a special case">
@@ -244,7 +246,7 @@ export default function Page() {
             </td>
             <td>
               One file per book: chapters → sections → pericopae → verse commentary, with footnotes
-              and an abbreviations list.
+              and an abbreviations list. Version 2.2 adds an optional source-ordered form, below.
             </td>
           </tr>
           <tr>
@@ -254,6 +256,16 @@ export default function Page() {
             <td>
               Series-level metadata: editor, publisher, preface, abbreviations, bibliography and the
               volume list.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code>book_schema.json</code>
+            </td>
+            <td>
+              A long-form publication: metadata, then sections — front matter, parts, chapters,
+              appendices — nesting to any depth, each holding content blocks. Footnotes and media
+              are defined once for the whole book.
             </td>
           </tr>
           <tr>
@@ -298,10 +310,31 @@ export default function Page() {
         </tbody>
       </Table>
 
+      <h3>Commentary schema 2.2</h3>
+      <p>
+        Version 2.2 adds a second way to write a pericope, meant for commentaries converted from a
+        printed edition. Instead of <code>verses</code>, a pericope may carry <code>content</code>:
+        an array of classified blocks — heading, translation, commentary, paragraph and so on — in
+        the order they appear in the source, each recording where in the source it came from. Do
+        not reorder them by role or by verse; the app shows them in the order given.
+      </p>
+      <p>
+        Footnotes can likewise be defined once for the whole book, in a top-level{' '}
+        <code>footnotes</code> array. A pericope lists the ones it uses in{' '}
+        <code>footnoteIds</code>, and a block’s text marks where each one falls with{' '}
+        <code>footnote_refs</code>.
+      </p>
+      <p>
+        Both are optional. The earlier structure — chapters → sections → pericopae → verses, with
+        footnotes on the pericope or the verse — is still accepted, and it is the one the sample
+        commentary uses.
+      </p>
+
       <h2>Worked example: a translation</h2>
       <pre>
         <code>{`{
   "meta": {
+    "schemaVersion": "1.0",
     "id": "MYBIBLEs",
     "type": "translation",
     "name": "My Bible",
@@ -309,7 +342,7 @@ export default function Page() {
     "language": "en",
     "textDirection": "ltr",
     "translationPhilosophy": "formal",
-    "versification": "kjv",
+    "versification": "standard",
     "features": { "strongs": true, "morphology": true }
   },
   "books": [
@@ -361,7 +394,7 @@ export default function Page() {
     {
       "ref": 1001001,
       "highlights": [
-        { "sc": 10, "ec": 18, "style": 0, "color": "#FFE066" }
+        { "sc": 10, "ec": 18, "style": 0, "color": "FFE066" }
       ]
     }
   ]
@@ -370,7 +403,8 @@ export default function Page() {
       <p>
         <code>sc</code> and <code>ec</code> are character offsets within the verse text of the named
         translation, start inclusive and end exclusive. <code>style</code> is 0 for a filled
-        highlight, 1 for a solid underline, 2 for dashed and 3 for dotted.
+        highlight, 1 for a solid underline, 2 for dashed and 3 for dotted. <code>color</code> is a
+        hex code, written without the <code>#</code>.
       </p>
 
       <Callout tone="warn" title="Offsets are tied to exact wording">

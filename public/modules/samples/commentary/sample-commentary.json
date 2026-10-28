@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "schemaVersion": "2.2",
+    "id": "sample-commentary",
+    "type": "commentary",
+    "name": "Lamp Sample Commentary",
+    "title": "Lamp Sample Commentary on Genesis",
+    "description": "Original notes on the opening of Genesis, showing the section, pericope and verse nesting.",
+    "author": "Lamp Bible",
+    "seriesAbbrev": "LSC",
+    "seriesFull": "Lamp Sample Commentary",
+    "language": "en"
+  },
+  "book": "Gen",
+  "bookNumber": 1,
+  "chapters": [
+    {
+      "chapter": 1,
+      "sections": [
+        {
+          "id": "gen-1-1-3",
+          "title": "The Opening of the Account",
+          "sv": 1001001,
+          "ev": 1001003,
+          "introduction": {
+            "text": "The first three verses establish who acts, what is made, and by what means. John 1:1 opens with the same three words on purpose.",
+            "annotations": [
+              {
+                "type": "scripture",
+                "start": 76,
+                "end": 84,
+                "text": "John 1:1",
+                "data": {
+                  "sv": 43001001
+                }
+              }
+            ]
+          },
+          "pericopae": [
+            {
+              "id": "1:1",
+              "title": "In the beginning",
+              "sv": 1001001,
+              "ev": 1001001,
+              "verses": [
+                {
+                  "sv": 1001001,
+                  "commentary": {
+                    "text": "The verb translated created is reserved in Hebrew for divine activity. It is never used with a human subject, which is the first thing the sentence tells us about its subject.",
+                    "annotations": [
+                      {
+                        "type": "strongs",
+                        "start": 20,
+                        "end": 27,
+                        "text": "created",
+                        "data": {
+                          "strongs": "H1254"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

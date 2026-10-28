@@ -1,4 +1,12 @@
-CREATE TABLE IF NOT EXISTS translation_meta (
+-- Every module names itself and its type here. The apps read this row first;
+-- without it they guess the type from the other tables, and can guess wrong.
+CREATE TABLE module_format (
+    format_version TEXT NOT NULL,
+    module_type TEXT NOT NULL,
+    module_id TEXT NOT NULL
+);
+
+CREATE TABLE translation_meta (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
     abbreviation TEXT NOT NULL,
@@ -17,7 +25,7 @@ CREATE TABLE IF NOT EXISTS translation_meta (
     versification TEXT DEFAULT 'standard'
 );
 
-CREATE TABLE IF NOT EXISTS books (
+CREATE TABLE books (
     id INTEGER PRIMARY KEY,
     book_id TEXT NOT NULL,
     name TEXT NOT NULL,
@@ -25,7 +33,7 @@ CREATE TABLE IF NOT EXISTS books (
     chapter_count INTEGER NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS verses (
+CREATE TABLE verses (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     ref INTEGER NOT NULL UNIQUE,
     book INTEGER NOT NULL,
@@ -34,13 +42,14 @@ CREATE TABLE IF NOT EXISTS verses (
     text TEXT NOT NULL,
     annotations_json TEXT,
     footnotes_json TEXT,
+    footnote_refs_json TEXT,
     paragraph INTEGER DEFAULT 0,
     poetry_json TEXT
 );
-CREATE INDEX IF NOT EXISTS idx_verses_ref ON verses(ref);
-CREATE INDEX IF NOT EXISTS idx_verses_book_chapter ON verses(book, chapter);
+CREATE INDEX idx_verses_ref ON verses(ref);
+CREATE INDEX idx_verses_book_chapter ON verses(book, chapter);
 
-CREATE TABLE IF NOT EXISTS headings (
+CREATE TABLE headings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     book INTEGER NOT NULL,
     chapter INTEGER NOT NULL,
@@ -48,15 +57,15 @@ CREATE TABLE IF NOT EXISTS headings (
     level INTEGER NOT NULL DEFAULT 1,
     text TEXT NOT NULL
 );
-CREATE INDEX IF NOT EXISTS idx_headings_chapter ON headings(book, chapter);
+CREATE INDEX idx_headings_chapter ON headings(book, chapter);
 
-CREATE VIRTUAL TABLE IF NOT EXISTS verses_fts USING fts5(
+CREATE VIRTUAL TABLE verses_fts USING fts5(
     text,
     content='verses',
     content_rowid='id',
     tokenize='unicode61 remove_diacritics 2'
 );
 
-CREATE TRIGGER IF NOT EXISTS verses_fts_insert AFTER INSERT ON verses BEGIN
+CREATE TRIGGER verses_fts_insert AFTER INSERT ON verses BEGIN
     INSERT INTO verses_fts(rowid, text) VALUES (new.id, new.text);
 END;

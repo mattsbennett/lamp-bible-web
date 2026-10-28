@@ -30,11 +30,16 @@ export default function Page() {
         and see the whole thing at once. Download one to your device and open it to watch the
         import work.
       </p>
+      <p>
+        Each file is named after the module it holds. Keep the name if you pass one on: on iPhone
+        and iPad the app reads the module’s identifier from it, and refuses a file whose name and
+        contents disagree.
+      </p>
 
       <Callout title="What is in them">
         <p>
           Verse text is from the Berean Standard Bible under its CC0 1.0 public-domain dedication,
-          and the lexicon glosses are from public-domain Strong’s data. Commentary, notes,
+          and the lexicon glosses are from public-domain Strong’s data. Commentary, book, notes,
           devotional and quiz content was written for these samples. See{' '}
           <Link href="/content-licences">Content licences</Link> for the source records.
         </p>
@@ -63,8 +68,9 @@ export default function Page() {
       <h2>SQLite table definitions</h2>
       <p>
         The tables the app expects inside a decompressed <code>.lamp</code>, one file per module
-        type. Run them with <code>executescript()</code> or <code>sqlite3 &lt; file.sql</code>{' '}
-        before inserting rows.
+        type, each including the <code>module_format</code> table every module needs. Run them
+        with <code>executescript()</code> or <code>sqlite3 &lt; file.sql</code> before inserting
+        rows.
       </p>
       <DownloadList files={sqlFiles} />
 
