@@ -8,7 +8,7 @@ import { formatReleaseDate } from '@/lib/format'
 
 export const metadata: Metadata = {
   title: 'Download',
-  description: `Download ${site.name} for Mac, iPhone and iPad. Free, with the full library included and no account.`,
+  description: `Download ${site.name} for Mac, iPhone and iPad. Free, with a library included and no account.`,
   alternates: { canonical: '/download' },
 }
 
@@ -21,7 +21,7 @@ export default function DownloadPage() {
           <div className="mx-auto max-w-4xl px-5 py-20 text-center sm:px-8 sm:py-24">
             <h1 className="font-serif text-4xl tracking-tight sm:text-5xl">Download {site.name}</h1>
             <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-muted">
-              Free, with the full library included. No account, no subscription, no advertising.
+              Free, with a library included. No account, no subscription, no advertising.
             </p>
 
             <div className="mt-14 grid gap-5 text-left sm:grid-cols-2">

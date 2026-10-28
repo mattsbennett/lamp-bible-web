@@ -629,7 +629,7 @@ function Download() {
       <div className="mx-auto max-w-3xl px-5 py-24 text-center sm:px-8">
         <h2 className="font-serif text-3xl tracking-tight sm:text-4xl">Start reading</h2>
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          Free, with the full library included. {availablePlatforms.map((p) => p.name).join(', ')}.
+          Free, with a library included. {availablePlatforms.map((p) => p.name).join(', ')}.
         </p>
 
         <div className="mt-9 flex flex-wrap justify-center gap-4">
