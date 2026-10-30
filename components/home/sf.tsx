@@ -261,6 +261,38 @@ export const sf: Record<string, (p: P) => ReactNode> = {
     </S>
   ),
   plus: (p) => <S {...p}><path d="M12 5v14M5 12h14" /></S>,
+  arrowDown: (p) => <S {...p}><path d="M12 5v13.5M6 13l6 6 6-6" /></S>,
+  checkmark: (p) => <S {...p}><path d="m4.5 12.5 5 5 10-11" /></S>,
+  chartBarXaxis: (p) => (
+    <S {...p}>
+      <path d="M3.5 20.5h17M6.5 17v-5M11 17V7M15.5 17v-7M20 17v-3" />
+    </S>
+  ),
+  squareAndArrowDown: (p) => <S {...p}><path d="M12 3v11M8 10l4 4 4-4M7.5 7.5H6v13h12v-13h-1.5" /></S>,
+  docOnDoc: (p) => (
+    <S {...p}>
+      <rect x="8" y="7.5" width="12" height="14" rx="2" />
+      <path d="M16 7.5V4.5a1.5 1.5 0 0 0-1.5-1.5h-9A1.5 1.5 0 0 0 4 4.5v12A1.5 1.5 0 0 0 5.5 18H8" />
+    </S>
+  ),
+  shippingbox: (p) => (
+    <S {...p}>
+      <path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7z" />
+      <path d="M3.5 7 12 11.5 20.5 7M12 11.5v10M7.8 4.8l8.4 4.5" />
+    </S>
+  ),
+  squareAndPencil: (p) => (
+    <S {...p}>
+      <path d="M11 4.5H5.5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V13" />
+      <path d="M18 3l3 3-8.5 8.5H9.5v-3z" />
+    </S>
+  ),
+  arrowDownCircle: (p) => (
+    <S {...p}>
+      <circle cx="12" cy="12" r="9.5" />
+      <path d="M12 7v9.5M8 12.5l4 4 4-4" />
+    </S>
+  ),
 }
 
 export type SymbolName = keyof typeof sf

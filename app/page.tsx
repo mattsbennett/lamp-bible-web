@@ -6,7 +6,10 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { AppStoreBadge, MacDownloadButton } from '@/components/DownloadButtons'
 import {
   AgentWorkspaceArt,
+  AnalysisArt,
+  ExternalAppsArt,
   HighlightsArt,
+  MacAnalysisArt,
   MacEditorArt,
   NotesArt,
   PhoneWritingArt,
@@ -19,7 +22,9 @@ import {
 } from '@/components/home/art'
 import {
   AgentIcon,
+  AnalysisIcon,
   ChatIcon,
+  CompanionIcon,
   FolderIcon,
   FootnoteIcon,
   FullScreenIcon,
@@ -31,14 +36,18 @@ import {
   NoteIcon,
   PanelIcon,
   PlanIcon,
+  PlugIcon,
   ReaderIcon,
   RemoteIcon,
+  RenderingIcon,
   SearchIcon,
+  ShareIcon,
   SkillIcon,
   SlidesIcon,
   SyncIcon,
   TableIcon,
   TerminalIcon,
+  VersesIcon,
   WindowsIcon,
 } from '@/components/home/icons'
 import { availablePlatforms, isMacAvailable, macRelease, plannedPlatforms, site } from '@/lib/site'
@@ -98,15 +107,7 @@ const features: Feature[] = [
     art: <NotesArt />,
     bleed: true,
   },
-  {
-    title: 'Search that reaches everything',
-    body: 'One index across translations, lexicons, commentaries, books, notes, writing and highlights — by word, phrase or Strong’s number, narrowed by module, tag or highlight colour.',
-    href: '/docs/search',
-    icon: SearchIcon,
-    art: <SearchArt />,
-    bleed: true,
-    span: 'wide',
-  },
+  // Sync sits before Search so that Search leads straight into the analysis card after the grid.
   {
     title: 'Sync on your terms',
     body: 'Keep everything on the device, sync through iCloud Drive, or use your own WebDAV server. No account, ever.',
@@ -116,7 +117,44 @@ const features: Feature[] = [
     bleed: true,
     span: 'full-small',
   },
+  {
+    title: 'Search that reaches everything',
+    body: 'One index across translations, lexicons, commentaries, books, notes, writing and highlights — by word, phrase or Strong’s number, narrowed by module, tag or highlight colour.',
+    href: '/docs/search',
+    icon: SearchIcon,
+    art: <SearchArt />,
+    bleed: true,
+    span: 'wide',
+  },
 ]
+
+/** What the Strong's analysis shows, on iPhone, iPad and Mac. */
+const analysisParts: Array<{ title: string; body: string; icon: IconComponent }> = [
+  {
+    title: 'Rendered as',
+    body: 'Every English word translators chose for it, commonest first, as a list or a ring.',
+    icon: RenderingIcon,
+  },
+  {
+    title: 'By book',
+    body: 'Where it falls, with each book marked when it holds more or fewer than its length predicts — by a margin chance would rarely give.',
+    icon: ShareIcon,
+  },
+  {
+    title: 'Found with',
+    body: 'The words that share its verses, the most certain first. Tap one to study it next.',
+    icon: CompanionIcon,
+  },
+  {
+    title: 'Every verse',
+    body: 'Tap a rendering or a book to list just those verses, each with the word marked.',
+    icon: VersesIcon,
+  },
+]
+
+// Until the Mac app ships, its tools are a preview: badged, and without links into the Mac docs,
+// which are hidden until then.
+const macBadge = isMacAvailable ? 'Mac' : 'Coming to Mac'
 
 export default function Home() {
   return (
@@ -212,9 +250,67 @@ function Features() {
           {features.map((feature) => (
             <FeatureCard key={feature.title} feature={feature} />
           ))}
+          <AnalysisCard />
         </div>
       </div>
     </section>
+  )
+}
+
+/** The Strong's analysis, across the grid's full width: the phone's sheet, and the Mac's charts. */
+function AnalysisCard() {
+  return (
+    <article className="overflow-hidden rounded-2xl border border-line bg-raised sm:col-span-2 lg:col-span-3">
+      <div className="grid gap-10 p-6 sm:p-7 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14 lg:p-10">
+        <div>
+          <IconChip icon={AnalysisIcon} />
+          <h3 className="mt-5 font-serif text-xl tracking-tight sm:text-2xl">
+            See how a word is used
+          </h3>
+          <p className="mt-2.5 text-sm leading-relaxed text-muted sm:text-base">
+            Open the analysis from a word’s lexicon entry or a Strong’s search, and Lamp Bible counts
+            that word across the translation: how often it occurs, how translators rendered it, where
+            it gathers and what it keeps company with. The King James renders ἀγάπη “love” 86 times
+            — and “charity” 27.
+          </p>
+          <Link
+            href="/docs/search#analysis"
+            className="mt-3 inline-block text-sm font-medium text-accent hover:underline"
+          >
+            Learn more →
+          </Link>
+        </div>
+        <ul className="grid content-start gap-x-8 gap-y-6 sm:grid-cols-2">
+          {analysisParts.map((part) => (
+            <li key={part.title} className="flex gap-3.5">
+              <IconChip icon={part.icon} size="sm" />
+              <div>
+                <p className="text-sm font-medium">{part.title}</p>
+                <p className="mt-1 text-sm leading-relaxed text-muted">{part.body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="grid gap-10 border-t border-line bg-sunken px-5 pt-8 sm:px-10 lg:grid-cols-[18.5rem_minmax(0,1fr)] lg:gap-12 lg:pt-10">
+        <div className="lg:order-2 lg:self-center lg:pb-10">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <Badge>{macBadge}</Badge>
+            <p className="text-sm font-medium">More room for it on the Mac</p>
+          </div>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+            Beside a Strong’s search: compare every translation that tags the word, read its forms
+            and grammar, chart it by book, section or chapter, and put the chart on a slide.
+          </p>
+          <div className="mt-6">
+            <MacAnalysisArt />
+          </div>
+        </div>
+        <div className="lg:order-1">
+          <AnalysisArt />
+        </div>
+      </div>
+    </article>
   )
 }
 
@@ -317,9 +413,6 @@ const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = 
 ]
 
 function Writing() {
-  // Until the Mac app ships, its writing tools are a preview: badged, and without links into the
-  // Mac docs, which are hidden until then.
-  const macBadge = isMacAvailable ? 'Mac' : 'Coming to Mac'
   const macWriting: Feature[] = [
     {
       title: 'A writing desk on the Mac',
@@ -331,7 +424,7 @@ function Writing() {
     },
     {
       title: 'Slide Studio',
-      body: 'Build a deck from the writing — scripture, quotations and speaker notes drawn from the manuscript — in eight layouts. Present full screen, export a PDF, and drive it from your iPhone.',
+      body: 'Build a deck from the writing — scripture, quotations, charts of how a word is used, and speaker notes drawn from the manuscript — in eight layouts. Present full screen, export a PDF, and drive it from your iPhone.',
       href: isMacAvailable ? '/docs/presenting' : undefined,
       icon: SlidesIcon,
       art: <SlideArt />,
@@ -417,6 +510,30 @@ function Writing() {
             <div className="mx-auto max-w-3xl">
               <AgentWorkspaceArt />
             </div>
+          </div>
+          <div className="grid items-center gap-10 border-t border-line p-7 sm:p-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
+            <div>
+              <IconChip icon={PlugIcon} size="sm" />
+              <h4 className="mt-5 font-serif text-xl tracking-tight sm:text-2xl">
+                Or bring Lamp to the AI app you already use
+              </h4>
+              <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+                Turn on <span className="text-ink">Use Lamp in Other Apps</span>, and Claude Desktop,
+                Codex, Cursor or opencode can search your library, read passages and commentary,
+                analyse a word, and check and draw a deck — the same read-only tools a workspace
+                agent has.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+                Allow it, and an agent there can rewrite a writing’s draft too. Lamp takes the new
+                draft in when you next open that writing’s workspace, and never lets it overwrite an
+                edit of yours it hadn’t seen.
+              </p>
+              <p className="mt-5 text-xs leading-relaxed text-faint">
+                Claude Desktop installs Lamp in one step and asks first; the others take a snippet
+                you paste. What those apps read goes to the AI provider they use.
+              </p>
+            </div>
+            <ExternalAppsArt />
           </div>
         </div>
 

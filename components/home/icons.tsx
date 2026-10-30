@@ -172,3 +172,47 @@ export const RemoteIcon: IconComponent = (p) => (
     <path d="M11 18.5h2" />
   </Icon>
 )
+
+export const AnalysisIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M3.5 20h17" />
+    <path d="M7 16.5v-4M11 16.5V5.5M15 16.5V9M19 16.5V14" />
+  </Icon>
+)
+
+export const RenderingIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M3.5 5.5h8M7.5 3.5v2M5 5.5c.6 3 2.6 5.4 5.5 7M10 5.5c-.6 3-2.6 5.4-5.5 7" />
+    <path d="m12.5 20.5 4-9 4 9M14 17h5" />
+  </Icon>
+)
+
+export const ShareIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <circle cx="12" cy="12" r="3.5" />
+    <path d="M12 3.5v5M19.4 16.2l-4.4-2.4" />
+  </Icon>
+)
+
+export const CompanionIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <circle cx="9" cy="12" r="5.5" />
+    <circle cx="15" cy="12" r="5.5" />
+  </Icon>
+)
+
+export const VersesIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M9 6.5h11M9 12h11M9 17.5h7" />
+    <path d="M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01" strokeWidth={2.4} />
+  </Icon>
+)
+
+export const PlugIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M9 3v4.5M15 3v4.5" />
+    <path d="M6.5 7.5h11V11a5.5 5.5 0 0 1-11 0z" />
+    <path d="M12 16.5V21" />
+  </Icon>
+)

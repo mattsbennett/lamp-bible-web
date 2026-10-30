@@ -82,6 +82,14 @@ export default function Page() {
         and tinting behind them, and images take an accessibility description.
       </p>
       <p>
+        A chart shows how a Strong’s number is used. Give it the number, a translation and, if you
+        like, a run of books such as <code>NT</code> or <code>Matthew-John</code>, then choose how
+        to draw it — bars, columns in Bible order, a grid of chapters, or a share — and whether to
+        group by book, section, rendering or form. Lamp works the figures out from your library, the
+        same way as the <Link href="/docs/search#analysis">analysis</Link>, and draws them in the
+        slide’s colours; a key says which books hold more or fewer than chance would give.
+      </p>
+      <p>
         Slide Studio checks a deck as you go. Errors stop it saving, exporting or playing until
         they are fixed; warnings — low contrast, a crowded slide, a picture without a description,
         content a layout will not show — are listed but do not.

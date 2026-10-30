@@ -7,7 +7,7 @@ import { isMacAvailable } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'AI chat & agents',
   description:
-    'Reader Chat and writing agents on the Mac: using your own Codex, Claude Code or OpenCode account, with read-only access to your library and settings for what it may see.',
+    'Reader Chat and writing agents on the Mac, using your own Codex, Claude Code or OpenCode account with read-only access to your library — and Lamp’s library tools in Claude Desktop, Codex, Cursor or opencode.',
 }
 
 export default function Page() {
@@ -98,9 +98,12 @@ export default function Page() {
         </tbody>
       </Table>
       <p>
-        Every Lamp tool is read-only: the AI can look up passages, commentary, dictionary entries,
-        books, plans, quizzes and — if you allow it — your own study, but cannot change your
-        library. <strong>Test Module Tools</strong> checks that the tools are working.
+        Lamp’s tools are read-only: the AI can look up passages, commentary, dictionary entries,
+        books, plans, quizzes and — if you allow it — your own study, and analyse a Strong’s number,
+        but cannot change your library. The one exception lets another app replace a writing’s
+        draft, and is off unless you turn it on; see{' '}
+        <a href="#other-apps">Using Lamp in other apps</a>. <strong>Test Module Tools</strong>{' '}
+        checks that the tools are working.
       </p>
 
       <h2>Reader Chat</h2>
@@ -165,12 +168,87 @@ export default function Page() {
         </p>
       </Callout>
 
+      <h2 id="other-apps">Using Lamp in other apps</h2>
+      <p>
+        The same library tools can be used from an AI app you already run — Claude Desktop, Codex,
+        Cursor or opencode — through the Model Context Protocol. Turn them on in Settings → AI &amp;
+        Agents, under <strong>Use Lamp in Other Apps</strong>:
+      </p>
+      <Table>
+        <thead>
+          <tr>
+            <th>Setting</th>
+            <th>Default</th>
+            <th>Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Allow other apps to read my library</td>
+            <td>Off</td>
+            <td>Lets an app you have set up use Lamp’s read-only tools</td>
+          </tr>
+          <tr>
+            <td>Allow other apps to change my writings</td>
+            <td>Off</td>
+            <td>Lets an agent in that app replace a writing’s draft</td>
+          </tr>
+        </tbody>
+      </Table>
+      <p>
+        Both need <strong>Allow agents to query Lamp modules</strong>, and what an app may read
+        follows the same Module Access and personal-content settings as Lamp’s own agents.
+      </p>
+
+      <h3>Setting an app up</h3>
+      <p>Once reading is allowed, the section lists the apps it can set up:</p>
+      <ul>
+        <li>
+          <strong>Add to Claude Desktop…</strong> builds a bundle and opens it in Claude Desktop,
+          which asks you before installing it.
+        </li>
+        <li>
+          For opencode, Codex and Cursor — or Claude Desktop by hand — <strong>Copy</strong> puts a
+          snippet on the clipboard, and the section names the file to paste it into.
+        </li>
+      </ul>
+      <p>
+        Lamp never edits another app’s settings. Each snippet names a small launcher in Lamp’s
+        Application Support folder, which finds the app wherever it is installed, so the setup keeps
+        working when Lamp moves or updates.
+      </p>
+
+      <h3>What the app can do</h3>
+      <p>
+        An app set up this way has the read-only tools a writing agent has: it can search your
+        library, read passages, commentary, dictionaries, books, plans and quizzes, analyse a
+        Strong’s number, and check, fill in and draw a deck. An app that offers prompts also gets{' '}
+        <strong>Build a Lamp deck</strong>, the instructions behind the Build Lamp Deck skill.
+      </p>
+      <p>
+        With personal content allowed, it can also read the writings that have an agent workspace —
+        any writing whose Agent pane you have opened. With{' '}
+        <strong>Allow other apps to change my writings</strong> on, it can replace one’s draft:
+      </p>
+      <ul>
+        <li>
+          The change is refused if you or another agent have changed the draft since the app read
+          it, so it cannot write over words it has not seen.
+        </li>
+        <li>
+          Lamp takes the new draft in when you next open that writing’s agent workspace, and records
+          it in Revisions like any agent’s edit. If you have edited the writing in the meantime, your
+          text stays, and the other app’s version is kept in Revisions instead.
+        </li>
+      </ul>
+
       <h2>Privacy</h2>
       <p>
         When you use AI, your messages — and whatever the agent reads to answer them — go to the
         provider you chose, under that provider’s terms and privacy policy. Nothing goes to Lamp
         Bible, which does not operate or proxy these services and never sees your conversations. If
-        you never connect a provider, no AI tool is ever started. See the{' '}
+        you never connect a provider, no AI tool is ever started. What another app reads through
+        Lamp’s tools goes to whichever AI provider that app uses, under its terms. See the{' '}
         <Link href="/privacy/apps">app privacy declaration</Link>.
       </p>
     </DocPage>

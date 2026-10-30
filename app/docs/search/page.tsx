@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
+import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Search',
   description:
-    'Full-text search across translations, lexicons, commentaries, books, notes, devotionals and highlights, with filters for module, tag, Strong’s number and colour.',
+    'Full-text search across translations, lexicons, commentaries, books, notes, devotionals and highlights, with filters for module, tag, Strong’s number and colour, and an analysis of how any Strong’s number is used.',
 }
 
 export default function Page() {
@@ -163,6 +164,79 @@ export default function Page() {
         Modules scope, <strong>Strong’s Key</strong> finds the dictionary entries for a number. Zero
         padding does not matter: <code>H07225</code> and <code>H7225</code> are the same word.
       </p>
+
+      <h2 id="analysis">Analysing a Strong’s number</h2>
+      <p>
+        An analysis gathers everything a translation’s tags say about one Strong’s number. Open it
+        with <strong>Analyse</strong> beside the count of a Strong’s search’s results, or with the
+        chart button beside the occurrence count in a{' '}
+        <Link href="/docs/lexicons">lexicon entry</Link>. It shows:
+      </p>
+      <ul>
+        <li>
+          <strong>The word</strong> — its lemma, transliteration and a short gloss, how many times it
+          occurs in how many verses, and how often per 1,000 tagged words of its language.
+        </li>
+        <li>
+          <strong>Rendered As</strong> — the English the translation uses for it, commonest first,
+          as a list or a ring. These are the choices translators made, not the range of what the
+          word means; for that, read the lexicon.
+        </li>
+        <li>
+          <strong>By Book</strong> — how many times it occurs in each book, as bars or a ring. In
+          the bars, an arrow marks a book that holds more (↑) or fewer (↓) than a book of its length
+          would, by a margin chance would rarely give.
+        </li>
+        <li>
+          <strong>Found With</strong> — other words that share its verses. The most certain
+          association comes first: a word that shares many verses leads one that shares a few,
+          however rare it is. Tap one to analyse it in turn.
+        </li>
+        <li>
+          <strong>Verses</strong> — every verse it occurs in, with the word marked as a search marks
+          a match. Tap a rendering or a book to narrow the list, and a verse to preview it with a
+          button to open it in the reader.
+        </li>
+      </ul>
+      <p>
+        Every figure depends on how that translation was tagged, so two translations can count the
+        same word differently.
+      </p>
+      {isMacAvailable && (
+        <>
+          <h3>On the Mac</h3>
+          <p>
+            The analysis opens beside a Strong’s search: choose <strong>Scripture</strong> and type
+            a number in the <strong>Strong’s key</strong> field in the toolbar, or choose{' '}
+            <strong>Analyse</strong> when you type a number into the search box. The occurrence list
+            sits to its left, and anything you click in the analysis narrows it. Its tabs:
+          </p>
+          <ul>
+            <li>
+              <strong>Overview</strong> — the renderings with their variants, the original-language
+              forms, and the grammar: part of speech, case, number, tense and so on.
+            </li>
+            <li>
+              <strong>Spread</strong> — a chart as bars, columns in Bible order, a grid of every
+              chapter, or a share drawn as a ring or a pie; by book, section, rendering or form;
+              counting occurrences or occurrences per 1,000 words. Click a bar or a chapter to see
+              its verses.
+            </li>
+            <li>
+              <strong>Companions</strong> — the words found with it, how many verses each shares
+              and how many times chance that is.
+            </li>
+            <li>
+              <strong>Compare</strong> — the count and leading renderings in every installed
+              translation that tags the number.
+            </li>
+          </ul>
+          <p>
+            A deck can chart a Strong’s number too; see{' '}
+            <Link href="/docs/presenting">Presenting</Link>.
+          </p>
+        </>
+      )}
     </DocPage>
   )
 }

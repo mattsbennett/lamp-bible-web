@@ -432,6 +432,127 @@ export function SearchArt() {
   )
 }
 
+/**
+ * G26, ἀγάπη, as the KJVs tags it — the figures core's analysis gives, so the
+ * drawings agree with the apps and with each other.
+ */
+const agapeRenderings = [
+  { text: 'love', count: 86 },
+  { text: 'charity', count: 27 },
+  { text: 'charitably', count: 1 },
+  { text: 'dear', count: 1 },
+  { text: 'feasts of charity', count: 1 },
+  { text: 'the', count: 1 },
+]
+
+/** One slice of a ring, clockwise from `start` to `end` turns, twelve o'clock being 0. */
+function ringSlice(start: number, end: number, outer: number, inner: number) {
+  const point = (turn: number, r: number) => {
+    const angle = turn * 2 * Math.PI - Math.PI / 2
+    return `${(50 + r * Math.cos(angle)).toFixed(3)} ${(50 + r * Math.sin(angle)).toFixed(3)}`
+  }
+  const large = end - start > 0.5 ? 1 : 0
+  return `M${point(start, outer)}A${outer} ${outer} 0 ${large} 1 ${point(end, outer)}L${point(end, inner)}A${inner} ${inner} 0 ${large} 0 ${point(start, inner)}Z`
+}
+
+/** An iOS segmented control, capsule-shaped as iOS 26 draws it. */
+function PhoneSegmented({ items, selected = 0 }: { items: string[]; selected?: number }) {
+  return (
+    <span className="flex rounded-full bg-[var(--sys-fill)] p-[2px] text-[10px] font-medium">
+      {items.map((item, i) => (
+        <span
+          key={item}
+          className={`flex-1 rounded-full py-[3px] text-center ${
+            i === selected ? 'bg-[var(--sys-cell-elev)] shadow-[0_1px_3px_rgb(0_0_0/0.12)]' : ''
+          }`}
+        >
+          {item}
+        </span>
+      ))}
+    </span>
+  )
+}
+
+/** The Strong's analysis sheet on iPhone: the summary, then the renderings as a ring. */
+export function AnalysisArt() {
+  const total = agapeRenderings.reduce((sum, r) => sum + r.count, 0)
+  // One hue, deepest for the largest slice, as the app shades a share.
+  const shade = (i: number) => 1 - (0.6 * i) / (agapeRenderings.length - 1)
+  const slices = agapeRenderings.map((r, i) => {
+    const start = agapeRenderings.slice(0, i).reduce((sum, before) => sum + before.count, 0) / total
+    return { d: ringSlice(start, start + r.count / total, 50, 30), opacity: shade(i) }
+  })
+  return (
+    <Art label="The Strong’s analysis on iPhone for G26, ἀγάπη: 117 times in 106 verses of the KJV, and its renderings drawn as a ring — love 86 times, charity 27, and four others once each.">
+      <Phone height="h-[440px] lg:h-[470px]" className="!bg-[var(--sys-grouped)]">
+        <div className="flex items-center gap-2 px-[9px] pb-[4px] pt-[8px]">
+          <Glass round>
+            <Sym name="xmark" className="h-[11px] w-[11px]" />
+          </Glass>
+          <span className="flex-1 pr-[30px] text-center text-[12px] font-semibold">G26</span>
+        </div>
+        <div className="mx-[11px] mt-[6px] rounded-[11px] bg-[var(--sys-cell)] px-[12px] py-[9px]">
+          <div className="flex items-baseline gap-[6px]">
+            <span className="text-[20px] font-semibold leading-tight">ἀγάπη</span>
+            <span className={`rounded-full bg-[var(--sys-fill)] px-[6px] py-[1px] text-[10px] ${label2}`}>
+              G26
+            </span>
+          </div>
+          <p className={`text-[12px] italic ${label2}`}>agápē</p>
+          <p className="text-[12px]">love</p>
+          <p className="mt-[4px] text-[11px] font-medium">117 times in 106 verses of the KJVs</p>
+          <p className={`text-[9.5px] ${label2}`}>0.85 per 1,000 tagged Greek words</p>
+        </div>
+        <p className={`px-[22px] pb-[4px] pt-[12px] text-[9px] uppercase ${label2}`}>Rendered As</p>
+        <div className="mx-[11px] rounded-[11px] bg-[var(--sys-cell)] px-[12px] pb-[4px] pt-[8px]">
+          <PhoneSegmented items={['List', 'Ring']} selected={1} />
+          <div className="relative mx-auto my-[9px] h-[100px] w-[100px]">
+            <svg viewBox="0 0 100 100" className="h-full w-full" aria-hidden="true">
+              {slices.map((s, i) => (
+                <path
+                  key={i}
+                  d={s.d}
+                  fill="var(--sys-tint)"
+                  fillOpacity={s.opacity}
+                  stroke="var(--sys-cell)"
+                  strokeWidth={1.5}
+                />
+              ))}
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center leading-tight">
+              <span className="text-[14px] font-semibold tabular-nums">{total}</span>
+              <span className={`text-[8px] ${label2}`}>in all</span>
+            </div>
+          </div>
+          <div className={`divide-y divide-[color:var(--sys-sep)]`}>
+            {agapeRenderings.map((r, i) => (
+              <div key={r.text} className="flex items-center gap-[6px] py-[4px] text-[11px]">
+                <span
+                  className="h-[7px] w-[7px] shrink-0 rounded-[2px] bg-[var(--sys-tint)]"
+                  style={{ opacity: shade(i) }}
+                />
+                <span className="min-w-0 flex-1 truncate">{r.text}</span>
+                <span className="tabular-nums">{r.count}</span>
+                <span className={`w-[28px] text-right tabular-nums ${label2}`}>
+                  {Math.round((r.count / total) * 100)}%
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <p className={`px-[22px] pt-[5px] text-[8.5px] leading-[1.35] ${label2}`}>
+          How its 117 occurrences are rendered, the commonest first. Tap one to filter the verse
+          list below.
+        </p>
+        <p className={`px-[22px] pb-[4px] pt-[12px] text-[9px] uppercase ${label2}`}>By Book</p>
+        <div className="mx-[11px] h-[60px] rounded-t-[11px] bg-[var(--sys-cell)] px-[12px] pt-[8px]">
+          <PhoneSegmented items={['Bars', 'Ring']} />
+        </div>
+      </Phone>
+    </Art>
+  )
+}
+
 export function SyncArt() {
   const rows: Array<{ label: ReactNode; value: ReactNode }> = [
     {
@@ -625,14 +746,22 @@ function ToolButton({ name, on = false }: { name: SymbolName; on?: boolean }) {
   )
 }
 
-function Segmented({ items }: { items: ReactNode[] }) {
+function Segmented({
+  items,
+  selected = 0,
+  className = '',
+}: {
+  items: ReactNode[]
+  selected?: number
+  className?: string
+}) {
   return (
-    <span className="flex rounded-[6px] bg-[var(--sys-fill)] p-[2px] text-[9.5px]">
+    <span className={`flex rounded-[6px] bg-[var(--sys-fill)] p-[2px] text-[9.5px] ${className}`}>
       {items.map((item, i) => (
         <span
           key={i}
-          className={`flex items-center gap-[3px] rounded-[4.5px] px-[7px] py-[2px] ${
-            i === 0 ? 'bg-[var(--mac-control)] shadow-[0_1px_1px_rgb(0_0_0/0.12)]' : label2
+          className={`flex items-center justify-center gap-[3px] rounded-[4.5px] px-[7px] py-[2px] ${
+            i === selected ? 'bg-[var(--mac-control)] shadow-[0_1px_1px_rgb(0_0_0/0.12)]' : label2
           }`}
         >
           {item}
@@ -974,6 +1103,256 @@ export function SlideArt() {
               <Sym name="checkmarkCircleFill" className="h-[9px] w-[9px] text-[color:var(--sys-green)]" />
               Saved
               <span className="ml-auto">6 slides</span>
+            </div>
+          </div>
+        </div>
+      </MacWindow>
+    </Art>
+  )
+}
+
+/** A macOS pop-up button: the current choice and the up-down chevrons. */
+function MacPopUp({ children }: { children: ReactNode }) {
+  return (
+    <MacButton>
+      {children}
+      <Sym name="chevronUpDown" className={`h-[7px] w-[7px] ${label2}`} />
+    </MacButton>
+  )
+}
+
+/** A macOS switch, on in the accent colour. */
+function MacSwitch({ on = false }: { on?: boolean }) {
+  return (
+    <span
+      className={`flex h-[14px] w-[24px] shrink-0 items-center rounded-full p-[1.5px] ${
+        on ? 'justify-end bg-[var(--sys-tint)]' : 'bg-[var(--sys-fill)]'
+      }`}
+    >
+      <span className="h-[11px] w-[11px] rounded-full bg-white shadow-[0_1px_2px_rgb(0_0_0/0.25)]" />
+    </span>
+  )
+}
+
+/** G26's occurrences per New Testament book in the KJVs, and which core marks beyond chance. */
+const agapeByBook: Array<[name: string, count: number, standing?: 'more' | 'fewer']> = [
+  ['Matthew', 1, 'fewer'], ['Mark', 0, 'fewer'], ['Luke', 1, 'fewer'], ['John', 7], ['Acts', 0, 'fewer'],
+  ['Romans', 9], ['1 Corinthians', 14], ['2 Corinthians', 9], ['Galatians', 3], ['Ephesians', 10, 'more'],
+  ['Philippians', 5], ['Colossians', 5], ['1 Thessalonians', 5], ['2 Thessalonians', 3], ['1 Timothy', 5],
+  ['2 Timothy', 4], ['Titus', 1], ['Philemon', 3], ['Hebrews', 2], ['James', 0], ['1 Peter', 3],
+  ['2 Peter', 1], ['1 John', 18, 'more'], ['2 John', 2], ['3 John', 1], ['Jude', 3], ['Revelation', 2],
+]
+
+/** Mac search on a Strong's key: its occurrences, narrowed to 1 John, beside the analysis's Spread. */
+export function MacAnalysisArt() {
+  const most = Math.max(...agapeByBook.map(([, count]) => count))
+  const occurrences = [
+    { ref: '1 John 2:5', before: 'But whoso keepeth his word, in him verily is ', word: 'the love', after: ' of God perfected: hereby know we that we are in him.' },
+    { ref: '1 John 2:15', before: '…If any man love the world, ', word: 'the love', after: ' of the Father is not in him.' },
+    { ref: '1 John 3:1', before: 'Behold, what manner of ', word: 'love', after: ' the Father hath bestowed upon us, that we should be called the sons of God…' },
+    { ref: '1 John 3:16', before: 'Hereby perceive we ', word: 'the love', after: ' of God, because he laid down his life for us…' },
+    { ref: '1 John 4:7', before: 'Beloved, let us love one another: for ', word: 'love', after: ' is of God; and every one that loveth is born of God…' },
+  ]
+  const fill = (standing?: 'more' | 'fewer') =>
+    standing === 'more'
+      ? 'bg-[var(--sys-tint)]'
+      : standing === 'fewer'
+        ? 'bg-[var(--sys-label2)]'
+        : 'bg-[color-mix(in_srgb,var(--sys-tint)_55%,transparent)]'
+  return (
+    <Art
+      className="@container"
+      label="Search on the Mac for Strong’s G26 in the KJV. Its analysis is open on Spread, drawing a column for each New Testament book: 1 John, the tallest at 18, and Ephesians stand out in the accent colour as more than chance would give. The occurrence list beside it is narrowed to the 18 in 1 John."
+    >
+      <MacWindow
+        title="Search"
+        toolbar={
+          <>
+            <span className="hidden @lg:flex">
+              <MacPopUp>Scripture</MacPopUp>
+            </span>
+            <span className="hidden @2xl:flex">
+              <MacPopUp>All Books</MacPopUp>
+            </span>
+            <span className={`flex h-[19px] w-[58px] items-center rounded-[5px] border ${sep} bg-[var(--mac-control)] px-[6px] text-[9.5px]`}>
+              G26
+            </span>
+            <span className={`hidden h-[19px] w-[128px] items-center gap-[4px] rounded-[6px] bg-[var(--sys-fill)] px-[6px] text-[9px] @xl:flex ${label3}`}>
+              <Sym name="magnifyingglass" className="h-[9px] w-[9px] shrink-0" />
+              <span className="truncate">Search Bibles and modules</span>
+            </span>
+          </>
+        }
+      >
+        <div className="grid grid-cols-[minmax(0,1fr)] @xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+          <div className={`hidden flex-col border-r ${sep} bg-[var(--mac-control)] @xl:flex`}>
+            <div className={`flex justify-between border-b ${sep} px-[9px] py-[5px] text-[8.5px] ${label2}`}>
+              <span>18 of 117 occurrences</span>
+              <span>KJVs</span>
+            </div>
+            <div className="space-y-[2px] px-[5px] py-[5px]">
+              {occurrences.map((o, i) => (
+                <div key={o.ref} className={`rounded-[5px] px-[5px] py-[4px] ${i === 0 ? 'bg-[var(--sys-fill)]' : ''}`}>
+                  <p className="text-[10px] font-medium">{o.ref}</p>
+                  <p className={`mt-[1px] line-clamp-2 text-[9px] leading-[1.4] ${label2}`}>
+                    {o.before}
+                    <span className="rounded-[2px] bg-[rgb(255_204_0/0.4)]">{o.word}</span>
+                    {o.after}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className={`border-b ${sep} px-[10px] py-[8px]`}>
+              <p className="flex items-baseline gap-[6px]">
+                <span className="text-[13px] font-semibold">G26</span>
+                <span className="text-[14px]">ἀγάπη</span>
+                <span className={`text-[10px] ${label2}`}>agápē</span>
+              </p>
+              <p className={`text-[10.5px] ${label2}`}>love</p>
+              <p className={`mt-[2px] text-[8.5px] ${label2}`}>
+                117 occurrences in 106 verses · 0.85 per 1,000 tagged words · KJVs
+              </p>
+              <span className="mt-[5px] inline-flex items-center gap-[3px] rounded-full bg-[color-mix(in_srgb,var(--sys-tint)_18%,transparent)] px-[6px] py-[2px] text-[8.5px] font-medium">
+                1 John
+                <Sym name="xmarkCircleFill" className="h-[9px] w-[9px]" />
+              </span>
+            </div>
+            <div className={`border-b ${sep} px-[10px] py-[6px]`}>
+              <Segmented
+                items={['Overview', 'Spread', 'Companions', 'Compare']}
+                selected={1}
+                className="w-full [&>span]:flex-1 [&>span]:px-[2px]"
+              />
+            </div>
+            <div className="px-[10px] py-[8px]">
+              <div className="flex gap-[5px]">
+                <MacPopUp>Columns</MacPopUp>
+                <MacPopUp>Books</MacPopUp>
+                <MacPopUp>Occurrences</MacPopUp>
+              </div>
+              <div className="mt-[20px] flex h-[96px] items-end gap-[2px]">
+                {agapeByBook.map(([name, count, standing]) => (
+                  <span
+                    key={name}
+                    className={`relative flex-1 rounded-[1.5px] ${fill(standing)}`}
+                    style={{ height: count > 0 ? Math.max(2, (96 * count) / most) : 1, opacity: count > 0 ? 1 : 0.25 }}
+                  >
+                    {count === most && (
+                      <span className={`absolute bottom-full left-1/2 mb-[3px] -translate-x-1/2 whitespace-nowrap text-[8px] font-semibold ${tint}`}>
+                        1John {count}
+                      </span>
+                    )}
+                  </span>
+                ))}
+              </div>
+              <div className={`mt-[4px] flex justify-between text-[8px] ${label2}`}>
+                <span>Matthew</span>
+                <span>Revelation</span>
+              </div>
+              <p className={`mt-[8px] text-[8px] ${label2}`}>
+                “More” and “fewer” mean beyond chance, not simply above or below average.
+              </p>
+            </div>
+          </div>
+        </div>
+      </MacWindow>
+    </Art>
+  )
+}
+
+/** Settings → AI & Agents on the Mac, at Use Lamp in Other Apps. */
+export function ExternalAppsArt() {
+  const sidebar: Array<{ section: string; items: Array<{ icon: SymbolName; label: string; on?: boolean }> }> = [
+    {
+      section: 'Content',
+      items: [
+        { icon: 'shippingbox', label: 'Modules' },
+        { icon: 'squareAndPencil', label: 'Writing' },
+      ],
+    },
+    {
+      section: 'Services',
+      items: [
+        { icon: 'sparkles', label: 'AI & Agents', on: true },
+        { icon: 'circlepath', label: 'Sync' },
+        { icon: 'arrowDownCircle', label: 'Updates' },
+      ],
+    },
+  ]
+  const pasteable = [
+    { name: 'opencode', path: '~/.config/opencode/opencode.json' },
+    { name: 'Codex', path: '~/.codex/config.toml' },
+    { name: 'Cursor', path: '~/.cursor/mcp.json' },
+  ]
+  const caption = `text-[8.5px] leading-[1.4] ${label2}`
+  return (
+    <Art
+      className="@container"
+      label="Lamp Bible’s Settings on the Mac, at AI & Agents: under Use Lamp in Other Apps, switches allowing other apps to read the library and to change writings are on, with an Add to Claude Desktop button and Copy buttons for opencode, Codex and Cursor."
+    >
+      <MacWindow title="AI & Agents">
+        <div className="grid grid-cols-[minmax(0,1fr)] @lg:grid-cols-[108px_minmax(0,1fr)]">
+          <div className={`hidden space-y-[8px] border-r ${sep} bg-[var(--mac-bar)] px-[6px] py-[8px] @lg:block`}>
+            {sidebar.map((group) => (
+              <div key={group.section}>
+                <p className={`px-[6px] pb-[2px] text-[8px] font-semibold ${label2}`}>{group.section}</p>
+                {group.items.map((item) => (
+                  <p
+                    key={item.label}
+                    className={`flex items-center gap-[5px] rounded-[5px] px-[6px] py-[3px] text-[9.5px] ${
+                      item.on ? 'bg-[var(--sys-fill)] font-medium' : ''
+                    }`}
+                  >
+                    <Sym name={item.icon} className={`h-[10px] w-[10px] shrink-0 ${tint}`} />
+                    {item.label}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div className="px-[12px] py-[10px] text-[9.5px]">
+            <p className={`mb-[3px] px-[2px] text-[9px] font-semibold ${label2}`}>Use Lamp in Other Apps</p>
+            <div className={`divide-y divide-[color:var(--sys-sep)] rounded-[7px] border ${sep} bg-[var(--mac-control)] [&>*]:px-[8px] [&>*]:py-[5px]`}>
+              <div className="flex items-center justify-between gap-2">
+                Allow other apps to read my library
+                <MacSwitch on />
+              </div>
+              <p className={caption}>
+                Separate from writing: these apps can read, and nothing more. What they read goes to
+                whichever AI provider that app uses, not to Lamp’s.
+              </p>
+              <div className="flex items-center justify-between gap-2">
+                Allow other apps to change my writings
+                <MacSwitch on />
+              </div>
+              <p className={caption}>
+                An agent in another app can rewrite a writing’s draft, which Lamp takes in when you
+                next open that writing’s agent workspace. It cannot write over an edit of yours it had
+                not seen.
+              </p>
+              <div className="flex items-center justify-between gap-2">
+                Claude Desktop
+                <MacButton>
+                  <Sym name="squareAndArrowDown" className="h-[9px] w-[9px]" />
+                  Add to Claude Desktop…
+                </MacButton>
+              </div>
+              {pasteable.map((app) => (
+                <div key={app.name} className="flex items-center justify-between gap-2">
+                  <span className="min-w-0 leading-tight">
+                    {app.name}
+                    <span className={`block truncate text-[8px] ${label2}`}>{app.path}</span>
+                  </span>
+                  <MacButton>
+                    <Sym name="docOnDoc" className="h-[9px] w-[9px]" />
+                    Copy
+                  </MacButton>
+                </div>
+              ))}
+              <p className={caption}>Paste each one into that app’s own configuration file yourself.</p>
             </div>
           </div>
         </div>

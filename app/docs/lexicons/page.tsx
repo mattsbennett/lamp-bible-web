@@ -62,7 +62,9 @@ export default function Page() {
         In a Strong’s-tagged translation, tap a word — in the reader, in a commentary or in a book.
         The lexicon view opens on the entry for that word’s Strong’s number; swipe to see the same
         word in each of your other lexicons. A count beside the entry shows how often the number
-        occurs, and tapping it searches for every verse that uses it.
+        occurs, and tapping it searches for every verse that uses it. The chart button beside it
+        opens an <Link href="/docs/search#analysis">analysis</Link> of the word: how translators
+        rendered it, where it gathers, and the words found with it.
       </p>
       <p>An entry can include:</p>
       <ul>
