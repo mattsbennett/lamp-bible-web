@@ -518,15 +518,16 @@ function Writing() {
                 Or bring Lamp to the AI app you already use
               </h4>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-                Turn on <span className="text-ink">Use Lamp in Other Apps</span>, and Claude Desktop,
-                Codex, Cursor or opencode can search your library, read passages and commentary,
-                analyse a word, and check and draw a deck — the same read-only tools a workspace
-                agent has.
+                Turn on <span className="text-ink">Allow other apps to read my library</span> in
+                Settings, and Claude Desktop, Codex, Cursor or opencode can search your library, read
+                passages and commentary, analyse a word, and check and draw a deck — the same
+                read-only tools a workspace agent has.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-                Allow it, and an agent there can rewrite a writing’s draft too. Lamp takes the new
-                draft in when you next open that writing’s workspace, and never lets it overwrite an
-                edit of yours it hadn’t seen.
+                Turn on <span className="text-ink">Allow other apps to change my writings</span> as
+                well, and an agent there can rewrite a writing’s draft too. Lamp takes the new draft
+                in when you next open that writing’s workspace, and never lets it overwrite an edit of
+                yours it hadn’t seen.
               </p>
               <p className="mt-5 text-xs leading-relaxed text-faint">
                 Claude Desktop installs Lamp in one step and asks first; the others take a snippet
