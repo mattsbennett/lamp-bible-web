@@ -47,7 +47,7 @@
 
     "annotation": {
       "type": "object",
-      "description": "An inline annotation using character offsets in its annotated text.",
+      "description": "An inline annotation. start and end are Unicode scalar (code point) offsets into the annotated text, not UTF-16 units or grapheme clusters.",
       "properties": {
         "type": {
           "type": "string",
@@ -70,7 +70,10 @@
             "style": { "type": "string", "enum": ["bold", "italic", "underline"] },
             "source": { "type": "string" },
             "footnoteId": { "type": "string" },
-            "pageNum": { "type": ["string", "integer"] },
+            "pageNum": {
+              "type": ["string", "integer"],
+              "description": "The page number printed in the source (a roman numeral string for front matter). A page outside any printed sequence has no page annotation."
+            },
             "mediaId": { "type": "string" },
             "mediaType": { "type": "string", "enum": ["image", "audio"] }
           }
@@ -83,7 +86,11 @@
       "type": "object",
       "properties": {
         "id": { "type": "string", "minLength": 1 },
-        "offset": { "type": "integer", "minimum": 0 }
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unicode scalar (code point) offset into the annotated text."
+        }
       },
       "required": ["id", "offset"]
     },

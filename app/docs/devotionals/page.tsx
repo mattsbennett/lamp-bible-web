@@ -174,7 +174,8 @@ export default function Page() {
           <strong>Date</strong> — the date you assign it, not just when the file was written.
         </li>
         <li>
-          <strong>Category</strong> — devotional, exhortation, reflection, study, prayer or other.
+          <strong>Category</strong> — one to a piece. Choose devotional, exhortation, reflection,
+          study or prayer, or one you have used before, or type your own.
         </li>
         <li>
           <strong>Tags</strong>, which become filters in the library and in{' '}

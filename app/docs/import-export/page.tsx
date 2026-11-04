@@ -244,11 +244,12 @@ Life brings unexpected storms...[^wind]
       </pre>
 
       <p>
-        <code>category</code> is one of <code>devotional</code>, <code>exhortation</code>,{' '}
-        <code>reflection</code>, <code>study</code>, <code>prayer</code>, <code>testimony</code> or{' '}
-        <code>other</code>; an older file’s <code>sermon</code> is read as{' '}
-        <code>exhortation</code>. The iPhone and iPad app keeps <code>testimony</code> but does not
-        yet offer it as a choice. A{' '}
+        <code>category</code> takes any value. The editors suggest <code>devotional</code>,{' '}
+        <code>exhortation</code>, <code>reflection</code>, <code>study</code> and{' '}
+        <code>prayer</code>; anything else is kept as written, and values that differ only in case
+        count as one. An older file’s <code>sermon</code> is read as <code>exhortation</code>. A
+        devotional has one category but any number of <code>tags</code>, which is why the two are
+        separate fields. A{' '}
         <code>## Summary</code> section at the top becomes the devotional’s summary.
       </p>
 

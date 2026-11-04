@@ -1005,7 +1005,7 @@ export function MacEditorArt() {
                 section: 'Details',
                 rows: [
                   ['Title', 'Abide in the Vine'],
-                  ['Category', <span key="c" className="flex items-center gap-[3px]">Exhortation <Sym name="chevronUpDown" className="h-[7px] w-[7px]" /></span>],
+                  ['Category', <span key="c" className="flex items-center gap-[3px]">exhortation <Sym name="chevronUpDown" className="h-[7px] w-[7px]" /></span>],
                 ],
               },
               {
