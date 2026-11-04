@@ -234,7 +234,7 @@
         },
         "category": {
           "type": "string",
-          "description": "The writing's kind, an open vocabulary: any string, stored as written with inner whitespace collapsed. The editors suggest devotional, exhortation, reflection, study, and prayer; a value naming one of them, in any case, takes that kind's spelling, and a legacy \"sermon\" is stored as exhortation. Kinds are compared without regard to case. Unlike tags, a writing has one kind."
+          "description": "The writing's kind, an open vocabulary: any string, stored as written with inner whitespace collapsed. The editors suggest devotional, exhortation, reflection, study, and prayer; a value naming one of them, in any case, takes that kind's spelling, and a legacy \"sermon\" is read as exhortation. Kinds are compared without regard to case. Unlike tags, a writing has one kind."
         },
         "series": {
           "type": "object",

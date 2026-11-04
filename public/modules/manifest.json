@@ -4,7 +4,7 @@
   "source": {
     "repo": "lamp-bible-modules",
     "private": true,
-    "commit": "3cc5e33c09475bdc30e0dbd37e0dd3b800cde141"
+    "commit": "830da9b94dff24cad9fb35588bf10bf3b1075ad0"
   },
   "assets": [
     {
@@ -40,8 +40,8 @@
     {
       "path": "schemas/devotional_schema.json",
       "from": "schemas/devotional_schema.json",
-      "bytes": 12676,
-      "sha256": "d658a01a6130faa460cf26cd48a4d274d22a38c018ea10a7eb5333bff9a824d3"
+      "bytes": 12674,
+      "sha256": "3846592bf571d37c0ff7d159bf8f7a6afc2aea9a8e9e16427f23c8781406c279"
     },
     {
       "path": "schemas/highlight_schema.json",
