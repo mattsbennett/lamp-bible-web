@@ -114,10 +114,12 @@ export default function Page() {
 
       <h2>Managing modules</h2>
       <p>
-        The module manager is in Settings → Modules → <strong>Manager</strong>. It lists what is
-        installed, grouped by type and filterable by type or by source — bundled or your own — with
-        a summary of each: verse counts, entry counts, how many books a commentary series covers,
-        how many highlights a set holds, how many days a plan runs.
+        The module manager is in Settings → <strong>Module Manager</strong>. It lists what is
+        installed: first, under <strong>Personal</strong>, My Devotionals, My Notes and your
+        highlight sets, then each type in turn. It filters by type, or by source —{' '}
+        <strong>Built In</strong> or <strong>Yours</strong> — and gives a summary of each: verse
+        counts, entry counts, how many books a commentary series covers, how many highlights a set
+        holds, how many days a plan runs.
       </p>
 
       <h3>Importing</h3>
@@ -149,7 +151,8 @@ export default function Page() {
         <code>.lamp</code> files only; to turn JSON into one, see{' '}
         <Link href="/docs/modules/building">Building a .lamp file</Link>. Because{' '}
         <code>.lamp</code> is registered as a document type, you can also open a module from Files,
-        Mail or a share sheet and it will be handed to the app.
+        Mail or a share sheet and it will be handed to the app. Either way, a banner says what came
+        in once it is ready to use.
       </p>
 
       <h3>Creating</h3>

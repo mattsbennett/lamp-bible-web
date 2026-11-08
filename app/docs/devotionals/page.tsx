@@ -20,28 +20,31 @@ export default function Page() {
       <p>
         <Link href="/docs/notes">Notes</Link> are verse-keyed: they hang off a passage. A devotional
         is a standalone document. It may cite scripture heavily, and those citations are live links,
-        but the document is organised by its own argument rather than by chapter and verse.
-        Devotionals live behind the <strong>Write</strong> button on the home screen.
+        but the document is organised by its own argument rather than by chapter and verse. The
+        apps call this <strong>Writing</strong>, and it lives behind the <strong>Write</strong>{' '}
+        button on the home screen.
         {isMacAvailable && (
           <>
-            {' '}On the Mac they are called <strong>Writing</strong>, and the editor adds find and
-            replace, revision history and an AI agent — see{' '}
-            <Link href="/docs/mac">The Mac app</Link>.
+            {' '}On the Mac the editor adds find and replace, revision history and an AI agent —
+            see <Link href="/docs/mac">The Mac app</Link>.
           </>
         )}
       </p>
 
       <h2>The library</h2>
       <p>
-        The library lists every devotional in a collection, searchable by title, subtitle and tag,
-        and sortable by date, title or last change. Its menu filters by tag, category and date,
-        exports, and imports a devotional someone sent you. A collection is a{' '}
-        <Link href="/docs/modules">module</Link>: you start with My Devotionals, and can create
-        more in the module manager and switch between them from the library’s title.
+        The library lists every piece in a collection, searchable by title, subtitle and tag, and
+        sortable by date, title or last change. Its menu filters by tag, category and date, exports,
+        and imports a piece someone sent you with <strong>Import Writing</strong>. A collection is
+        a <Link href="/docs/modules">module</Link>: you start with My Writing, and can create more
+        in the module manager and switch between them from the library’s title.
       </p>
 
       <h2>The editor</h2>
-      <p>A devotional has five modes, chosen from the menu in its bottom toolbar:</p>
+      <p>
+        A devotional has five modes, chosen from the button at the bottom of the screen, which
+        shows the mode you are in:
+      </p>
       <Table>
         <thead>
           <tr>
@@ -108,7 +111,7 @@ export default function Page() {
             <td>An ordinary blockquote for other sources</td>
           </tr>
           <tr>
-            <td>Horizontal rule</td>
+            <td>Divider</td>
             <td>A break between sections</td>
           </tr>
           <tr>
@@ -133,6 +136,11 @@ export default function Page() {
           </tr>
         </tbody>
       </Table>
+      <p>
+        The formatting bar keeps them in groups: text style, with the heading levels and indenting;
+        bold and italic; the two kinds of list; quotes; links; and the <strong>+</strong> menu for
+        everything placed in the text — footnotes, dividers, tables, images and audio.
+      </p>
 
       <h3>Inserting scripture</h3>
       <p>
@@ -145,7 +153,7 @@ export default function Page() {
 
       <h3>Footnotes</h3>
       <p>
-        <strong>Footnote</strong> adds a marker at the cursor and its note in one step, so a single
+        <strong>Footnote…</strong> adds a marker at the cursor and its note in one step, so a single
         Undo removes both. While editing, tap a marker to jump to its note, and tap the note’s
         number to return. Notes can run to several lines and carry bold, italic and links.
       </p>
@@ -175,7 +183,8 @@ export default function Page() {
         </li>
         <li>
           <strong>Category</strong> — one to a piece. Choose devotional, exhortation, reflection,
-          study or prayer, or one you have used before, or type your own.
+          study or prayer, or one you have used before, or name your own — on iPhone and iPad with{' '}
+          <strong>Custom…</strong> at the end of the list.
         </li>
         <li>
           <strong>Tags</strong>, which become filters in the library and in{' '}
@@ -207,7 +216,7 @@ export default function Page() {
 
       <h2>Sharing</h2>
       <p>
-        <strong>Share Devotional File</strong> sends a devotional through the system share sheet as
+        <strong>Share Writing File</strong> sends a devotional through the system share sheet as
         a <code>.lamp</code> file. There are two forms, chosen automatically:
       </p>
       <ul>

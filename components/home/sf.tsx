@@ -293,6 +293,118 @@ export const sf: Record<string, (p: P) => ReactNode> = {
       <path d="M12 7v9.5M8 12.5l4 4 4-4" />
     </S>
   ),
+  chevronUp: (p) => <S {...p}><path d="m5.5 15 6.5-6.5 6.5 6.5" /></S>,
+  link: (p) => (
+    <S {...p}>
+      <path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2" />
+      <path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" />
+    </S>
+  ),
+  plusCircle: (p) => (
+    <S {...p}>
+      <circle cx="12" cy="12" r="9.5" />
+      <path d="M12 7.5v9M7.5 12h9" />
+    </S>
+  ),
+  sliderHorizontal3: (p) => (
+    <S {...p}>
+      <path d="M3.5 6h17M3.5 12h17M3.5 18h17" strokeWidth={1.6} />
+      <circle cx="15" cy="6" r="2.2" fill="currentColor" />
+      <circle cx="8" cy="12" r="2.2" fill="currentColor" />
+      <circle cx="13" cy="18" r="2.2" fill="currentColor" />
+    </S>
+  ),
+  playRectangleOnRectangle: (p) => (
+    <S {...p}>
+      <rect x="6.5" y="7" width="15" height="12.5" rx="2.5" />
+      <path d="M3 15V6a2.5 2.5 0 0 1 2.5-2.5H17" />
+      <path d="m12 10.5 4.5 2.75L12 16z" fill="currentColor" />
+    </S>
+  ),
+  rectangleOnRectangle: (p) => (
+    <S {...p}>
+      <rect x="7" y="7.5" width="14" height="11" rx="2.5" />
+      <path d="M3.5 14.5V6A2.5 2.5 0 0 1 6 3.5h11" />
+    </S>
+  ),
+  personFill: (p) => (
+    <S solid {...p}>
+      <circle cx="12" cy="7.5" r="4" />
+      <path d="M4 20.5c0-4.4 3.6-7 8-7s8 2.6 8 7z" />
+    </S>
+  ),
+  pencil: (p) => <S {...p}><path d="M16.5 3.5l4 4L8 20H4v-4zM13.5 6.5l4 4" /></S>,
+  checkmarkIcloud: (p) => (
+    <S {...p}>
+      <path d="M7 18.5a4.5 4.5 0 0 1-.6-9 6 6 0 0 1 11.5 1.5 3.75 3.75 0 0 1-.4 7.5z" />
+      <path d="m9.5 13.5 2 2 3.5-3.5" />
+    </S>
+  ),
+  eyeSlash: (p) => (
+    <S {...p}>
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="M4 3.5l16 17" />
+    </S>
+  ),
+  highlighterSlash: (p) => (
+    <S {...p}>
+      <path d="m14.5 4.5 5 5-7.5 7.5H7v-5z" />
+      <path d="M4 20.5h8M3.5 3.5l17 17" />
+    </S>
+  ),
+  panelBottom: (p) => (
+    <S {...p}>
+      <rect x="5" y="2.5" width="14" height="19" rx="3" />
+      <path d="M5 13h14v5.5a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" fill="currentColor" />
+    </S>
+  ),
+  characterBookClosedFill: (p) => (
+    <S solid {...p}>
+      <path d="M6.5 2.5h11a2 2 0 0 1 2 2v13H7a1.5 1.5 0 0 0 0 3h12.5V22H7a3.5 3.5 0 0 1-3.5-3.5v-13a3 3 0 0 1 3-3zm4.2 4-2.7 8h1.6l.6-1.9h2.6l.6 1.9H15l-2.7-8zm.8 1.9.9 2.9H10.6z" />
+    </S>
+  ),
+  handPointUpLeft: (p) => (
+    <S {...p}>
+      <path d="M8 11V4.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V10m0-.5a1.5 1.5 0 0 1 3 0v1.5m0-.5a1.5 1.5 0 0 1 3 0v4.5a6.5 6.5 0 0 1-6.5 6.5h-1a6.5 6.5 0 0 1-5.5-3l-2.6-4.3a1.5 1.5 0 0 1 2.5-1.6L8 13.5" />
+    </S>
+  ),
+  rectangleStack: (p) => (
+    <S {...p}>
+      <rect x="3.5" y="9" width="17" height="11.5" rx="2.5" />
+      <path d="M6 6h12M8.5 3h7" />
+    </S>
+  ),
+  qrcode: (p) => (
+    <S {...p}>
+      <rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1" />
+      <rect x="14" y="3.5" width="6.5" height="6.5" rx="1" />
+      <rect x="3.5" y="14" width="6.5" height="6.5" rx="1" />
+      <path d="M14 14h2.5v2.5H14zM18.5 18.5h2M20.5 14v2M14 20.5h2.5" />
+    </S>
+  ),
+  sidebarLeft: (p) => (
+    <S {...p}>
+      <rect x="2.5" y="4" width="19" height="16" rx="3" />
+      <path d="M9.5 4v16M5 8h2M5 11h2" />
+    </S>
+  ),
+  decreaseIndent: (p) => <S {...p}><path d="M10 6h10M10 10h10M10 14h10M4 18h16M7 8.5 4 11l3 2.5" /></S>,
+  increaseIndent: (p) => <S {...p}><path d="M10 6h10M10 10h10M10 14h10M4 18h16M4 8.5 7 11l-3 2.5" /></S>,
+  minus: (p) => <S {...p}><path d="M4.5 12h15" /></S>,
+  textBadgePlus: (p) => (
+    <S {...p}>
+      <path d="M3.5 6h10M3.5 11h10M3.5 16h7" />
+      <path d="M18 13v7M14.5 16.5h7" />
+    </S>
+  ),
+  personCropRectangle: (p) => (
+    <S {...p}>
+      <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
+      <circle cx="12" cy="10.5" r="2.5" />
+      <path d="M7.5 17c.8-2 2.5-3 4.5-3s3.7 1 4.5 3" />
+    </S>
+  ),
 }
 
 export type SymbolName = keyof typeof sf

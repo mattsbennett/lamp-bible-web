@@ -31,17 +31,23 @@ export default function Page() {
 
       <h2>The library</h2>
       <p>
-        <strong>Books</strong> on the home screen lists what is installed, with covers, and
-        searches by title, author or tag. A book you have started shows{' '}
-        <strong>Continue reading</strong>. To add one, choose <strong>Import Book</strong> and pick
-        a <code>.lamp</code> file — or the book’s source JSON, which the app compiles on the
-        device. Opening a book file from Files, Mail or AirDrop works too.
+        <strong>Books</strong> on the home screen shelves what is installed by its covers — the
+        books you have started under <strong>Continue Reading</strong>, then{' '}
+        <strong>All Books</strong> — and searches by title, author or tag. To add one, choose{' '}
+        <strong>Import Book</strong> and pick a <code>.lamp</code> file — or the book’s source
+        JSON, which the app compiles on the device. Opening a book file from Files, Mail or AirDrop
+        works too.
       </p>
 
       <h2>Reading</h2>
       <ul>
         <li>
-          <strong>Contents</strong> shows the book’s outline, and searches within the book.
+          <strong>Contents</strong> shows the book’s outline, with your bookmarks above it, and
+          searches within the book. <strong>Bookmark Section</strong> in the toolbar marks the
+          section you are in.
+        </li>
+        <li>
+          <strong>Text Settings</strong> sets the book’s typeface, text size and line spacing.
         </li>
         <li>
           Each section can name the passages it is about; tap one to open it in the{' '}
@@ -54,7 +60,8 @@ export default function Page() {
         <li>Images open full screen; audio plays in place, with a seekable waveform.</li>
         <li>Previous and next buttons at the foot of each section step through the book.</li>
         <li>
-          <strong>Book Details</strong> shows the publication record, tags and rights statement.
+          The book’s own row at the top of Contents opens its <strong>Details</strong>: the
+          publication record, tags and rights statement.
         </li>
         <li>Books written right to left are laid out right to left.</li>
       </ul>

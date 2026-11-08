@@ -7,7 +7,7 @@ import { isMacAvailable } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'AI chat & agents',
   description:
-    'Reader Chat and writing agents on the Mac, using your own Codex, Claude Code or OpenCode account with read-only access to your library — and Lamp’s library tools in Claude Desktop, Codex, Cursor or opencode.',
+    'Reader Chat and writing agents on the Mac, using your own Codex, Claude Code or OpenCode account with read-only access to your library and skills for weighing what scripture says — and Lamp’s library tools in Claude Desktop, Codex, Cursor or opencode.',
 }
 
 export default function Page() {
@@ -100,27 +100,74 @@ export default function Page() {
       <p>
         Lamp’s tools are read-only: the AI can look up passages, commentary, dictionary entries,
         books, plans, quizzes and — if you allow it — your own study, and analyse a Strong’s number,
-        but cannot change your library. The one exception lets another app replace a writing’s
-        draft, and is off unless you turn it on; see{' '}
+        but cannot change your library. The two exceptions let another app replace a writing’s
+        draft or add a reading plan, and are off unless you turn them on; see{' '}
         <a href="#other-apps">Using Lamp in other apps</a>. <strong>Test Module Tools</strong>{' '}
         checks that the tools are working.
+      </p>
+
+      <h3 id="model">Provider, model and effort</h3>
+      <p>
+        At the top of each chat, three menus choose the provider, the model and the effort. Lamp
+        names no model of its own: the menu offers the provider’s default, the names the provider
+        itself keeps pointed at its current models — <code>opus</code>, <code>sonnet</code> and{' '}
+        <code>haiku</code> for Claude Code — and <strong>Other Model…</strong> for a name you type,
+        which is passed on as it is. Effort is low to max for Claude Code, a value you type for
+        Codex, and for OpenCode the variants the installed tool lists for the model you named. The
+        choices belong to the chat, so two windows can use two providers or two models at once.
+      </p>
+
+      <h2 id="skills">Study skills</h2>
+      <p>
+        Lamp’s agents come with two skills for questions about scripture, which they read before
+        answering one:
+      </p>
+      <ul>
+        <li>
+          <strong>sola-scriptura</strong> tells what a passage states from what is inferred from it
+          or brought to it. Asked about one claim, it says whether scripture establishes it, in a
+          paragraph with the text quoted. Given a whole piece of writing, it goes through it claim
+          by claim — stated, entailed, inferred, imported, unsupported or contrary — and ranks what
+          it finds by how much of the argument rests on each.
+        </li>
+        <li>
+          <strong>original-languages</strong> reads the Hebrew or Greek behind a verse, word by
+          word with each word’s parsing, and shows where translations differ and whether the
+          difference is a translator’s decision. Given a writing, it checks the claims it makes
+          about the original.
+        </li>
+      </ul>
+      <p>
+        Both measure against the text alone. They look passages up rather than quoting from memory,
+        report a commentary’s view as that commentary’s, and never count what your library happens
+        to hold as evidence for a reading. Reader Chat and writing agents have both;{' '}
+        <a href="#other-apps">other apps</a> get them as prompts.
       </p>
 
       <h2>Reader Chat</h2>
       <p>
         <strong>Reader Chat</strong> (⇧⌘J, or the speech-bubble button) opens beside the reader.
-        Ask about the chapter on screen, or name any other passage; each message tells the AI which
-        chapter and translation you are reading. It answers from your modules through the read-only
-        tools, and cannot edit files or run commands. Choose the provider at the top of the chat.
+        Ask about the chapter on screen, or name any other passage. It answers from your modules
+        through the read-only tools, and cannot edit files or run commands.
+      </p>
+      <p>
+        Each message is sent with the chapter and translation you are reading, the verse marked in
+        the reader, and any words you have selected in it, traced to their verses. With{' '}
+        <strong>Include personal writing, notes, and highlights</strong> on, it also carries your
+        own notes and highlights in that chapter; with it off, the chat is told they are not shared.
+        A line under the chapter’s name says what the next message will carry.
       </p>
       <p>
         The chat looks only in the modules your Module Access setting allows, so a module you have
-        hidden stays out of its answers unless you choose all installed modules. A line under the
-        chat says what it can reach.
+        hidden stays out of its answers unless you choose all installed modules. A line at the top
+        of the chat says what it can reach.
       </p>
       <p>
-        Each reader window keeps its own conversation, which picks up where it left off when you
-        reopen the chat. Reader Chat conversations stay on the Mac and do not sync.
+        Replies appear as they are written, and with Claude Code a line says what the agent is doing
+        meanwhile — the tool it is using, and the passage it is reading. A reply keeps arriving if
+        you close the chat, switch it for Study Tools or leave the reader, and is there when you come
+        back. Each reader window keeps its own conversation, and comes back to it when you relaunch.
+        Reader Chat conversations stay on the Mac and do not sync.
       </p>
 
       <h2>Writing with an agent</h2>
@@ -129,7 +176,9 @@ export default function Page() {
         writing. The agent works on the same text you do: the draft in the editor and the agent’s
         copy are kept in step as either of you changes it, and every change goes into{' '}
         <strong>Revisions</strong>, where you can undo it or restore an earlier version. If you and
-        the agent change an open file at once, you choose whose version to keep.
+        the agent change an open file at once, you choose whose version to keep. The agent is told
+        which file is open in the editor and the text you have selected in it, so you can point at
+        a paragraph and ask about it.
       </p>
       <ul>
         <li>
@@ -148,9 +197,11 @@ export default function Page() {
           talk, notes — as read-only copies.
         </li>
         <li>
-          <strong>Workspace Skills</strong> are instructions the agent can follow. One is built in:{' '}
-          <strong>Build Lamp Deck</strong>, which turns the writing into a{' '}
-          <Link href="/docs/presenting">Slide Studio deck</Link>. You can write your own.
+          <strong>Workspace Skills</strong> are instructions the agent can follow. Three are built
+          in: <strong>build-lamp-deck</strong>, which turns the writing into a{' '}
+          <Link href="/docs/presenting">Slide Studio deck</Link>, and the two{' '}
+          <a href="#skills">study skills</a>, which can audit the draft. You can write your own,
+          and add one you wrote for another writing.
         </li>
       </ul>
       <p>
@@ -193,11 +244,17 @@ export default function Page() {
             <td>Off</td>
             <td>Lets an agent in that app replace a writing’s draft</td>
           </tr>
+          <tr>
+            <td>Allow other apps to add reading plans</td>
+            <td>Off</td>
+            <td>Lets an agent in that app add a reading plan, and nothing else</td>
+          </tr>
         </tbody>
       </Table>
       <p>
-        Both need <strong>Allow agents to query Lamp modules</strong>, and what an app may read
-        follows the same Module Access and personal-content settings as Lamp’s own agents.
+        All three need <strong>Allow agents to query Lamp modules</strong>, and the last two need
+        reading allowed as well. What an app may read follows the same Module Access and
+        personal-content settings as Lamp’s own agents.
       </p>
 
       <h3>Setting an app up</h3>
@@ -222,8 +279,17 @@ export default function Page() {
       <p>
         An app set up this way has the read-only tools a writing agent has: it can search your
         library, read passages, commentary, dictionaries, books, plans and quizzes, analyse a
-        Strong’s number, and check, fill in and draw a deck. An app that offers prompts also gets{' '}
-        <strong>Build a Lamp deck</strong>, the instructions behind the Build Lamp Deck skill.
+        Strong’s number, check, fill in and draw a deck, and lay out a reading plan without adding
+        it. An app that offers prompts also gets Lamp’s skills as prompts:{' '}
+        <strong>Build a Lamp deck</strong>, <strong>Audit writing against scripture alone</strong>{' '}
+        and <strong>Read the Hebrew or Greek</strong>.
+      </p>
+      <p>
+        With <strong>Allow other apps to add reading plans</strong> on, it can also add a plan over
+        the passages you name — so a model you already pay for can work out a plan with you, show
+        you its days, and put it in your library. Lamp lays the plan out and adds it when it next
+        reads its library, and includes it in Today. It adds plans and nothing else: it cannot
+        change or remove anything already there.
       </p>
       <p>
         With personal content allowed, it can also read the writings that have an agent workspace —

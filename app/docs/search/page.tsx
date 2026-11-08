@@ -50,7 +50,10 @@ export default function Page() {
           </tr>
           <tr>
             <td>Commentaries</td>
-            <td>Commentary text, resolved back to the section or pericope it belongs to</td>
+            <td>
+              Commentary text and its footnotes, resolved back to the section or pericope it belongs
+              to
+            </td>
           </tr>
           <tr>
             <td>Books</td>
@@ -68,11 +71,23 @@ export default function Page() {
             <td>Highlights</td>
             <td>The verse text under a highlight, or every highlight of a given colour</td>
           </tr>
+          <tr>
+            <td>Reading plans</td>
+            <td>A plan’s name, author and description, opening it with a switch to follow it</td>
+          </tr>
+          <tr>
+            <td>Quizzes</td>
+            <td>A question’s words, opening it with its answer and passage</td>
+          </tr>
         </tbody>
       </Table>
-      <p>Reading plans and quizzes are left out because they have their own screens.</p>
 
       <h2>Filters</h2>
+      <p>
+        In either scope, the scope menu also narrows a search to the Old or New Testament, or to{' '}
+        <strong>One Book</strong>: the verses searched in the Bible scope, and the verses and
+        highlights among the modules.
+      </p>
       <p>In the Modules scope, results are grouped by type and can be narrowed:</p>
       <ul>
         <li>
@@ -118,7 +133,19 @@ export default function Page() {
             <td>
               <code>lov</code>
             </td>
-            <td>Words starting with it — love, loved, lovingkindness</td>
+            <td>Words starting with it — love, loved, lovingkindness, but not beloved</td>
+          </tr>
+          <tr>
+            <td>
+              <code>*faith</code>
+            </td>
+            <td>The letters anywhere in a word — unfaithful as well as faithful</td>
+          </tr>
+          <tr>
+            <td>
+              <code>&quot;faith&quot;</code>
+            </td>
+            <td>The whole word only</td>
           </tr>
           <tr>
             <td>
@@ -135,14 +162,24 @@ export default function Page() {
         </tbody>
       </Table>
       <p>
-        There are no operators: <code>AND</code>, <code>OR</code> and <code>NOT</code> are searched
-        as ordinary words. Bible searches run when you press Search and need at least two
-        characters.
+        Case and accents make no difference, nor does the shape of an apostrophe:{' '}
+        <code>Lord&apos;s</code> finds “Lord’s”, and <code>λογος</code> finds λόγος. There are no
+        operators:{' '}
+        <code>AND</code>, <code>OR</code> and <code>NOT</code> are searched as ordinary words. Bible
+        searches run when you press Search and need at least two characters.
+      </p>
+      <p>
+        A search that names a passage — <code>John 3</code>, <code>Ps 23:1-4</code> — also offers a{' '}
+        <strong>Go to</strong> row above the results that opens it in the reader. The search still
+        runs, since “John 3” is also a phrase a commentary might contain.
       </p>
 
       <h3>Results</h3>
       <ul>
-        <li>Text results are ranked by relevance, with the match highlighted in a snippet.</li>
+        <li>
+          Text results are ranked by relevance, with the match highlighted in a snippet. For a
+          search of several words, results that hold them together come first.
+        </li>
         <li>
           Tap a result to preview it. The preview’s context — one verse, three, or the whole
           chapter — is adjustable, and a button takes you to the passage.
@@ -151,31 +188,38 @@ export default function Page() {
           Results load a hundred at a time; <strong>Load More Results</strong> extends the list.
         </li>
         <li>
-          <strong>Recent Searches</strong> keeps your last twenty searches that found something, for
-          each scope, on this device. They can be cleared.
+          <strong>Recent Searches</strong> keeps your last twenty searches that found something, in
+          both scopes, on this device. Choosing one runs it again with the scope and filters it had.
+          They can be cleared.
         </li>
       </ul>
 
       <h3>Searching by Strong’s number</h3>
       <p>
-        Type a number such as <code>H430</code> or <code>G2316</code> in the Bible scope and the
-        search switches to Strong’s, finding every verse in the translation tagged with it — the
-        fastest route from “what does this word mean here” to “where else is this word used”. In the
-        Modules scope, <strong>Strong’s Key</strong> finds the dictionary entries for a number. Zero
-        padding does not matter: <code>H07225</code> and <code>H7225</code> are the same word.
+        A Strong’s search finds every verse in the translation tagged with a number such as{' '}
+        <code>H430</code> or <code>G2316</code> — the fastest route from “what does this word mean
+        here” to “where else is this word used”. In a tagged translation, type a number in the
+        Bible scope and <strong>Search Strong’s</strong> and <strong>Analyse</strong> rows appear
+        above the results; the search box does not switch by itself, since a number may be meant as
+        text. Its mode menu switches to <strong>Strong’s</strong> outright, and tapping a word’s
+        count in a lexicon entry starts a Strong’s search. In the Modules scope,{' '}
+        <strong>Strong’s Key</strong> finds the dictionary entries for a number. Zero padding does
+        not matter: <code>H07225</code> and <code>H7225</code> are the same word.
       </p>
 
       <h2 id="analysis">Analysing a Strong’s number</h2>
       <p>
         An analysis gathers everything a translation’s tags say about one Strong’s number. Open it
-        with <strong>Analyse</strong> beside the count of a Strong’s search’s results, or with the
-        chart button beside the occurrence count in a{' '}
+        with <strong>Analyse</strong> beside the count of a Strong’s search’s results, from the{' '}
+        <strong>Analyse</strong> row a typed number offers, or with <strong>Analyse</strong> in a{' '}
         <Link href="/docs/lexicons">lexicon entry</Link>. It shows:
       </p>
       <ul>
         <li>
-          <strong>The word</strong> — its lemma, transliteration and a short gloss, how many times it
-          occurs in how many verses, and how often per 1,000 tagged words of its language.
+          <strong>The word</strong> — its lemma, transliteration and a short gloss; how many times it
+          occurs, in how many verses and in how many books; a strip of the whole Bible, a column a
+          book, showing where it falls; and about how often it comes in every 1,000 tagged words of
+          its language.
         </li>
         <li>
           <strong>Rendered As</strong> — the English the translation uses for it, commonest first,
@@ -206,8 +250,8 @@ export default function Page() {
         <>
           <h3>On the Mac</h3>
           <p>
-            The analysis opens beside a Strong’s search: choose <strong>Scripture</strong> and type
-            a number in the <strong>Strong’s key</strong> field in the toolbar, or choose{' '}
+            The analysis opens beside a Strong’s search: choose <strong>Scripture</strong> in the
+            toolbar and type a number in the Strong’s field of the filter bar beneath it, or choose{' '}
             <strong>Analyse</strong> when you type a number into the search box. The occurrence list
             sits to its left, and anything you click in the analysis narrows it. Its tabs:
           </p>

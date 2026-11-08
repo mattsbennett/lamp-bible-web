@@ -29,8 +29,8 @@ export default function Page() {
         In a Strong’s-tagged translation, tapping a word opens its lexicon entry. Which lexicon
         appears first depends on your configured order — see{' '}
         <Link href="/docs/lexicons">Lexicons</Link>. Turn on <strong>Show Word Hints</strong> in
-        Settings → Modules → Settings to underline every tagged word, so you can see at a glance
-        which words have entries behind them.
+        Settings → Translations &amp; Lexicons to underline every tagged word, so you can see at a
+        glance which words have entries behind them.
       </p>
 
       <h3>Verse actions</h3>
@@ -122,8 +122,11 @@ export default function Page() {
       <ul>
         <li>
           <strong>Tap the title</strong> — the translation and chapter at the top of the reader — to
-          choose a book and chapter. The translation menu at the top of that list switches
-          translation.
+          choose a book and chapter. The books are grouped by testament and by kind — Law, History
+          and so on — and a book’s chapters are a grid of numbers, with a{' '}
+          <strong>Contents</strong> list of each chapter’s first heading where the translation has
+          headings. Touch and hold a chapter to choose one of its verses. The translation menu at
+          the top switches translation.
         </li>
         <li>
           <strong>Pull past the top or bottom</strong> of a chapter to go to the previous or next
@@ -141,7 +144,8 @@ export default function Page() {
         </li>
         <li>
           <strong>Hide Toolbars</strong> gives a full-screen page of text. The toolbars also tuck
-          away as you scroll down, leaving a small title you tap to bring them back.
+          away as you scroll down, leaving a small title; tap it, scroll back up a few lines, or
+          reach the top of the chapter to bring them back.
         </li>
       </ul>
 
@@ -149,17 +153,19 @@ export default function Page() {
       <p>
         If you own a study Bible on another platform, Lamp Bible can open a passage there instead
         of in its own reader. Supported targets are Accordance, e-Sword LT, Logos, Olive Tree and
-        YouVersion. This is a deep link — the other app must be installed, and apps that are not
-        installed are greyed out. Choose one in Settings under <strong>External Bible</strong>; plan
-        readings then get a button that opens them there. See{' '}
+        YouVersion. This is a deep link — the other app must be installed, and those that are not
+        are named beneath the list rather than offered. Choose one in Settings under{' '}
+        <strong>Open Readings In</strong>; plan readings then get a button that opens them there.
+        See{' '}
         <Link href="/docs/reading-plans">Reading plans</Link>.
       </p>
 
       <h2>Appearance</h2>
       <ul>
         <li>
-          Text size for the reader is in its menu, and is set independently of the tool panel’s and
-          of devotional text.
+          <strong>View Options</strong> in the reader’s menu sets the typeface — serif, the
+          default, or sans — and the text size. The reader’s size is set independently of the tool
+          panel’s and of devotional text.
         </li>
         <li>Light and dark rendering follows the system appearance.</li>
       </ul>

@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
+import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Reading plans',
   description:
-    'Daily reading plans with per-reading completion, reading-time estimates, daily reminders, age-graded quizzes and a home-screen widget.',
+    'Daily reading plans with per-reading completion, reading-time estimates, plans made from what you want to read, daily reminders, age-graded quizzes and a home-screen widget.',
 }
 
 export default function Page() {
@@ -52,18 +53,23 @@ export default function Page() {
       </Callout>
 
       <p>
-        Plans are modules, so this list is not fixed. A plan you author yourself installs exactly
-        like the bundled ones — see <Link href="/docs/modules/authoring">Authoring modules</Link>.
+        Plans are modules, so this list is not fixed. You can{' '}
+        <a href="#making-a-plan">make a plan</a> from what you want to read, and a plan you author
+        as a module installs exactly like the bundled ones — see{' '}
+        <Link href="/docs/modules/authoring">Authoring modules</Link>.
       </p>
 
       <h2>Following plans</h2>
       <p>
-        The home screen is today’s readings. Under <strong>Plans</strong>, tap{' '}
-        <strong>Add</strong> to choose which plans you follow — more than one at a time is fine, and
-        each appears with its own readings, the day’s total time, and how many you have read. Tap
-        the circle beside a reading to mark it read; a three-reading day can be half done.
-        Completions are recorded per plan, per year, so restarting a plan next year gives you a
-        fresh slate without erasing history.
+        The home screen is today’s readings. Tap <strong>Manage</strong> beside Daily Reading — or{' '}
+        <strong>Reading Plan</strong>, before you follow any — for the list of plans: Lamp’s own
+        under <strong>Built In</strong>, and the ones you made or added under{' '}
+        <strong>Your Plans</strong>. <strong>Follow</strong> as many as you like. A plan you follow
+        shows its day of the year and this week’s readings, a circle a day, and on the home screen
+        each has its own card with the day’s readings, their total time, and how many you have
+        read. Tap the circle beside a reading to mark it read; a three-reading day can be half
+        done. Completions are recorded per plan, per year, so restarting a plan next year gives you
+        a fresh slate without erasing history.
       </p>
       <p>
         The date at the top moves backwards and forwards a day at a time, or tap it to pick one —
@@ -78,6 +84,10 @@ export default function Page() {
         <strong>Silent</strong> preset sets 238 wpm, and the slider goes from 70 to 400. The same
         rate sets the pace of <Link href="/docs/reader">read aloud</Link>.
       </p>
+      <p>
+        Reading together? Tap a reading’s verse count and set how many readers there are; the count
+        then shows how many verses each one reads.
+      </p>
 
       <h3>Where readings open</h3>
       <p>
@@ -89,10 +99,39 @@ export default function Page() {
       </p>
       <p>
         If you would rather read in Accordance, e-Sword LT, Logos, Olive Tree or YouVersion, choose
-        that app under <strong>External Bible</strong> in Settings, and each reading gets a button
+        that app under <strong>Open Readings In</strong> in Settings, and each reading gets a button
         named for it. Opening a reading there marks it read. Turn off{' '}
         <strong>In-app Bible</strong> to make the external app the default.
       </p>
+
+      <h2 id="making-a-plan">Making your own plan</h2>
+      <p>
+        <strong>New Plan</strong>, at the end of Your Plans, makes a plan from what you want to
+        read. Write the passages as you would anywhere — <code>Matthew–John</code>,{' '}
+        <code>Psalms 1–41</code> — and add more with <strong>Read Something Alongside</strong>, for
+        some of each every day. Each part is spread over the plan or read at so many chapters a
+        day. Then say how many days of reading, or, when every part has a pace,{' '}
+        <strong>Until Read Through</strong>; when it starts; and which days are off.
+      </p>
+      <p>
+        On iOS 26 with Apple Intelligence, you can describe the plan instead — “the Gospels in a
+        month, weekdays only” — and <strong>Make from Description</strong> fills the form in, using
+        the model on the device. Either way, <strong>Preview</strong> lays out every day and its
+        readings before anything is added, with a sentence saying what is read, how fast and on
+        which days. Name the plan, tap <strong>Add</strong>, and you are following it.
+      </p>
+      <p>
+        A plan you make is a plan module like any other, and syncs to your other devices. Swipe
+        it, or tap <strong>Edit</strong>, to delete it; it is deleted on every device you sync with,
+        and its ticked readings go with it.
+      </p>
+      {isMacAvailable && (
+        <p>
+          On the Mac, <strong>New Plan…</strong> in Reading Plans opens the same form in a sheet,
+          with the days laid out beside it as you fill it in; <strong>Fill In the Form</strong>{' '}
+          reads a description on macOS 26. Delete a plan of your own from its menu.
+        </p>
+      )}
 
       <h2>Daily reminder</h2>
       <p>
@@ -109,12 +148,14 @@ export default function Page() {
       </p>
       <p>
         The bundled quiz has five questions a reading for each of five age groups, from young
-        children to adults. Choose a group at the top of the quiz; your choice is remembered. Each
-        question has a theme and its references, which open a preview, and{' '}
-        <strong>Show Answer</strong> reveals the answer — it is a set of questions to discuss rather
-        than a test, with no scoring. The quiz menu can <strong>Always Show Answers</strong>, for
-        use with a group, and the quiz can be read aloud. If a reading has no questions for the
-        selected group, the app says so and suggests another.
+        children to adults. Choose a group from <strong>Questions For</strong> at the top of the
+        quiz; your choice is remembered. Each question has a theme, and the verse it cites is set
+        out beneath it, to weigh before answering — tap it to read it in context.{' '}
+        <strong>Show Answer</strong> reveals the answer, and <strong>Next Question</strong> moves
+        on. It is a set of questions to discuss rather than a test, with no scoring. The quiz menu
+        can <strong>Always Show Answers</strong>, for use with a group, and the quiz can be read
+        aloud. If a reading has no questions for the selected group, the app says so and suggests
+        another.
       </p>
 
       <h2>The home-screen widget</h2>

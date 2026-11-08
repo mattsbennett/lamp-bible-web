@@ -28,12 +28,15 @@ export default function Page() {
       </p>
       <p>
         The slide list down the side reorders, duplicates, hides and deletes slides. The inspector
-        sets the deck’s aspect ratio (16:9 or 4:3), theme — <strong>Lamp Dark</strong> or{' '}
-        <strong>Parchment</strong> — and typeface, and each slide’s layout and content. Decks save
-        themselves as you work; the <strong>Undo Edit</strong> and <strong>Redo Edit</strong>{' '}
-        toolbar buttons take back a change, a burst of typing at a time. A deck that can’t be saved
-        yet — a title cleared to retype it, say — is kept as a draft on the Mac, and comes back when
-        you reopen it.
+        beside the slide has two panes. <strong>Slide</strong> shows the layouts as pictures to
+        choose from, <strong>Skip while presenting</strong>, and the slide’s content.{' '}
+        <strong>Deck</strong> sets the title, the aspect ratio (16:9 or 4:3), the theme —{' '}
+        <strong>Lamp Dark</strong> or <strong>Parchment</strong>, each shown as your first slide
+        drawn in it — and the typeface. Decks save themselves as you work; the{' '}
+        <strong>Undo Edit</strong> and <strong>Redo Edit</strong> toolbar buttons take back a
+        change, a burst of typing at a time. A deck that can’t be saved yet — a title cleared to
+        retype it, say — is kept as a draft on the Mac, and comes back when you reopen it. The{' '}
+        <strong>Deck</strong> menu in the toolbar saves, imports, exports and deletes the deck.
       </p>
 
       <h3>Layouts and content</h3>
@@ -190,19 +193,26 @@ export default function Page() {
       <h2>Sharing and printing decks</h2>
       <ul>
         <li>
-          <strong>Export PDF</strong> makes a PDF of the slides, one per page, or of each slide above
-          its speaker notes for printing. Hidden slides are left out, and the pages are numbered as
-          the slides are presented.
+          <strong>Export PDF</strong> in the Deck menu makes a PDF of the slides, one per page
+          (<strong>Slides Only…</strong>), or of each slide above its speaker notes for printing
+          (<strong>Slides with Speaker Notes…</strong>). Hidden slides are left out, and the pages
+          are numbered as the slides are presented.
         </li>
         <li>
-          <strong>Export Deck</strong> saves a <code>.lampdeck</code> file, which another Mac can
-          open in Slide Studio. Pictures are not included in the file.
+          <strong>Export Deck…</strong> saves a <code>.lampdeck</code> file, which another Mac can
+          open in Slide Studio with <strong>Import Deck…</strong>. Pictures are not included in the
+          file.
         </li>
         <li>
-          Decks sync to your other devices. On iPhone and iPad they appear under{' '}
-          <strong>Slide Decks</strong> in the Write library’s menu, and a writing with a deck shows a{' '}
-          <strong>Slides</strong> button, for viewing the slides and their notes. Decks are edited
-          only on the Mac.
+          Decks sync to your other devices. On iPhone and iPad, <strong>Slide Decks</strong> in the
+          Write library’s menu shows each deck as a card with its first slides listed, and a writing
+          with a deck shows a <strong>Slides</strong> button. A deck opens full screen — on an
+          iPhone, turned sideways — one slide at a time, skipping hidden slides, with its presenter
+          notes and a list of slides to jump to. Decks are edited only on the Mac.
+        </li>
+        <li>
+          Deleting a writing deletes the decks built from it, on every device; the Mac names them
+          before it does.
         </li>
       </ul>
     </DocPage>

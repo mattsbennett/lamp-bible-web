@@ -22,7 +22,7 @@ export default function ContentLicences() {
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
             The exact sources and distribution terms for the library bundled with Lamp Bible.
           </p>
-          <p className="mt-3 text-sm text-faint">Last reviewed October 28, 2026.</p>
+          <p className="mt-3 text-sm text-faint">Last reviewed November 4, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -62,10 +62,38 @@ export default function ContentLicences() {
                 <td>Cleared</td>
               </tr>
               <tr>
+                <td><code>Brenton</code> — Brenton English Septuagint</td>
+                <td>eBible.org <code>eng-Brenton</code> USFM, source files dated October 7, 2026</td>
+                <td>Public domain</td>
+                <td>Cleared</td>
+              </tr>
+              <tr>
                 <td><code>KJVs</code> — King James Version with Strong&apos;s and morphology</td>
                 <td>CrossWire KJV module v3.1</td>
                 <td>CrossWire any-purpose grant; source metadata also labels it GPL</td>
                 <td>Included in the next release</td>
+              </tr>
+              <tr>
+                <td><code>LXX</code> — Brenton Greek Septuagint</td>
+                <td>eBible.org <code>grcbrent</code> USFM, source files dated April 8, 2026</td>
+                <td>Public domain</td>
+                <td>Cleared</td>
+              </tr>
+              <tr>
+                <td><code>TAGNT</code> — Translators Amalgamated Greek New Testament</td>
+                <td>STEPBible-Data, upstream commit <code>5de0a47f35f0</code> (November 2, 2026)</td>
+                <td>
+                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                </td>
+                <td>Cleared</td>
+              </tr>
+              <tr>
+                <td><code>TAHOT</code> — Translators Amalgamated Hebrew Old Testament</td>
+                <td>STEPBible-Data, upstream commit <code>5de0a47f35f0</code> (November 2, 2026)</td>
+                <td>
+                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                </td>
+                <td>Cleared</td>
               </tr>
               <tr>
                 <td><code>WEBs</code> — World English Bible</td>
@@ -103,11 +131,55 @@ export default function ContentLicences() {
             Lamp Bible converted the SWORD representation to Lamp translation JSON and then to its
             bundled SQLite database. This changes the container and annotation representation, not
             the intended biblical wording. The input was CrossWire&apos;s v3.1 module archive, SHA-256{' '}
-            <code className="break-all">873815aa4b4123025616d1f41eae75f412111275f4c3884e36f92d4f46dcba1d</code>
+            <code className="break-all whitespace-normal">873815aa4b4123025616d1f41eae75f412111275f4c3884e36f92d4f46dcba1d</code>
             , and Lamp Bible keeps the archive and its conversion script as a provenance record. Full
             contributor provenance and the original OSIS source are linked from the{' '}
             <a href="https://wiki.crosswire.org/CrossWire_KJV" {...externalProps}>CrossWire KJV project</a>.
             Lamp Bible does not offer <code>KJVs</code> as a standalone website download.
+          </p>
+
+          <h3>STEPBible Translators Amalgamated Hebrew OT and Greek NT</h3>
+          <p>
+            The <code>TAHOT</code> and <code>TAGNT</code> modules carry data created by{' '}
+            <a href="https://www.stepbible.org" {...externalProps}>STEPBible.org</a> based on work at
+            Tyndale House, Cambridge, distributed under the{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>
+              Creative Commons Attribution 4.0 International licence
+            </a>
+            . The source of the data is{' '}
+            <a href="https://STEPBible.github.io/STEPBible-Data" {...externalProps}>
+              STEPBible.github.io/STEPBible-Data
+            </a>
+            .
+          </p>
+          <p>
+            Lamp Bible changed the data in these ways. Each word&apos;s inflected form, Strong&apos;s
+            key, dictionary form and morphology tag are carried over; the datasets&apos; other columns
+            — editions, variants, glosses, Spanish renderings and sub-meanings — are not.
+            Strong&apos;s keys are normalised to their plain form, so the disambiguated{' '}
+            <code>H7225G</code> is recorded as <code>H7225</code>, and STEPBible&apos;s{' '}
+            <code>H9xxx</code> codes for Hebrew prefixes and suffixes are not offered as lexicon keys;
+            they remain visible in the morphology tag. Morpheme divisions and attached marks are removed
+            from the Hebrew word, and the segmented form stays in the morphology tag.
+          </p>
+          <p>
+            Each module is one text rather than the amalgamation. <code>TAGNT</code> carries the words
+            of the Nestlé-Aland editions, the reading the dataset notes as the one almost all
+            translations follow, so words read only by the Textus Receptus or by other editions are
+            absent. <code>TAHOT</code> carries the Leningrad text rather than the Qere margin.
+            Everything left out remains in the upstream dataset.
+          </p>
+
+          <h3>Brenton&apos;s Septuagint</h3>
+          <p>
+            The <code>LXX</code> and <code>Brenton</code> modules are the Greek text printed with Sir
+            Lancelot C. L. Brenton&apos;s 1851 translation of the Septuagint, and that translation, both
+            in the public domain, from eBible.org&apos;s{' '}
+            <a href="https://ebible.org/grcbrent/copyright.htm" {...externalProps}>grcbrent</a> and{' '}
+            <a href="https://ebible.org/eng-Brenton/copyright.htm" {...externalProps}>eng-Brenton</a>{' '}
+            sources. They carry the 38 books of the Hebrew canon in the Septuagint&apos;s own numbering;
+            the deuterocanonical books in the sources are left out, and lettered verses merge into the
+            numbered verse they follow.
           </p>
 
           <h2>Lexicons</h2>

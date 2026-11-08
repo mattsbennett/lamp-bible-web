@@ -7,7 +7,7 @@ import { downloadPaths, isMacAvailable, macRelease } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'The Mac app',
   description:
-    'Lamp Bible on the Mac: reader tabs and layouts, the study column, writing with find and replace, books, search, plans, the menu-bar Today, building modules, sync and updates.',
+    'Lamp Bible on the Mac: the passage field, reader tabs and layouts, the study column, writing with find and replace, books, search, Today and reading plans, building modules, sync and updates.',
 }
 
 export default function Page() {
@@ -36,44 +36,56 @@ export default function Page() {
           <strong>Study</strong> — Today, Reader, Books, Reading Plans, Writing, Quizzes and Search.
         </li>
         <li>
-          <strong>Translations</strong> — one row for each installed translation.
-        </li>
-        <li>
           <strong>Library</strong> — Modules, and <strong>Import or Create…</strong> at the bottom.
         </li>
       </ul>
       <p>
         A <strong>Lamp Bible</strong> item in the menu bar shows today’s readings from the plans you
         follow; click one to open it in the reader. Settings has its own window, grouped into
-        Reading, Content and Services.
+        Reading, Content and Services; its Reader pane shows a few verses set as you choose the
+        typeface, size and spacing.
       </p>
 
       <h2>The reader</h2>
       <p>
-        The button in the middle of the toolbar shows where you are; click it to choose a
-        translation, book and chapter. The reader keeps tabs: <strong>⌘T</strong> or the{' '}
-        <strong>+</strong> at the end of the tab row opens a new one, duplicating the current
-        passage or at a passage you choose. Tabs, with each one’s translation and chapter, come back
-        when you relaunch. <strong>Reading History</strong> keeps the last hundred places you have
-        been, across launches.
+        The capsule in the middle of the toolbar shows where you are, with arrows either side for
+        the previous and next chapter and, further out, the previous and next book. Click it, or
+        press <strong>⌘L</strong>, to go somewhere else: type a reference such as{' '}
+        <code>John 3:16</code> and press Return, or choose a translation and a book and click a
+        chapter in the grid. To land on a verse, hold or force click a chapter, or press Space, and
+        pick from its verses. Words that are not a reference offer a search instead, and a Strong’s
+        number offers its{' '}
+        <Link href="/docs/search#analysis">analysis</Link>. Tab moves between the field, the books
+        and the chapters, and the arrow keys move within them.
+      </p>
+      <p>
+        The reader keeps tabs: <strong>⌘T</strong> or the <strong>+</strong> at the end of the tab
+        row opens a new one at a passage you choose. A tab is named after its chapter until you
+        right-click it and choose <strong>Rename Tab…</strong>, and then keeps that name as you read
+        on; the same menu duplicates or closes it. Tabs come back when you relaunch.{' '}
+        <strong>Reading History</strong> keeps the last hundred places you have been, across
+        launches.
       </p>
       <p>
         <strong>New Reader Window</strong> (⌥⌘N) opens another reader. Each window has its own
         place in scripture, its own tabs, its own back and forward, and its own Reader Chat, so two
-        windows can sit on different chapters. Notes and highlights are shared: one made in either
-        window shows in both at once.
+        windows can sit on different chapters, and each comes back with its own tabs. Notes and
+        highlights are shared: one made in either window shows in both at once.
       </p>
 
       <h3>Layout and text</h3>
       <p>
         The <strong>Reader Appearance</strong> menu chooses how a chapter is laid out —{' '}
         <strong>Continuous Paragraph Flow</strong>, <strong>Verse per Line</strong>, or{' '}
-        <strong>Side by Side</strong> — along with typeface, text size and line spacing.
+        <strong>Side by Side</strong> — along with typeface, text size and line spacing. The text
+        keeps to a comfortable line length, which grows with the text size.
       </p>
       <p>
         Side by Side reads up to three other translations verse by verse beside the one you are
-        reading. Each column’s title is a menu that changes its translation, makes it the one you
-        are reading, or removes its column; the <strong>+</strong> beside the titles adds another.
+        reading. Turn it on with the <strong>Side by Side</strong> button in the toolbar, or with
+        the <strong>+</strong> beside a chapter’s opening, which lists the other translations to
+        read beside it. Each column’s title is a menu that changes its translation, makes it the one
+        you are reading, or removes its column; the <strong>+</strong> beside the titles adds another.
         Verses are paired through each translation’s own numbering, so a verse that two
         translations number differently still sits beside its match. Each column shows its own
         highlights and translator’s notes. Where the columns would be too narrow — with the study
@@ -146,6 +158,10 @@ export default function Page() {
             <td>⌥⌘[ / ⌥⌘]</td>
           </tr>
           <tr>
+            <td>Go to a passage, or search</td>
+            <td>⌘L</td>
+          </tr>
+          <tr>
             <td>Larger / smaller text</td>
             <td>⌘+ / ⌘−</td>
           </tr>
@@ -187,7 +203,7 @@ export default function Page() {
       <h2>The study column</h2>
       <p>
         <strong>Study Tools</strong> (⇧⌘I) opens a column beside the text, which you can widen by
-        dragging. It has five tabs, which become a pop-up menu when the column is narrow:
+        dragging. It has four tabs, which become a pop-up menu when the column is narrow:
       </p>
       <Table>
         <thead>
@@ -215,14 +231,8 @@ export default function Page() {
             <td>Notes</td>
             <td>
               Your notes on the chapter, with the selected verse’s note open to edit, its
-              highlights, and notes from installed notes modules
-            </td>
-          </tr>
-          <tr>
-            <td>Another translation</td>
-            <td>
-              The chapter in a second translation, in paragraphs. The tab is named for the
-              translation, with a menu to choose it
+              highlights, a list of the chapter’s highlights to go to, and notes from installed
+              notes modules
             </td>
           </tr>
           <tr>
@@ -232,10 +242,10 @@ export default function Page() {
         </tbody>
       </Table>
       <p>
-        Commentary, notes and the second translation follow the reader as you scroll, and the
-        reader follows the second translation, unless you turn off{' '}
-        <strong>Link Study Tool Scrolling</strong>. A scripture reference anywhere in the column
-        opens a preview, with buttons to open it in the current tab or a new one.
+        Commentary and notes follow the reader as you scroll, unless you turn off{' '}
+        <strong>Link Study Tool Scrolling</strong>; to read another translation beside the text,
+        use Side by Side. A scripture reference anywhere in the column opens a preview, with
+        buttons to open it in the current tab or a new one.
       </p>
 
       <h3>Notes and highlights</h3>
@@ -267,33 +277,36 @@ export default function Page() {
           silent and read-aloud reading times in the status bar.
         </li>
         <li>
-          <strong>Find and replace</strong> — ⌘F, ⌥⌘F — in either mode, with Match Case and Whole
-          Words.
+          <strong>Find and replace</strong> — ⌘F, ⌥⌘F — in either mode. <strong>Aa</strong> and{' '}
+          <strong>ab</strong> in the find field turn on Match Case and Whole Words, and are filled
+          in while they are on.
         </li>
         <li>
           <strong>Details</strong>: title, subtitle, author, date, tags, category, series and
           order, key scriptures, a summary, and footnotes kept in a field of their own.
         </li>
         <li>
-          <strong>Footnotes</strong> from the toolbar, each edited in a small panel beside its
-          marker, with <strong>Remove</strong> taking the marker and note together.
-        </li>
-        <li>
-          <strong>Scripture</strong>, which inserts the verse selected in the reader as a link, and{' '}
-          <strong>Media</strong> and <strong>Record</strong> for images and audio.
+          The <strong>Insert</strong> menu in the format bar: <strong>Scripture Link</strong>, for
+          the verse selected in the reader; <strong>Footnote</strong>, each edited in a small panel
+          beside its marker, with <strong>Remove</strong> taking the marker and note together; and{' '}
+          <strong>Image or Audio File…</strong> and <strong>Record Audio…</strong>.
         </li>
         <li>
           <strong>Revision History</strong>, to undo a change or restore an earlier version.
         </li>
         <li>
-          Companion files — an outline, research notes — as tabs beside the main text.
+          Companion files — an outline, research notes — made with{' '}
+          <strong>New Markdown File…</strong> in the toolbar’s <strong>Workspace</strong> menu. They
+          open as tabs beside the main text; the tab bar appears once there is one.
         </li>
       </ul>
       <p>
         Writing saves itself shortly after you stop typing; ⌘S saves at once. The Writing list
-        sorts, groups and filters your collection, and its <strong>Present</strong> button shows the
-        selected piece full screen for reading from. Export a piece as a <code>.lamp</code> file from
-        its menu, or a collection as markdown from Modules.
+        sorts, groups and filters your collection, and ⌘F finds in the preview of the piece
+        selected in it. Its <strong>Present</strong> button shows the selected piece full screen for
+        reading from. Export a piece as a <code>.lamp</code> file from its menu, or a collection as
+        markdown from Modules. Deleting a piece also deletes the decks built from it, and the Mac
+        names them before it does.
       </p>
 
       <h2>Books</h2>
@@ -307,28 +320,42 @@ export default function Page() {
 
       <h2>Search</h2>
       <p>
-        The Mac’s search covers everything <Link href="/docs/search">Search</Link> describes, plus
-        reading plans and quizzes, in one list with a preview beside it. Filters narrow it by kind of
-        content, by module, to the Old or New Testament, by Strong’s key or highlight colour, and —
-        for writing — by date, tag and category.
+        The Mac’s search covers everything <Link href="/docs/search">Search</Link> describes in one
+        list, grouped by kind with Scripture first, and previews the selected result beside it in
+        the reader’s own type. Typing a reference puts a row to go straight to it above the results,
+        and typing a Strong’s number one to analyse it. The filter bar under the toolbar narrows the
+        results by kind of content, by module, to the Old or New Testament, by Strong’s key or
+        highlight colour, and — for writing — by date, tag and category.
       </p>
 
       <h2>Today and reading plans</h2>
       <p>
-        <strong>Reading Plans</strong> chooses which plans appear in <strong>Today</strong>. Each
-        reading in Today shows its estimated time and can be marked complete, opened in the reader,
-        or opened in an <Link href="/docs/reader">external Bible app</Link>. Opening a plan enters
-        plan reading: only the day’s passages, a bar to move between readings and mark them
-        complete, and the day’s quiz in a panel. Settings → Reading Plans sets the reading speed and
-        a daily reminder. The plans you follow and the readings you tick sync with your iPhone and
-        iPad.
+        <strong>Today</strong> is the day’s page. It shows each plan you follow with that day’s
+        readings, how many are done, and <strong>Start Reading</strong> or{' '}
+        <strong>Continue</strong>; a strip showing how the week stands; and, under{' '}
+        <strong>Pick Up Where You Left Off</strong>, the passage open in the reader, the quiz on the
+        day’s readings and the writing you last worked on. The arrows and the calendar at the top
+        show another day. Each reading shows its estimated time and can be marked complete, opened in
+        the reader, or — from its context menu — opened in an{' '}
+        <Link href="/docs/reader">external Bible app</Link>.
+      </p>
+      <p>
+        <strong>Reading Plans</strong> chooses which plans appear in Today, and{' '}
+        <strong>New Plan…</strong> makes one from the passages you want to read — see{' '}
+        <Link href="/docs/reading-plans">Reading plans</Link>. Opening a plan enters plan reading:
+        only the day’s passages, a bar to move between readings and mark them complete, and the
+        day’s quiz in a panel. Settings → Reading Plans sets the reading speed and a daily reminder.
+        The plans you follow and the readings you tick sync with your iPhone and iPad.
       </p>
 
       <h2 id="make-a-module">Modules, importing and building</h2>
       <p>
-        <strong>Modules</strong> in the sidebar lists everything installed, built in or yours, and
-        exports any module you made as a <code>.lamp</code> — or as markdown, for books, writing and
-        notes. <strong>Import or Create Content</strong> (⇧⌘M) gathers every way in:
+        <strong>Modules</strong> in the sidebar shelves everything installed: your own My Writing,
+        My Notes and My Highlights first, then a shelf for each kind of module. A module you
+        installed or made has a menu on its card to export or remove it — as a <code>.lamp</code>,
+        or as markdown for books, writing and notes — and one that came with Lamp says{' '}
+        <strong>Built In</strong>. <strong>Import or Create Content</strong> (⇧⌘M) gathers every way
+        in:
       </p>
       <ul>
         <li>

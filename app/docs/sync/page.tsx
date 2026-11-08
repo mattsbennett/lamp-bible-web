@@ -77,7 +77,8 @@ export default function Page() {
         </li>
         <li>
           Modules you imported yourself — translations, dictionaries, commentaries, books, plans and
-          quizzes, including Bibles you <Link href="/docs/modules/import-bible">imported</Link>.
+          quizzes, including Bibles you <Link href="/docs/modules/import-bible">imported</Link> — and
+          reading plans you <Link href="/docs/reading-plans#making-a-plan">made</Link>.
         </li>
         <li>Slide decks made on a Mac, which iPhone and iPad receive to view.</li>
         {isMacAvailable && (
@@ -94,7 +95,7 @@ export default function Page() {
         <li>Your WebDAV password and the choice of sync method.</li>
         <li>
           Search and navigation history, where you are in each book, the active highlight set and
-          style, the read-aloud voice, and the tool panel’s position.
+          style, the read-aloud voice, the reader’s typeface, and the tool panel’s position.
         </li>
       </ul>
 
@@ -109,7 +110,7 @@ export default function Page() {
         Sync works file by file. One file that fails — a server timeout, say — is reported, and the
         rest still sync. While you are writing, an icon in the Notes panel header and in the
         devotional editor shows whether your latest change has left the device: synced, syncing,
-        waiting to sync, or unavailable.
+        waiting to sync, or unavailable — or, with sync off, that it is saved on this device alone.
       </p>
 
       <h3>What is in the folder</h3>
@@ -213,8 +214,9 @@ export default function Page() {
 
       <h2>Deletions</h2>
       <p>
-        Deleting a note, a devotional, a highlight set, a single highlight or a theme is recorded,
-        so your other devices delete it too rather than restoring it. An entry edited on another
+        Deleting a note, a devotional, a highlight set, a single highlight, a theme, or a module
+        or plan of your own is recorded, so your other devices delete it too rather than restoring
+        it. An entry edited on another
         device after you deleted it survives. A file that simply goes missing from the server is
         never taken as a deletion. Deleted files are remembered for 180 days; a device that has
         been away longer than that brings them back once.

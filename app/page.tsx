@@ -68,7 +68,7 @@ type Feature = {
 const features: Feature[] = [
   {
     title: 'A study-grade reader',
-    body: 'Five public-domain and openly licensed translations, most tagged with Strong’s numbers and morphology. Tap a tagged word for its lexicon entry. Red letters, headings, poetry and paragraphs are kept as published.',
+    body: 'Nine public-domain and openly licensed texts — English translations, the Hebrew and Greek, and the Septuagint in Greek and English — most tagged with Strong’s numbers and morphology. Tap a tagged word for its lexicon entry. Red letters, headings, poetry and paragraphs are kept as published.',
     href: '/docs/reader',
     icon: ReaderIcon,
     art: <ReaderArt />,
@@ -85,7 +85,7 @@ const features: Feature[] = [
   },
   {
     title: 'Reading plans that keep up',
-    body: 'Three public-domain Companion plans, or your own: tick off each reading, see how long the day will take at your pace, and get a reminder and a widget.',
+    body: 'Three public-domain Companion plans, or one you make from the passages you want to read: tick off each reading, see the day and the week at a glance, know how long the day will take at your pace, and get a reminder and a widget.',
     href: '/docs/reading-plans',
     icon: PlanIcon,
     art: <PlansArt />,
@@ -119,7 +119,7 @@ const features: Feature[] = [
   },
   {
     title: 'Search that reaches everything',
-    body: 'One index across translations, lexicons, commentaries, books, notes, writing and highlights — by word, phrase or Strong’s number, narrowed by module, tag or highlight colour.',
+    body: 'One index across translations, lexicons, commentaries, books, notes, writing, plans, quizzes and highlights — by word, part of a word, phrase or Strong’s number, narrowed by book, module, tag or highlight colour.',
     href: '/docs/search',
     icon: SearchIcon,
     art: <SearchArt />,
@@ -189,7 +189,7 @@ function Hero() {
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             Lamp Bible puts translations, lexicons, commentaries, reading plans, your notes,
-            devotionals and highlights behind a single reader — working offline, with no account,
+            writing and highlights behind a single reader — working offline, with no account,
             and stored in an open format you can export at any time.
           </p>
 
@@ -392,7 +392,7 @@ const phoneWriting: Array<{ title: string; body: string; icon: IconComponent }> 
 const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = [
   {
     title: 'Chat',
-    body: 'Ask for a draft, a cut or a check. Its edits go straight into the draft, and every one lands in Revisions, where you can undo it.',
+    body: 'Ask for a draft, a cut or a check, on the model and effort you choose for that chat. Its edits go straight into the draft, and every one lands in Revisions, where you can undo it.',
     icon: ChatIcon,
   },
   {
@@ -407,7 +407,7 @@ const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = 
   },
   {
     title: 'Workspace Skills',
-    body: 'Instructions it can follow. Build Lamp Deck, built in, turns the writing into slides.',
+    body: 'Instructions it can follow. Three come built in: one turns the writing into slides, one checks what scripture establishes against what the writing infers, and one examines the Hebrew and Greek behind a claim.',
     icon: SkillIcon,
   },
 ]
@@ -527,7 +527,8 @@ function Writing() {
                 Turn on <span className="text-ink">Allow other apps to change my writings</span> as
                 well, and an agent there can rewrite a writing’s draft too. Lamp takes the new draft
                 in when you next open that writing’s workspace, and never lets it overwrite an edit of
-                yours it hadn’t seen.
+                yours it hadn’t seen. With <span className="text-ink">Allow other apps to add reading
+                plans</span>, it can make you a plan over the passages you name.
               </p>
               <p className="mt-5 text-xs leading-relaxed text-faint">
                 Claude Desktop installs Lamp in one step and asks first; the others take a snippet
@@ -551,13 +552,13 @@ function Writing() {
 const macFeatures: Array<{ title: string; body: string; href: string; icon: IconComponent }> = [
   {
     title: 'A reader built for the Mac',
-    body: 'Tabs and separate windows, a study column with commentary, verse notes, original language and dictionary, up to three other translations side by side, and today’s readings in the menu bar.',
+    body: 'Tabs and separate windows, a Today page with your plans and where you left off, a study column with commentary, verse notes, original language and dictionary, up to three other translations side by side, and today’s readings in the menu bar.',
     href: '/docs/mac',
     icon: WindowsIcon,
   },
   {
     title: 'Reader Chat',
-    body: 'Ask about the chapter in front of you. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account.',
+    body: 'Ask about the chapter in front of you, or the words you have selected. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account, on the model you choose.',
     href: '/docs/ai',
     icon: ChatIcon,
   },

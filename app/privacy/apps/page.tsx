@@ -19,7 +19,7 @@ export default function AppPrivacy() {
           <h1 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
             Lamp Bible app privacy
           </h1>
-          <p className="mt-3 text-muted">Last updated October 29, 2026.</p>
+          <p className="mt-3 text-muted">Last updated November 7, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -91,6 +91,14 @@ export default function AppPrivacy() {
             Bible does not receive information back about what you do there.
           </p>
 
+          <h2>Apple Intelligence</h2>
+          <p>
+            Where Apple Intelligence is available, a new reading plan can start from a description
+            you type, such as “the Gospels in a month”. Apple&apos;s on-device model reads the
+            description to fill in the plan&apos;s form, which you check before anything is added.
+            The description is not sent to Lamp Bible.
+          </p>
+
           {isMacAvailable && (
             <>
               <h2>Software updates on Mac</h2>
@@ -112,12 +120,15 @@ export default function AppPrivacy() {
                 The Mac app&apos;s AI features work only through an AI provider&apos;s command-line
                 tool that you install and sign in to yourself. Lamp Bible starts that tool on your
                 Mac; it does not read or store your provider credentials. When you use it, your
-                messages are sent to that provider, together with the chapter and translation you
-                are reading in Reader Chat and any module content the agent looks up. Both look
-                only in the modules your Module Access setting allows. Your own
-                notes, highlights and other writing are looked up only if you allow that in Settings
-                → AI &amp; Agents. A writing agent always has access to the writing it was opened
-                from and the files you add to its workspace. The provider&apos;s terms and privacy
+                messages are sent to that provider, together with any module content the agent looks
+                up. In Reader Chat each message also carries the chapter and translation you are
+                reading, the verse you have marked and any text you have selected; in a writing
+                agent, the file open in the editor and the text selected in it. Both look only in
+                the modules your Module Access setting allows. Your own notes, highlights and other
+                writing are sent or looked up only if you allow that in Settings → AI &amp; Agents;
+                with it on, Reader Chat sends your notes and highlights on the chapter you are
+                reading. A writing agent always has access to the writing it was opened from and the
+                files you add to its workspace. The provider&apos;s terms and privacy
                 policy apply. Lamp Bible does not operate or proxy these services and does not
                 receive your conversations. Writing-agent workspaces, including their
                 conversations, sync with your library; Reader Chat conversations stay on the Mac.
@@ -126,8 +137,8 @@ export default function AppPrivacy() {
                 If you allow other apps to use Lamp Bible&apos;s tools — Claude Desktop, say — what
                 they read from your library goes to whichever AI provider that app uses, under that
                 app&apos;s and that provider&apos;s terms. The same settings decide what they may
-                read, and they can change a writing only if you allow that separately. Both are off
-                until you turn them on.
+                read. They can change a writing, or add a reading plan, only if you allow each
+                separately. All of these are off until you turn them on.
               </p>
             </>
           )}

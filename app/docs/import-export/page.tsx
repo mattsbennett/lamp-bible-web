@@ -27,15 +27,15 @@ export default function Page() {
           <tr>
             <td>Export a notes or devotional collection</td>
             <td>
-              Settings → Modules → Manager, then the collection’s menu → <strong>Export
-              (Markdown)</strong>. One combined file.
+              Settings → <strong>Module Manager</strong>, then the collection’s menu →{' '}
+              <strong>Export (Markdown)</strong>. One combined file.
             </td>
           </tr>
           <tr>
             <td>Export devotionals file by file</td>
             <td>
-              The devotional library’s menu → <strong>Export All</strong> (one file each, with
-              media) or <strong>Export to Single File</strong>. Both write to{' '}
+              The writing library’s menu → <strong>Export</strong> → <strong>Export All</strong>{' '}
+              (one file each, with media) or <strong>Export to Single File</strong>. Both write to{' '}
               <code>iCloud Drive/Lamp Bible/Export/Devotionals/</code>, so they need iCloud Drive
               sync.
             </td>
@@ -44,13 +44,13 @@ export default function Page() {
             <td>Share one devotional</td>
             <td>
               The devotional’s share menu → <strong>Share as Markdown</strong>, or{' '}
-              <strong>Share Devotional File</strong> for a <code>.lamp</code> that keeps its media.
+              <strong>Share Writing File</strong> for a <code>.lamp</code> that keeps its media.
             </td>
           </tr>
           <tr>
             <td>Import notes or devotionals</td>
             <td>
-              Settings → Modules → Manager → <strong>+</strong> → Import Module →{' '}
+              Settings → <strong>Module Manager</strong> → <strong>+</strong> → Import Module →{' '}
               <strong>Import Notes from Markdown</strong> or{' '}
               <strong>Import Devotionals from Markdown</strong>. Choose one file or a folder of
               files, then the collection it goes into, or a new one.
@@ -59,8 +59,8 @@ export default function Page() {
           <tr>
             <td>Import a devotional file someone sent</td>
             <td>
-              Open it from Files, Mail or AirDrop, or use the devotional library’s menu →{' '}
-              <strong>Import Devotional</strong>. You see a preview before anything is added.
+              Open it from Files, Mail or AirDrop, or use the writing library’s menu →{' '}
+              <strong>Import Writing</strong>. You see a preview before anything is added.
             </td>
           </tr>
         </tbody>
@@ -324,7 +324,7 @@ Life brings unexpected storms...`}</code>
       <Callout title="Markdown shared alone carries no media">
         <p>
           Share as Markdown sends the text without its images and audio, so their links will not
-          resolve elsewhere. Use Share Devotional File, or an export with its media folder, when
+          resolve elsewhere. Use Share Writing File, or an export with its media folder, when
           the media matters.
         </p>
       </Callout>

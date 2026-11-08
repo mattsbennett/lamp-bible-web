@@ -13,13 +13,15 @@ export default function Page() {
     <DocPage
       href="/docs/included-content"
       title="Bundled content"
-      intro="The offline library in the current release: five translations, four lexicons, two cross-reference sets, three reading plans and a quiz module."
+      intro="The offline library in the current release: nine translations, four lexicons, two cross-reference sets, three reading plans and a quiz module."
     >
       <h2>Translations</h2>
       <p>
         The translations use several different rights bases rather than one blanket public-domain
-        claim. Identifiers ending in <code>s</code> carry Strong’s numbers on individual words,
-        which is what enables tap-to-lexicon lookups.
+        claim. Those marked for Strong’s carry Strong’s numbers on individual words, which is what
+        enables tap-to-lexicon lookups: the English ones have identifiers ending in <code>s</code>,
+        and <code>TAHOT</code> and <code>TAGNT</code> are the Hebrew and Greek texts themselves,
+        tagged word by word with morphology too.
       </p>
 
       <Table>
@@ -72,8 +74,47 @@ export default function Page() {
             <td>—</td>
             <td>Public domain</td>
           </tr>
+          <tr>
+            <td>
+              <code>TAHOT</code>
+            </td>
+            <td>Translators Amalgamated Hebrew Old Testament (Leningrad Codex), from STEPBible</td>
+            <td>Yes</td>
+            <td>CC BY 4.0</td>
+          </tr>
+          <tr>
+            <td>
+              <code>TAGNT</code>
+            </td>
+            <td>Translators Amalgamated Greek New Testament (Nestlé-Aland), from STEPBible</td>
+            <td>Yes</td>
+            <td>CC BY 4.0</td>
+          </tr>
+          <tr>
+            <td>
+              <code>LXX</code>
+            </td>
+            <td>Brenton Greek Septuagint</td>
+            <td>—</td>
+            <td>Public domain</td>
+          </tr>
+          <tr>
+            <td>
+              <code>Brenton</code>
+            </td>
+            <td>Brenton English Septuagint (1851)</td>
+            <td>—</td>
+            <td>Public domain</td>
+          </tr>
         </tbody>
       </Table>
+
+      <p>
+        The two Septuagint texts are the Old Testament only — the books of the Hebrew canon, without
+        the deuterocanon — and keep the Septuagint’s own numbering: the Psalms by the Greek count,
+        Nehemiah as chapters 11–23 of 2 Esdras (Ezra), and Esther and Daniel with their Greek
+        additions.
+      </p>
 
       <p>
         The Berean Standard Bible is the default. Translations you do not use can be hidden from the

@@ -60,11 +60,12 @@ export default function Page() {
       <h2>Looking a word up</h2>
       <p>
         In a Strong’s-tagged translation, tap a word — in the reader, in a commentary or in a book.
-        The lexicon view opens on the entry for that word’s Strong’s number; swipe to see the same
-        word in each of your other lexicons. A count beside the entry shows how often the number
-        occurs, and tapping it searches for every verse that uses it. The chart button beside it
-        opens an <Link href="/docs/search#analysis">analysis</Link> of the word: how translators
-        rendered it, where it gathers, and the words found with it.
+        The lexicon view opens on the entry for that word’s Strong’s number, named above the word
+        by the lexicon it comes from; swipe to see the same word in each of your other lexicons. A
+        count beside the number shows how often it occurs, and tapping it searches for every verse
+        that uses it. <strong>Analyse</strong> beside that opens an{' '}
+        <Link href="/docs/search#analysis">analysis</Link> of the word: how translators rendered
+        it, where it gathers, and the words found with it.
       </p>
       <p>An entry can include:</p>
       <ul>
@@ -89,7 +90,8 @@ export default function Page() {
 
       <h2>Ordering and hiding</h2>
       <p>
-        Hebrew and Greek each have their own lexicon order, set in Settings → Modules → Settings.
+        Hebrew and Greek each have their own lexicon order, set in Settings → Translations &amp;
+        Lexicons.
         The default puts Strong’s first, followed by BDB for Hebrew and Dodson for Greek. Drag them
         so that the dictionary you actually trust appears first, and swipe to hide the ones you
         never read — hidden lexicons stay installed and searchable, they just stop appearing in

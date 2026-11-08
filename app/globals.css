@@ -160,13 +160,50 @@
     --sys-primary-a: rgb(0 0 0 / 0.055);
     --sys-primary-b: rgb(0 0 0 / 0.1);
     --sys-cell-elev: #ffffff;
+    /* The iPhone's own surfaces and text (LampTheme.swift). */
+    --lamp-page: #ffffff;
+    --lamp-text: #1c1c1e;
+    --lamp-verse: #5f5f65;
+    --lamp-caption: #6c6c70;
+    --lamp-panel: #f5f5f7;
+    --lamp-sheet: #ffffff;
+    --lamp-tile: #f2f2f5;
+    --lamp-hero: #ffffff;
+    --lamp-menu: #f2f2f7;
+    --lamp-menu-card: #ffffff;
+    --lamp-rule: #c7c7cc;
+    --lamp-bar-neutral: #76767c;
+    --lamp-bar-track: #e8e8ed;
+    --lamp-match: rgb(255 204 0 / 0.35);
+    /* A highlight's wash and a swatch's fill (lampHighlightFill, lampSwatchFill):
+       in dark the colour is lifted toward white first, so yellow doesn't go olive. */
+    --lamp-hl-lift: 0%;
+    --lamp-hl-alpha: 30%;
+    --lamp-swatch: 38%;
     /* The writing editor's web view (tiptap-editor/src/editor.css). */
-    --ed-rule: rgb(0 0 0 / 0.15);
-    --ed-wash: rgb(0 0 0 / 0.04);
-    --ed-muted: rgb(0 0 0 / 0.5);
-    --mac-window: #ececec;
+    --ed-page: #ffffff;
+    --ed-text: #1c1c1e;
+    --ed-heading: #000000;
+    --ed-rule: rgb(0 0 0 / 0.12);
+    --ed-wash: rgb(0 0 0 / 0.035);
+    --ed-muted: rgb(60 60 67 / 0.72);
+    /* The Mac's window, sidebar, toolbar glass and cards (LampColors.swift). */
+    --mac-window: #ffffff;
+    --mac-sidebar: #ededed;
+    --mac-glass: #fcfcfc;
+    --mac-glass-edge: rgb(0 0 0 / 0.07);
     --mac-control: #ffffff;
+    --mac-popup: #ececec;
     --mac-bar: #f5f5f5;
+    --mac-card: #f4f4f6;
+    --mac-card-edge: rgb(0 0 0 / 0.1);
+    --mac-inspector: #f4f4f5;
+    --mac-canvas: #f6f6f6;
+    --mac-track: #eeeeee;
+    --mac-secondary: #59595f;
+    --mac-prose: #262629;
+    --mac-match: rgb(255 204 0 / 0.4);
+    --mac-on-match: var(--sys-label);
     --mac-under: #a9a9ab;
     --bezel: #1d1d1f;
     color: var(--sys-label);
@@ -201,15 +238,54 @@
       --sys-primary-a: rgb(255 255 255 / 0.055);
       --sys-primary-b: rgb(255 255 255 / 0.1);
       --sys-cell-elev: #2c2c2e;
-      --ed-rule: rgb(255 255 255 / 0.18);
-      --ed-wash: rgb(255 255 255 / 0.06);
-      --ed-muted: rgb(255 255 255 / 0.55);
-      --mac-window: #2b2b2d;
+      --lamp-page: #121213;
+      --lamp-text: #e9e7e3;
+      --lamp-verse: #b4b4bb;
+      --lamp-caption: #a1a1a8;
+      --lamp-panel: #1e1e20;
+      --lamp-sheet: #202022;
+      --lamp-tile: #38383c;
+      --lamp-hero: #262629;
+      --lamp-menu: #1c1c1e;
+      --lamp-menu-card: #2c2c2e;
+      --lamp-rule: #48484a;
+      --lamp-bar-neutral: #8e8e95;
+      --lamp-bar-track: #3a3a3e;
+      --lamp-match: rgb(255 214 10 / 0.32);
+      --lamp-hl-lift: 35%;
+      --lamp-hl-alpha: 36%;
+      --lamp-swatch: 62%;
+      --ed-page: #161618;
+      --ed-text: #e9e7e3;
+      --ed-heading: #ffffff;
+      --ed-rule: rgb(255 255 255 / 0.14);
+      --ed-wash: rgb(255 255 255 / 0.05);
+      --ed-muted: rgb(235 235 245 / 0.66);
+      --mac-window: #232423;
+      --mac-sidebar: #272827;
+      --mac-glass: #414241;
+      --mac-glass-edge: rgb(255 255 255 / 0.08);
       --mac-control: #1e1e1e;
-      --mac-bar: #323234;
+      --mac-popup: #333433;
+      --mac-bar: #2a2b2a;
+      --mac-card: #323235;
+      --mac-card-edge: rgb(255 255 255 / 0.12);
+      --mac-inspector: #1b1b1b;
+      --mac-canvas: #282828;
+      --mac-track: #323332;
+      --mac-secondary: #bdbdc2;
+      --mac-prose: #e0e0e3;
+      --mac-match: #ccb066;
+      --mac-on-match: #171408;
       --mac-under: #18181a;
       --bezel: #3a3a3c;
     }
+  }
+
+  /* The serif the apps set scripture and writing in: New York on Apple
+     devices, a close book face elsewhere. */
+  .app-serif {
+    font-family: 'New York', ui-serif, 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   }
 }
 

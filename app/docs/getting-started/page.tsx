@@ -35,7 +35,7 @@ export default function Page() {
 
       <Callout title="What you get on day one">
         <p>
-          Five translations, four lexicons, two cross-reference sets, three public-domain reading
+          Nine translations, four lexicons, two cross-reference sets, three public-domain reading
           plans and a quiz module are included in the install. See{' '}
           <Link href="/docs/included-content">Bundled content</Link> for the full list and rights
           status.
@@ -105,12 +105,14 @@ export default function Page() {
       <p>
         The reader opens on the Berean Standard Bible with Strong’s tagging (<code>BSBs</code>) by
         default. To switch, tap the title at the top of the reader and use the translation menu
-        above the list of books; to change the default, go to Settings → Modules → Settings.
+        above the list of books; to change the default, go to Settings → Translations &amp;
+        Lexicons.
       </p>
       <p>
         Translations whose identifier ends in <code>s</code> — <code>BSBs</code>, <code>ASVs</code>,{' '}
-        <code>WEBs</code> and <code>KJVs</code> — carry Strong’s numbers on individual words. In
-        those translations you can tap a word to open its lexicon entry. Translations without
+        <code>WEBs</code> and <code>KJVs</code> — carry Strong’s numbers on individual words, as do{' '}
+        <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts. In those
+        translations you can tap a word to open its lexicon entry. Translations without
         tagging read perfectly well but have no word-level lookups.
       </p>
       <p>
@@ -147,7 +149,8 @@ export default function Page() {
       <h2>A first pass through the app</h2>
       <ol>
         <li>
-          On the home screen, tap <strong>Add</strong> under Plans and choose a reading plan.
+          On the home screen, tap <strong>Reading Plan</strong> — or <strong>Manage</strong>, once
+          you follow one — and <strong>Follow</strong> a plan.
         </li>
         <li>
           Tap <strong>Start Reading</strong>, or open <strong>Read</strong> and tap the title to
