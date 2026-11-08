@@ -42,7 +42,6 @@ export default function ContentLicences() {
                 <th>Module</th>
                 <th>Source and version</th>
                 <th>Rights basis</th>
-                <th>Release status</th>
               </tr>
             </thead>
             <tbody>
@@ -50,7 +49,6 @@ export default function ContentLicences() {
                 <td><code>ASVs</code> — American Standard Version</td>
                 <td>CrossWire SWORD module v2.0</td>
                 <td>Public domain</td>
-                <td>Cleared</td>
               </tr>
               <tr>
                 <td><code>BSBs</code> — Berean Standard Bible</td>
@@ -59,25 +57,21 @@ export default function ContentLicences() {
                   <a href="https://creativecommons.org/publicdomain/zero/1.0/" {...externalProps}>CC0 1.0</a>{' '}
                   public-domain dedication
                 </td>
-                <td>Cleared</td>
               </tr>
               <tr>
                 <td><code>Brenton</code> — Brenton English Septuagint</td>
                 <td>eBible.org <code>eng-Brenton</code> USFM, source files dated October 7, 2026</td>
                 <td>Public domain</td>
-                <td>Cleared</td>
               </tr>
               <tr>
                 <td><code>KJVs</code> — King James Version with Strong&apos;s and morphology</td>
                 <td>CrossWire KJV module v3.1</td>
                 <td>CrossWire any-purpose grant; source metadata also labels it GPL</td>
-                <td>Included in the next release</td>
               </tr>
               <tr>
                 <td><code>LXX</code> — Brenton Greek Septuagint</td>
                 <td>eBible.org <code>grcbrent</code> USFM, source files dated April 8, 2026</td>
                 <td>Public domain</td>
-                <td>Cleared</td>
               </tr>
               <tr>
                 <td><code>TAGNT</code> — Translators Amalgamated Greek New Testament</td>
@@ -85,7 +79,6 @@ export default function ContentLicences() {
                 <td>
                   <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
                 </td>
-                <td>Cleared</td>
               </tr>
               <tr>
                 <td><code>TAHOT</code> — Translators Amalgamated Hebrew Old Testament</td>
@@ -93,19 +86,16 @@ export default function ContentLicences() {
                 <td>
                   <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
                 </td>
-                <td>Cleared</td>
               </tr>
               <tr>
                 <td><code>WEBs</code> — World English Bible</td>
                 <td>World English Bible source text</td>
                 <td>Public domain; “World English Bible” is an eBible.org trademark</td>
-                <td>Cleared</td>
               </tr>
               <tr>
                 <td><code>YLT</code> — Young&apos;s Literal Translation</td>
                 <td>CrossWire SWORD module v1.1, 1898 edition</td>
                 <td>Public domain</td>
-                <td>Cleared</td>
               </tr>
             </tbody>
           </Table>
@@ -273,22 +263,22 @@ export default function ContentLicences() {
               <tr>
                 <td>The Bible Companion</td>
                 <td>Robert Roberts</td>
-                <td>Public domain — cleared</td>
+                <td>Public domain</td>
               </tr>
               <tr>
                 <td>Children&apos;s Bible Companion: Junior</td>
                 <td>Birmingham Central Christadelphian Sunday School Committee</td>
-                <td>Public domain — cleared</td>
+                <td>Public domain</td>
               </tr>
               <tr>
                 <td>Children&apos;s Bible Companion: Intermediate</td>
                 <td>Birmingham Central Christadelphian Sunday School Committee</td>
-                <td>Public domain — cleared</td>
+                <td>Public domain</td>
               </tr>
               <tr>
                 <td>The Bible Companion Quizzes</td>
                 <td>Lamp Bible</td>
-                <td>Cleared</td>
+                <td>—</td>
               </tr>
             </tbody>
           </Table>
