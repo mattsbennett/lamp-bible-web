@@ -196,13 +196,19 @@ CREATE TABLE commentary_units (
     commentary_json TEXT,
     footnotes_json TEXT,
     search_text TEXT NOT NULL DEFAULT '',
-    order_index INTEGER NOT NULL DEFAULT 0
+    order_index INTEGER NOT NULL DEFAULT 0,
+    footnotes_text TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX idx_comm_units_module ON commentary_units(module_id);
 CREATE INDEX idx_comm_units_verse ON commentary_units(sv, ev);
 CREATE INDEX idx_comm_units_book_chapter ON commentary_units(book, chapter);
 CREATE INDEX idx_comm_units_parent ON commentary_units(parent_id);
 CREATE INDEX idx_comm_units_type ON commentary_units(unit_type);
+
+CREATE VIRTUAL TABLE commentary_units_fts USING fts5(
+    title, search_text, footnotes_text,
+    content='commentary_units', content_rowid='rowid'
+);
 """
 
 BOOK_SQL = MODULE_FORMAT_SQL + """
@@ -229,7 +235,8 @@ CREATE TABLE book_modules (
     created INTEGER,
     last_modified INTEGER,
     footnotes_json TEXT,
-    media_json TEXT
+    media_json TEXT,
+    genre TEXT
 );
 
 CREATE TABLE book_sections (
@@ -335,6 +342,11 @@ CREATE TABLE devotional_entries (
 CREATE INDEX idx_dev_module ON devotional_entries(module_id);
 CREATE INDEX idx_dev_date ON devotional_entries(date);
 CREATE INDEX idx_dev_series ON devotional_entries(series_id, series_order);
+
+CREATE VIRTUAL TABLE devotional_entries_fts USING fts5(
+    title, search_text,
+    content='devotional_entries', content_rowid='rowid'
+);
 """
 
 HIGHLIGHTS_SQL = MODULE_FORMAT_SQL + """
@@ -978,6 +990,8 @@ def commentary_units(module_id: str, book: int, chapters: list, footnotes: list)
             'search_text': joined(plain_text(title), plain_text(introduction),
                                   plain_text(translation), plain_text(commentary)),
             'order_index': len(rows),
+            # Indexed beside search_text, so a search finds words in the notes too.
+            'footnotes_text': plain_text(notes),
         })
         return unit_id
 
@@ -1047,13 +1061,15 @@ def populate_commentary(cur, src):
             """INSERT INTO commentary_units (
                    id, module_id, book, chapter, sv, ev, unit_type, level, parent_id, title,
                    suffix, introduction_json, translation_json, commentary_json,
-                   footnotes_json, search_text, order_index
-               ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                   footnotes_json, search_text, order_index, footnotes_text
+               ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (unit['id'], meta['id'], book, unit['chapter'], unit['sv'], unit['ev'],
              unit['unit_type'], unit['level'], unit['parent_id'], unit['title'], unit['suffix'],
              unit['introduction_json'], unit['translation_json'], unit['commentary_json'],
-             unit['footnotes_json'], unit['search_text'], unit['order_index']),
+             unit['footnotes_json'], unit['search_text'], unit['order_index'],
+             unit['footnotes_text']),
         )
+    cur.execute("INSERT INTO commentary_units_fts(commentary_units_fts) VALUES('rebuild')")
 
 
 # --- Book ------------------------------------------------------------------
@@ -1083,6 +1099,8 @@ BOOK = {
         'textDirection': 'ltr',
         'version': '1.0.0',
         'tags': ['sample'],
+        # One of the bundled library's genres, by ID.
+        'genre': 'bible-exposition',
         'created': 1_770_000_000,
         'lastModified': 1_770_000_000,
     },
@@ -1157,15 +1175,16 @@ def populate_book(cur, src):
                id, title, subtitle, description, author, editor, publisher, year, edition,
                isbn, language, text_direction, copyright, license, version, schema_version,
                tags_json, cover_media_id, is_editable, created, last_modified,
-               footnotes_json, media_json
-           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+               footnotes_json, media_json, genre
+           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (module_id, meta['title'], meta.get('subtitle'), meta.get('description'),
          meta.get('author'), meta.get('editor'), meta.get('publisher'), meta.get('year'),
          meta.get('edition'), meta.get('isbn'), meta['language'],
          meta.get('textDirection') or 'ltr', meta.get('copyright'), meta.get('license'),
          meta.get('version'), meta.get('schemaVersion') or '1.0', to_json(meta.get('tags')),
          meta.get('coverMediaId'), 1 if meta.get('isEditable') else 0, meta.get('created'),
-         meta.get('lastModified'), to_json(src.get('footnotes')), to_json(src.get('media'))),
+         meta.get('lastModified'), to_json(src.get('footnotes')), to_json(src.get('media')),
+         meta.get('genre')),
     )
 
     def insert(sections, parent, depth):
@@ -1501,6 +1520,7 @@ def populate_devotional(cur, src):
                 plain_text(src['content']), plain_text(src.get('footnotes'))),
          to_json(src.get('media'))),
     )
+    cur.execute("INSERT INTO devotional_entries_fts(devotional_entries_fts) VALUES('rebuild')")
 
 
 # --- Highlights ------------------------------------------------------------

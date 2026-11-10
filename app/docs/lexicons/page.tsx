@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'Lexicons',
   description:
-    'Strong’s Hebrew and Greek, Brown-Driver-Briggs and Dodson lookups from any tagged word, plus how to order and hide lexicons.',
+    'Strong’s Hebrew and Greek, Brown-Driver-Briggs, STEPBible’s TBESG and Dodson lookups from any tagged word, plus how to order and hide lexicons.',
 }
 
 export default function Page() {
@@ -37,6 +37,11 @@ export default function Page() {
             <td>~5,500</td>
           </tr>
           <tr>
+            <td>Translators Brief Lexicon of Extended Strong’s for Greek (TBESG)</td>
+            <td>Greek</td>
+            <td>~10,800</td>
+          </tr>
+          <tr>
             <td>Brown-Driver-Briggs (unabridged)</td>
             <td>Hebrew</td>
             <td>~10,000</td>
@@ -50,8 +55,11 @@ export default function Page() {
       </Table>
 
       <p>
-        All four have public-domain source records and ship inside the app. The exact source and
-        rights basis for each is listed under <Link href="/content-licences">Content licences</Link>.
+        All five ship inside the app. Strong’s, BDB and Dodson have public-domain source records;
+        TBESG is STEPBible’s, under CC BY 4.0, with definitions mostly from Abbott-Smith’s{' '}
+        <em>Manual Greek Lexicon of the New Testament</em>, and it covers the Septuagint’s Greek as
+        well as the New Testament’s. The exact source and rights basis for each is listed under{' '}
+        <Link href="/content-licences">Content licences</Link>.
         A mapping table connects Strong’s Hebrew numbers to their BDB entries, since the two systems
         do not correspond one-to-one — a single Strong’s number can resolve to several BDB entries
         for different words or homographs.
@@ -92,7 +100,7 @@ export default function Page() {
       <p>
         Hebrew and Greek each have their own lexicon order, set in Settings → Translations &amp;
         Lexicons.
-        The default puts Strong’s first, followed by BDB for Hebrew and Dodson for Greek. Drag them
+        The default puts Strong’s first, followed by BDB for Hebrew, and by TBESG and then Dodson for Greek. Drag them
         so that the dictionary you actually trust appears first, and swipe to hide the ones you
         never read — hidden lexicons stay installed and searchable, they just stop appearing in
         lookups.

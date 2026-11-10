@@ -22,7 +22,7 @@ export default function ContentLicences() {
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
             The exact sources and distribution terms for the library bundled with Lamp Bible.
           </p>
-          <p className="mt-3 text-sm text-faint">Last reviewed November 4, 2026.</p>
+          <p className="mt-3 text-sm text-faint">Last reviewed November 9, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -156,8 +156,12 @@ export default function ContentLicences() {
             Each module is one text rather than the amalgamation. <code>TAGNT</code> carries the words
             of the Nestlé-Aland editions, the reading the dataset notes as the one almost all
             translations follow, so words read only by the Textus Receptus or by other editions are
-            absent. <code>TAHOT</code> carries the Leningrad text rather than the Qere margin.
-            Everything left out remains in the upstream dataset.
+            absent. <code>TAHOT</code> carries the dataset&apos;s reading text: the Leningrad Codex,
+            with the scribes&apos; marginal corrections (Qere) read in place of the written text they
+            correct, and that written text (Ketiv) given in a footnote at the word. It includes the
+            dataset&apos;s restorations of Joshua 21:36–37 and the end of Nehemiah 7:68 from their
+            parallels, each footnoted, and leaves out the words the dataset reconstructs from the
+            Septuagint. Everything left out remains in the upstream dataset.
           </p>
 
           <h3>Brenton&apos;s Septuagint</h3>
@@ -169,7 +173,8 @@ export default function ContentLicences() {
             <a href="https://ebible.org/eng-Brenton/copyright.htm" {...externalProps}>eng-Brenton</a>{' '}
             sources. They carry the 38 books of the Hebrew canon in the Septuagint&apos;s own numbering;
             the deuterocanonical books in the sources are left out, and lettered verses merge into the
-            numbered verse they follow.
+            numbered verse they follow. English Brenton&apos;s separate Nehemiah, a renumbered copy of
+            2 Esdras 11–23, is left out in favour of 2 Esdras as printed.
           </p>
 
           <h2>Lexicons</h2>
@@ -193,6 +198,13 @@ export default function ContentLicences() {
                 <td>Public domain</td>
               </tr>
               <tr>
+                <td>Translators Brief Lexicon of Extended Strong&apos;s for Greek (TBESG)</td>
+                <td>STEPBible-Data, upstream commit <code>5de0a47f35f0</code> (November 2, 2026)</td>
+                <td>
+                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                </td>
+              </tr>
+              <tr>
                 <td>Brown–Driver–Briggs Hebrew Lexicon</td>
                 <td>
                   <a href="https://github.com/eliranwong/unabridged-BDB-Hebrew-lexicon" {...externalProps}>
@@ -212,6 +224,37 @@ export default function ContentLicences() {
               </tr>
             </tbody>
           </Table>
+
+          <h3>STEPBible Translators Brief Lexicon of Extended Strong&apos;s for Greek</h3>
+          <p>
+            The <code>tbesg</code> dictionary carries data created by{' '}
+            <a href="https://www.stepbible.org" {...externalProps}>STEPBible.org</a> based on work at
+            Tyndale House, Cambridge, distributed under the{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>
+              Creative Commons Attribution 4.0 International licence
+            </a>
+            . The source of the data is{' '}
+            <a href="https://STEPBible.github.io/STEPBible-Data" {...externalProps}>
+              STEPBible.github.io/STEPBible-Data
+            </a>
+            . Its definitions are mostly G. Abbott-Smith&apos;s <em>Manual Greek Lexicon of the New
+            Testament</em> (1922), completed from Middle Liddell (1889) and by STEPBible&apos;s
+            scholars.
+          </p>
+          <p>
+            Lamp Bible changed the data in these ways. Entries are keyed by Strong&apos;s number
+            without leading zeros (<code>G0025</code> is <code>G25</code>), and STEPBible&apos;s
+            extended numbers keep theirs. Where STEPBible divides one number into parts that share a
+            definition, the definition is given once with the parts&apos; glosses; a part with its own
+            definition is its own sense. Scripture references are linked to Lamp&apos;s English verse
+            numbering, mapping the Hebrew numbering the Old Testament references follow; references
+            to the Apocrypha, and those the Hebrew numbering has no verse for, are left as text. The
+            source marks “(AS)” and “(ML)” are written out as “(Abbott-Smith)” and “(Middle
+            Liddell)”. The extended Strong&apos;s and unified Strong&apos;s columns are not carried
+            over. Where a definition names the Hebrew words the Septuagint renders with the word,
+            they are also listed with their Strong&apos;s numbers, matched using STEPBible&apos;s
+            Translators Brief lexicon of Extended Strongs for Hebrew (TBESH), under the same licence.
+          </p>
 
           <h2>Cross-references</h2>
 

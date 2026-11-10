@@ -41,10 +41,16 @@ CREATE TABLE commentary_units (
     commentary_json TEXT,
     footnotes_json TEXT,
     search_text TEXT NOT NULL DEFAULT '',
-    order_index INTEGER NOT NULL DEFAULT 0
+    order_index INTEGER NOT NULL DEFAULT 0,
+    footnotes_text TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX idx_comm_units_module ON commentary_units(module_id);
 CREATE INDEX idx_comm_units_verse ON commentary_units(sv, ev);
 CREATE INDEX idx_comm_units_book_chapter ON commentary_units(book, chapter);
 CREATE INDEX idx_comm_units_parent ON commentary_units(parent_id);
 CREATE INDEX idx_comm_units_type ON commentary_units(unit_type);
+
+CREATE VIRTUAL TABLE commentary_units_fts USING fts5(
+    title, search_text, footnotes_text,
+    content='commentary_units', content_rowid='rowid'
+);

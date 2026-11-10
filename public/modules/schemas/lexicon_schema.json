@@ -40,7 +40,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["footnote", "scripture", "strongs", "greek", "hebrew", "crossref", "abbrev", "page", "lexicon-ref", "media"]
+          "enum": ["footnote", "scripture", "strongs", "greek", "hebrew", "crossref", "abbrev", "page", "lexicon-ref", "media", "emphasis"]
         },
         "start": { "type": "integer", "description": "Character offset start position" },
         "end": { "type": "integer", "description": "Character offset end position" },
@@ -52,6 +52,7 @@
           "description": "Additional data depending on annotation type",
           "properties": {
             "sv": { "type": "integer", "description": "Start verse ref (BBCCCVVV) for scripture annotations" },
+            "style": { "type": "string", "enum": ["bold", "italic", "underline"], "description": "Emphasis style; no style is italic" },
             "ev": { "type": "integer", "description": "End verse ref (BBCCCVVV) for scripture ranges" },
             "refs": {
               "type": "array",
@@ -158,6 +159,19 @@
               "ev": { "$ref": "#/definitions/verseRef" }
             },
             "required": ["sv"]
+          }
+        },
+        "septuagintHebrew": {
+          "type": "array",
+          "description": "Hebrew words the Septuagint renders with this Greek word, as the lexicon says; strongs only where exactly one Hebrew word fits",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string", "description": "The Hebrew word as the lexicon prints it" },
+              "stem": { "type": "string", "description": "The verb stem the lexicon names, e.g. pi." },
+              "strongs": { "type": "string", "description": "Strong's Hebrew number, e.g. H2896" }
+            },
+            "required": ["text"]
           }
         },
         "translationUsages": {

@@ -29,7 +29,8 @@ CREATE TABLE book_modules (
     created INTEGER,
     last_modified INTEGER,
     footnotes_json TEXT,
-    media_json TEXT
+    media_json TEXT,
+    genre TEXT
 );
 
 CREATE TABLE book_sections (

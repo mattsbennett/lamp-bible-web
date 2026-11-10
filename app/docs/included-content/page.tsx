@@ -19,9 +19,15 @@ export default function Page() {
       <p>
         The translations use several different rights bases rather than one blanket public-domain
         claim. Those marked for Strong’s carry Strong’s numbers on individual words, which is what
-        enables tap-to-lexicon lookups: the English ones have identifiers ending in <code>s</code>,
-        and <code>TAHOT</code> and <code>TAGNT</code> are the Hebrew and Greek texts themselves,
-        tagged word by word with morphology too.
+        enables tap-to-lexicon lookups: the Berean Standard Bible and the King James Version among
+        the English, and <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts
+        themselves, tagged word by word with morphology too.
+      </p>
+      <p>
+        The World English Bible and the American Standard Version are published with Strong’s
+        numbers too, but those were aligned by machine and many sit on the neighbouring word, so
+        Lamp Bible leaves them out. Their identifiers keep the <code>s</code> they were given when
+        they had them, since your highlights and notes are filed under the identifier.
       </p>
 
       <Table>
@@ -55,7 +61,7 @@ export default function Page() {
               <code>ASVs</code>
             </td>
             <td>American Standard Version</td>
-            <td>Yes</td>
+            <td>—</td>
             <td>Public domain</td>
           </tr>
           <tr>
@@ -63,7 +69,7 @@ export default function Page() {
               <code>WEBs</code>
             </td>
             <td>World English Bible</td>
-            <td>Yes</td>
+            <td>—</td>
             <td>Public domain; trademark notice</td>
           </tr>
           <tr>
@@ -142,6 +148,11 @@ export default function Page() {
             <td>Strong’s Greek Dictionary</td>
             <td>Greek</td>
             <td>5,500</td>
+          </tr>
+          <tr>
+            <td>Translators Brief Lexicon of Extended Strong’s for Greek (TBESG), from STEPBible</td>
+            <td>Greek</td>
+            <td>10,800</td>
           </tr>
           <tr>
             <td>Brown-Driver-Briggs, unabridged</td>

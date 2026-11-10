@@ -245,6 +245,13 @@ def rows(conn, table: str) -> list:
     return sorted(result, key=lambda r: json.dumps(r, sort_keys=True))
 
 
+# Core also lists the words of each full-text index, so that a search for part
+# of a word is quick. The lists are optional: without them that search reads
+# the text instead, and lamp-module verify only warns. The samples leave them
+# out, since the folding and the stamp are core's to make.
+CORE_ONLY_TABLES = {'search_words', 'search_word_lists'}
+
+
 def compare_with_core_build(cli: Path, kind: str, ours: Path, source: Path) -> list:
     """Compile the source JSON with the apps' compiler and diff the two databases."""
     module_id = CHECKS[kind][0]
@@ -257,7 +264,7 @@ def compare_with_core_build(cli: Path, kind: str, ours: Path, source: Path) -> l
             shape_a, shape_b = describe(a), describe(b)
             problems = [
                 f'{name}: ours {shape_a.get(name)}, core builds {shape_b.get(name)}'
-                for name in sorted(set(shape_a) | set(shape_b))
+                for name in sorted((set(shape_a) | set(shape_b)) - CORE_ONLY_TABLES)
                 if shape_a.get(name) != shape_b.get(name)
             ]
             if problems:

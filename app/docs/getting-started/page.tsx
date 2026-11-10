@@ -35,7 +35,7 @@ export default function Page() {
 
       <Callout title="What you get on day one">
         <p>
-          Nine translations, four lexicons, two cross-reference sets, three public-domain reading
+          Nine translations, five lexicons, two cross-reference sets, three public-domain reading
           plans and a quiz module are included in the install. See{' '}
           <Link href="/docs/included-content">Bundled content</Link> for the full list and rights
           status.
@@ -103,17 +103,15 @@ export default function Page() {
 
       <h2>Choose your translation</h2>
       <p>
-        The reader opens on the Berean Standard Bible with Strong’s tagging (<code>BSBs</code>) by
-        default. To switch, tap the title at the top of the reader and use the translation menu
+        The reader opens on the Berean Standard Bible (BSB) by default. To switch, tap the title at the top of the reader and use the translation menu
         above the list of books; to change the default, go to Settings → Translations &amp;
         Lexicons.
       </p>
       <p>
-        Translations whose identifier ends in <code>s</code> — <code>BSBs</code>, <code>ASVs</code>,{' '}
-        <code>WEBs</code> and <code>KJVs</code> — carry Strong’s numbers on individual words, as do{' '}
-        <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts. In those
-        translations you can tap a word to open its lexicon entry. Translations without
-        tagging read perfectly well but have no word-level lookups.
+        The Berean Standard Bible and the King James Version carry Strong’s numbers on individual
+        words, as do <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts. In
+        those translations you can tap a word to open its lexicon entry. The others read
+        perfectly well but have no word-level lookups.
       </p>
       <p>
         If you never use some of the bundled translations, hide them in the same settings screen

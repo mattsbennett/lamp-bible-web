@@ -162,7 +162,7 @@ export function ReaderArt() {
   return (
     <Art label="Lamp Bible on iPhone at John 1 in the KJV, set in a serif with the book’s name over “Chapter 1”. The Strong’s entry for “Word” — G3056, λόγος — is open in a sheet over the text, with buttons to search its 314 verses and to analyse it.">
       <Phone height="h-[360px] lg:h-[530px]">
-        <ReaderHeader translation="KJVs" chapter="John 1" />
+        <ReaderHeader translation="KJV" chapter="John 1" />
         <div className="px-[16px]">
           <ChapterOpening book="John" chapter={1} />
           <Scripture className="mt-[12px]">
@@ -237,7 +237,7 @@ export function StudyArt() {
   return (
     <Art label="Lamp Bible on iPhone at Romans 8, with the study panel under the text showing the Treasury of Scripture Knowledge’s cross-references for verse 28 as blue links.">
       <Phone>
-        <ReaderHeader translation="KJVs" chapter="Romans 8" />
+        <ReaderHeader translation="KJV" chapter="Romans 8" />
         <Scripture className="px-[16px] pt-[2px]">
           <V n={28} />
           And we know that all things work together for good to them that love God, to them who
@@ -373,7 +373,7 @@ export function HighlightsArt() {
   return (
     <Art label="Romans 8:28 on iPhone with a yellow highlight and a blue underline, and the reader’s menu open on Highlights: four styles, colours named Promises and Calling, the highlight set, and Hide Highlights.">
       <Phone>
-        <ReaderHeader translation="KJVs" chapter="Romans 8" />
+        <ReaderHeader translation="KJV" chapter="Romans 8" />
         <Scripture className="px-[16px]">
           <V n={28} />
           And we know that <span style={highlightFill('#FFCC00')}>all things work together for good</span>{' '}
@@ -460,7 +460,7 @@ export function NotesArt() {
   return (
     <Art label="The Notes panel on iPhone below Romans 8: a note on verses 28 to 30 in formatted text, with its footnote giving the Greek word for “called”.">
       <Phone>
-        <ReaderHeader translation="KJVs" chapter="Romans 8" />
+        <ReaderHeader translation="KJV" chapter="Romans 8" />
         <Scripture className="px-[16px] pt-[2px]">
           <V n={28} />
           And we know that all things work together for good to them that love God…
@@ -518,7 +518,7 @@ export function SearchArt() {
           </Glass>
           <span className="flex flex-1 items-center justify-center gap-[4px] text-[12px] font-semibold">
             <Sym name="bookClosed" className="h-[12px] w-[12px]" />
-            KJVs
+            KJV
             <span className={`font-normal ${label2}`}>· John</span>
             <Sym name="chevronDown" className={`h-[8px] w-[8px] ${label2}`} />
           </span>
@@ -694,7 +694,7 @@ export function AnalysisArt() {
           </div>
         </div>
         <p className={`px-[22px] pt-[5px] text-[8.5px] leading-[1.35] ${label2}`}>
-          About 0.8 in every 1,000 tagged Greek words of the KJVs.
+          About 0.8 in every 1,000 tagged Greek words of the KJV.
         </p>
         <p className="px-[22px] pb-[5px] pt-[11px] text-[14px] font-bold">Rendered As</p>
         <div className="mx-[11px] rounded-[14px] bg-[var(--sys-cell)] px-[12px] pb-[4px] pt-[8px]">
@@ -1510,7 +1510,7 @@ export function MacAnalysisArt() {
           <div className={`hidden flex-col border-r ${sep} @xl:flex`}>
             <div className={`flex justify-between border-b ${sep} px-[9px] py-[5px] text-[8.5px] ${label2}`}>
               <span>18 of 117 occurrences</span>
-              <span>KJVs</span>
+              <span>KJV</span>
             </div>
             <div className={`divide-y divide-[color:var(--sys-sep)] px-[9px]`}>
               {occurrences.map((o) => (
@@ -1541,7 +1541,7 @@ export function MacAnalysisArt() {
                 means full of…
               </p>
               <p className={`mt-[2px] text-[8.5px] ${label2}`}>
-                117 occurrences in 106 verses · 0.85 per 1,000 tagged words · KJVs
+                117 occurrences in 106 verses · 0.85 per 1,000 tagged words · KJV
               </p>
               <span className="mt-[5px] inline-flex items-center gap-[3px] rounded-full bg-[color-mix(in_srgb,var(--sys-tint)_22%,transparent)] px-[7px] py-[2px] text-[9px] font-medium">
                 1 John

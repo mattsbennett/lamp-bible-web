@@ -219,6 +219,19 @@
               "type": "array",
               "items": { "type": "string" },
               "description": "NT source texts (e.g., ['Nestle-Aland 28', 'Textus Receptus'])"
+            },
+            "annotations": {
+              "type": "array",
+              "description": "Where annotation data was matched onto the text when the module was built, rather than printed by its source, for apps to show beside it",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "part": { "type": "string", "enum": ["strongs", "forms"], "description": "strongs: the Strong's numbers; forms: the original-language spellings in lemma" },
+                  "source": { "type": "string", "description": "Where the data came from, named as it would be cited" },
+                  "method": { "type": "string", "description": "How it was matched, in one plain sentence" }
+                },
+                "required": ["part", "source", "method"]
+              }
             }
           }
         },

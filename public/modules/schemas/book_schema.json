@@ -279,6 +279,7 @@
           "type": "array",
           "items": { "type": "string" }
         },
+        "genre": { "type": "string", "description": "ID of the book's genre, one of the bundle's book_genres, such as first-principles" },
         "coverMediaId": { "type": "string", "description": "ID of the cover image in the top-level media array" },
         "isEditable": { "type": "boolean", "default": false },
         "created": { "type": "integer", "description": "Unix timestamp when the module was created" },

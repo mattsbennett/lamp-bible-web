@@ -99,7 +99,7 @@ const TYPES: Array<
     editable: false,
     summary: 'A long-form publication in nested sections, with footnotes shared across the book.',
     sampleContents:
-      'An original preface and chapter, with a section nested in the chapter, a book-wide footnote and scripture reference annotations.',
+      'An original preface and chapter, with a section nested in the chapter, a book-wide footnote, scripture reference annotations and a genre.',
     sampleId: 'sample-book',
     schemaFiles: ['book_schema.json'],
   },

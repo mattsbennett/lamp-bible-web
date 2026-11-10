@@ -43,3 +43,8 @@ CREATE TABLE devotional_entries (
 CREATE INDEX idx_dev_module ON devotional_entries(module_id);
 CREATE INDEX idx_dev_date ON devotional_entries(date);
 CREATE INDEX idx_dev_series ON devotional_entries(series_id, series_order);
+
+CREATE VIRTUAL TABLE devotional_entries_fts USING fts5(
+    title, search_text,
+    content='devotional_entries', content_rowid='rowid'
+);

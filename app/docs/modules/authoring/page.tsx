@@ -228,7 +228,8 @@ export default function Page() {
             </td>
             <td>
               Entries keyed by identifier, with lemma, transliteration, pronunciation, definition,
-              numbered senses, usage and references.
+              numbered senses, usage and references. A Greek entry may also list the Hebrew words
+              the Septuagint renders with it.
             </td>
           </tr>
           <tr>
@@ -265,7 +266,7 @@ export default function Page() {
             <td>
               A long-form publication: metadata, then sections — front matter, parts, chapters,
               appendices — nesting to any depth, each holding content blocks. Footnotes and media
-              are defined once for the whole book.
+              are defined once for the whole book, and the metadata may name the book’s genre.
             </td>
           </tr>
           <tr>
@@ -330,6 +331,27 @@ export default function Page() {
         commentary uses.
       </p>
 
+      <h3>A book’s genre</h3>
+      <p>
+        A book may name its genre in <code>meta.genre</code>, by ID. The bundled library lists the
+        genres in two groups, and the module needs only the ID:
+      </p>
+      <ul>
+        <li>
+          <strong>Bible and Faith</strong>: <code>first-principles</code>,{' '}
+          <code>bible-exposition</code>, <code>prophecy</code>, <code>ecclesial-life</code>,{' '}
+          <code>answering-challenges</code>
+        </li>
+        <li>
+          <strong>Wider Reading</strong>: <code>history</code>, <code>science</code>,{' '}
+          <code>technology-and-the-future</code>, <code>philosophy-and-worldviews</code>,{' '}
+          <code>biography-and-memoir</code>
+        </li>
+      </ul>
+      <p>
+        The field is optional. The sample book names <code>bible-exposition</code>.
+      </p>
+
       <h2>Worked example: a translation</h2>
       <pre>
         <code>{`{
@@ -372,8 +394,24 @@ export default function Page() {
 
       <h3>Translation identifiers</h3>
       <p>
-        By convention a trailing <code>s</code> marks a Strong’s-tagged edition. The identifier must
-        be unique across installed modules, since it is what highlights and settings refer to.
+        The identifier must be unique across installed modules, since it is what highlights, notes
+        and settings refer to, so keep it once people are using the module. The name and
+        abbreviation are what the reader shows, and need no marker for Strong’s tagging:{' '}
+        <code>features.strongs</code> says whether a translation has it. The bundled translations’
+        identifiers end in <code>s</code> where they were first built with Strong’s numbers (
+        <code>KJVs</code>, <code>BSBs</code>), and keep it even where the tags have since gone (
+        <code>WEBs</code>, <code>ASVs</code>).
+      </p>
+
+      <h3>Annotations added at build time</h3>
+      <p>
+        If you matched annotation data onto the text yourself, rather than taking it from the
+        source as printed, say so in <code>meta.sourceTexts.annotations</code>. Each entry names
+        the <code>part</code> (<code>strongs</code> for the Strong’s numbers, <code>forms</code> for
+        the original-language spellings), the <code>source</code> it came from, named as you would
+        cite it, and the <code>method</code>, in one plain sentence. The bundled Berean Standard
+        Bible records this way that its Greek and Hebrew spellings were copied from the BSB’s own
+        translation tables by matching each verse’s Strong’s numbers.
       </p>
 
       <h2>Worked example: highlights</h2>

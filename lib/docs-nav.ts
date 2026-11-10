@@ -62,7 +62,7 @@ const allSections: DocSection[] = [
       {
         title: 'Lexicons',
         href: '/docs/lexicons',
-        summary: 'Strong’s, BDB and Dodson lookups from any tagged word, and how to order them.',
+        summary: 'Strong’s, BDB, TBESG and Dodson lookups from any tagged word, and how to order them.',
       },
     ],
   },

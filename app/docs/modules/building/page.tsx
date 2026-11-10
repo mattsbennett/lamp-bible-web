@@ -64,7 +64,7 @@ export default function Page() {
         one of these”. Every sample on the{' '}
         <Link href="/docs/modules/downloads">downloads page</Link> comes out of it, and each one is
         checked against the app’s own compiler: given the same JSON, the app writes the same
-        tables and the same rows.
+        tables and the same rows, apart from the optional word lists described below.
       </p>
 
       <h3>1. Create the tables</h3>
@@ -184,6 +184,16 @@ assert conn.execute('SELECT count(*) FROM verses').fetchone()[0] > 0`}</code>
         to show the shape.
       </p>
 
+      <Callout title="Two tables to leave out">
+        <p>
+          A module the app compiles also carries <code>search_words</code> and{' '}
+          <code>search_word_lists</code>, which list the words in each full-text index so that a
+          search for part of a word is quick. They are optional, and tied to the index exactly as
+          the app built it, so leave them out. Without them, a search for part of a word reads
+          the text instead.
+        </p>
+      </Callout>
+
       <h3>Every module: module_format</h3>
       <p>
         One row naming the module and its type. The app reads it before anything else. Without it
@@ -201,8 +211,8 @@ assert conn.execute('SELECT count(*) FROM verses').fetchone()[0] > 0`}</code>
 
       <h3>Translation</h3>
       <p>
-        The largest schema, and one of three with a full-text index — the only one with an insert
-        trigger to keep it current.
+        The largest schema. Commentaries, books, notes and devotionals have full-text indexes
+        too, but this is the only one with an insert trigger to keep it current.
       </p>
       <pre>
         <code>{`CREATE TABLE translation_meta (
@@ -290,7 +300,9 @@ CREATE TABLE dictionary_entries (
         abbreviation and the volume title live on the single <code>commentary_books</code> row.
         Units form a self-referencing tree. <code>unit_type</code> is <code>section</code>,{' '}
         <code>pericope</code> or <code>verse</code>, with <code>parent_id</code> pointing at the
-        enclosing unit; a chapter introduction is a section at level 0.
+        enclosing unit; a chapter introduction is a section at level 0. A unit’s footnotes go in{' '}
+        <code>footnotes_text</code> as plain text, indexed beside <code>search_text</code> so that
+        a search finds words in the notes too.
       </p>
       <pre>
         <code>{`CREATE TABLE commentary_books (
@@ -311,7 +323,13 @@ CREATE TABLE commentary_units (
     introduction_json TEXT, translation_json TEXT,
     commentary_json TEXT, footnotes_json TEXT,
     search_text TEXT NOT NULL DEFAULT '',
-    order_index INTEGER NOT NULL DEFAULT 0   -- reading order
+    order_index INTEGER NOT NULL DEFAULT 0,  -- reading order
+    footnotes_text TEXT NOT NULL DEFAULT ''  -- the footnotes, as plain text
+);
+
+CREATE VIRTUAL TABLE commentary_units_fts USING fts5(
+    title, search_text, footnotes_text,
+    content='commentary_units', content_rowid='rowid'
 );`}</code>
       </pre>
 
@@ -332,7 +350,8 @@ CREATE TABLE commentary_units (
     is_editable INTEGER NOT NULL DEFAULT 0,
     created INTEGER, last_modified INTEGER,
     footnotes_json TEXT,                -- shared by every section
-    media_json TEXT
+    media_json TEXT,
+    genre TEXT                          -- e.g. "bible-exposition"
 );
 
 CREATE TABLE book_sections (
@@ -397,6 +416,10 @@ CREATE TABLE devotional_entries (
     related_ids TEXT, created INTEGER NOT NULL, last_modified INTEGER,
     search_text TEXT, record_change_tag TEXT,
     subscription_id TEXT, is_read_only INTEGER, media_json TEXT
+);
+
+CREATE VIRTUAL TABLE devotional_entries_fts USING fts5(
+    title, search_text, content='devotional_entries', content_rowid='rowid'
 );`}</code>
       </pre>
 
@@ -507,7 +530,9 @@ CREATE TABLE quiz_questions (
               The full-text index was never filled. Finish by rebuilding it, as in{' '}
               <code>{"INSERT INTO verses_fts(verses_fts) VALUES('rebuild')"}</code>. Only{' '}
               <code>verses_fts</code> has a trigger to fill it as rows arrive; for{' '}
-              <code>note_fts</code> and <code>book_sections_fts</code> the rebuild is the only way.
+              <code>commentary_units_fts</code>, <code>book_sections_fts</code>,{' '}
+              <code>note_fts</code> and <code>devotional_entries_fts</code> the rebuild is the only
+              way.
             </td>
           </tr>
           <tr>
