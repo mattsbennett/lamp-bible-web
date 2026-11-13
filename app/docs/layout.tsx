@@ -7,8 +7,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
     <>
       <SiteHeader />
       <div className="mx-auto flex max-w-6xl gap-12 px-5 sm:px-8">
-        <aside className="hidden w-56 shrink-0 py-14 lg:block">
-          <div className="sticky top-28">
+        <aside className="hidden w-56 shrink-0 pb-14 lg:block">
+          {/* Held under the header and scrolled on its own, so its foot is reachable on a long page. */}
+          <div className="sticky top-16 max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain pb-8 pt-14 [scrollbar-width:thin]">
             <DocsSidebar />
           </div>
         </aside>

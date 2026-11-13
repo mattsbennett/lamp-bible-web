@@ -1,14 +1,27 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { docsNav } from '@/lib/docs-nav'
 
 export function DocsSidebar() {
   const pathname = usePathname()
+  const nav = useRef<HTMLElement>(null)
+
+  // Where the sidebar scrolls on its own, open it at the current page's link rather than at the
+  // top, so a page near the foot of the list is shown as the one you are on.
+  useEffect(() => {
+    const scroller = nav.current?.parentElement
+    const active = nav.current?.querySelector<HTMLElement>('[aria-current="page"]')
+    if (!scroller || !active || scroller.scrollHeight <= scroller.clientHeight) return
+    const top = active.offsetTop
+    const visible = top >= scroller.scrollTop && top + active.offsetHeight <= scroller.scrollTop + scroller.clientHeight
+    if (!visible) scroller.scrollTop = top - scroller.clientHeight / 2
+  }, [pathname])
 
   return (
-    <nav aria-label="Documentation">
+    <nav ref={nav} aria-label="Documentation">
       <ul className="space-y-7">
         {docsNav.map((section) => (
           <li key={section.title}>
