@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { Table } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Software licences',
@@ -106,47 +105,42 @@ export default function SoftwareLicences() {
             licence texts are included with the app distribution.
           </p>
 
-          {isMacAvailable && (
-            <>
-              <h2>Mac</h2>
-              <p>
-                The Mac app uses the same writing editor as the iPhone and iPad app, so the editor
-                components above apply to it too. It also includes these Swift packages, in the app
-                and its <code>lamp-mcp</code> helper. Their complete licence texts, and any NOTICE
-                files, open from Help → Third-Party Notices.
-              </p>
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Component</th>
-                    <th>Version</th>
-                    <th>Licence</th>
-                    <th>Project</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {macPackages.map((p) => (
-                    <tr key={p.name}>
-                      <td>{p.name}</td>
-                      <td>{p.version}</td>
-                      <td>{p.licence}</td>
-                      <td>
-                        <a href={p.url} {...externalProps}>
-                          Source
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </>
-          )}
+          <h2>Mac</h2>
+          <p>
+            The Mac app uses the same writing editor as the iPhone and iPad app, so the editor
+            components above apply to it too. It also includes these Swift packages, in the app
+            and its <code>lamp-mcp</code> helper. Their complete licence texts, and any NOTICE
+            files, open from Help → Third-Party Notices.
+          </p>
+          <Table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Version</th>
+                <th>Licence</th>
+                <th>Project</th>
+              </tr>
+            </thead>
+            <tbody>
+              {macPackages.map((p) => (
+                <tr key={p.name}>
+                  <td>{p.name}</td>
+                  <td>{p.version}</td>
+                  <td>{p.licence}</td>
+                  <td>
+                    <a href={p.url} {...externalProps}>
+                      Source
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
 
           <h2>Reference data</h2>
           <p>
-            {isMacAvailable ? 'Both apps' : 'The app'} also{' '}
-            {isMacAvailable ? 'include' : 'includes'} this data, which lines up verses that
-            translations number differently.
+            Both apps also include this data, which lines up verses that translations number
+            differently.
           </p>
           <Table>
             <thead>

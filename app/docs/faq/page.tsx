@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage } from '@/components/docs/DocPage'
-import { downloadPaths, isMacAvailable, macRelease, site, plannedPlatforms } from '@/lib/site'
+import { downloadPaths, isMacBeta, macRelease, site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'FAQ',
@@ -26,28 +26,19 @@ export default function Page() {
       <p>
         No. There is no Lamp Bible account. Sync, when you turn it on, uses your iCloud Drive or
         your own WebDAV server — never an account with us, because there isn’t one.
-        {isMacAvailable && (
-          <>
-            {' '}The Mac’s optional <Link href="/docs/ai">AI chat</Link> signs in to an AI provider
-            account of your own.
-          </>
-        )}
+        {' '}The Mac’s optional <Link href="/docs/ai">AI chat</Link>, hidden until you turn on Show AI
+        Features, signs in to an AI provider account of your own.
       </p>
 
       <h2>What data do you collect?</h2>
       <p>
         The app collects no personal information and has no analytics or tracking SDK. Optional
         sync connects directly to your iCloud Drive or WebDAV provider.
-        {isMacAvailable && (
-          <>
-            {' '}
-            On the Mac, update checks — made only if you allow them — download a small feed from
-            this website, which, like any web request, reveals your IP address to its host.
-          </>
-        )}{' '}
-        This website uses Vercel
-        Web Analytics and Speed Insights for aggregate traffic and performance measurements. The
-        separate app and website disclosures are in the <Link href="/privacy">privacy policy</Link>.
+        On the Mac, update checks — made only if you allow them — download a small feed from this
+        website, which, like any web request, reveals your IP address to its host. This website
+        uses Vercel Web Analytics and Speed Insights for aggregate traffic and performance
+        measurements. The separate app and website disclosures are in the{' '}
+        <Link href="/privacy">privacy policy</Link>.
       </p>
 
       <h2>Does it work offline?</h2>
@@ -55,8 +46,7 @@ export default function Page() {
         Completely. Bundled translations, lexicons, cross-references and reading plans — plus any
         modules you install — are on the device. The app connects to the network only for things
         you turn on: cloud sync, handing a passage to another Bible app, and the presentation
-        remote, which uses only your local network
-        {isMacAvailable && <>; on the Mac, also update checks and AI chat</>}.
+        remote, which uses only your local network; on the Mac, also update checks and AI chat.
       </p>
 
       <h2>Why isn’t my usual translation there?</h2>
@@ -79,8 +69,8 @@ export default function Page() {
 
       <h2>Can I get my notes out?</h2>
       <p>
-        Yes, at any time and without asking. Notes and devotionals export to plain markdown with
-        their images and audio; modules export as <code>.lamp</code> packages. See{' '}
+        Yes, at any time and without asking. Notes and devotionals export to plain markdown, a
+        devotional with its images and audio; modules export as <code>.lamp</code> packages. See{' '}
         <Link href="/docs/import-export">Import &amp; export</Link>.
       </p>
 
@@ -96,17 +86,8 @@ export default function Page() {
         <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">
           App Store
         </a>
-        {isMacAvailable ? (
-          <>
-            , and Mac, as a <Link href={downloadPaths.mac}>direct download</Link> for{' '}
-            {macRelease.minimumOS}.
-          </>
-        ) : (
-          '.'
-        )}
-        {plannedPlatforms.length > 0 && (
-          <> A {plannedPlatforms.map((p) => p.name).join(' and ')} version is in development.</>
-        )}
+        , and Mac, as a <Link href={downloadPaths.mac}>direct download</Link> for{' '}
+        {macRelease.minimumOS}.{isMacBeta && ' The Mac app is in beta.'}
       </p>
 
       <h2>Can I sync between my devices?</h2>

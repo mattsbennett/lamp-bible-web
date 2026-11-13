@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Notes',
@@ -62,12 +61,11 @@ export default function Page() {
         </li>
       </ul>
 
-      {isMacAvailable && (
-        <p>
-          On the Mac, notes are written in the Notes tab of the study column: click a verse number
-          to open its note. See <Link href="/docs/mac">The Mac app</Link>.
-        </p>
-      )}
+      <p>
+        On the Mac, notes are written in the Notes tab of the study column: click a verse number
+        to open its note, and <strong>Attach Image</strong> in its format bar adds a picture. See{' '}
+        <Link href="/docs/mac">The Mac app</Link>.
+      </p>
 
       <Callout title="Overlapping ranges">
         <p>
@@ -82,6 +80,11 @@ export default function Page() {
         numbered lists and quotes, and markdown typed directly — <code>#</code> for a heading,{' '}
         <code>**</code> for bold — is formatted as you type. Outside the editor a note is shown
         formatted, with headings, nested lists, quotes, code and links.
+      </p>
+      <p>
+        The photo button in the formatting bar puts a picture in the note at the cursor. It is
+        shown where you put it, and syncs with the note. Pictures in an installed notes module are
+        shown the same way.
       </p>
       <p>
         Scripture references in a note — <code>John 3:16</code>, <code>[Rom 8:28]</code> or a{' '}
@@ -107,8 +110,9 @@ export default function Page() {
       <h2>Getting notes in and out</h2>
       <p>
         Notes round-trip through markdown: export a whole notes module from the module manager, and
-        import a markdown file of notes into any notes module. The format is documented in full on
-        the <Link href="/docs/import-export">Import &amp; export</Link> page.
+        import a markdown file of notes into any notes module. The export carries the notes’ text;
+        the pictures in them are not exported with it. The format is documented in full on the{' '}
+        <Link href="/docs/import-export">Import &amp; export</Link> page.
       </p>
       <p>
         This is the deliberate escape hatch: your notes are ordinary markdown files, readable in any

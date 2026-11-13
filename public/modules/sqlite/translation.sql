@@ -22,7 +22,8 @@ CREATE TABLE translation_meta (
     license TEXT,
     source_texts_json TEXT,
     features_json TEXT,
-    versification TEXT DEFAULT 'standard'
+    versification TEXT DEFAULT 'standard',
+    versification_mappings TEXT
 );
 
 CREATE TABLE books (

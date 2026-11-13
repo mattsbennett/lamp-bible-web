@@ -14,6 +14,11 @@ export const site = {
 } as const
 
 export type MacRelease = {
+  /**
+   * 'beta' until the Mac app leaves beta. The site calls it the Mac beta wherever it offers the
+   * download; iPhone and iPad are on the App Store and are never framed as a beta.
+   */
+  channel: 'beta' | 'release'
   /** CFBundleShortVersionString (MARKETING_VERSION). */
   version: string
   /**
@@ -25,9 +30,9 @@ export type MacRelease = {
   releasedAt: string | null
   /**
    * Where the signed, notarized .dmg is hosted. Null until the first public build — every
-   * Mac download link and the update feed stay empty until this is set. The host must serve
-   * the file as a download (GitHub Releases does; object storage needs
-   * Content-Disposition: attachment).
+   * Mac download link and the update feed stay empty until this is set, though the Mac docs
+   * are published either way. The host must serve the file as a download (GitHub Releases
+   * does; object storage needs Content-Disposition: attachment).
    */
   url: string | null
   /** Exact byte length of the .dmg; `sign_update` prints it as `length`. */
@@ -47,6 +52,7 @@ export type MacRelease = {
  * download pages and the Sparkle update feed at /appcast.xml.
  */
 export const macRelease: MacRelease = {
+  channel: 'beta',
   version: '0.1.0',
   build: '1',
   releasedAt: null,
@@ -72,39 +78,10 @@ export const downloadPaths = {
   macLatest: '/download/mac/latest',
 } as const
 
-export type PlatformStatus = 'available' | 'planned'
+export const isMacBeta = macRelease.channel === 'beta'
 
-export type Platform = {
-  id: string
-  name: string
-  status: PlatformStatus
-  /** Where "Download" points. Undefined for platforms that aren't shipping yet. */
-  href?: string
-  note: string
-}
+/** Whether a Mac build is posted to download. */
+export const hasMacDownload = macRelease.url !== null
 
-export const isMacAvailable = macRelease.url !== null
-
-/**
- * Platform availability drives the download section and any "works on" copy.
- * macOS becomes available when `macRelease.url` is set.
- */
-export const platforms: Platform[] = [
-  {
-    id: 'ios',
-    name: 'iPhone & iPad',
-    status: 'available',
-    href: site.appStoreUrl,
-    note: 'Available on the App Store.',
-  },
-  {
-    id: 'macos',
-    name: 'Mac',
-    status: isMacAvailable ? 'available' : 'planned',
-    href: isMacAvailable ? downloadPaths.mac : undefined,
-    note: isMacAvailable ? 'Direct download, signed and notarized by Apple.' : 'In development.',
-  },
-]
-
-export const availablePlatforms = platforms.filter((p) => p.status === 'available')
-export const plannedPlatforms = platforms.filter((p) => p.status === 'planned')
+/** How the site names the Mac app where it offers it: "Mac" once it leaves beta. */
+export const macLabel = isMacBeta ? 'Mac beta' : 'Mac'

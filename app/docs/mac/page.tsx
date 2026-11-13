@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
-import { DocPage, Table } from '@/components/docs/DocPage'
-import { downloadPaths, isMacAvailable, macRelease } from '@/lib/site'
+import { DocPage, Callout, Table } from '@/components/docs/DocPage'
+import { downloadPaths, isMacBeta, macRelease, site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'The Mac app',
@@ -11,8 +10,6 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  if (!isMacAvailable) notFound()
-
   return (
     <DocPage
       href="/docs/mac"
@@ -20,14 +17,28 @@ export default function Page() {
       intro="The same library and the same modules as iPhone and iPad, laid out for a large screen, a keyboard and a menu bar."
     >
       <p>
-        Lamp Bible for Mac is a <Link href={downloadPaths.mac}>direct download</Link> for{' '}
-        {macRelease.minimumOS}. It reads the same bundled library, installs the same{' '}
+        Lamp Bible for Mac is {isMacBeta ? 'in beta, as' : ''} a{' '}
+        <Link href={downloadPaths.mac}>direct download</Link> for {macRelease.minimumOS}. It reads the same bundled library, installs the same{' '}
         <code>.lamp</code> modules, and <Link href="/docs/sync">syncs</Link> with your other devices.
         Most of the rest of these docs apply to it as written; this page covers where the Mac
         differs, and what it adds. Slide Studio and AI chat have pages of their own:{' '}
         <Link href="/docs/presenting">Slides &amp; presenting</Link> and{' '}
         <Link href="/docs/ai">AI chat &amp; agents</Link>.
       </p>
+
+      {isMacBeta && (
+        <Callout title="A beta">
+          <p>
+            The Mac app changes from one update to the next, and you may meet a bug. It checks for
+            updates if you allow it, and <strong>Lamp Bible → Check for Updates…</strong> looks at
+            once. If something goes wrong,{' '}
+            <a href={site.issuesUrl} target="_blank" rel="noopener noreferrer">
+              open an issue
+            </a>{' '}
+            or email {site.email}.
+          </p>
+        </Callout>
+      )}
 
       <h2>Finding your way</h2>
       <p>The sidebar holds everything:</p>
@@ -59,18 +70,33 @@ export default function Page() {
         and the chapters, and the arrow keys move within them.
       </p>
       <p>
-        The reader keeps tabs: <strong>⌘T</strong> or the <strong>+</strong> at the end of the tab
-        row opens a new one at a passage you choose. A tab is named after its chapter until you
-        right-click it and choose <strong>Rename Tab…</strong>, and then keeps that name as you read
-        on; the same menu duplicates or closes it. Tabs come back when you relaunch.{' '}
-        <strong>Reading History</strong> keeps the last hundred places you have been, across
-        launches.
+        <strong>Go to Anything…</strong> (⌘K) reaches further: a passage, a Strong’s number to look
+        up or analyse, a book, writing, deck, plan or quiz by name, matches across your library, a
+        command, a section of the app or a setting. Return opens a passage in the tab you are in,
+        ⌘Return in a new tab and ⌥Return in a new window.
+      </p>
+
+      <h3>Tabs</h3>
+      <p>
+        The reader keeps tabs, in a bar beneath the toolbar. <strong>⌘T</strong>, or the{' '}
+        <strong>+</strong> at the end of the bar, opens a new tab on a page that chooses its
+        passage: type a reference, pick a translation, book and chapter, or click one of the
+        chapters under <strong>Recently Read</strong>. Drag a tab to move it, and press ⌃Tab or
+        ⌃⇧Tab to step through them; a tab’s close button shows when you point at it. A tab is named
+        after its chapter until you right-click it and choose <strong>Rename Tab…</strong>, and then
+        keeps that name as you read on; the same menu duplicates or closes it.
+      </p>
+      <p>
+        Each tab keeps its own study column — open or shut, on the tool it was showing — and its
+        own Reader Chat. Choosing a tab shows it as you left it, scrolled to the same verse, and
+        tabs come back as they were when you relaunch. <strong>Reading History</strong> keeps the
+        last hundred places you have been, across launches.
       </p>
       <p>
         <strong>New Reader Window</strong> (⌥⌘N) opens another reader. Each window has its own
-        place in scripture, its own tabs, its own back and forward, and its own Reader Chat, so two
-        windows can sit on different chapters, and each comes back with its own tabs. Notes and
-        highlights are shared: one made in either window shows in both at once.
+        place in scripture, its own tabs and its own back and forward, so two windows can sit on
+        different chapters, and each comes back with its own tabs. Notes and highlights are shared:
+        one made in either window shows in both at once.
       </p>
 
       <h3>Layout and text</h3>
@@ -84,7 +110,8 @@ export default function Page() {
         Side by Side reads up to three other translations verse by verse beside the one you are
         reading. Turn it on with the <strong>Side by Side</strong> button in the toolbar, or with
         the <strong>+</strong> beside a chapter’s opening, which lists the other translations to
-        read beside it. Each column’s title is a menu that changes its translation, makes it the one
+        read beside it, grouped by language with the Hebrew and Greek last, and marks those tagged
+        with Strong’s numbers. Each column’s title is a menu that changes its translation, makes it the one
         you are reading, or removes its column; the <strong>+</strong> beside the titles adds another.
         Verses are paired through each translation’s own numbering, so a verse that two
         translations number differently still sits beside its match. Each column shows its own
@@ -133,7 +160,10 @@ export default function Page() {
       <p>
         The toolbar’s <strong>Read Aloud</strong> button reads the current chapter with the system
         voices, from the beginning or from the selected verse, and can follow the verse being
-        spoken. Choose the voice and speed in Settings → Reader.
+        spoken. Choose the voice and speed in Settings → Reader; <strong>Automatic</strong> uses the
+        best voice installed. The same pane’s <strong>Greek Words</strong> chooses how the speaker
+        beside a Strong’s word says Greek: <strong>Classroom (Erasmian)</strong> or{' '}
+        <strong>Modern Greek</strong>, which needs a Greek voice installed.
       </p>
 
       <h3>Keyboard</h3>
@@ -162,6 +192,10 @@ export default function Page() {
             <td>⌘L</td>
           </tr>
           <tr>
+            <td>Go to Anything</td>
+            <td>⌘K</td>
+          </tr>
+          <tr>
             <td>Larger / smaller text</td>
             <td>⌘+ / ⌘−</td>
           </tr>
@@ -170,7 +204,7 @@ export default function Page() {
             <td>⇧⌘I</td>
           </tr>
           <tr>
-            <td>Reader Chat</td>
+            <td>Reader Chat, with AI features on</td>
             <td>⇧⌘J</td>
           </tr>
           <tr>
@@ -178,12 +212,20 @@ export default function Page() {
             <td>⇧⌘L</td>
           </tr>
           <tr>
-            <td>New reader tab</td>
+            <td>New tab, in the reader or Search</td>
             <td>⌘T</td>
+          </tr>
+          <tr>
+            <td>Next / previous tab</td>
+            <td>⌃Tab / ⌃⇧Tab</td>
           </tr>
           <tr>
             <td>New writing</td>
             <td>⇧⌘N</td>
+          </tr>
+          <tr>
+            <td>New presentation deck</td>
+            <td>⌥⇧⌘N</td>
           </tr>
           <tr>
             <td>Install module / import personal study data</td>
@@ -232,12 +274,16 @@ export default function Page() {
             <td>
               Your notes on the chapter, with the selected verse’s note open to edit, its
               highlights, a list of the chapter’s highlights to go to, and notes from installed
-              notes modules
+              notes modules, set out with their pictures and footnotes
             </td>
           </tr>
           <tr>
             <td>Dictionary</td>
-            <td>Lexicon lookups by word, lemma or Strong’s number</td>
+            <td>
+              Lexicon lookups by word, lemma or Strong’s number, with a speaker to say the word
+              aloud and <strong>Analyse</strong>, which opens the word’s{' '}
+              <Link href="/docs/search#analysis">analysis</Link> in the column, beside the passage
+            </td>
           </tr>
         </tbody>
       </Table>
@@ -251,7 +297,8 @@ export default function Page() {
       <h3>Notes and highlights</h3>
       <p>
         A note has an optional title and formatted text, saved as markdown, and can cover a range of
-        verses within the chapter. Save with <strong>⌘S</strong>; saving an empty note deletes it.
+        verses within the chapter. <strong>Attach Image</strong> in its format bar adds a picture,
+        which syncs with the note. Save with <strong>⌘S</strong>; saving an empty note deletes it.
         To highlight part of a verse, use <strong>Highlight Words…</strong>: choose the set, a
         style and a colour, or apply a <Link href="/docs/highlights">theme</Link> — and save a new
         theme from there. It also lists what the verse is already highlighted with, each with a{' '}
@@ -303,7 +350,10 @@ export default function Page() {
       <p>
         Writing saves itself shortly after you stop typing; ⌘S saves at once. The Writing list
         sorts, groups and filters your collection, and ⌘F finds in the preview of the piece
-        selected in it. Its <strong>Present</strong> button shows the selected piece full screen for
+        selected in it. Above the preview, a strip steps to the previous or next writing, opens the
+        piece to edit, shares it as markdown and sets the text’s appearance; the{' '}
+        <strong>Hide Writing List</strong> button gives the preview the whole window. Its{' '}
+        <strong>Present</strong> button shows the selected piece full screen for
         reading from. Export a piece as a <code>.lamp</code> file from its menu, or a collection as
         markdown from Modules. Deleting a piece also deletes the decks built from it, and the Mac
         names them before it does.
@@ -311,8 +361,9 @@ export default function Page() {
 
       <h2>Books</h2>
       <p>
-        <Link href="/docs/books">Books</Link> read in three resizable columns — your books, the
-        contents, and the text — with search within the book, bookmarks, and your own typeface,
+        <Link href="/docs/books">Books</Link> read in three resizable columns — your books, grouped
+        by genre unless you choose otherwise from <strong>Group Books</strong>, the contents, and the
+        text — with search within the book, bookmarks, and your own typeface,
         size and spacing. Your place, down to the paragraph, and your bookmarks sync between Macs.{' '}
         <strong>Open in Book Reader</strong> moves a book into a window of its own, and{' '}
         <strong>Share Section</strong> copies a link straight to the section.
@@ -322,17 +373,26 @@ export default function Page() {
       <p>
         The Mac’s search covers everything <Link href="/docs/search">Search</Link> describes in one
         list, grouped by kind with Scripture first, and previews the selected result beside it in
-        the reader’s own type. Typing a reference puts a row to go straight to it above the results,
-        and typing a Strong’s number one to analyse it. The filter bar under the toolbar narrows the
-        results by kind of content, by module, to the Old or New Testament, by Strong’s key or
-        highlight colour, and — for writing — by date, tag and category.
+        the reader’s own type. Each kind gets a share of the list, and one with more to show offers{' '}
+        <strong>More in</strong> it beside its heading. Scripture comes from the translation you are
+        reading, noting how many others also match, or from another translation when yours has
+        none. A dictionary result shows the whole entry, with <strong>Look Up</strong> and{' '}
+        <strong>Analyse</strong>. Typing a reference puts a row to go straight to it above the
+        results, and typing a Strong’s number one to analyse it. The filter bar under the toolbar
+        narrows the results by kind of content, by module, to the Old or New Testament, by
+        Strong’s key or highlight colour, and — for writing — by date, tag and category.
+      </p>
+      <p>
+        Search keeps tabs too, in the same bar as the reader’s, each named after its words. A search
+        started from the reader goes to a tab already showing it, or to an empty one, before it
+        opens another. Search tabs come back when you relaunch.
       </p>
 
       <h2>Today and reading plans</h2>
       <p>
         <strong>Today</strong> is the day’s page. It shows each plan you follow with that day’s
-        readings, how many are done, and <strong>Start Reading</strong> or{' '}
-        <strong>Continue</strong>; a strip showing how the week stands; and, under{' '}
+        readings, how many are done, and <strong>Start Reading</strong>,{' '}
+        <strong>Continue Reading</strong> or <strong>Read Again</strong>; a strip showing how the week stands; and, under{' '}
         <strong>Pick Up Where You Left Off</strong>, the passage open in the reader, the quiz on the
         day’s readings and the writing you last worked on. The arrows and the calendar at the top
         show another day. Each reading shows its estimated time and can be marked complete, opened in

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Reading plans',
@@ -67,8 +66,9 @@ export default function Page() {
         <strong>Your Plans</strong>. <strong>Follow</strong> as many as you like. A plan you follow
         shows its day of the year and this week’s readings, a circle a day, and on the home screen
         each has its own card with the day’s readings, their total time, and how many you have
-        read. Tap the circle beside a reading to mark it read; a three-reading day can be half
-        done. Completions are recorded per plan, per year, so restarting a plan next year gives you
+        read. The chevron on the card folds it to a band of the plan’s name and how many are read,
+        for every plan, on that device. Tap the circle beside a reading to mark it read; a
+        three-reading day can be half done. Completions are recorded per plan, per year, so restarting a plan next year gives you
         a fresh slate without erasing history.
       </p>
       <p>
@@ -78,15 +78,17 @@ export default function Page() {
 
       <h3>Reading time estimates</h3>
       <p>
-        Every reading shows a verse count and an estimated time. The estimate is your
+        Every reading on the home screen shows its kind and an estimated time; the Readings menu
+        in the reader adds its verse count. The estimate is your
         words-per-minute setting applied to the actual word count of the passage in your chosen
         translation. The default is 183 wpm, the average adult rate for reading aloud; a{' '}
         <strong>Silent</strong> preset sets 238 wpm, and the slider goes from 70 to 400. The same
         rate sets the pace of <Link href="/docs/reader">read aloud</Link>.
       </p>
       <p>
-        Reading together? Tap a reading’s verse count and set how many readers there are; the count
-        then shows how many verses each one reads.
+        Reading together? Set <strong>Readers</strong> in Settings → Reading Plans to how many of
+        you take turns. With more than one, each reading shows how many verses each reader takes,
+        and tapping that changes the number.
       </p>
 
       <h3>Where readings open</h3>
@@ -116,7 +118,8 @@ export default function Page() {
       <p>
         On iOS 26 with Apple Intelligence, you can describe the plan instead — “the Gospels in a
         month, weekdays only” — and <strong>Make from Description</strong> fills the form in, using
-        the model on the device. Either way, <strong>Preview</strong> lays out every day and its
+        the model on the device. It is an AI feature, so it shows only once{' '}
+        <strong>Show AI Features</strong> is on in Settings; it starts off. Either way, <strong>Preview</strong> lays out every day and its
         readings before anything is added, with a sentence saying what is read, how fast and on
         which days. Name the plan, tap <strong>Add</strong>, and you are following it.
       </p>
@@ -125,13 +128,12 @@ export default function Page() {
         it, or tap <strong>Edit</strong>, to delete it; it is deleted on every device you sync with,
         and its ticked readings go with it.
       </p>
-      {isMacAvailable && (
-        <p>
-          On the Mac, <strong>New Plan…</strong> in Reading Plans opens the same form in a sheet,
-          with the days laid out beside it as you fill it in; <strong>Fill In the Form</strong>{' '}
-          reads a description on macOS 26. Delete a plan of your own from its menu.
-        </p>
-      )}
+      <p>
+        On the Mac, <strong>New Plan…</strong> in Reading Plans opens the same form in a sheet,
+        with the days laid out beside it as you fill it in; <strong>Fill In the Form</strong>{' '}
+        reads a description on macOS 26, with <strong>Show AI Features</strong> on in Settings → AI
+        &amp; Agents. Delete a plan of your own from its menu.
+      </p>
 
       <h2>Daily reminder</h2>
       <p>
@@ -149,8 +151,9 @@ export default function Page() {
       <p>
         The bundled quiz has five questions a reading for each of five age groups, from young
         children to adults. Choose a group from <strong>Questions For</strong> at the top of the
-        quiz; your choice is remembered. Each question has a theme, and the verse it cites is set
-        out beneath it, to weigh before answering — tap it to read it in context.{' '}
+        quiz; your choice is remembered. Each question has a theme, and the passages it cites are
+        set out beneath it as cards, to weigh before answering — swipe between them, and tap{' '}
+        <strong>Read in Context</strong> to open one in the reader.{' '}
         <strong>Show Answer</strong> reveals the answer, and <strong>Next Question</strong> moves
         on. It is a set of questions to discuss rather than a test, with no scoring. The quiz menu
         can <strong>Always Show Answers</strong>, for use with a group, and the quiz can be read

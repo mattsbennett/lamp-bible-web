@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'AI chat & agents',
@@ -11,8 +9,6 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  if (!isMacAvailable) notFound()
-
   return (
     <DocPage
       href="/docs/ai"
@@ -23,6 +19,21 @@ export default function Page() {
         AI in Lamp Bible is optional, Mac-only, and runs through an AI tool you already use. Lamp
         Bible has no AI service of its own: it starts your provider’s command-line tool on your Mac,
         and gives it read-only tools for looking things up in your library.
+      </p>
+
+      <h2 id="turning-on">Turning it on</h2>
+      <p>
+        AI is off until you turn it on. Until then, Settings → AI &amp; Agents shows one switch,{' '}
+        <strong>Show AI Features</strong>, and nothing else in Lamp mentions AI. Off hides Reader
+        Chat, the writing agent and plans made from a description, turns off the system’s Writing
+        Tools in Lamp’s text, and withdraws what other apps may read through Lamp. Your chats and
+        drafts are kept for when you turn it back on. A library that was already using AI starts
+        with it on.
+      </p>
+      <p>
+        The switch is shared with your iPhone and iPad, where it is Settings →{' '}
+        <strong>AI Features</strong> and covers making a{' '}
+        <Link href="/docs/reading-plans">reading plan</Link> from a description.
       </p>
 
       <h2>Setting up</h2>
@@ -60,7 +71,8 @@ export default function Page() {
         </tbody>
       </Table>
       <p>
-        Settings → AI &amp; Agents lists each provider under <strong>AI Provider Accounts</strong>,
+        With AI on, Settings → AI &amp; Agents lists each provider under{' '}
+        <strong>AI Provider Accounts</strong>,
         and whether its tool is installed and connected. <strong>Connect…</strong> starts the
         provider’s own sign-in. Lamp Bible never reads or stores your credentials; they stay with
         the tool. The tool must be on your login shell’s path, which is where installers normally
@@ -114,7 +126,7 @@ export default function Page() {
         <code>haiku</code> for Claude Code — and <strong>Other Model…</strong> for a name you type,
         which is passed on as it is. Effort is low to max for Claude Code, a value you type for
         Codex, and for OpenCode the variants the installed tool lists for the model you named. The
-        choices belong to the chat, so two windows can use two providers or two models at once.
+        choices belong to the chat, so two tabs can use two providers or two models at once.
       </p>
 
       <h2 id="skills">Study skills</h2>
@@ -133,8 +145,9 @@ export default function Page() {
         <li>
           <strong>original-languages</strong> reads the Hebrew or Greek behind a verse, word by
           word with each word’s parsing, and shows where translations differ and whether the
-          difference is a translator’s decision. Given a writing, it checks the claims it makes
-          about the original.
+          difference is a translator’s decision. It turns to TBESG first for Greek and to BDB for
+          Hebrew, and follows a Greek word to the Hebrew it renders in the Septuagint. Given a
+          writing, it checks the claims it makes about the original.
         </li>
       </ul>
       <p>
@@ -146,7 +159,8 @@ export default function Page() {
 
       <h2>Reader Chat</h2>
       <p>
-        <strong>Reader Chat</strong> (⇧⌘J, or the speech-bubble button) opens beside the reader.
+        <strong>Reader Chat</strong> (⇧⌘J, or the speech-bubble button) opens beside the reader
+        once AI is on.
         Ask about the chapter on screen, or name any other passage. It answers from your modules
         through the read-only tools, and cannot edit files or run commands.
       </p>
@@ -164,10 +178,23 @@ export default function Page() {
       </p>
       <p>
         Replies appear as they are written, and with Claude Code a line says what the agent is doing
-        meanwhile — the tool it is using, and the passage it is reading. A reply keeps arriving if
-        you close the chat, switch it for Study Tools or leave the reader, and is there when you come
-        back. Each reader window keeps its own conversation, and comes back to it when you relaunch.
-        Reader Chat conversations stay on the Mac and do not sync.
+        meanwhile — the tool it is using, and the passage it is reading. Afterwards, a line under
+        your question names the tools its answer used. A reply keeps arriving if you close the
+        chat, switch it for Study Tools or leave the reader, and is there when you come back. A
+        message you send while a reply is still arriving waits its turn: until it goes, you can
+        reword it, send it sooner than the others waiting, or remove it, and it is still waiting
+        if you quit.
+      </p>
+      <p>
+        Each reader tab keeps its own chat, and comes back to it when you relaunch.{' '}
+        <strong>Chats</strong> starts a new one or goes back to an earlier one, each listed by how
+        it opened; its search field finds a chat by anything said in it, by you or in a reply. A
+        chat open in another tab is marked as such. Right-click a question and choose{' '}
+        <strong>Fork From Here</strong> to carry the conversation on from that point as a chat of
+        its own, leaving the original exactly as it was. <strong>Keep chats for</strong>, in
+        Settings → AI &amp; Agents, sets how long a chat is kept after it was last used — two months
+        unless you change it — and a chat nothing was said in is not kept at all. Reader Chat
+        conversations stay on the Mac and do not sync.
       </p>
 
       <h2>Writing with an agent</h2>
@@ -182,11 +209,16 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>Chat</strong> is a conversation with the agent. Its edits go straight into the
-          draft, and each one is in Revisions. When Claude Code needs permission — to run a
-          command or fetch a web page,
-          say — it asks in the chat: <strong>Allow</strong>, <strong>Always Allow</strong> for
-          that exact kind of request, or <strong>Deny</strong>.
+          <strong>Chat</strong> is a conversation with the agent, headed by the workspace folder it
+          reads and edits. Its edits go straight into the draft, and each one is in Revisions.
+          When Claude Code needs permission — to run a command or fetch a web page, say — it asks
+          in the chat: <strong>Allow</strong>, <strong>Always Allow</strong> for that exact kind of
+          request, or <strong>Deny</strong>. A message sent while the agent is working waits its
+          turn, as in Reader Chat, and closing the Agent pane does not stop it.{' '}
+          <strong>Undo This Turn…</strong>, on a question’s right-click menu, puts the draft back as
+          it was before that turn and takes the turn, and everything after it, out of the
+          conversation. Anything you wrote since is replaced, but the restore is recorded in
+          Revisions, so you can put it back.
         </li>
         <li>
           <strong>Terminal</strong> runs the provider’s own tool directly, continuing the same
@@ -223,7 +255,7 @@ export default function Page() {
       <p>
         The same library tools can be used from an AI app you already run — Claude Desktop, Codex,
         Cursor or opencode — through the Model Context Protocol. Turn them on in Settings → AI &amp;
-        Agents, under <strong>Use Lamp in Other Apps</strong>:
+        Agents, under <strong>Use Lamp in Other Apps</strong>, once AI is on:
       </p>
       <Table>
         <thead>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
-import { isMacAvailable, site } from '@/lib/site'
+import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'App privacy',
@@ -58,12 +58,8 @@ export default function AppPrivacy() {
           </p>
           <p>
             You can stop future syncing by choosing Local Only.
-            {isMacAvailable && (
-              <>
-                {' '}On a Mac, turning sync off keeps the server details and the password in the
-                Keychain until you choose Forget Sync Details in Settings → Sync.
-              </>
-            )}{' '}
+            {' '}On a Mac, turning sync off keeps the server details and the password in the
+            Keychain until you choose Forget Sync Details in Settings → Sync.{' '}
             Removing cloud copies is done in iCloud Drive or on your WebDAV server.
           </p>
 
@@ -76,12 +72,8 @@ export default function AppPrivacy() {
             the connection is encrypted with a key derived from that code. The Mac sends the remote
             the deck&apos;s titles and the current and next slides, including their speaker notes;
             the remote sends its commands and its device name. Nothing is sent to Lamp Bible.
-            {isMacAvailable && (
-              <>
-                {' '}While presenting, the Mac advertises itself on the local network as “Lamp Bible
-                on” followed by the Mac&apos;s computer name, until you quit the app.
-              </>
-            )}
+            {' '}While presenting, the Mac advertises itself on the local network as “Lamp Bible
+            on” followed by the Mac&apos;s computer name, until you quit the app.
           </p>
 
           <h2>Links and external Bible apps</h2>
@@ -96,52 +88,60 @@ export default function AppPrivacy() {
             Where Apple Intelligence is available, a new reading plan can start from a description
             you type, such as “the Gospels in a month”. Apple&apos;s on-device model reads the
             description to fill in the plan&apos;s form, which you check before anything is added.
-            The description is not sent to Lamp Bible.
+            The description is not sent to Lamp Bible. This is offered only while Show AI Features
+            is on in Settings.
           </p>
 
-          {isMacAvailable && (
-            <>
-              <h2>Software updates on Mac</h2>
-              <p>
-                The Mac app is distributed outside the App Store and updates itself with the
-                open-source Sparkle framework. It asks before checking for updates automatically,
-                and you can change that or check by hand in Settings → Updates. A check downloads a
-                small update feed from lampbible.com. Like any web request, it reveals your IP
-                address, and it identifies the app, its version and the Sparkle version. It contains
-                nothing from your library and nothing about how you use the app. The website&apos;s
-                host, Vercel, processes these requests as described in the{' '}
-                <Link href="/privacy/website">website privacy declaration</Link>. If you install an
-                update, the disk image is downloaded from GitHub, under GitHub&apos;s privacy
-                statement.
-              </p>
+          <h2>The AI features switch</h2>
+          <p>
+            Show AI Features, in Settings → AI Features on iPhone and iPad and in Settings → AI &amp;
+            Agents on a Mac, decides whether the apps offer any AI feature at all: plans made from a
+            description, the system&apos;s writing tools in Lamp Bible&apos;s text, and on a Mac
+            Reader Chat, writing agents and other apps&apos; use of Lamp Bible&apos;s tools. It is
+            off unless you turn it on, except in a library that already used these features, where
+            it starts on. The choice syncs with your other settings, so it applies on every device
+            you sync with. Turning it off keeps your chats and drafts.
+          </p>
 
-              <h2>AI chat on Mac</h2>
-              <p>
-                The Mac app&apos;s AI features work only through an AI provider&apos;s command-line
-                tool that you install and sign in to yourself. Lamp Bible starts that tool on your
-                Mac; it does not read or store your provider credentials. When you use it, your
-                messages are sent to that provider, together with any module content the agent looks
-                up. In Reader Chat each message also carries the chapter and translation you are
-                reading, the verse you have marked and any text you have selected; in a writing
-                agent, the file open in the editor and the text selected in it. Both look only in
-                the modules your Module Access setting allows. Your own notes, highlights and other
-                writing are sent or looked up only if you allow that in Settings → AI &amp; Agents;
-                with it on, Reader Chat sends your notes and highlights on the chapter you are
-                reading. A writing agent always has access to the writing it was opened from and the
-                files you add to its workspace. The provider&apos;s terms and privacy
-                policy apply. Lamp Bible does not operate or proxy these services and does not
-                receive your conversations. Writing-agent workspaces, including their
-                conversations, sync with your library; Reader Chat conversations stay on the Mac.
-              </p>
-              <p>
-                If you allow other apps to use Lamp Bible&apos;s tools — Claude Desktop, say — what
-                they read from your library goes to whichever AI provider that app uses, under that
-                app&apos;s and that provider&apos;s terms. The same settings decide what they may
-                read. They can change a writing, or add a reading plan, only if you allow each
-                separately. All of these are off until you turn them on.
-              </p>
-            </>
-          )}
+          <h2>Software updates on Mac</h2>
+          <p>
+            The Mac app is distributed outside the App Store and updates itself with the
+            open-source Sparkle framework. It asks before checking for updates automatically,
+            and you can change that or check by hand in Settings → Updates. A check downloads a
+            small update feed from lampbible.com. Like any web request, it reveals your IP
+            address, and it identifies the app, its version and the Sparkle version. It contains
+            nothing from your library and nothing about how you use the app. The website&apos;s
+            host, Vercel, processes these requests as described in the{' '}
+            <Link href="/privacy/website">website privacy declaration</Link>. If you install an
+            update, the disk image is downloaded from GitHub, under GitHub&apos;s privacy
+            statement.
+          </p>
+
+          <h2>AI chat on Mac</h2>
+          <p>
+            The Mac app&apos;s AI features work only through an AI provider&apos;s command-line
+            tool that you install and sign in to yourself. Lamp Bible starts that tool on your
+            Mac; it does not read or store your provider credentials. When you use it, your
+            messages are sent to that provider, together with any module content the agent looks
+            up. In Reader Chat each message also carries the chapter and translation you are
+            reading, the verse you have marked and any text you have selected; in a writing
+            agent, the file open in the editor and the text selected in it. Both look only in
+            the modules your Module Access setting allows. Your own notes, highlights and other
+            writing are sent or looked up only if you allow that in Settings → AI &amp; Agents;
+            with it on, Reader Chat sends your notes and highlights on the chapter you are
+            reading. A writing agent always has access to the writing it was opened from and the
+            files you add to its workspace. The provider&apos;s terms and privacy
+            policy apply. Lamp Bible does not operate or proxy these services and does not
+            receive your conversations. Writing-agent workspaces, including their
+            conversations, sync with your library; Reader Chat conversations stay on the Mac.
+          </p>
+          <p>
+            If you allow other apps to use Lamp Bible&apos;s tools — Claude Desktop, say — what
+            they read from your library goes to whichever AI provider that app uses, under that
+            app&apos;s and that provider&apos;s terms. The same settings decide what they may
+            read. They can change a writing, or add a reading plan, only if you allow each
+            separately. All of these are off until you turn them on.
+          </p>
 
           <h2>Children</h2>
           <p>

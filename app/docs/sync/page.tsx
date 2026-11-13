@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Sync & backup',
@@ -54,26 +53,24 @@ export default function Page() {
         Bible server. Even with sync switched on, the only parties involved are you and the storage
         you chose.
       </p>
-      {isMacAvailable && (
-        <p>
-          On a Mac, Settings → Sync offers <strong>iCloud Drive or Folder</strong> — choose the same
-          Lamp Bible folder in iCloud Drive that your iPhone uses — or WebDAV with the same server
-          address. See <Link href="/docs/mac">The Mac app</Link> for how sync differs there.
-        </p>
-      )}
+      <p>
+        On a Mac, Settings → Sync offers <strong>iCloud Drive or Folder</strong> — choose the same
+        Lamp Bible folder in iCloud Drive that your iPhone uses — or WebDAV with the same server
+        address. See <Link href="/docs/mac">The Mac app</Link> for how sync differs there.
+      </p>
 
       <h2>What syncs</h2>
       <ul>
         <li>
-          Your <Link href="/docs/notes">notes</Link>,{' '}
+          Your <Link href="/docs/notes">notes</Link> with their pictures,{' '}
           <Link href="/docs/devotionals">devotionals</Link> with their images and audio, and every{' '}
           <Link href="/docs/highlights">highlight set</Link> with its themes.
         </li>
         <li>Reading plan progress, and which plans you follow.</li>
         <li>
           Your settings: translation and text size, hidden translations and lexicons, lexicon order,
-          word hints, highlight colours, reading rate, reminder, quiz age group and devotional text
-          size.
+          word hints, highlight colours, reading rate, reminder, how many readers share a plan,
+          quiz age group, devotional text size, and whether AI features are shown.
         </li>
         <li>
           Modules you imported yourself — translations, dictionaries, commentaries, books, plans and
@@ -81,12 +78,10 @@ export default function Page() {
           reading plans you <Link href="/docs/reading-plans#making-a-plan">made</Link>.
         </li>
         <li>Slide decks made on a Mac, which iPhone and iPad receive to view.</li>
-        {isMacAvailable && (
-          <li>
-            Each writing’s agent workspace on the Mac — companion files, context, skills, revisions
-            and the agent conversation.
-          </li>
-        )}
+        <li>
+          Each writing’s agent workspace on the Mac — companion files, context, skills, revisions
+          and the agent conversation.
+        </li>
       </ul>
 
       <p>Some things deliberately stay on the device that made them:</p>
@@ -95,7 +90,8 @@ export default function Page() {
         <li>Your WebDAV password and the choice of sync method.</li>
         <li>
           Search and navigation history, where you are in each book, the active highlight set and
-          style, the read-aloud voice, the reader’s typeface, and the tool panel’s position.
+          style, the read-aloud voice and how Greek words are said, the reader’s typeface and line
+          spacing, the tool panel’s position, and what a word analysis’s card shows.
         </li>
       </ul>
 
@@ -124,11 +120,13 @@ export default function Page() {
 ├── Notes/notes.lamp         My Notes
 ├── Devotionals/             your devotional collections
 ├── DevotionalMedia/         their images and audio
+├── NoteMedia/               pictures in notes, by notes module
 ├── Highlights/              one file per highlight set
 ├── Translations/            modules you imported, by type
 ├── Dictionaries/
 ├── Commentaries/
 ├── Books/
+├── BookMedia/               images in the books you imported
 ├── Plans/
 ├── Quizzes/
 └── Workspaces/              slide decks and other Mac workspace files`}</code>
@@ -206,9 +204,11 @@ export default function Page() {
         waiting does not upload until you choose.
       </p>
       <p>
-        A highlight set syncs as a whole, and the newer copy wins. Settings are merged one at a
-        time: each takes the value from the device that changed it, and one changed on both takes
-        the later change. Ticking or unticking a reading, and following or dropping a plan, is
+        A highlight set that changed on both devices is merged highlight by highlight: each one
+        this device lacks is added, and none is taken away for being missing from the other copy,
+        so only a deletion removes one. The set’s name, and its themes’ names, go to whichever copy
+        changed last. Settings are merged one at a time: each takes the value from the device that
+        changed it, and one changed on both takes the later change. Ticking or unticking a reading, and following or dropping a plan, is
         merged the same way, so an untick on one device is not undone by another.
       </p>
 
@@ -235,12 +235,10 @@ export default function Page() {
           up to date. Until you do, nothing syncs: the app asks again the next time it opens, and
           Settings → Sync explains why, with a <strong>Move Library</strong> button.
         </li>
-        {isMacAvailable && (
-          <li>
-            <strong>A library a Mac kept</strong> — on the Mac, open Settings → Sync and choose{' '}
-            <strong>Move Library</strong>. Your iPhone and iPad sync once it has moved.
-          </li>
-        )}
+        <li>
+          <strong>A library a Mac kept</strong> — on the Mac, open Settings → Sync and choose{' '}
+          <strong>Move Library</strong>. Your iPhone and iPad sync once it has moved.
+        </li>
         <li>
           <strong>A new, empty location</strong> is set up automatically.
         </li>

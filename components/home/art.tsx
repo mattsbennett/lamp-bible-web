@@ -18,12 +18,64 @@ import { Sym, type SymbolName } from './sf'
 const label2 = 'text-[color:var(--sys-label2)]'
 const label3 = 'text-[color:var(--sys-label3)]'
 const tint = 'text-[color:var(--sys-tint)]'
-const blue = 'text-[color:var(--sys-blue)]'
+/** Core's link blue, which both apps draw links and note marks in. */
+const blue = 'text-[color:var(--lamp-link)]'
 const sep = 'border-[color:var(--sys-sep)]'
 const caption = 'text-[color:var(--lamp-caption)]'
 const serif = 'app-serif'
 /** A small-capital overline: a book over its chapter, a lexicon's sections. */
 const overline = `text-[8.5px] font-semibold uppercase tracking-[0.1em] ${caption}`
+
+/**
+ * Symbols the apps use that ./sf has no stand-in for, drawn on its 24-point
+ * grid at its weight.
+ */
+function Glyph({
+  name,
+  className,
+}: {
+  name: 'speakerWave2' | 'booksVertical' | 'rectangleStackBadgePlus' | 'characterBookClosed'
+  className?: string
+}) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      {name === 'speakerWave2' && (
+        <>
+          <path d="M3.5 9.5h3.5l5-4.5v14l-5-4.5H3.5z" />
+          <path d="M15.5 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11" />
+        </>
+      )}
+      {name === 'booksVertical' && (
+        <>
+          <rect x="3.5" y="4" width="4.5" height="16" rx="1" />
+          <rect x="9.5" y="4" width="4.5" height="16" rx="1" />
+          <path d="m15.5 5.5 3.6-1 2.9 14.6-3.6 1z" />
+        </>
+      )}
+      {name === 'characterBookClosed' && (
+        <>
+          <path d="M19.5 17.5v-13a2 2 0 0 0-2-2h-11a3 3 0 0 0-3 3v13A3.5 3.5 0 0 0 7 22h12.5v-4.5H7a1.5 1.5 0 0 0 0 3" />
+          <path d="m8.8 14 3.2-8 3.2 8M10 11.2h4" strokeWidth={1.7} />
+        </>
+      )}
+      {name === 'rectangleStackBadgePlus' && (
+        <>
+          <path d="M13 20.5H6a2.5 2.5 0 0 1-2.5-2.5v-6.5A2.5 2.5 0 0 1 6 9h12a2.5 2.5 0 0 1 2.5 2.5V13" />
+          <path d="M6 6h12M8.5 3h7M19 15.5v6M16 18.5h6" />
+        </>
+      )}
+    </svg>
+  )
+}
 
 function Art({ label, className = '', children }: { label: string; className?: string; children: ReactNode }) {
   return (
@@ -96,10 +148,10 @@ function ReaderHeader({ translation, chapter }: { translation: string; chapter: 
   )
 }
 
-/** A verse number: small semibold figures raised off the line, quieter than the text. */
+/** A verse number: semibold at three quarters of the text, raised off the line, quieter than it. */
 function V({ n }: { n: number }) {
   return (
-    <span className="mr-[0.3em] align-[0.33em] text-[0.68em] font-semibold tabular-nums leading-none text-[color:var(--lamp-verse)]">
+    <span className="mr-[0.3em] align-[0.4em] text-[0.75em] font-semibold leading-none text-[color:var(--lamp-verse)]">
       {n}
     </span>
   )
@@ -130,13 +182,13 @@ function Scripture({ className = '', children }: { className?: string; children:
   )
 }
 
-/** The study panel under the reader: its own ground, round shoulders and a grabber. */
+/** The study panel under the reader: flat on its own ground, under a hairline and the grabber. */
 function ToolPanel({ top, children }: { top: string; children: ReactNode }) {
   return (
     <div
-      className={`absolute inset-x-0 bottom-0 rounded-t-[16px] border-t-[0.5px] border-[color:var(--sys-sep)] bg-[var(--lamp-panel)] ${top}`}
+      className={`absolute inset-x-0 bottom-0 border-t-[0.75px] border-[color:var(--sys-sep)] bg-[var(--lamp-panel)] ${top}`}
     >
-      <span className="mx-auto mt-[5px] block h-[4px] w-[26px] rounded-full bg-[var(--sys-gray3)]" />
+      <span className="mx-auto mt-[2.5px] block h-[3.6px] w-[26px] rounded-full bg-[var(--sys-gray3)]" />
       {children}
     </div>
   )
@@ -160,7 +212,7 @@ function Chip({ children }: { children: ReactNode }) {
 
 export function ReaderArt() {
   return (
-    <Art label="Lamp Bible on iPhone at John 1 in the KJV, set in a serif with the book’s name over “Chapter 1”. The Strong’s entry for “Word” — G3056, λόγος — is open in a sheet over the text, with buttons to search its 314 verses and to analyse it.">
+    <Art label="Lamp Bible on iPhone at John 1 in the KJV, set in a serif with the book’s name over “Chapter 1”. The Strong’s entry for “Word” — G3056, λόγος — is open in a sheet over the text, with a button to say it aloud, and buttons to search its 314 verses and to analyse it.">
       <Phone height="h-[360px] lg:h-[530px]">
         <ReaderHeader translation="KJV" chapter="John 1" />
         <div className="px-[16px]">
@@ -183,9 +235,10 @@ export function ReaderArt() {
             <span className="flex-1 pr-[27px] text-center text-[12px] font-semibold">Word</span>
           </div>
           <div className="px-[14px] pt-[8px]">
-            <p className={`text-[8.5px] ${label3}`}>Strong’s Greek</p>
+            <p className={`text-[8px] uppercase ${label3}`}>Strong’s Greek</p>
             <p className="mt-[2px] flex items-baseline gap-[7px]">
               <span className={`${serif} text-[22px] leading-none`}>λόγος</span>
+              <Glyph name="speakerWave2" className={`h-[10px] w-[10px] self-center ${caption}`} />
               <span className={`text-[10.5px] italic ${caption}`}>lógos</span>
             </p>
             <div className="mt-[7px] flex gap-[5px] text-[9.5px] font-medium">
@@ -277,9 +330,9 @@ const heroGround: CSSProperties = {
 
 export function PlansArt() {
   const readings = [
-    { passage: '2 Chronicles 35', detail: 'History · 5 min', verses: 27, read: true },
-    { passage: 'Hosea 3', detail: 'Prophets · 1 min', verses: 5, read: false },
-    { passage: 'Acts 18-19', detail: 'Acts · 9 min', verses: 69, read: false },
+    { passage: '2 Chronicles 35', detail: 'History · 5 min', read: true },
+    { passage: 'Hosea 3', detail: 'Prophets · 1 min', read: false },
+    { passage: 'Acts 18-19', detail: 'Acts · 9 min', read: false },
   ]
   return (
     <Art label="The Today screen on iPhone: under Daily Reading, a crimson card for The Bible Companion — day 310 of 365, three readings, fifteen minutes, one read — with the opening words of Hosea 3:1 up next and a Continue Reading button, above the list of the day’s readings.">
@@ -308,7 +361,13 @@ export function PlansArt() {
             </span>
           </div>
           <div className="rounded-[14px] p-[14px] text-white shadow-[0_6px_14px_rgb(140_26_51/0.22)]" style={heroGround}>
-            <p className="text-[8.5px] font-bold tracking-[0.12em] text-white/90">DAY 310 OF 365</p>
+            <div className="relative">
+              <p className="text-[8.5px] font-bold tracking-[0.12em] text-white/90">DAY 310 OF 365</p>
+              {/* Laid over the line, as the app does, so the card is no taller for it. */}
+              <span className="absolute right-0 top-1/2 flex h-[21px] w-[21px] -translate-y-1/2 items-center justify-center rounded-full bg-white/20">
+                <Sym name="chevronUp" className="h-[8px] w-[8px] text-white" />
+              </span>
+            </div>
             <p className="mt-[3px] text-[19px] font-bold leading-tight">The Bible Companion</p>
             <div className="mt-[5px] flex justify-between text-[10.5px] text-white/90">
               <span>3 readings · 15 min</span>
@@ -344,10 +403,6 @@ export function PlansArt() {
                   </div>
                   <Sym name="chevronRight" className={`h-[9px] w-[9px] ${label2}`} />
                 </div>
-                <span className="ml-[27px] mt-[5px] inline-flex items-center gap-[4px] rounded-full bg-[var(--lamp-tile)] px-[7px] py-[3px] text-[9px] font-medium">
-                  <Sym name="personFill" className={`h-[8px] w-[8px] ${tint}`} />
-                  {r.verses} verses
-                </span>
               </div>
             ))}
           </div>
@@ -548,7 +603,7 @@ export function SearchArt() {
               <p className={`${serif} mt-[2px] line-clamp-2 text-[11.5px] leading-[1.4] text-[color:var(--lamp-text)]`}>
                 {r.parts.map((part, i) =>
                   i % 2 === 1 ? (
-                    <span key={i} className="bg-[var(--lamp-match)] font-semibold">
+                    <span key={i} className="bg-[var(--lamp-match)] font-semibold text-[color:var(--lamp-on-match)]">
                       {part}
                     </span>
                   ) : (
@@ -569,8 +624,8 @@ export function SearchArt() {
  * drawings agree with the apps and with each other.
  */
 const agapeRenderings = [
-  { text: 'love', count: 86, variants: ['the love', 'of love', 'in love'] },
-  { text: 'charity', count: 27, variants: ['in charity', 'of charity', 'the charity'] },
+  { text: 'love', count: 86 },
+  { text: 'charity', count: 27 },
   { text: 'charitably', count: 1 },
   { text: 'dear', count: 1 },
   { text: 'feasts of charity', count: 1 },
@@ -591,22 +646,71 @@ const ntDivisions: Array<[name: string, books: number]> = [
   ['Gospels', 4], ['', 1], ['Paul’s Letters', 13], ['General Letters', 8], ['', 1],
 ]
 
-/** The Strong's analysis sheet on iPhone: the headword card and its chart, then the renderings. */
+/** A share as core prints it (LampStrongsSpread.percent): whole, or "<1%". */
+const percent = (fraction: number) => (Math.round(fraction * 100) < 1 ? '<1%' : `${Math.round(fraction * 100)}%`)
+
+/**
+ * One of a share's shades of the accent, at `strength` from 0 to 1, as the
+ * phone's ring and its key draw them.
+ */
+const shade = (strength: number) =>
+  `color-mix(in srgb, var(--sys-tint) calc(100% - ${Math.round((1 - strength) * 100)}% * var(--lamp-shade-reach)), var(--lamp-shade-toward))`
+
+/** A ring of shares, the commonest first from the top, with its total in the hole. */
+function ShareRing({ values, size }: { values: number[]; size: number }) {
+  const total = values.reduce((a, b) => a + b, 0)
+  const r = 50
+  const hole = r * 0.6
+  const angle = (before: number) => -Math.PI / 2 + (2 * Math.PI * before) / total
+  const point = (radius: number, at: number) => `${50 + radius * Math.cos(at)} ${50 + radius * Math.sin(at)}`
+  return (
+    <span className="relative block" style={{ width: size, height: size }}>
+      <svg viewBox="0 0 100 100" className="absolute inset-0" aria-hidden="true">
+        {values.map((value, i) => {
+          const before = values.slice(0, i).reduce((a, b) => a + b, 0)
+          const start = angle(before)
+          const end = angle(before + value)
+          const large = value / total > 0.5 ? 1 : 0
+          const d = `M${point(r, start)}A${r} ${r} 0 ${large} 1 ${point(r, end)}L${point(hole, end)}A${hole} ${hole} 0 ${large} 0 ${point(hole, start)}Z`
+          return (
+            <path
+              key={i}
+              d={d}
+              style={{ fill: shade(1 - (0.75 * i) / (values.length - 1)), stroke: 'var(--sys-cell)' }}
+              strokeWidth={1.2}
+            />
+          )
+        })}
+      </svg>
+      <span className="absolute inset-0 flex flex-col items-center justify-center leading-tight">
+        <span className="text-[14px] font-semibold tabular-nums">{total}</span>
+        <span className={`text-[8px] ${label2}`}>in all</span>
+      </span>
+    </span>
+  )
+}
+
+/**
+ * The Strong's analysis sheet on iPhone: the headword card and its chart, the
+ * way to the whole entry, then how the word is translated, on its ring.
+ */
 export function AnalysisArt() {
   const most = Math.max(...agapeByBook.map(([, count]) => count))
   const colour = (standing?: 'more' | 'fewer') =>
-    standing === 'more' ? 'var(--sys-blue)' : standing === 'fewer' ? 'var(--sys-orange)' : 'var(--lamp-bar-neutral)'
-  const repeated = agapeRenderings.filter((r) => r.count > 1)
-  const once = agapeRenderings.filter((r) => r.count === 1)
+    standing === 'more' ? 'var(--sys-tint)' : standing === 'fewer' ? 'var(--lamp-bar-neutral)' : 'var(--lamp-bar-expected)'
+  const total = agapeRenderings.reduce((sum, r) => sum + r.count, 0)
   const chart = 58
   return (
-    <Art label="The word analysis on iPhone for G26, ἀγάπη (agápē, love): 117 occurrences in 106 verses of the KJV, in 24 of 27 books, with a column for each book — 1 John and Ephesians in blue as more than expected, Matthew, Mark, Luke and Acts in orange as fewer. Below, its renderings: love 86 times, charity 27, and four once each.">
+    <Art label="The word analysis on iPhone for G26, ἀγάπη (agápē, love): 117 occurrences in 106 verses of the KJV, in 24 of 27 books, with a column for each book — 1 John and Ephesians in the accent colour as more than expected, Matthew, Mark, Luke and Acts in grey as fewer. Below, a way to the whole definition, and how it is translated, on a ring: love 86 times, charity 27, and four once each.">
       <Phone height="h-[440px] lg:h-[470px]" className="!bg-[var(--sys-grouped)]">
         <div className={`flex items-center gap-2 border-b ${sep} px-[9px] pb-[6px] pt-[8px]`}>
           <Glass round>
             <Sym name="xmark" className="h-[11px] w-[11px]" />
           </Glass>
-          <span className="flex-1 pr-[30px] text-center text-[12px] font-semibold">Word Analysis</span>
+          <span className="flex-1 text-center text-[12px] font-semibold">Word Analysis</span>
+          <Glass round>
+            <Glyph name="booksVertical" className="h-[12px] w-[12px]" />
+          </Glass>
         </div>
         <div
           className="mx-[11px] mt-[8px] rounded-[14px] px-[12px] pb-[10px] pt-[10px]"
@@ -615,9 +719,11 @@ export function AnalysisArt() {
               'radial-gradient(80% 70% at 100% 0%, color-mix(in srgb, var(--sys-tint) 15%, transparent), transparent), var(--lamp-hero)',
           }}
         >
-          <p className="flex items-baseline gap-[7px]">
+          <p className="flex items-center gap-[7px]">
             <span className={`${serif} text-[30px] font-semibold leading-none`}>ἀγάπη</span>
             <span className="rounded-full bg-[var(--lamp-tile)] px-[6px] py-[2px] text-[9.5px] font-semibold opacity-80">G26</span>
+            <Glyph name="speakerWave2" className={`h-[12px] w-[12px] ${caption}`} />
+            <Sym name="sliderHorizontal3" className={`ml-auto h-[13px] w-[13px] ${tint}`} />
           </p>
           <p className="mt-[3px] flex items-baseline gap-[6px]">
             <span className={`${serif} text-[13px] italic opacity-80`}>agápē</span>
@@ -653,7 +759,7 @@ export function AnalysisArt() {
                   }}
                 >
                   {name === '1 John' && (
-                    <span className="absolute bottom-full left-1/2 mb-[2px] -translate-x-1/2 whitespace-nowrap text-[7.5px] font-bold text-[color:var(--sys-blue)]">
+                    <span className={`absolute bottom-full left-1/2 mb-[2px] -translate-x-1/2 whitespace-nowrap text-[7.5px] font-bold ${tint}`}>
                       1 John
                     </span>
                   )}
@@ -680,14 +786,16 @@ export function AnalysisArt() {
               </span>
             ))}
           </div>
-          <div className={`mt-[6px] flex flex-wrap gap-x-[9px] text-[8px] font-medium ${label2}`}>
-            {[
-              ['More than expected', 'var(--sys-blue)'],
-              ['Fewer', 'var(--sys-orange)'],
-              ['As expected', 'var(--lamp-bar-neutral)'],
-            ].map(([name, c]) => (
+          <div className={`mt-[6px] flex flex-wrap gap-x-[10px] text-[8px] font-medium ${label2}`}>
+            {(
+              [
+                ['More ↑', 'more'],
+                ['As expected', undefined],
+                ['Fewer ↓', 'fewer'],
+              ] as const
+            ).map(([name, standing]) => (
               <span key={name} className="flex items-center gap-[3px]">
-                <span className="h-[5px] w-[5px] rounded-full" style={{ backgroundColor: c }} />
+                <span className="h-[5px] w-[5px] rounded-full" style={{ backgroundColor: colour(standing) }} />
                 {name}
               </span>
             ))}
@@ -696,32 +804,31 @@ export function AnalysisArt() {
         <p className={`px-[22px] pt-[5px] text-[8.5px] leading-[1.35] ${label2}`}>
           About 0.8 in every 1,000 tagged Greek words of the KJV.
         </p>
-        <p className="px-[22px] pb-[5px] pt-[11px] text-[14px] font-bold">Rendered As</p>
+        <div className="mx-[11px] mt-[10px] flex items-center gap-[9px] rounded-[14px] bg-[var(--sys-cell)] px-[12px] py-[7px]">
+          <Glyph name="characterBookClosed" className={`h-[14px] w-[14px] shrink-0 ${tint}`} />
+          <div className="min-w-0 flex-1 leading-tight">
+            <p className="text-[12px]">Definition</p>
+            <p className={`truncate text-[9.5px] ${label2}`}>The whole entry, in each dictionary that has the word</p>
+          </div>
+          <Sym name="chevronRight" className={`h-[9px] w-[9px] shrink-0 ${label3}`} />
+        </div>
+        <p className="px-[22px] pb-[5px] pt-[11px] text-[14px] font-bold">Translated As</p>
         <div className="mx-[11px] rounded-[14px] bg-[var(--sys-cell)] px-[12px] pb-[4px] pt-[8px]">
-          <PhoneSegmented items={['List', 'Ring']} />
-          {repeated.map((r) => (
-            <div key={r.text} className={`border-b ${sep} py-[6px]`}>
-              <div className="flex items-baseline justify-between">
-                <span className="text-[12px]">{r.text}</span>
-                <span className="text-[12px] font-semibold tabular-nums">{r.count}</span>
-              </div>
-              <p className={`text-[9.5px] ${label2}`}>{r.variants?.join(', ')}</p>
-              <div className="mt-[4px] h-[4px] rounded-full bg-[var(--lamp-bar-track)]">
-                <div
-                  className="h-full rounded-full bg-[var(--lamp-bar-neutral)]"
-                  style={{ width: `${(r.count / repeated[0].count) * 100}%` }}
-                />
-              </div>
+          <PhoneSegmented items={['List', 'Ring']} selected={1} />
+          <div className="flex justify-center py-[8px]">
+            <ShareRing values={agapeRenderings.map((r) => r.count)} size={89} />
+          </div>
+          {agapeRenderings.map((r, i) => (
+            <div key={r.text} className={`flex items-center gap-[6px] border-t ${sep} py-[6px] text-[11px]`}>
+              <span
+                className="h-[7px] w-[7px] shrink-0 rounded-[1.5px]"
+                style={{ backgroundColor: shade(1 - (0.75 * i) / (agapeRenderings.length - 1)) }}
+              />
+              <span className="flex-1 truncate">{r.text}</span>
+              <span className="tabular-nums">{r.count}</span>
+              <span className={`w-[29px] text-right tabular-nums ${caption}`}>{percent(r.count / total)}</span>
             </div>
           ))}
-          <p className={`pt-[7px] text-[9.5px] font-semibold ${caption}`}>Once each</p>
-          <div className="flex flex-wrap gap-[4px] py-[6px]">
-            {once.map((r) => (
-              <span key={r.text} className="rounded-full bg-[var(--lamp-tile)] px-[8px] py-[3px] text-[10px]">
-                {r.text}
-              </span>
-            ))}
-          </div>
         </div>
       </Phone>
     </Art>
@@ -969,13 +1076,10 @@ function ToolIcon({ name, on = false, dim = false }: { name: SymbolName; on?: bo
 function Segmented({
   items,
   selected = 0,
-  accent = false,
   className = '',
 }: {
   items: ReactNode[]
   selected?: number
-  /** The selected segment filled in the accent, as macOS 26 draws a tab picker. */
-  accent?: boolean
   className?: string
 }) {
   return (
@@ -984,11 +1088,7 @@ function Segmented({
         <span
           key={i}
           className={`flex items-center justify-center gap-[3px] rounded-full px-[8px] py-[2px] ${
-            i !== selected
-              ? ''
-              : accent
-                ? 'bg-[var(--sys-tint)] text-white'
-                : 'bg-[var(--mac-control)] shadow-[0_1px_2px_rgb(0_0_0/0.14)]'
+            i === selected ? 'bg-[var(--mac-control)] shadow-[0_1px_2px_rgb(0_0_0/0.14)]' : ''
           }`}
         >
           {item}
@@ -1228,10 +1328,21 @@ export function AgentWorkspaceArt() {
               </div>
             </div>
             <div className={`flex flex-1 flex-col gap-[7px] border-t ${sep} bg-[var(--mac-control)] px-[10px] py-[7px] text-[10px] leading-[1.45]`}>
-              <span className="flex items-center gap-[3px] text-[8.5px] text-[color:var(--sys-green)]">
-                <Sym name="checkmarkCircleFill" className="h-[8px] w-[8px]" />
-                Connected
-              </span>
+              <div className={`flex min-w-0 items-center gap-[6px] text-[8.5px] ${label2}`}>
+                <span className="flex shrink-0 items-center gap-[3px] font-semibold">
+                  <Sym name="sparkles" className="h-[8px] w-[8px]" />
+                  Claude
+                </span>
+                {/* The folder it reads and edits, named after the writing's ID and cut in the middle. */}
+                <span className="flex min-w-0 items-center gap-[3px]">
+                  <Sym name="squareAndPencil" className="h-[8px] w-[8px] shrink-0" />
+                  <span className="truncate">8C1F2B6E-3A4D…7d2e9a1b</span>
+                </span>
+                <span className="flex shrink-0 items-center gap-[3px] text-[color:var(--sys-green)]">
+                  <Sym name="checkmarkCircleFill" className="h-[8px] w-[8px]" />
+                  Connected
+                </span>
+              </div>
               <p className="ml-auto w-fit max-w-[86%] rounded-[12px] rounded-tr-[4px] bg-[color-mix(in_srgb,var(--sys-tint)_16%,transparent)] px-[9px] py-[5px]">
                 Tighten the opening, and find where else John uses “abide”.
               </p>
@@ -1454,26 +1565,46 @@ export function SlideArt() {
   )
 }
 
-/** Mac search on a Strong's key: its occurrences, narrowed to 1 John, beside the analysis's Spread. */
+/**
+ * The Reader and Search tab bar (LibraryTabBar), with one tab open: a track a
+ * shade down from the window under the toolbar, the open tab a raised page,
+ * and + at the end. A lone tab has no close button.
+ */
+function MacTabBar({ title }: { title: string }) {
+  return (
+    <div className={`flex h-[23px] border-b ${sep} bg-[var(--mac-tab-track)] pl-[2px]`}>
+      <span className="mx-[1px] my-[2px] flex min-w-0 flex-1 items-center justify-center rounded-[5px] border-[0.5px] border-[color:var(--mac-tab-edge)] bg-[var(--mac-tab-open)] px-[16px] text-[8px] shadow-[0_0.5px_1px_var(--mac-tab-shadow)]">
+        <span className="truncate">{title}</span>
+      </span>
+      <span className="flex w-[22px] shrink-0 items-center justify-center">
+        <Sym name="plus" className={`h-[9px] w-[9px] ${label2}`} />
+      </span>
+    </div>
+  )
+}
+
+/**
+ * Mac search on a Strong's key, in its tab: the occurrences narrowed to 1 John
+ * beside the analysis's card, on its Spread.
+ */
 export function MacAnalysisArt() {
   const most = Math.max(...agapeByBook.map(([, count]) => count))
+  const total = agapeByBook.reduce((sum, [, count]) => sum + count, 0)
   const occurrences = [
     { ref: '1 John 2:5', before: 'But whoso keepeth his word, in him verily is ', word: 'the love', after: ' of God perfected: hereby know we that we are in him.' },
     { ref: '1 John 2:15', before: '…If any man love the world, ', word: 'the love', after: ' of the Father is not in him.' },
     { ref: '1 John 3:1', before: 'Behold, what manner of ', word: 'love', after: ' the Father hath bestowed upon us, that we should be called the sons of God…' },
     { ref: '1 John 3:16', before: 'Hereby perceive we ', word: 'the love', after: ' of God, because he laid down his life for us…' },
     { ref: '1 John 4:7', before: 'Beloved, let us love one another: for ', word: 'love', after: ' is of God; and every one that loveth is born of God…' },
+    { ref: '1 John 4:8', before: 'He that loveth not knoweth not God; for God is ', word: 'love', after: '.' },
   ]
   const fill = (standing?: 'more' | 'fewer') =>
-    standing === 'more'
-      ? 'bg-[var(--sys-tint)]'
-      : standing === 'fewer'
-        ? 'bg-[color-mix(in_srgb,var(--sys-label)_32%,transparent)]'
-        : 'bg-[color-mix(in_srgb,var(--sys-tint)_55%,transparent)]'
+    standing === 'more' ? 'var(--sys-tint)' : standing === 'fewer' ? 'var(--mac-bar-fewer)' : 'var(--mac-bar-expected)'
+  const strip = 39
   return (
     <Art
       className="@container"
-      label="Search on the Mac for Strong’s G26 in the KJV. Its analysis is open on Spread, drawing a column for each New Testament book under a key to the shades: 1 John, the tallest at 18, and Ephesians stand out in the accent colour as more than chance would give. The occurrence list beside it is narrowed to the 18 in 1 John."
+      label="Search on the Mac for Strong’s G26 in the KJV, in a tab named G26. The analysis’s card gives ἀγάπη, agápē, love: 117 occurrences in 106 verses, in 24 of 27 books, over a column for each New Testament book, with 1 John named in the accent colour as the book it stands out in. Under the card the Spread tab is open, listing the books with a bar each and a key to the shades. The occurrence list beside it is narrowed to the 18 in 1 John."
     >
       <MacWindow
         title="Search"
@@ -1494,7 +1625,8 @@ export function MacAnalysisArt() {
           </>
         }
       >
-        <div className={`flex gap-[6px] border-b ${sep} px-[10px] pb-[6px]`}>
+        <MacTabBar title="G26" />
+        <div className={`flex gap-[6px] border-b ${sep} px-[10px] py-[6px]`}>
           <span className="hidden h-[19px] items-center gap-[4px] rounded-full bg-[var(--sys-fill)] px-[8px] text-[9px] @md:flex">
             <Sym name="book" className="h-[9px] w-[9px]" />
             All Books
@@ -1506,11 +1638,15 @@ export function MacAnalysisArt() {
             <Sym name="xmarkCircleFill" className={`ml-auto h-[10px] w-[10px] ${label2}`} />
           </span>
         </div>
-        <div className="grid grid-cols-[minmax(0,1fr)] @xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+        <div className="grid h-[400px] grid-cols-[minmax(0,1fr)] overflow-hidden @xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
           <div className={`hidden flex-col border-r ${sep} @xl:flex`}>
-            <div className={`flex justify-between border-b ${sep} px-[9px] py-[5px] text-[8.5px] ${label2}`}>
-              <span>18 of 117 occurrences</span>
-              <span>KJV</span>
+            <div className={`flex items-center gap-[5px] border-b ${sep} px-[9px] py-[5px] text-[9px] ${label2}`}>
+              <span className="whitespace-nowrap">18 of 117 occurrences</span>
+              <span className="inline-flex items-center gap-[3px] whitespace-nowrap rounded-full bg-[color-mix(in_srgb,var(--sys-tint)_22%,transparent)] px-[6px] py-[1.5px] font-medium text-[color:var(--sys-label)]">
+                in 1 John
+                <Sym name="xmarkCircleFill" className="h-[8px] w-[8px]" />
+              </span>
+              <span className="ml-auto text-[8px]">KJV</span>
             </div>
             <div className={`divide-y divide-[color:var(--sys-sep)] px-[9px]`}>
               {occurrences.map((o) => (
@@ -1529,70 +1665,132 @@ export function MacAnalysisArt() {
             </div>
           </div>
 
-          <div>
-            <div className={`border-b ${sep} px-[10px] py-[8px]`}>
-              <p className="flex items-baseline gap-[6px]">
-                <span className="text-[13px] font-semibold">G26</span>
-                <span className="text-[14px]">ἀγάπη</span>
-                <span className={`text-[10px] ${label2}`}>agápē</span>
+          <div className="min-w-0">
+            <div
+              className="mx-[10px] mt-[9px] rounded-[9px] p-[11px]"
+              style={{
+                background:
+                  'radial-gradient(90% 80% at 100% 0%, color-mix(in srgb, var(--sys-tint) 15%, transparent), transparent), var(--mac-card)',
+              }}
+            >
+              <p className="flex items-center gap-[7px]">
+                <span className={`${serif} text-[22px] font-semibold leading-none`}>ἀγάπη</span>
+                <span className="rounded-full bg-[var(--sys-fill)] px-[6px] py-[1px] text-[9px] font-semibold tabular-nums opacity-80">G26</span>
+                <Glyph name="speakerWave2" className={`h-[11px] w-[11px] ${label2}`} />
+                <span className={`ml-auto flex items-center gap-[9px] ${label2}`}>
+                  <Sym name="sliderHorizontal3" className="h-[11px] w-[11px]" />
+                  <Glyph name="rectangleStackBadgePlus" className="h-[11px] w-[11px]" />
+                </span>
               </p>
-              <p className="mt-[1px] line-clamp-2 text-[10px] leading-[1.4] opacity-80">
-                Generally, love as in 1 Cor. 4:21, “Shall I come unto you with a rod, or in love,”
-                means full of…
+              <p className="mt-[3px] flex items-baseline gap-[6px] text-[10.5px]">
+                <span className={`${serif} italic ${label2}`}>agápē</span>
+                <span className="font-medium">love</span>
               </p>
-              <p className={`mt-[2px] text-[8.5px] ${label2}`}>
-                117 occurrences in 106 verses · 0.85 per 1,000 tagged words · KJV
-              </p>
-              <span className="mt-[5px] inline-flex items-center gap-[3px] rounded-full bg-[color-mix(in_srgb,var(--sys-tint)_22%,transparent)] px-[7px] py-[2px] text-[9px] font-medium">
-                1 John
-                <Sym name="xmarkCircleFill" className="h-[9px] w-[9px]" />
-              </span>
+              <div className="mt-[9px] grid grid-cols-3 gap-[9px]">
+                {[
+                  ['Occurrences', '117', ''],
+                  ['Verses', '106', ''],
+                  ['Books', '24', 'of 27'],
+                ].map(([name, value, unit]) => (
+                  <div key={name}>
+                    <p className={`text-[8.5px] font-medium ${label2}`}>{name}</p>
+                    <p className="flex items-baseline gap-[3px]">
+                      <span className="font-[ui-rounded,system-ui] text-[19px] font-bold leading-tight tabular-nums">{value}</span>
+                      {unit && <span className={`text-[9px] font-semibold ${label2}`}>{unit}</span>}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="relative mt-[9px]" style={{ height: strip + 12 }}>
+                <span className={`absolute left-0 top-0 text-[8px] font-semibold tabular-nums ${label2}`}>{most} times</span>
+                <span className="absolute inset-x-0 top-[11.5px] border-t border-dashed border-[color:color-mix(in_srgb,var(--sys-label)_15%,transparent)]" />
+                <span className="absolute inset-x-0 bottom-0 h-px bg-[color-mix(in_srgb,var(--sys-label)_25%,transparent)]" />
+                <div className="absolute inset-x-0 bottom-0 flex items-end gap-[2px]" style={{ height: strip }}>
+                  {agapeByBook.map(([name, count, standing]) => (
+                    <span
+                      key={name}
+                      className="relative flex-1 rounded-[1.5px]"
+                      style={{
+                        height: count > 0 ? Math.max(3.6, (strip * count) / most) : 1.5,
+                        backgroundColor: count > 0 ? fill(standing) : 'color-mix(in srgb, var(--sys-label) 12%, transparent)',
+                      }}
+                    >
+                      {name === '1 John' && (
+                        <span className={`absolute bottom-full left-1/2 mb-[2px] -translate-x-1/2 whitespace-nowrap text-[8px] font-bold ${tint}`}>
+                          1 John
+                        </span>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-[4px] flex gap-[2px]">
+                {ntDivisions.map(([name, books], i) => (
+                  <span key={i} className="flex flex-col items-center gap-[2px]" style={{ flex: books }}>
+                    <span className="h-[1.5px] w-full rounded-full bg-[color-mix(in_srgb,var(--sys-label)_15%,transparent)]" />
+                    <span className={`whitespace-nowrap text-[7.5px] font-medium ${label2}`}>{name}</span>
+                  </span>
+                ))}
+              </div>
+              <p className={`mt-[7px] text-[9px] ${label2}`}>0.85 per 1,000 tagged words · KJV</p>
             </div>
-            <div className={`border-b ${sep} px-[10px] py-[6px]`}>
-              <Segmented
-                items={['Overview', 'Spread', 'Companions', 'Compare']}
-                selected={1}
-                accent
-                className="w-full [&>span]:flex-1 [&>span]:px-[2px]"
-              />
+
+            <div className={`flex gap-[10px] border-b ${sep} px-[10px] pt-[9px] text-[9.5px]`}>
+              {['Definition', 'Overview', 'Spread', 'Companions', 'Compare'].map((section) => (
+                <span
+                  key={section}
+                  className={`border-b-[2px] pb-[4px] ${
+                    section === 'Spread'
+                      ? 'border-[color:var(--sys-tint)] font-semibold'
+                      : `border-transparent text-[color:var(--mac-secondary)]`
+                  }`}
+                >
+                  {section}
+                </span>
+              ))}
             </div>
-            <div className="px-[10px] py-[8px]">
-              <div className="flex gap-[5px]">
-                <MacPopUp>Columns</MacPopUp>
+            <div className="px-[10px] py-[9px]">
+              <div className="flex items-center gap-[7px]">
                 <MacPopUp>Books</MacPopUp>
                 <MacPopUp>Occurrences</MacPopUp>
+                <Glyph name="rectangleStackBadgePlus" className={`ml-auto h-[11px] w-[11px] ${label2}`} />
               </div>
-              <div className={`mt-[8px] flex flex-wrap gap-x-[10px] text-[8px] ${label2}`}>
-                {[
-                  { name: 'More than chance', standing: 'more' as const, arrow: '↑' },
-                  { name: 'As expected', standing: undefined, arrow: '' },
-                  { name: 'Fewer than chance', standing: 'fewer' as const, arrow: '↓' },
-                ].map((k) => (
-                  <span key={k.name} className="flex items-center gap-[4px]">
-                    <span className={`h-[6px] w-[10px] rounded-[2px] ${fill(k.standing)}`} />
-                    {k.name}
-                    {k.arrow && <span className={`font-bold ${k.standing === 'more' ? tint : ''}`}>{k.arrow}</span>}
+              <div className={`mt-[10px] flex gap-[10px] text-[8.5px] ${label2}`}>
+                {(
+                  [
+                    ['More', 'more', '↑'],
+                    ['As expected', undefined, ''],
+                    ['Fewer', 'fewer', '↓'],
+                  ] as const
+                ).map(([name, standing, arrow]) => (
+                  <span key={name} className="flex items-center gap-[4px]">
+                    <span className="h-[6.5px] w-[10px] rounded-[2px]" style={{ backgroundColor: fill(standing) }} />
+                    {name}
+                    {arrow && <span className={`font-bold ${standing === 'more' ? tint : ''}`}>{arrow}</span>}
                   </span>
                 ))}
               </div>
-              <div className="mt-[18px] flex h-[90px] items-end gap-[2px]">
+              <div className="mt-[9px] space-y-[5px]">
                 {agapeByBook.map(([name, count, standing]) => (
-                  <span
-                    key={name}
-                    className={`relative flex-1 rounded-[1.5px] ${fill(standing)}`}
-                    style={{ height: count > 0 ? Math.max(3, (90 * count) / most) : 1, opacity: count > 0 ? 1 : 0.25 }}
-                  >
-                    {count === most && (
-                      <span className={`absolute bottom-full left-1/2 mb-[3px] -translate-x-1/2 whitespace-nowrap text-[8px] font-semibold ${tint}`}>
-                        1John {count}
-                      </span>
-                    )}
-                  </span>
+                  <div key={name} className="flex items-center gap-[6px] text-[9px]">
+                    <span className="w-[62px] shrink-0 truncate text-right">{name}</span>
+                    <span className="relative h-[11px] flex-1 rounded-[3px] bg-[var(--mac-bar-track)]">
+                      {count > 0 && (
+                        <span
+                          className="absolute inset-y-0 left-0 rounded-[3px]"
+                          style={{ width: `${Math.max(4, (100 * count) / most)}%`, backgroundColor: fill(standing) }}
+                        />
+                      )}
+                    </span>
+                    <span className="w-[16px] shrink-0 text-right font-medium tabular-nums">{count}</span>
+                    <span className={`w-[22px] shrink-0 text-right tabular-nums ${label2}`}>
+                      {count > 0 ? percent(count / total) : ''}
+                    </span>
+                    <span className={`w-[9px] shrink-0 text-center font-bold ${standing === 'more' ? tint : label2}`}>
+                      {standing === 'more' ? '↑' : standing === 'fewer' ? '↓' : ''}
+                    </span>
+                  </div>
                 ))}
-              </div>
-              <div className={`mt-[4px] flex justify-between text-[8px] ${label2}`}>
-                <span>Matthew</span>
-                <span>Revelation</span>
               </div>
             </div>
           </div>

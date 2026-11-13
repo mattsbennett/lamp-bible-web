@@ -46,8 +46,9 @@ export default function Page() {
       <p>
         <strong>Show Tools</strong> splits the reader to show a panel beneath the text. On an iPad
         it can sit to the right instead — choose <strong>Split Right</strong> from the panel’s menu,
-        or set the panel position in Settings. Drag the divider to resize it. The panel’s title
-        menu chooses what it shows:
+        or set the panel position in Settings — under one header that runs across the passage and
+        the panel. Drag the divider to resize the panel; drag it well past the panel’s smallest size
+        and let go to close it. The panel’s title menu chooses what it shows:
       </p>
 
       <Table>
@@ -112,10 +113,18 @@ export default function Page() {
         keeps it in view.
       </p>
       <p>
-        Reading carries on with the screen locked, with controls on the Lock Screen. It speaks at
-        your reading rate, so the plan’s time estimates and the voice agree. Choose the voice in
-        Settings under Read Aloud; if no voice is installed for the translation’s language, the app
-        tells you where to add one.
+        Reading carries on with the screen locked, with controls on the Lock Screen, and pauses
+        anything else playing, such as a podcast, rather than talking over it. It speaks at your
+        reading rate, so the plan’s time estimates and the voice agree.
+      </p>
+      <p>
+        Choose the voice in Settings under Read Aloud. <strong>Automatic</strong> names the best
+        voice installed for the translation’s language; if that is a basic voice, the app says so
+        and shows how to download a better one, and if there is no voice at all, where to add one.{' '}
+        <strong>Greek Words</strong>, in the same section, chooses how the speaker beside a Greek
+        word in a lexicon entry or an analysis says it: <strong>Classroom (Erasmian)</strong> or{' '}
+        <strong>Modern Greek</strong>, which needs a Greek voice installed. Hebrew is said from
+        Strong’s own respelling. Saying a single word only lowers other audio while it speaks.
       </p>
 
       <h2>Getting around</h2>
@@ -126,7 +135,9 @@ export default function Page() {
           and so on — and a book’s chapters are a grid of numbers, with a{' '}
           <strong>Contents</strong> list of each chapter’s first heading where the translation has
           headings. Touch and hold a chapter to choose one of its verses. The translation menu at
-          the top switches translation.
+          the top switches translation; translations are grouped by language, the Hebrew and Greek
+          last under <strong>Biblical Languages</strong>, and those tagged with Strong’s numbers
+          say so.
         </li>
         <li>
           <strong>Pull past the top or bottom</strong> of a chapter to go to the previous or next
@@ -164,8 +175,8 @@ export default function Page() {
       <ul>
         <li>
           <strong>View Options</strong> in the reader’s menu sets the typeface — serif, the
-          default, or sans — and the text size. The reader’s size is set independently of the tool
-          panel’s and of devotional text.
+          default, or sans — the text size, and the <strong>Line Spacing</strong>, in points. The
+          reader’s size is set independently of the tool panel’s and of devotional text.
         </li>
         <li>Light and dark rendering follows the system appearance.</li>
       </ul>

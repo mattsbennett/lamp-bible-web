@@ -74,7 +74,8 @@ CREATE TABLE translation_meta (
     license TEXT,
     source_texts_json TEXT,
     features_json TEXT,
-    versification TEXT DEFAULT 'standard'
+    versification TEXT DEFAULT 'standard',
+    versification_mappings TEXT
 );
 
 CREATE TABLE books (
@@ -168,6 +169,7 @@ CREATE TABLE commentary_books (
     series_full TEXT,
     series_abbrev TEXT,
     title TEXT,
+    description TEXT,
     author TEXT,
     editor TEXT,
     publisher TEXT,
@@ -386,7 +388,9 @@ CREATE TABLE plans (
     author TEXT,
     full_description TEXT,
     duration INTEGER NOT NULL,
-    readings_per_day INTEGER
+    readings_per_day INTEGER,
+    source TEXT,
+    license TEXT
 );
 
 CREATE TABLE plan_days (
@@ -749,14 +753,18 @@ def populate_translation(cur, src):
         """INSERT INTO translation_meta (
                id, name, abbreviation, description, language, language_name,
                text_direction, translation_philosophy, year, publisher, copyright,
-               copyright_year, license, source_texts_json, features_json, versification
-           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+               copyright_year, license, source_texts_json, features_json, versification,
+               versification_mappings
+           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (meta['id'], meta['name'], meta['abbreviation'], meta.get('description'),
          meta['language'], meta.get('languageName'), meta.get('textDirection') or 'ltr',
          meta.get('translationPhilosophy'), meta.get('year'), meta.get('publisher'),
          meta.get('copyright'), meta.get('copyrightYear'), meta.get('license'),
          to_json(meta.get('sourceTexts')), to_json(meta.get('features')),
-         meta.get('versification') or 'standard'),
+         meta.get('versification') or 'standard',
+         # Verses placed differently from the versification, as Paratext mapping
+         # lines such as "ROM 14:24-26 = ROM 16:25-27". The sample declares none.
+         to_json(meta.get('versificationMappings'))),
     )
 
     for book in src['books']:
@@ -920,7 +928,6 @@ COMMENTARY = {
         'author': 'Lamp Bible',
         'seriesAbbrev': 'LSC',
         'seriesFull': 'Lamp Sample Commentary',
-        'language': 'en',
     },
     'book': 'Gen',
     'bookNumber': 1,
@@ -1047,11 +1054,13 @@ def populate_commentary(cur, src):
     book = src['bookNumber']
     cur.execute(
         """INSERT INTO commentary_books (
-               id, module_id, book_number, series_full, series_abbrev, title, author,
-               editor, publisher, year, abbreviations_json, front_matter_json, indices_json
-           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+               id, module_id, book_number, series_full, series_abbrev, title, description,
+               author, editor, publisher, year, abbreviations_json, front_matter_json,
+               indices_json
+           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (f"{meta['id']}:{book}", meta['id'], book, meta.get('seriesFull'),
-         meta.get('seriesAbbrev'), meta.get('title') or meta.get('name'), meta.get('author'),
+         meta.get('seriesAbbrev'), meta.get('title') or meta.get('name'),
+         meta.get('description'), meta.get('author'),
          meta.get('editor'), meta.get('publisher'), meta.get('year'),
          to_json(src.get('abbreviations')), to_json(src.get('frontMatter')),
          to_json(src.get('indices'))),
@@ -1243,11 +1252,14 @@ def populate_plan(cur, src):
     days = src['days']
     cur.execute(
         """INSERT INTO plans (id, name, description, author, full_description,
-                              duration, readings_per_day)
-           VALUES (?, ?, ?, ?, ?, ?, ?)""",
+                              duration, readings_per_day, source, license)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (meta['id'], meta['name'], meta.get('description'), meta.get('author'),
          meta.get('fullDescription'), meta.get('duration', len(days)),
-         meta.get('readingsPerDay', len(days[0]['readings']) if days else None)),
+         meta.get('readingsPerDay', len(days[0]['readings']) if days else None),
+         # The work a plan follows and its licence: its attribution. This sample
+         # was written for the site and follows no published plan, so it has none.
+         meta.get('source'), meta.get('license')),
     )
     for day in days:
         # Only the range is stored; the reader names the passage itself.

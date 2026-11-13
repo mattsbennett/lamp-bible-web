@@ -13,6 +13,7 @@ CREATE TABLE commentary_books (
     series_full TEXT,
     series_abbrev TEXT,
     title TEXT,
+    description TEXT,
     author TEXT,
     editor TEXT,
     publisher TEXT,

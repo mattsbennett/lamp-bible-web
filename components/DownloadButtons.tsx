@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { downloadPaths, site } from '@/lib/site'
+import { downloadPaths, isMacBeta, site } from '@/lib/site'
 
 /*
  * The Mac app is not on the Mac App Store, so Apple's badge and logo are off-limits for it.
@@ -41,7 +41,9 @@ export function MacDownloadButton({ size = 'md' }: { size?: Size }) {
     >
       <LaptopIcon className="size-7 shrink-0" />
       <span className="flex flex-col text-left leading-none">
-        <span className="text-[11px] font-medium opacity-85">Download for</span>
+        <span className="text-[11px] font-medium opacity-85">
+          {isMacBeta ? 'Download the beta for' : 'Download for'}
+        </span>
         <span className="mt-1 text-[19px] font-semibold tracking-tight">Mac</span>
       </span>
     </Link>

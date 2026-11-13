@@ -34,34 +34,6 @@
       },
       "required": ["type", "content", "source"]
     },
-    "mediaReference": {
-      "type": "object",
-      "description": "Reference to a media file (image or audio)",
-      "properties": {
-        "id": { "type": "string", "description": "Unique media identifier (UUID)" },
-        "type": {
-          "type": "string",
-          "enum": ["image", "audio"],
-          "description": "Media type"
-        },
-        "filename": { "type": "string", "description": "Original filename" },
-        "mimeType": { "type": "string", "description": "MIME type (e.g., image/jpeg, audio/m4a)" },
-        "size": { "type": "integer", "description": "File size in bytes" },
-        "width": { "type": "integer", "description": "Image width in pixels (images only)" },
-        "height": { "type": "integer", "description": "Image height in pixels (images only)" },
-        "duration": { "type": "number", "description": "Duration in seconds (audio only)" },
-        "waveform": {
-          "type": "array",
-          "items": { "type": "number" },
-          "description": "Normalized audio waveform samples 0-1 for visualization (audio only)"
-        },
-        "transcription": { "type": "string", "description": "Optional speech-to-text transcription (audio only)" },
-        "alt": { "type": "string", "description": "Alt text for accessibility (images only)" },
-        "caption": { "type": "string", "description": "Optional caption text" },
-        "created": { "type": "integer", "description": "Unix timestamp when media was added" }
-      },
-      "required": ["id", "type", "filename", "mimeType"]
-    },
 
     "annotation": {
       "type": "object",
@@ -69,7 +41,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["footnote", "scripture", "strongs", "greek", "hebrew", "crossref", "abbrev", "page", "lexicon-ref", "media"]
+          "enum": ["footnote", "scripture", "strongs", "greek", "hebrew", "crossref", "abbrev", "page", "lexicon-ref", "bold", "italic"],
+          "description": "bold and italic mark the printed emphasis of the text they span"
         },
         "start": { "type": "integer", "description": "Character offset start position" },
         "end": { "type": "integer", "description": "Character offset end position" },
@@ -98,11 +71,7 @@
             "lexiconId": { "type": "string", "description": "Cross-reference to another lexicon entry (e.g., BDB123)" },
             "transliteration": { "type": "string" },
             "expansion": { "type": "string", "description": "Expanded form of abbreviation" },
-            "pageNum": { "type": "string" },
-            "mediaId": { "type": "string", "description": "Reference to media item in top-level media array (for media annotations)" },
-            "mediaType": { "type": "string", "enum": ["image", "audio"], "description": "Type of media (for media annotations)" },
-            "caption": { "type": "string", "description": "Optional caption for media" },
-            "alignment": { "type": "string", "enum": ["left", "center", "right", "full"], "description": "Image alignment (for image media)" }
+            "pageNum": { "type": "string" }
           }
         }
       },
@@ -275,11 +244,11 @@
         "author": { "type": "string" },
         "editor": { "type": "string" },
         "publisher": { "type": "string" },
-        "year": { "type": "integer" },
-        "isbn": { "type": "string" },
-        "language": { "type": "string", "description": "Primary language: hebrew, greek, english" }
+        "year": { "type": "integer" }
       },
-      "required": ["schemaVersion", "seriesAbbrev", "seriesFull", "title"]
+      "required": ["schemaVersion", "seriesAbbrev", "seriesFull"],
+      "anyOf": [{ "required": ["title"] }, { "required": ["name"] }],
+      "$comment": "A volume is shown by its title, or by its name where it has none"
     },
 
     "book": {
@@ -325,14 +294,8 @@
       "type": "array",
       "items": { "$ref": "#/definitions/chapterCommentary" }
     },
-    "sourceVolumes": { "type": "array", "items": { "type": "object" }, "description": "Published-volume metadata; compiled volumes and split volumes retain separate source identities." },
+    "sourceVolumes": { "type": "array", "items": { "type": "object" }, "description": "Published-volume metadata, read when the module is built to check its volume details (compiled volumes and split volumes keep separate source identities); not stored in the module." },
     "footnotes": { "type": "array", "items": { "$ref": "#/definitions/footnote" }, "description": "Unique book-wide definitions for source-scoped note runs." },
-
-    "media": {
-      "type": "array",
-      "description": "Media files referenced by annotations in this module",
-      "items": { "$ref": "#/definitions/mediaReference" }
-    },
 
     "indices": {
       "type": "object",

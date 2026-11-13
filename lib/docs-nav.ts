@@ -1,11 +1,7 @@
-import { isMacAvailable } from '@/lib/site'
-
 export type DocLink = {
   title: string
   href: string
   summary: string
-  /** Mac-only pages stay out of the docs until the Mac app is released (see lib/site.ts). */
-  mac?: boolean
 }
 
 export type DocSection = {
@@ -13,7 +9,7 @@ export type DocSection = {
   links: DocLink[]
 }
 
-const allSections: DocSection[] = [
+export const docsNav: DocSection[] = [
   {
     title: 'Start here',
     links: [
@@ -31,7 +27,6 @@ const allSections: DocSection[] = [
         title: 'The Mac app',
         href: '/docs/mac',
         summary: 'Tabs, layouts, the study column, writing, building modules and sync on the Mac.',
-        mac: true,
       },
     ],
   },
@@ -88,13 +83,11 @@ const allSections: DocSection[] = [
         title: 'Slides & presenting',
         href: '/docs/presenting',
         summary: 'Slide Studio decks from your writing, and an iPhone remote with your speaker notes.',
-        mac: true,
       },
       {
         title: 'AI chat & agents',
         href: '/docs/ai',
         summary: 'Reader Chat and writing agents through your own AI account, with read-only access.',
-        mac: true,
       },
     ],
   },
@@ -154,12 +147,5 @@ const allSections: DocSection[] = [
     ],
   },
 ]
-
-export const docsNav: DocSection[] = allSections
-  .map((section) => ({
-    ...section,
-    links: section.links.filter((link) => isMacAvailable || !link.mac),
-  }))
-  .filter((section) => section.links.length > 0)
 
 export const allDocLinks: DocLink[] = docsNav.flatMap((s) => s.links)

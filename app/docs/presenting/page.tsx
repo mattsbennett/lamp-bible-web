@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Slides & presenting',
@@ -11,8 +9,6 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  if (!isMacAvailable) notFound()
-
   return (
     <DocPage
       href="/docs/presenting"
@@ -86,11 +82,16 @@ export default function Page() {
       </p>
       <p>
         A chart shows how a Strong’s number is used. Give it the number, a translation and, if you
-        like, a run of books such as <code>NT</code> or <code>Matthew-John</code>, then choose how
-        to draw it — bars, columns in Bible order, a grid of chapters, or a share — and whether to
-        group by book, section, rendering or form. Lamp works the figures out from your library, the
-        same way as the <Link href="/docs/search#analysis">analysis</Link>, and draws them in the
-        slide’s colours; a key says which books hold more or fewer than chance would give.
+        like, a run of books such as <code>NT</code> or <code>Matthew-John</code>, and narrow it, if
+        you want, to one way the word is translated, one form or one grammatical value. Then choose
+        what to count — by book, section, how it is translated, form, a grammatical feature, each
+        translation side by side, or the words found with it — and how to draw it: bars, columns in
+        Bible order, a grid of chapters, a share of the whole, or the analysis’s headword card over
+        a column for each book. Lamp works the figures out from your library, the same way as the{' '}
+        <Link href="/docs/search#analysis">analysis</Link>, and draws them in the slide’s colours; a
+        key says which books hold more or fewer than chance would give. Where a chart rests on tags
+        a translation gained when its module was built, a line under it says so.{' '}
+        <strong>Add to Deck</strong>, on any figure in the analysis, starts a chart from it.
       </p>
       <p>
         Slide Studio checks a deck as you go. Errors stop it saving, exporting or playing until

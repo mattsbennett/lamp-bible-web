@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { downloadPaths, isMacAvailable, site } from '@/lib/site'
+import { downloadPaths, hasMacDownload, macLabel, site } from '@/lib/site'
 
 export function SiteFooter() {
   return (
@@ -21,7 +21,7 @@ export function SiteFooter() {
           <FooterLink href="/#features">Features</FooterLink>
           <FooterLink href="/#modules">Module system</FooterLink>
           <FooterLink href={downloadPaths.page}>Download</FooterLink>
-          {isMacAvailable && <FooterLink href={downloadPaths.mac}>Mac download</FooterLink>}
+          {hasMacDownload && <FooterLink href={downloadPaths.mac}>{macLabel}</FooterLink>}
           <FooterLink href={site.appStoreUrl} external>
             App Store
           </FooterLink>

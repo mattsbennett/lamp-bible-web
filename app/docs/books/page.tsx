@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Books',
@@ -32,8 +31,10 @@ export default function Page() {
       <h2>The library</h2>
       <p>
         <strong>Books</strong> on the home screen shelves what is installed by its covers — the
-        books you have started under <strong>Continue Reading</strong>, then{' '}
-        <strong>All Books</strong> — and searches by title, author or tag. To add one, choose{' '}
+        books you have started under <strong>Continue Reading</strong>, then a shelf for each
+        genre, with books that name none under <strong>Other Books</strong> at the end — and
+        searches by title, author or tag. <strong>Group By</strong> → <strong>None</strong> puts
+        them all on one shelf. To add one, choose{' '}
         <strong>Import Book</strong> and pick a <code>.lamp</code> file — or the book’s source
         JSON, which the app compiles on the device. Opening a book file from Files, Mail or AirDrop
         works too.
@@ -69,14 +70,13 @@ export default function Page() {
         The app remembers the last section you read in each book, on that device.
       </p>
 
-      {isMacAvailable && (
-        <Callout title="On a Mac">
-          <p>
-            The Mac reads books in three panes — contents, text and details — with bookmarks, its
-            own text settings, and a reading position that syncs between Macs.
-          </p>
-        </Callout>
-      )}
+      <Callout title="On a Mac">
+        <p>
+          The Mac reads books in three panes — contents, text and details — with bookmarks, its
+          own text settings, and a reading position that syncs between Macs. Its list of books is
+          grouped by genre the same way, and <strong>Group Books</strong> turns that off.
+        </p>
+      </Callout>
 
       <h2>Finding things in books</h2>
       <p>

@@ -193,14 +193,21 @@ export default function Page() {
             </td>
             <td>Bold, italic or underline</td>
           </tr>
+          <tr>
+            <td>
+              <code>bold</code> / <code>italic</code>
+            </td>
+            <td>In a commentary, the printed emphasis of the text the span covers</td>
+          </tr>
         </tbody>
       </Table>
 
       <h2>The schemas</h2>
       <p>
         Each module type has a JSON Schema, all sharing common definitions for annotations,
-        references, metadata and media. Every one is downloadable here, along with a worked sample
-        module that validates against it.
+        references and metadata; the notes, devotional and book schemas also share one for media.
+        Every one is downloadable here, along with a worked sample module that validates against
+        it.
       </p>
 
       <DownloadList files={schemaFiles} />
@@ -300,7 +307,10 @@ export default function Page() {
             <td>
               <code>plan_schema.json</code>
             </td>
-            <td>Reading assignments by day.</td>
+            <td>
+              Reading assignments by day. <code>meta.source</code> and <code>meta.license</code>{' '}
+              name the work a plan follows and its licence, and are kept with it.
+            </td>
           </tr>
           <tr>
             <td>
@@ -329,6 +339,12 @@ export default function Page() {
         Both are optional. The earlier structure — chapters → sections → pericopae → verses, with
         footnotes on the pericope or the verse — is still accepted, and it is the one the sample
         commentary uses.
+      </p>
+      <p>
+        A volume is shown by <code>meta.title</code>, or by <code>meta.name</code> where it has no
+        title, so one of the two is required. <code>meta.description</code> is kept as the
+        volume’s own description. <code>sourceVolumes</code>, the published-volume details, is
+        read when the module is built to check the volume’s details, and is not stored in it.
       </p>
 
       <h3>A book’s genre</h3>
@@ -392,6 +408,17 @@ export default function Page() {
 }`}</code>
       </pre>
 
+      <h3>Verses numbered differently</h3>
+      <p>
+        <code>meta.versification</code> names the numbering scheme the translation follows. Where
+        it places some verses differently from that scheme, list them in{' '}
+        <code>meta.versificationMappings</code> as Paratext mapping lines, from the translation’s
+        own numbering to the scheme’s. The bundled World English Bible ends Romans 14 with the
+        doxology the English numbering places at 16:25–27, so it declares{' '}
+        <code>{'"versificationMappings": ["ROM 14:24-26 = ROM 16:25-27"]'}</code>. Lamp follows
+        these lines when it pairs one translation’s verses with another’s.
+      </p>
+
       <h3>Translation identifiers</h3>
       <p>
         The identifier must be unique across installed modules, since it is what highlights, notes
@@ -409,9 +436,11 @@ export default function Page() {
         source as printed, say so in <code>meta.sourceTexts.annotations</code>. Each entry names
         the <code>part</code> (<code>strongs</code> for the Strong’s numbers, <code>forms</code> for
         the original-language spellings), the <code>source</code> it came from, named as you would
-        cite it, and the <code>method</code>, in one plain sentence. The bundled Berean Standard
-        Bible records this way that its Greek and Hebrew spellings were copied from the BSB’s own
-        translation tables by matching each verse’s Strong’s numbers.
+        cite it, and the <code>method</code>. The app joins the two into one sentence — “Greek
+        spellings in BSB come from <em>source</em>, <em>method</em>.” — so write the method as a
+        clause: begin it lower-case and leave off the closing full stop. The bundled Berean
+        Standard Bible records this way that its Greek and Hebrew spellings were copied from the
+        BSB’s own translation tables by matching each verse’s Strong’s numbers.
       </p>
 
       <h2>Worked example: highlights</h2>
@@ -444,6 +473,14 @@ export default function Page() {
         highlight, 1 for a solid underline, 2 for dashed and 3 for dotted. <code>color</code> is a
         hex code, written without the <code>#</code>.
       </p>
+      <p>
+        A set may also name itself in <code>meta.setId</code>, for an identity a module ID cannot
+        hold: the apps’ default set for a translation is{' '}
+        <code>personal-highlights:&lt;translation&gt;</code>, and a module ID has no colon. The
+        file is still named after <code>meta.id</code>, while <code>highlight_meta.id</code> holds
+        the set ID, which is how the apps tell one set from another. Without{' '}
+        <code>setId</code>, the set is known by its module ID.
+      </p>
 
       <Callout tone="warn" title="Offsets are tied to exact wording">
         <p>
@@ -454,9 +491,11 @@ export default function Page() {
 
       <h2>Media</h2>
       <p>
-        Notes, devotionals, commentaries and lexicons can reference images and audio. In markdown
-        interchange these live in a <code>media/</code> folder beside the document, with
-        UUID-prefixed filenames to avoid collisions; in a shared package they travel inside the ZIP.
+        Notes, devotionals and books can reference images and audio, listed once in the document’s
+        top-level <code>media</code> array and pointed at by ID. In markdown interchange the files
+        live in a <code>media/</code> folder beside the document, with UUID-prefixed filenames to
+        avoid collisions; in a shared devotional package they travel inside the ZIP. A compiled{' '}
+        <code>.lamp</code> is a single database, so it carries the references but not the files.
         Supported formats are JPEG, PNG, GIF, WebP and HEIC for images, and M4A, MP3, WAV, AAC and
         OGG for audio — M4A being the recommended choice.
       </p>

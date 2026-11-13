@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Importing a Bible',
@@ -20,12 +19,8 @@ export default function Page() {
       <p>
         Go to Settings → Modules → Manager → <strong>+</strong> → Import Module →{' '}
         <strong>Import a Bible</strong>, and choose a file, a folder or a zip from Files.
-        {isMacAvailable && (
-          <>
-            {' '}On a Mac, open <strong>Import or Create Content</strong> (⇧⌘M) and choose{' '}
-            <strong>Import a Bible</strong>.
-          </>
-        )}{' '}
+        {' '}On a Mac, open <strong>Import or Create Content</strong> (⇧⌘M) and choose{' '}
+        <strong>Import a Bible</strong>.{' '}
         Nothing is installed until you have reviewed what was found.
       </p>
 

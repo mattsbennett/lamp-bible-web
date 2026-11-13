@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'Bundled content',
   description:
-    'The translations, lexicons, cross-references and reading plans in Lamp Bible, with their release status.',
+    'The translations, lexicons, cross-references and reading plans in Lamp Bible, and the rights basis for each.',
 }
 
 export default function Page() {
@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/included-content"
       title="Bundled content"
-      intro="The offline library in the current release: nine translations, four lexicons, two cross-reference sets, three reading plans and a quiz module."
+      intro="The offline library in the current release: nine translations, five lexicons, two cross-reference sets, three reading plans and a quiz module."
     >
       <h2>Translations</h2>
       <p>
@@ -136,6 +136,7 @@ export default function Page() {
             <th>Lexicon</th>
             <th>Language</th>
             <th>Approx. entries</th>
+            <th>Rights basis</th>
           </tr>
         </thead>
         <tbody>
@@ -143,26 +144,31 @@ export default function Page() {
             <td>Strong’s Hebrew Dictionary</td>
             <td>Hebrew</td>
             <td>8,700</td>
+            <td>Public domain</td>
           </tr>
           <tr>
             <td>Strong’s Greek Dictionary</td>
             <td>Greek</td>
             <td>5,500</td>
+            <td>Public domain</td>
           </tr>
           <tr>
             <td>Translators Brief Lexicon of Extended Strong’s for Greek (TBESG), from STEPBible</td>
             <td>Greek</td>
             <td>10,800</td>
+            <td>CC BY 4.0</td>
           </tr>
           <tr>
             <td>Brown-Driver-Briggs, unabridged</td>
             <td>Hebrew</td>
             <td>10,000</td>
+            <td>Public domain</td>
           </tr>
           <tr>
             <td>Dodson Greek Lexicon</td>
             <td>Greek</td>
             <td>5,400</td>
+            <td>Public domain</td>
           </tr>
         </tbody>
       </Table>
@@ -171,6 +177,11 @@ export default function Page() {
         A Strong’s-to-BDB mapping is included so that Hebrew lookups reach the fuller BDB article,
         including where one Strong’s number resolves to several BDB entries. See{' '}
         <Link href="/docs/lexicons">Lexicons</Link>.
+      </p>
+      <p>
+        TBESG is the one lexicon under an attribution licence: STEPBible publishes it under CC BY
+        4.0, as it does <code>TAHOT</code> and <code>TAGNT</code>. Its attribution, and the changes
+        Lamp Bible made to the data, are under <Link href="/content-licences">Content licences</Link>.
       </p>
 
       <h2>Cross-references</h2>

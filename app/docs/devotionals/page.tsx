@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Devotionals',
@@ -23,12 +22,8 @@ export default function Page() {
         but the document is organised by its own argument rather than by chapter and verse. The
         apps call this <strong>Writing</strong>, and it lives behind the <strong>Write</strong>{' '}
         button on the home screen.
-        {isMacAvailable && (
-          <>
-            {' '}On the Mac the editor adds find and replace, revision history and an AI agent —
-            see <Link href="/docs/mac">The Mac app</Link>.
-          </>
-        )}
+        {' '}On the Mac the editor adds find and replace, revision history and an AI agent —
+        see <Link href="/docs/mac">The Mac app</Link>.
       </p>
 
       <h2>The library</h2>
@@ -193,7 +188,7 @@ export default function Page() {
         <li>
           <strong>Series</strong> and <strong>key scriptures</strong> — the passages the piece is
           built on, stored as real verse references and shown at the top. These come from a markdown
-          or file import{isMacAvailable && ', or from the Mac, which edits them'}.
+          or file import, or from the Mac, which edits them.
         </li>
       </ul>
 
@@ -204,15 +199,13 @@ export default function Page() {
         and footnotes and links set aside. Text size for reading and presenting is set independently
         of the Bible reader’s.
       </p>
-      {isMacAvailable && (
-        <Callout title="Slides">
-          <p>
-            A devotional turned into a slide deck in Slide Studio on a Mac shows a{' '}
-            <strong>Slides</strong> button once the deck has synced, and its deck opens on iPhone and
-            iPad to view. See <Link href="/docs/presenting">Slides &amp; presenting</Link>.
-          </p>
-        </Callout>
-      )}
+      <Callout title="Slides">
+        <p>
+          A devotional turned into a slide deck in Slide Studio on a Mac shows a{' '}
+          <strong>Slides</strong> button once the deck has synced, and its deck opens on iPhone and
+          iPad to view. See <Link href="/docs/presenting">Slides &amp; presenting</Link>.
+        </p>
+      </Callout>
 
       <h2>Sharing</h2>
       <p>

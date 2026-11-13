@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/import-export"
       title="Import & export"
-      intro="Notes and devotionals round-trip through plain markdown, media included. This is where to find it, and the format."
+      intro="Notes and devotionals round-trip through plain markdown, a devotional’s media included. This is where to find it, and the format."
     >
       <h2>Where to find it</h2>
       <Table>
@@ -69,7 +69,8 @@ export default function Page() {
       <h2>Notes</h2>
       <p>
         An exported notes collection is one file: the collection’s name, then a heading for each
-        book, each chapter, and each note. Footnotes are gathered at the end.
+        book, each chapter, and each note. Footnotes are gathered at the end. Pictures in notes
+        are not exported; the file carries the text alone.
       </p>
 
       <pre>

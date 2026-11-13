@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { AppStoreBadge, LaptopIcon, MacDownloadButton } from '@/components/DownloadButtons'
-import { downloadPaths, isMacAvailable, macDownloadSize, macRelease, site } from '@/lib/site'
+import { downloadPaths, hasMacDownload, isMacBeta, macDownloadSize, macRelease, site } from '@/lib/site'
 import { formatReleaseDate } from '@/lib/format'
 
 export const metadata: Metadata = {
   title: 'Download',
-  description: `Download ${site.name} for Mac, iPhone and iPad. Free, with a library included and no account.`,
+  description: `Download ${site.name} for iPhone and iPad${isMacBeta ? ', and the beta for Mac' : ' and Mac'}. Free, with a library included and no account.`,
   alternates: { canonical: '/download' },
 }
 
@@ -25,7 +25,6 @@ export default function DownloadPage() {
             </p>
 
             <div className="mt-14 grid gap-5 text-left sm:grid-cols-2">
-              <MacCard />
               <PlatformCard
                 icon={<PhoneIcon className="size-7" />}
                 name="iPhone & iPad"
@@ -33,11 +32,12 @@ export default function DownloadPage() {
               >
                 <AppStoreBadge priority />
               </PlatformCard>
+              <MacCard />
             </div>
           </div>
         </section>
 
-        {isMacAvailable && (
+        {hasMacDownload && (
           <section>
             <div className="mx-auto grid max-w-4xl gap-12 px-5 py-20 sm:px-8 md:grid-cols-2">
               <div>
@@ -72,24 +72,29 @@ export default function DownloadPage() {
 }
 
 function MacCard() {
-  if (!isMacAvailable) {
+  const badge = isMacBeta ? 'Beta' : undefined
+  const detail = `${macRelease.minimumOS} · ${macRelease.architectures}`
+  if (!hasMacDownload) {
     return (
       <PlatformCard
         icon={<LaptopIcon className="size-7" />}
         name="Mac"
-        detail="A native Mac app is in development."
-        badge="Coming soon"
+        detail={detail}
+        meta="The first beta build is on its way."
+        badge={badge}
       />
     )
   }
 
   const released = formatReleaseDate(macRelease.releasedAt)
+  const version = `Version ${macRelease.version}${isMacBeta ? ' beta' : ''}`
   return (
     <PlatformCard
       icon={<LaptopIcon className="size-7" />}
       name="Mac"
-      detail={`${macRelease.minimumOS} · ${macRelease.architectures}`}
-      meta={[`Version ${macRelease.version}`, released, macDownloadSize].filter(Boolean).join(' · ')}
+      detail={detail}
+      meta={[version, released, macDownloadSize].filter(Boolean).join(' · ')}
+      badge={badge}
     >
       <MacDownloadButton />
     </PlatformCard>

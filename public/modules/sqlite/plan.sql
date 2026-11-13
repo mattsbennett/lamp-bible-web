@@ -13,7 +13,9 @@ CREATE TABLE plans (
     author TEXT,
     full_description TEXT,
     duration INTEGER NOT NULL,
-    readings_per_day INTEGER
+    readings_per_day INTEGER,
+    source TEXT,
+    license TEXT
 );
 
 CREATE TABLE plan_days (

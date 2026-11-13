@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { downloadPaths, isMacAvailable, site } from '@/lib/site'
+import { downloadPaths, isMacBeta, site } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Getting started',
@@ -21,16 +21,11 @@ export default function Page() {
         Lamp Bible is a free download on the{' '}
         <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">
           App Store
-        </a>
-        {isMacAvailable && (
-          <>
-            {' '}for iPhone and iPad, and a <Link href={downloadPaths.mac}>direct download</Link>{' '}
-            for Mac
-          </>
-        )}
-        . There is nothing to sign up for and nothing to buy. The first launch unpacks the bundled
-        module database onto the device, which takes a few seconds; after that the entire library
-        works with no network connection.
+        </a>{' '}
+        for iPhone and iPad, and a <Link href={downloadPaths.mac}>direct download</Link> for Mac
+        {isMacBeta && ', in beta'}. There is nothing to sign up for and nothing to buy. The first
+        launch unpacks the bundled module database onto the device, which takes a few seconds;
+        after that the entire library works with no network connection.
       </p>
 
       <Callout title="What you get on day one">
@@ -93,12 +88,8 @@ export default function Page() {
       </Table>
       <p>
         The readings themselves are covered in <Link href="/docs/reading-plans">Reading plans</Link>.
-        {isMacAvailable && (
-          <>
-            {' '}On a Mac, the sidebar takes the place of the home screen — see{' '}
-            <Link href="/docs/mac">The Mac app</Link>.
-          </>
-        )}
+        {' '}On a Mac, the sidebar takes the place of the home screen — see{' '}
+        <Link href="/docs/mac">The Mac app</Link>.
       </p>
 
       <h2>Choose your translation</h2>

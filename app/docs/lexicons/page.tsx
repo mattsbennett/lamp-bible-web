@@ -72,8 +72,15 @@ export default function Page() {
         by the lexicon it comes from; swipe to see the same word in each of your other lexicons. A
         count beside the number shows how often it occurs, and tapping it searches for every verse
         that uses it. <strong>Analyse</strong> beside that opens an{' '}
-        <Link href="/docs/search#analysis">analysis</Link> of the word: how translators rendered
-        it, where it gathers, and the words found with it.
+        <Link href="/docs/search#analysis">analysis</Link> of the word: its definition in each
+        dictionary, how it is translated, its forms and grammar, where it gathers, the words found
+        with it, and how other translations count it.
+      </p>
+      <p>
+        The speaker beside the headword says the word aloud — Greek in the way{' '}
+        <strong>Greek Words</strong> in Settings sets, Hebrew from Strong’s own respelling; see{' '}
+        <Link href="/docs/reader">The reader</Link>. An entry’s text can be pressed and selected, to
+        look up, copy or share a word; a tap on a link still follows it.
       </p>
       <p>An entry can include:</p>
       <ul>
@@ -110,15 +117,16 @@ export default function Page() {
       <p>
         Lexicons are dictionary modules. Any dictionary keyed by Strong’s number or by lemma can be
         packaged as a <code>.lamp</code> file and installed alongside the bundled ones; it will then
-        appear in the lookup order and in search. The schema, including support for senses,
-        annotations and inline media, is documented in{' '}
+        appear in the lookup order and in search. The schema, including support for senses and
+        annotations, is documented in{' '}
         <Link href="/docs/modules/authoring">Authoring modules</Link>.
       </p>
 
       <Callout tone="warn" title="Licensing">
         <p>
-          The bundled lexicons are public domain. Other well-known dictionaries are not, and
-          the module format does not grant copying rights. Create a module only when you made the
+          The bundled lexicons are public domain, apart from TBESG, which STEPBible publishes under
+          CC BY 4.0. Other well-known dictionaries are under copyright, and the module format does
+          not grant copying rights. Create a module only when you made the
           content, it is public domain where you use it, or its licence permits the conversion.
           Share it only if you also have redistribution rights.
         </p>

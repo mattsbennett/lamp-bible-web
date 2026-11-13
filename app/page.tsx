@@ -50,7 +50,7 @@ import {
   VersesIcon,
   WindowsIcon,
 } from '@/components/home/icons'
-import { availablePlatforms, isMacAvailable, macRelease, plannedPlatforms, site } from '@/lib/site'
+import { hasMacDownload, isMacBeta, macLabel, macRelease, site } from '@/lib/site'
 
 type Feature = {
   title: string
@@ -131,8 +131,8 @@ const features: Feature[] = [
 /** What the Strong's analysis shows, on iPhone, iPad and Mac. */
 const analysisParts: Array<{ title: string; body: string; icon: IconComponent }> = [
   {
-    title: 'Rendered as',
-    body: 'Every English word translators chose for it, commonest first, as a list or a ring.',
+    title: 'Translated as',
+    body: 'Every English word translators chose for it, commonest first, on a ring or as a list.',
     icon: RenderingIcon,
   },
   {
@@ -147,14 +147,10 @@ const analysisParts: Array<{ title: string; body: string; icon: IconComponent }>
   },
   {
     title: 'Every verse',
-    body: 'Tap a rendering or a book to list just those verses, each with the word marked.',
+    body: 'Tap a translation or a book to list just those verses, each with the word marked.',
     icon: VersesIcon,
   },
 ]
-
-// Until the Mac app ships, its tools are a preview: badged, and without links into the Mac docs,
-// which are hidden until then.
-const macBadge = isMacAvailable ? 'Mac' : 'Coming to Mac'
 
 export default function Home() {
   return (
@@ -164,7 +160,7 @@ export default function Home() {
         <Hero />
         <Features />
         <Writing />
-        {isMacAvailable && <MacFeatures />}
+        <MacFeatures />
         <Modules />
         <Privacy />
         <Download />
@@ -194,9 +190,9 @@ function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            {isMacAvailable && <MacDownloadButton />}
             <AppStoreBadge priority />
-            {!isMacAvailable && (
+            {hasMacDownload && <MacDownloadButton />}
+            {!hasMacDownload && (
               <Link
                 href="/docs"
                 className="rounded-full border border-line-strong px-5 py-3 text-sm font-medium transition-colors hover:bg-sunken"
@@ -207,16 +203,16 @@ function Hero() {
           </div>
 
           <p className="mt-5 text-sm text-faint">
-            {isMacAvailable ? (
+            {hasMacDownload ? (
               <>
-                Free. Mac requires {macRelease.minimumOS}.{' '}
+                Free. {isMacBeta ? 'The Mac app is in beta and requires' : 'Mac requires'}{' '}
+                {macRelease.minimumOS}.{' '}
                 <Link href="/docs" className="text-muted underline-offset-4 hover:underline">
                   Read the docs →
                 </Link>
               </>
             ) : (
-              plannedPlatforms.length > 0 &&
-              `${plannedPlatforms.map((p) => p.name).join(' and ')} version in development.`
+              'Free. A Mac beta is on its way.'
             )}
           </p>
         </div>
@@ -269,9 +265,9 @@ function AnalysisCard() {
           </h3>
           <p className="mt-2.5 text-sm leading-relaxed text-muted sm:text-base">
             Open the analysis from a word’s lexicon entry or a Strong’s search, and Lamp Bible counts
-            that word across the translation: how often it occurs, how translators rendered it, where
-            it gathers and what it keeps company with. The King James renders ἀγάπη “love” 86 times
-            — and “charity” 27.
+            that word across the translation: how often it occurs, how it is translated, where it
+            gathers and what it keeps company with. The King James translates ἀγάπη as “love” 86
+            times — and as “charity” 27.
           </p>
           <Link
             href="/docs/search#analysis"
@@ -295,12 +291,13 @@ function AnalysisCard() {
       <div className="grid gap-10 border-t border-line bg-sunken px-5 pt-8 sm:px-10 lg:grid-cols-[18.5rem_minmax(0,1fr)] lg:gap-12 lg:pt-10">
         <div className="lg:order-2 lg:self-center lg:pb-10">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <Badge>{macBadge}</Badge>
+            <Badge>{macLabel}</Badge>
             <p className="text-sm font-medium">More room for it on the Mac</p>
           </div>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-            Beside a Strong’s search: compare every translation that tags the word, read its forms
-            and grammar, chart it by book, section or chapter, and put the chart on a slide.
+            The same analysis — its forms and grammar, every translation that tags the word, and
+            charts by book, section or chapter — opens beside a Strong’s search or beside the
+            passage you are reading, and any of its figures goes on a slide.
           </p>
           <div className="mt-6">
             <MacAnalysisArt />
@@ -417,18 +414,18 @@ function Writing() {
     {
       title: 'A writing desk on the Mac',
       body: 'Visual and Markdown editing, find and replace, a Details pane for series, tags and key scriptures, footnotes edited beside their marker, companion files as tabs, and a Revision History for every change.',
-      href: isMacAvailable ? '/docs/mac' : undefined,
+      href: '/docs/mac',
       icon: HistoryIcon,
       art: <MacEditorArt />,
-      badge: macBadge,
+      badge: macLabel,
     },
     {
       title: 'Slide Studio',
       body: 'Build a deck from the writing — scripture, quotations, charts of how a word is used, and speaker notes drawn from the manuscript — in eight layouts. Present full screen, export a PDF, and drive it from your iPhone.',
-      href: isMacAvailable ? '/docs/presenting' : undefined,
+      href: '/docs/presenting',
       icon: SlidesIcon,
       art: <SlideArt />,
-      badge: macBadge,
+      badge: macLabel,
     },
   ]
 
@@ -471,7 +468,7 @@ function Writing() {
             <div>
               <div className="flex items-center justify-between gap-3">
                 <IconChip icon={AgentIcon} />
-                <Badge>{macBadge}</Badge>
+                <Badge>{macLabel}</Badge>
               </div>
               <h3 className="mt-5 font-serif text-2xl tracking-tight sm:text-3xl">
                 An agent at your writing desk
@@ -482,17 +479,16 @@ function Writing() {
                 the same text you do, and looks things up in your library through read-only tools.
               </p>
               <p className="mt-5 text-xs leading-relaxed text-faint">
+                AI features are off until you turn on Show AI Features in Settings → AI &amp; Agents.
                 The workspace syncs with your library, so it follows the writing to your other
                 Macs. Your messages go to the provider you choose, never to Lamp Bible.
               </p>
-              {isMacAvailable && (
-                <Link
-                  href="/docs/ai"
-                  className="mt-4 inline-block text-sm font-medium text-accent hover:underline"
-                >
-                  How agents work →
-                </Link>
-              )}
+              <Link
+                href="/docs/ai"
+                className="mt-4 inline-block text-sm font-medium text-accent hover:underline"
+              >
+                How agents work →
+              </Link>
             </div>
             <ul className="grid content-start gap-x-8 gap-y-6 sm:grid-cols-2">
               {agentParts.map((part) => (
@@ -518,8 +514,9 @@ function Writing() {
                 Or bring Lamp to the AI app you already use
               </h4>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-                Turn on <span className="text-ink">Allow other apps to read my library</span> in
-                Settings, and Claude Desktop, Codex, Cursor or opencode can search your library, read
+                With AI features on, turn on{' '}
+                <span className="text-ink">Allow other apps to read my library</span> in Settings,
+                and Claude Desktop, Codex, Cursor or opencode can search your library, read
                 passages and commentary, analyse a word, and check and draw a deck — the same
                 read-only tools a workspace agent has.
               </p>
@@ -532,7 +529,8 @@ function Writing() {
               </p>
               <p className="mt-5 text-xs leading-relaxed text-faint">
                 Claude Desktop installs Lamp in one step and asks first; the others take a snippet
-                you paste. What those apps read goes to the AI provider they use.
+                you paste. What those apps read goes to the AI provider they use. Turning AI
+                features off withdraws their access too.
               </p>
             </div>
             <ExternalAppsArt />
@@ -558,7 +556,7 @@ const macFeatures: Array<{ title: string; body: string; href: string; icon: Icon
   },
   {
     title: 'Reader Chat',
-    body: 'Ask about the chapter in front of you, or the words you have selected. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account, on the model you choose.',
+    body: 'Ask about the chapter in front of you, or the words you have selected. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account, on the model you choose. Off until you turn AI features on.',
     href: '/docs/ai',
     icon: ChatIcon,
   },
@@ -577,7 +575,7 @@ function MacFeatures() {
         <SectionHeading
           eyebrow="On the Mac"
           title="Study with room to spread out"
-          body="The Mac app reads the same library and syncs with your iPhone and iPad, and adds the tools that want a bigger screen and a keyboard."
+          body={`The Mac app${isMacBeta ? ', now in beta,' : ''} reads the same library and syncs with your iPhone and iPad, and adds the tools that want a bigger screen and a keyboard.`}
         />
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -715,9 +713,7 @@ function Privacy() {
         <SectionHeading
           eyebrow="Your data"
           title="No account. No tracking. No network required."
-          body={`The app has no sign-in and collects nothing about you. Bundled content is on the device after install, so the whole library works in airplane mode.${
-            isMacAvailable ? ' The Mac app checks for updates only if you allow it.' : ''
-          }`}
+          body="The app has no sign-in and collects nothing about you. Bundled content is on the device after install, so the whole library works in airplane mode. The Mac app checks for updates only if you allow it."
         />
 
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
@@ -748,12 +744,12 @@ function Download() {
       <div className="mx-auto max-w-3xl px-5 py-24 text-center sm:px-8">
         <h2 className="font-serif text-3xl tracking-tight sm:text-4xl">Start reading</h2>
         <p className="mt-4 text-lg leading-relaxed text-muted">
-          Free, with a library included. {availablePlatforms.map((p) => p.name).join(', ')}.
+          Free, with a library included. iPhone and iPad{isMacBeta ? ', and Mac in beta.' : ' and Mac.'}
         </p>
 
         <div className="mt-9 flex flex-wrap justify-center gap-4">
-          {isMacAvailable && <MacDownloadButton size="lg" />}
           <AppStoreBadge size="lg" />
+          {hasMacDownload && <MacDownloadButton size="lg" />}
         </div>
 
         <p className="mt-10 text-sm text-muted">

@@ -4,12 +4,12 @@ import { redirect } from 'next/navigation'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { AutoDownload } from '@/components/download/AutoDownload'
-import { downloadPaths, isMacAvailable, macDownloadSize, macRelease, site } from '@/lib/site'
+import { downloadPaths, hasMacDownload, isMacBeta, macDownloadSize, macRelease, site } from '@/lib/site'
 import { formatReleaseDate } from '@/lib/format'
 
 export const metadata: Metadata = {
-  title: 'Download for Mac',
-  description: `Download ${site.name} for Mac — ${macRelease.minimumOS}, ${macRelease.architectures}.`,
+  title: isMacBeta ? 'Download the Mac beta' : 'Download for Mac',
+  description: `Download ${site.name} for Mac${isMacBeta ? ', in beta' : ''} — ${macRelease.minimumOS}, ${macRelease.architectures}.`,
   alternates: { canonical: downloadPaths.mac },
 }
 
@@ -33,7 +33,7 @@ const steps = [
 ]
 
 export default function MacDownloadPage() {
-  if (!isMacAvailable) redirect(downloadPaths.page)
+  if (!hasMacDownload) redirect(downloadPaths.page)
 
   const released = formatReleaseDate(macRelease.releasedAt)
 
@@ -52,7 +52,8 @@ export default function MacDownloadPage() {
               href={downloadPaths.macLatest}
               className="mt-8 inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-2.5 text-sm font-medium transition-colors hover:bg-sunken"
             >
-              Download {site.name} {macRelease.version} (.dmg)
+              Download {site.name} {macRelease.version}
+              {isMacBeta && ' beta'} (.dmg)
             </a>
             <p className="mt-3 text-xs text-faint">
               {[macRelease.minimumOS, macRelease.architectures, macDownloadSize, released]
@@ -61,6 +62,29 @@ export default function MacDownloadPage() {
             </p>
           </div>
         </section>
+
+        {isMacBeta && (
+          <section className="border-b border-line">
+            <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8">
+              <h2 className="font-serif text-3xl tracking-tight">A beta</h2>
+              <p className="mt-4 text-sm leading-relaxed text-muted">
+                {site.name} for Mac is in beta. It changes from one update to the next, and you may
+                meet a bug. Once it is installed it checks for updates if you allow it, and{' '}
+                {site.name} → Check for Updates… looks at once, so there is no need to come back
+                here for a new build. If something goes wrong,{' '}
+                <a
+                  href={site.issuesUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline"
+                >
+                  open an issue
+                </a>{' '}
+                or email {site.email}.
+              </p>
+            </div>
+          </section>
+        )}
 
         <section className="border-b border-line">
           <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8">

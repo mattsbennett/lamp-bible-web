@@ -174,7 +174,20 @@
     --lamp-rule: #c7c7cc;
     --lamp-bar-neutral: #76767c;
     --lamp-bar-track: #e8e8ed;
-    --lamp-match: rgb(255 204 0 / 0.35);
+    /* The word analysis's shades (expectationColor): the accent for more, the
+       accent paled for as expected, grey for fewer. */
+    --lamp-bar-expected: color-mix(in srgb, var(--sys-tint) 50%, transparent);
+    /* A share's shades of the accent (shade in StrongsAnalysisView): faded
+       toward the card in light, lightened toward white, three quarters as far,
+       in dark. */
+    --lamp-shade-toward: transparent;
+    --lamp-shade-reach: 1;
+    /* A find match (LampPalette): the system yellow's wash, under the text's
+       own colour; in dark, cream words on a solid deep amber. */
+    --lamp-match: rgb(255 204 0 / 0.4);
+    --lamp-on-match: var(--sys-label);
+    /* Core's link blue, which both apps draw links in. */
+    --lamp-link: #1a61cc;
     /* A highlight's wash and a swatch's fill (lampHighlightFill, lampSwatchFill):
        in dark the colour is lifted toward white first, so yellow doesn't go olive. */
     --lamp-hl-lift: 0%;
@@ -205,6 +218,17 @@
     --mac-match: rgb(255 204 0 / 0.4);
     --mac-on-match: var(--sys-label);
     --mac-under: #a9a9ab;
+    /* The Reader and Search tab bar (LibraryTabStrip): a track a shade down
+       from the window, the open tab a raised white page. */
+    --mac-tab-track: rgb(0 0 0 / 0.045);
+    --mac-tab-open: #ffffff;
+    --mac-tab-edge: rgb(0 0 0 / 0.07);
+    --mac-tab-shadow: rgb(0 0 0 / 0.1);
+    /* The word analysis's bars (fill(for:) in StrongsAnalysisView): the
+       accent for more, the accent paled for as expected, grey for fewer. */
+    --mac-bar-expected: color-mix(in srgb, var(--sys-tint) 55%, transparent);
+    --mac-bar-fewer: color-mix(in srgb, var(--sys-label) 32%, transparent);
+    --mac-bar-track: rgb(0 0 0 / 0.08);
     --bezel: #1d1d1f;
     color: var(--sys-label);
     font-family:
@@ -250,8 +274,13 @@
       --lamp-menu-card: #2c2c2e;
       --lamp-rule: #48484a;
       --lamp-bar-neutral: #8e8e95;
-      --lamp-bar-track: #3a3a3e;
-      --lamp-match: rgb(255 214 10 / 0.32);
+      --lamp-bar-track: #48484c;
+      --lamp-bar-expected: color-mix(in srgb, var(--sys-tint), white 37.5%);
+      --lamp-shade-toward: white;
+      --lamp-shade-reach: 0.75;
+      --lamp-match: #4a3a0e;
+      --lamp-on-match: #fff2c7;
+      --lamp-link: #78abf5;
       --lamp-hl-lift: 35%;
       --lamp-hl-alpha: 36%;
       --lamp-swatch: 62%;
@@ -275,9 +304,16 @@
       --mac-track: #323332;
       --mac-secondary: #bdbdc2;
       --mac-prose: #e0e0e3;
-      --mac-match: #ccb066;
-      --mac-on-match: #171408;
+      --mac-match: #4a3a0e;
+      --mac-on-match: #fff2c7;
       --mac-under: #18181a;
+      --mac-tab-track: rgb(0 0 0 / 0.22);
+      --mac-tab-open: rgb(255 255 255 / 0.13);
+      --mac-tab-edge: rgb(255 255 255 / 0.1);
+      --mac-tab-shadow: rgb(0 0 0 / 0.35);
+      --mac-bar-expected: color-mix(in srgb, var(--sys-tint), white 50%);
+      --mac-bar-fewer: color-mix(in srgb, var(--sys-label) 50%, transparent);
+      --mac-bar-track: rgb(255 255 255 / 0.12);
       --bezel: #3a3a3c;
     }
   }

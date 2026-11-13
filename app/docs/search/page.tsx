@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { isMacAvailable } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Search',
@@ -185,7 +184,10 @@ export default function Page() {
           chapter — is adjustable, and a button takes you to the passage.
         </li>
         <li>
-          Results load a hundred at a time; <strong>Load More Results</strong> extends the list.
+          Bible results load a hundred at a time; <strong>Load More Results</strong> extends the
+          list. Module results open on thirty, shared among the types that matched; a type with
+          more to show has <strong>More</strong> in its heading, which lists that type alone, a
+          hundred at a time.
         </li>
         <li>
           <strong>Recent Searches</strong> keeps your last twenty searches that found something, in
@@ -212,75 +214,105 @@ export default function Page() {
         An analysis gathers everything a translation’s tags say about one Strong’s number. Open it
         with <strong>Analyse</strong> beside the count of a Strong’s search’s results, from the{' '}
         <strong>Analyse</strong> row a typed number offers, or with <strong>Analyse</strong> in a{' '}
-        <Link href="/docs/lexicons">lexicon entry</Link>. It shows:
+        <Link href="/docs/lexicons">lexicon entry</Link>. The <strong>Books</strong> menu at the top
+        narrows it to a testament, a part of the canon or <strong>One Book</strong>.
+      </p>
+      <p>
+        It opens on a card: the word with its transliteration and a short gloss, a speaker to say
+        it aloud, three figures — by default how many times it occurs, in how many verses and in
+        how many books — and a strip of the whole Bible, a column a book, showing where it falls.
+        The sliders button chooses the card’s three figures from nine, among them the rate per
+        1,000 tagged words and how many different words translate it, and the chart beneath them,
+        or none. Below the card come:
       </p>
       <ul>
         <li>
-          <strong>The word</strong> — its lemma, transliteration and a short gloss; how many times it
-          occurs, in how many verses and in how many books; a strip of the whole Bible, a column a
-          book, showing where it falls; and about how often it comes in every 1,000 tagged words of
-          its language.
+          <strong>Definition</strong> — the whole entry, in each dictionary that has the word.
         </li>
         <li>
-          <strong>Rendered As</strong> — the English the translation uses for it, commonest first,
-          as a list or a ring. These are the choices translators made, not the range of what the
-          word means; for that, read the lexicon.
+          <strong>Translated As</strong> — the English the translation uses for it, commonest first,
+          as a ring or a list. These are the choices translators made, not the range of what the
+          word means; for that, read the definition.
         </li>
         <li>
-          <strong>By Book</strong> — how many times it occurs in each book, as bars or a ring. In
-          the bars, an arrow marks a book that holds more (↑) or fewer (↓) than a book of its length
-          would, by a margin chance would rarely give.
+          <strong>Forms</strong> — the spellings it takes in the original, each in Latin letters
+          too, with what each form does.
         </li>
         <li>
-          <strong>Found With</strong> — other words that share its verses. The most certain
-          association comes first: a word that shares many verses leads one that shares a few,
-          however rare it is. Tap one to analyse it in turn.
+          <strong>Grammar</strong> — how it is parsed where it occurs.
+        </li>
+        <li>
+          <strong>By Book</strong>, <strong>By Section</strong> or <strong>By Chapter</strong> —
+          where it occurs. Books and sections are bars, counted in occurrences or per 1,000 words,
+          and an arrow marks one that holds more (↑) or fewer (↓) than its length would lead you to
+          expect, by more than chance. Chapters are a grid of squares, darker where the word is
+          commoner.
+        </li>
+        <li>
+          <strong>Found With</strong> — other words that share its verses, with a bar for the
+          strength of each association. A word that shares many verses leads one that shares a
+          few, however rare it is. Tap one to analyse it in turn.
+        </li>
+        <li>
+          <strong>Compare</strong> — the count in every installed translation that tags the
+          number; tap one for its own analysis.
+        </li>
+        <li>
+          <strong>Hebrew It Translates</strong> — for a Greek word, the Hebrew words it renders in
+          the Septuagint, each followable to its own analysis.
         </li>
         <li>
           <strong>Verses</strong> — every verse it occurs in, with the word marked as a search marks
-          a match. Tap a rendering or a book to narrow the list, and a verse to preview it with a
-          button to open it in the reader.
+          a match. Tap a rendering, a form, a parsing, a book or a chapter above to narrow the list,
+          and a verse to preview it with a button to open it in the reader.
         </li>
       </ul>
       <p>
         Every figure depends on how that translation was tagged, so two translations can count the
         same word differently.
       </p>
-      {isMacAvailable && (
-        <>
-          <h3>On the Mac</h3>
-          <p>
-            The analysis opens beside a Strong’s search: choose <strong>Scripture</strong> in the
-            toolbar and type a number in the Strong’s field of the filter bar beneath it, or choose{' '}
-            <strong>Analyse</strong> when you type a number into the search box. The occurrence list
-            sits to its left, and anything you click in the analysis narrows it. Its tabs:
-          </p>
-          <ul>
-            <li>
-              <strong>Overview</strong> — the renderings with their variants, the original-language
-              forms, and the grammar: part of speech, case, number, tense and so on.
-            </li>
-            <li>
-              <strong>Spread</strong> — a chart as bars, columns in Bible order, a grid of every
-              chapter, or a share drawn as a ring or a pie; by book, section, rendering or form;
-              counting occurrences or occurrences per 1,000 words. Click a bar or a chapter to see
-              its verses.
-            </li>
-            <li>
-              <strong>Companions</strong> — the words found with it, how many verses each shares
-              and how many times chance that is.
-            </li>
-            <li>
-              <strong>Compare</strong> — the count and leading renderings in every installed
-              translation that tags the number.
-            </li>
-          </ul>
-          <p>
-            A deck can chart a Strong’s number too; see{' '}
-            <Link href="/docs/presenting">Presenting</Link>.
-          </p>
-        </>
-      )}
+      <h3>On the Mac</h3>
+      <p>
+        The analysis opens beside a Strong’s search — choose <strong>Scripture</strong> in the
+        toolbar and type a number in the Strong’s field of the filter bar beneath it, or choose{' '}
+        <strong>Analyse</strong> when you type a number into the search box — with the occurrence
+        list to its left, narrowed by anything you click in the analysis. <strong>Analyse</strong>{' '}
+        on a dictionary entry opens it in the study column instead, beside the passage. It opens on
+        the same card, and its tabs are:
+      </p>
+      <ul>
+        <li>
+          <strong>Definition</strong> — the whole entry, beside a search only.
+        </li>
+        <li>
+          <strong>Overview</strong> — how it is translated, its forms, its grammar — part of
+          speech, case, number, tense and so on — and, for a Greek word, the Hebrew it translates
+          in the Septuagint.
+        </li>
+        <li>
+          <strong>Spread</strong> — by books, sections or chapters: bars counting occurrences or
+          occurrences per 1,000 words, or a grid of every chapter. Click a bar or a chapter to see
+          its verses.
+        </li>
+        <li>
+          <strong>Companions</strong> — the words found with it, how many verses each shares
+          and how many times chance that is.
+        </li>
+        <li>
+          <strong>Compare</strong> — the count and the commonest English in every installed
+          translation that tags the number.
+        </li>
+        <li>
+          <strong>Verses</strong> — in the study column, which has no room for a list beside it.
+        </li>
+      </ul>
+      <p>
+        Every figure has <strong>Add to Deck</strong>, which puts it on a slide.
+      </p>
+      <p>
+        A deck can chart a Strong’s number too; see{' '}
+        <Link href="/docs/presenting">Presenting</Link>.
+      </p>
     </DocPage>
   )
 }

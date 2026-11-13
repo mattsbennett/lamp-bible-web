@@ -119,7 +119,9 @@ conn.close()`}</code>
 
       <p>
         The module ID goes in three places: <code>module_format</code>, the type’s own metadata
-        row, and the file name. They must all agree.
+        row, and the file name. They must all agree. The one exception is a highlight set that
+        names itself in <code>meta.setId</code>: its <code>highlight_meta.id</code> holds that
+        set ID, and every other place still holds the module ID.
       </p>
 
       <Callout tone="warn" title="Derive character offsets, never count them">
@@ -221,7 +223,8 @@ assert conn.execute('SELECT count(*) FROM verses').fetchone()[0] > 0`}</code>
     text_direction TEXT NOT NULL DEFAULT 'ltr', translation_philosophy TEXT,
     year INTEGER, publisher TEXT, copyright TEXT, copyright_year INTEGER,
     license TEXT, source_texts_json TEXT, features_json TEXT,
-    versification TEXT DEFAULT 'standard'
+    versification TEXT DEFAULT 'standard',
+    versification_mappings TEXT         -- JSON array of Paratext mapping lines
 );
 
 CREATE TABLE books (
@@ -272,8 +275,14 @@ END;`}</code>
       <h3>Dictionary</h3>
       <p>
         The one type with a <code>module_metadata</code> table. Each sense in{' '}
-        <code>senses_json</code> carries its <code>definition</code>, <code>gloss</code>,{' '}
-        <code>partOfSpeech</code> and <code>references</code>, with its number stored as a string.
+        <code>senses_json</code> keeps every key the author wrote — <code>definition</code>,{' '}
+        <code>gloss</code>, <code>partOfSpeech</code>, <code>references</code>,{' '}
+        <code>septuagintHebrew</code> and any other — with its number stored as a string. Older
+        spellings are folded onto one name (<code>def</code> becomes <code>definition</code>, and{' '}
+        <code>short_definition</code>, <code>part_of_speech</code> and{' '}
+        <code>translation_usages</code> become <code>shortDefinition</code>,{' '}
+        <code>partOfSpeech</code> and <code>translationUsages</code>), and a key set to{' '}
+        <code>null</code> is left out.
       </p>
       <pre>
         <code>{`CREATE TABLE module_metadata (
@@ -297,7 +306,8 @@ CREATE TABLE dictionary_entries (
       <h3>Commentary</h3>
       <p>
         One book of a commentary series per file, and no metadata table: the series name and
-        abbreviation and the volume title live on the single <code>commentary_books</code> row.
+        abbreviation, and the volume’s title and description, live on the single{' '}
+        <code>commentary_books</code> row.
         Units form a self-referencing tree. <code>unit_type</code> is <code>section</code>,{' '}
         <code>pericope</code> or <code>verse</code>, with <code>parent_id</code> pointing at the
         enclosing unit; a chapter introduction is a section at level 0. A unit’s footnotes go in{' '}
@@ -308,8 +318,8 @@ CREATE TABLE dictionary_entries (
         <code>{`CREATE TABLE commentary_books (
     id TEXT PRIMARY KEY,                -- "<module id>:<book number>"
     module_id TEXT NOT NULL, book_number INTEGER NOT NULL,
-    series_full TEXT, series_abbrev TEXT, title TEXT, author TEXT,
-    editor TEXT, publisher TEXT, year INTEGER,
+    series_full TEXT, series_abbrev TEXT, title TEXT, description TEXT,
+    author TEXT, editor TEXT, publisher TEXT, year INTEGER,
     abbreviations_json TEXT, front_matter_json TEXT, indices_json TEXT
 );
 
@@ -378,6 +388,13 @@ CREATE VIRTUAL TABLE book_sections_fts USING fts5(
         keyed to a verse and cover one book per file; a chapter introduction is a note on verse 0.
         A devotional module is a single document, which may be dated or placed in a series.
       </p>
+      <p>
+        A notes module whose JSON has a <code>media</code> list gives <code>note_entries</code> a{' '}
+        <code>media_json</code> column, and each note lists there the media its own text refers
+        to. The column’s presence is what tells the app a file speaks about pictures, so a module
+        with no media leaves it out rather than leaving it empty. The image and audio files
+        themselves are not inside the <code>.lamp</code>.
+      </p>
       <pre>
         <code>{`CREATE TABLE module_meta (
     id TEXT PRIMARY KEY, name TEXT NOT NULL, description TEXT,
@@ -397,6 +414,7 @@ CREATE TABLE note_entries (
     title TEXT, content TEXT NOT NULL,  -- plain text
     verse_refs_json TEXT,               -- [end ref], when a note covers a range
     last_modified INTEGER, footnotes_json TEXT,
+    media_json TEXT,                    -- only when the module declares media
     search_text TEXT, record_change_tag TEXT
 );
 
@@ -456,7 +474,8 @@ CREATE TABLE highlight_themes (         -- what a colour and style mean
         <code>{`CREATE TABLE plans (
     id TEXT PRIMARY KEY, name TEXT NOT NULL, description TEXT,
     author TEXT, full_description TEXT,
-    duration INTEGER NOT NULL, readings_per_day INTEGER
+    duration INTEGER NOT NULL, readings_per_day INTEGER,
+    source TEXT, license TEXT           -- the work the plan follows, and its licence
 );
 
 CREATE TABLE plan_days (
