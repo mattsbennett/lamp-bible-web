@@ -303,7 +303,8 @@ function AnalysisCard() {
             <MacAnalysisArt />
           </div>
         </div>
-        <div className="lg:order-1">
+        {/* Set on the card's bottom edge, so the phone runs off it however tall the Mac column is. */}
+        <div className="lg:order-1 lg:self-end">
           <AnalysisArt />
         </div>
       </div>
