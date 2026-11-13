@@ -702,7 +702,7 @@ export function AnalysisArt() {
   const chart = 58
   return (
     <Art label="The word analysis on iPhone for G26, ἀγάπη (agápē, love): 117 occurrences in 106 verses of the KJV, in 24 of 27 books, with a column for each book — 1 John and Ephesians in the accent colour as more than expected, Matthew, Mark, Luke and Acts in grey as fewer. Below, a way to the whole definition, and how it is translated, on a ring: love 86 times, charity 27, and four once each.">
-      <Phone height="h-[440px] lg:h-[540px]" className="!bg-[var(--sys-grouped)]">
+      <Phone height="h-[440px] lg:h-[480px]" className="!bg-[var(--sys-grouped)]">
         <div className={`flex items-center gap-2 border-b ${sep} px-[9px] pb-[6px] pt-[8px]`}>
           <Glass round>
             <Sym name="xmark" className="h-[11px] w-[11px]" />
