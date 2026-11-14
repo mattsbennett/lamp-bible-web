@@ -62,7 +62,8 @@ export default function Page() {
         <Link href="/content-licences">Content licences</Link>.
         A mapping table connects Strong’s Hebrew numbers to their BDB entries, since the two systems
         do not correspond one-to-one — a single Strong’s number can resolve to several BDB entries
-        for different words or homographs.
+        for different words or homographs. Its pairs are the Open Scriptures Hebrew Bible
+        Project’s, matched by machine to the entries of the bundled BDB.
       </p>
 
       <h2>Looking a word up</h2>

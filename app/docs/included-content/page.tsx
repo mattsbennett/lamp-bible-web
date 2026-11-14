@@ -13,21 +13,24 @@ export default function Page() {
     <DocPage
       href="/docs/included-content"
       title="Bundled content"
-      intro="The offline library in the current release: nine translations, five lexicons, two cross-reference sets, three reading plans and a quiz module."
+      intro="The offline library in the current release: eleven translations, five lexicons, two cross-reference sets, three reading plans and a quiz module."
     >
       <h2>Translations</h2>
       <p>
         The translations use several different rights bases rather than one blanket public-domain
         claim. Those marked for Strong’s carry Strong’s numbers on individual words, which is what
         enables tap-to-lexicon lookups: the Berean Standard Bible and the King James Version among
-        the English, and <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts
-        themselves, tagged word by word with morphology too.
+        the English, <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts
+        themselves, tagged word by word with morphology too, and <code>LXX</code>, the Greek
+        Septuagint, likewise.
       </p>
       <p>
         The World English Bible and the American Standard Version are published with Strong’s
         numbers too, but those were aligned by machine and many sit on the neighbouring word, so
         Lamp Bible leaves them out. Their identifiers keep the <code>s</code> they were given when
-        they had them, since your highlights and notes are filed under the identifier.
+        they had them, since your highlights and notes are filed under the identifier. The Spanish
+        and French files carry Strong’s numbers as well, which their publisher gives no source or
+        licence for, so those are left out too.
       </p>
 
       <Table>
@@ -82,6 +85,22 @@ export default function Page() {
           </tr>
           <tr>
             <td>
+              <code>RV1909</code>
+            </td>
+            <td>Reina-Valera 1909, in Spanish</td>
+            <td>—</td>
+            <td>Public domain</td>
+          </tr>
+          <tr>
+            <td>
+              <code>LSG</code>
+            </td>
+            <td>Louis Segond 1910, in French</td>
+            <td>—</td>
+            <td>Public domain</td>
+          </tr>
+          <tr>
+            <td>
               <code>TAHOT</code>
             </td>
             <td>Translators Amalgamated Hebrew Old Testament (Leningrad Codex), from STEPBible</td>
@@ -101,8 +120,8 @@ export default function Page() {
               <code>LXX</code>
             </td>
             <td>Brenton Greek Septuagint</td>
-            <td>—</td>
-            <td>Public domain</td>
+            <td>Yes</td>
+            <td>Public domain; tags CC BY 4.0</td>
           </tr>
           <tr>
             <td>
@@ -120,6 +139,13 @@ export default function Page() {
         the deuterocanon — and keep the Septuagint’s own numbering: the Psalms by the Greek count,
         Nehemiah as chapters 11–23 of 2 Esdras (Ezra), and Esther and Daniel with their Greek
         additions.
+      </p>
+      <p>
+        STEPBible has not tagged the Greek Septuagint. Its Strong’s numbers, dictionary forms and
+        parses were assigned by Lamp Bible’s own program, from STEPBible’s openly licensed data, and
+        have not been checked by hand: expect roughly one word in 30 to have a wrong parse and one in
+        200 a wrong dictionary form. Names the New Testament does not use carry the Hebrew Strong’s
+        number of the name in the same verse of the Hebrew, and no parse.
       </p>
 
       <p>
@@ -175,13 +201,15 @@ export default function Page() {
 
       <p>
         A Strong’s-to-BDB mapping is included so that Hebrew lookups reach the fuller BDB article,
-        including where one Strong’s number resolves to several BDB entries. See{' '}
+        including where one Strong’s number resolves to several BDB entries. Its pairs come from the
+        Open Scriptures Hebrew Bible Project’s Lexical Index, under CC BY 4.0. See{' '}
         <Link href="/docs/lexicons">Lexicons</Link>.
       </p>
       <p>
         TBESG is the one lexicon under an attribution licence: STEPBible publishes it under CC BY
-        4.0, as it does <code>TAHOT</code> and <code>TAGNT</code>. Its attribution, and the changes
-        Lamp Bible made to the data, are under <Link href="/content-licences">Content licences</Link>.
+        4.0, as it does <code>TAHOT</code>, <code>TAGNT</code> and the data the Septuagint’s tags
+        come from. Its attribution and the mapping’s, and the changes Lamp Bible made to the data,
+        are under <Link href="/content-licences">Content licences</Link>.
       </p>
 
       <h2>Cross-references</h2>

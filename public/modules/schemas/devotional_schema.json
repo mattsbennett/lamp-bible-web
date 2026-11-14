@@ -322,7 +322,7 @@
     "media": {
       "type": "array",
       "items": { "$ref": "#/definitions/mediaReference" },
-      "description": "Media files referenced by image/audio blocks. In bundled .lamp files, actual media files are stored in a media/ subdirectory."
+      "description": "Media files referenced by image/audio blocks. A .lamp holds these references, not the files, which arrive by their own sync path."
     }
   },
 

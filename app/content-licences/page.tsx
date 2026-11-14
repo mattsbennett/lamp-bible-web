@@ -22,7 +22,7 @@ export default function ContentLicences() {
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
             The exact sources and distribution terms for the library bundled with Lamp Bible.
           </p>
-          <p className="mt-3 text-sm text-faint">Last reviewed November 9, 2026.</p>
+          <p className="mt-3 text-sm text-faint">Last reviewed November 14, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -69,8 +69,24 @@ export default function ContentLicences() {
                 <td>CrossWire any-purpose grant; source metadata also labels it GPL</td>
               </tr>
               <tr>
-                <td><code>LXX</code> — Brenton Greek Septuagint</td>
-                <td>eBible.org <code>grcbrent</code> USFM, source files dated April 8, 2026</td>
+                <td><code>LSG</code> — Louis Segond 1910 (French)</td>
+                <td>eBible.org <code>fraLSG</code> USFM, source files dated October 30, 2026</td>
+                <td>Public domain</td>
+              </tr>
+              <tr>
+                <td><code>LXX</code> — Brenton Greek Septuagint, tagged</td>
+                <td>
+                  eBible.org <code>grcbrent</code> USFM, source files dated April 8, 2026; tags from
+                  STEPBible-Data, upstream commit <code>5de0a47f35f0</code> (November 2, 2026)
+                </td>
+                <td>
+                  Public domain text; its tags{' '}
+                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                </td>
+              </tr>
+              <tr>
+                <td><code>RV1909</code> — Reina-Valera 1909 (Spanish)</td>
+                <td>eBible.org <code>spaRV1909</code> USFM, source files dated August 10, 2015</td>
                 <td>Public domain</td>
               </tr>
               <tr>
@@ -176,6 +192,52 @@ export default function ContentLicences() {
             numbered verse they follow. English Brenton&apos;s separate Nehemiah, a renumbered copy of
             2 Esdras 11–23, is left out in favour of 2 Esdras as printed.
           </p>
+          <p>
+            The Greek text&apos;s Strong&apos;s numbers, dictionary forms and morphology are not
+            Brenton&apos;s and are not public domain. They are data created by{' '}
+            <a href="https://www.stepbible.org" {...externalProps}>STEPBible.org</a> based on work at
+            Tyndale House, Cambridge, distributed under the{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>
+              Creative Commons Attribution 4.0 International licence
+            </a>
+            , from{' '}
+            <a href="https://STEPBible.github.io/STEPBible-Data" {...externalProps}>
+              STEPBible.github.io/STEPBible-Data
+            </a>
+            : the Translators Amalgamated Greek NT and Hebrew OT, and the Translators Brief lexicons
+            of Extended Strong&apos;s for Greek and Hebrew.
+          </p>
+          <p>
+            Lamp Bible changed the data in these ways. STEPBible has not tagged this text: Lamp
+            Bible&apos;s own program assigned the numbers, dictionary forms and morphology codes to
+            Brenton&apos;s words. A word spelt like a form in the Greek New Testament takes that
+            form&apos;s reading, other forms are read from the paradigms of the lexicon&apos;s
+            entries, and where a form has several readings a statistical model trained on the tagged
+            New Testament chooses one in context. Proper names the New Testament does not use carry
+            the Hebrew Strong&apos;s number of the name in the corresponding Hebrew verse, matched by
+            how the Septuagint spells Hebrew names. The tagging was made by machine and has not been
+            checked by hand; its errors are Lamp Bible&apos;s, not STEPBible&apos;s. No other tagged
+            Septuagint was used to make it. The program, the tagged text and its measured accuracy
+            are published at{' '}
+            <a href="https://github.com/mattsbennett/lamp-septuagint-strongs" {...externalProps}>
+              github.com/mattsbennett/lamp-septuagint-strongs
+            </a>
+            .
+          </p>
+
+          <h3>Reina-Valera 1909 and Louis Segond 1910</h3>
+          <p>
+            The <code>RV1909</code> (Spanish) and <code>LSG</code> (French) modules are public
+            domain, as eBible.org states for{' '}
+            <a href="https://ebible.org/spaRV1909/copyright.htm" {...externalProps}>spaRV1909</a> and{' '}
+            <a href="https://ebible.org/fraLSG/copyright.htm" {...externalProps}>fraLSG</a>, and are
+            converted from eBible.org&apos;s USFM. Both files also tag words with Strong&apos;s
+            numbers that eBible.org does not source or license; the modules are built without them.
+            The Segond&apos;s section headings, from the 2011 edition eBible.org states is in the
+            public domain, are kept; its book introductions and cross-references are not. Each
+            text&apos;s verse numbering is recorded with the places it departs from the original
+            numbering, so its verses line up with the other translations.
+          </p>
 
           <h2>Lexicons</h2>
           <Table>
@@ -214,6 +276,16 @@ export default function ContentLicences() {
                 <td>Public-domain work and dataset</td>
               </tr>
               <tr>
+                <td>Strong&apos;s Hebrew to BDB mapping</td>
+                <td>
+                  Open Scriptures Hebrew Lexicon, Lexical Index, upstream commit{' '}
+                  <code>21c9add13bc7</code> (September 2, 2019)
+                </td>
+                <td>
+                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                </td>
+              </tr>
+              <tr>
                 <td>Dodson Greek-English Lexicon</td>
                 <td>John Jeffrey Dodson; CrossWire distribution record</td>
                 <td>
@@ -247,13 +319,51 @@ export default function ContentLicences() {
             extended numbers keep theirs. Where STEPBible divides one number into parts that share a
             definition, the definition is given once with the parts&apos; glosses; a part with its own
             definition is its own sense. Scripture references are linked to Lamp&apos;s English verse
-            numbering, mapping the Hebrew numbering the Old Testament references follow; references
-            to the Apocrypha, and those the Hebrew numbering has no verse for, are left as text. The
-            source marks “(AS)” and “(ML)” are written out as “(Abbott-Smith)” and “(Middle
-            Liddell)”. The extended Strong&apos;s and unified Strong&apos;s columns are not carried
-            over. Where a definition names the Hebrew words the Septuagint renders with the word,
-            they are also listed with their Strong&apos;s numbers, matched using STEPBible&apos;s
-            Translators Brief lexicon of Extended Strongs for Hebrew (TBESH), under the same licence.
+            numbering. The Old Testament references mostly follow it but some follow the Hebrew
+            numbering; where the two number a verse differently, a reference is read as Hebrew only
+            where the word is in that reading&apos;s verse of Brenton&apos;s Greek Septuagint and not
+            in the English reading&apos;s, and never where the Hebrew reading falls on a psalm&apos;s
+            title. References tagged “1Ki” or “2Ki” where the definition prints 1 or 2 Kingdoms are
+            linked to 1 or 2 Samuel. References tagged for Esther, a code the source also uses for 1
+            and 2 Esdras and Esther&apos;s Greek additions, are linked only where the word is in that
+            verse of the Greek Esther, not counting its lettered additions. References to the
+            Apocrypha, and those neither numbering has a verse for, are left as text.
+            STEPBible&apos;s grammar codes for the article and the demonstrative pronouns are named
+            apart. The source marks “(AS)” and “(ML)” are written out as “(Abbott-Smith)” and
+            “(Middle Liddell)”. The extended Strong&apos;s and unified Strong&apos;s columns are not
+            carried over. Where a definition names the Hebrew words the Septuagint renders with the
+            word, they are also listed with their Strong&apos;s numbers, matched using
+            STEPBible&apos;s Translators Brief lexicon of Extended Strongs for Hebrew (TBESH), under
+            the same licence.
+          </p>
+
+          <h3>Open Scriptures Hebrew Lexicon</h3>
+          <p>
+            The Strong&apos;s-to-BDB mapping carries the Lexical Index of the{' '}
+            <a href="https://github.com/openscriptures/HebrewLexicon" {...externalProps}>
+              Open Scriptures Hebrew Bible Project
+            </a>
+            , distributed under the{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>
+              Creative Commons Attribution 4.0 International licence
+            </a>
+            . The text of Brown, Driver and Briggs and of Strong&apos;s dictionary remains in the
+            public domain.
+          </p>
+          <p>
+            Lamp Bible changed the data in these ways. The index joins Strong&apos;s numbers to the
+            entries of Open Scriptures&apos; own digitisation of BDB, and the bundled BDB is another
+            digitisation of the same lexicon. Open Scriptures&apos; entries were matched to the
+            bundled ones by their order, headwords, cited verses and glosses, and by whether an entry
+            only points to another, and each pair is given with the matched entry. Pairs whose entry
+            has no confident match are left out, and so are the index&apos;s augment letters, so{' '}
+            <code>7227a</code> and <code>7227b</code> are both <code>H7227</code>. Strong&apos;s
+            numbers the index gives no matched entry keep the Strong&apos;s numbers the BDB dataset
+            itself records, so those few pairs are not Open Scriptures&apos;. Where the dataset lists
+            a number only after another headword&apos;s, the entry is kept only if it contains the
+            word as Open Scriptures&apos; Strong&apos;s dictionary, under the same licence, spells it
+            and, where that dictionary calls the word a name, is about a name. The matching was made
+            by machine; its errors are Lamp Bible&apos;s.
           </p>
 
           <h2>Cross-references</h2>

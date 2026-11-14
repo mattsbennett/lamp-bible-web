@@ -68,7 +68,7 @@ type Feature = {
 const features: Feature[] = [
   {
     title: 'A study-grade reader',
-    body: 'Nine public-domain and openly licensed texts — English translations, the Hebrew and Greek, and the Septuagint in Greek and English. The KJV, the BSB and the Hebrew and Greek are tagged with Strong’s numbers: tap a tagged word for its lexicon entry. Red letters, headings, poetry and paragraphs are kept as published.',
+    body: 'Eleven public-domain and openly licensed texts — English, Spanish and French translations, the Hebrew and Greek, and the Septuagint in Greek and English. The KJV, the BSB, the Hebrew and Greek, and the Greek Septuagint are tagged with Strong’s numbers: tap a tagged word for its lexicon entry. Red letters, headings, poetry and paragraphs are kept as published.',
     href: '/docs/reader',
     icon: ReaderIcon,
     art: <ReaderArt />,

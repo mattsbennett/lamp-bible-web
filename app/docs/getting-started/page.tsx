@@ -30,7 +30,7 @@ export default function Page() {
 
       <Callout title="What you get on day one">
         <p>
-          Nine translations, five lexicons, two cross-reference sets, three public-domain reading
+          Eleven translations, five lexicons, two cross-reference sets, three public-domain reading
           plans and a quiz module are included in the install. See{' '}
           <Link href="/docs/included-content">Bundled content</Link> for the full list and rights
           status.
@@ -100,8 +100,9 @@ export default function Page() {
       </p>
       <p>
         The Berean Standard Bible and the King James Version carry Strong’s numbers on individual
-        words, as do <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts. In
-        those translations you can tap a word to open its lexicon entry. The others read
+        words, as do <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts, and{' '}
+        <code>LXX</code>, the Greek Septuagint. In those translations you can tap a word to open its
+        lexicon entry. The others read
         perfectly well but have no word-level lookups.
       </p>
       <p>

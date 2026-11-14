@@ -392,8 +392,12 @@ CREATE VIRTUAL TABLE book_sections_fts USING fts5(
         A notes module whose JSON has a <code>media</code> list gives <code>note_entries</code> a{' '}
         <code>media_json</code> column, and each note lists there the media its own text refers
         to. The column’s presence is what tells the app a file speaks about pictures, so a module
-        with no media leaves it out rather than leaving it empty. The image and audio files
-        themselves are not inside the <code>.lamp</code>.
+        with no media leaves it out rather than leaving it empty. A note’s text is Markdown, and a
+        picture in it is written <code>![caption](media/&lt;id&gt;)</code>, as a
+        devotional’s is. The image and audio files themselves are not inside the{' '}
+        <code>.lamp</code>: the apps sync the ones a reader adds on their own path (see{' '}
+        <Link href="/docs/sync">Sync &amp; backup</Link>), and nothing yet delivers a published
+        notes module’s files, so its pictures arrive as references only.
       </p>
       <pre>
         <code>{`CREATE TABLE module_meta (
@@ -411,7 +415,7 @@ CREATE TABLE note_entries (
     module_id TEXT NOT NULL,
     verse_id INTEGER NOT NULL,          -- BBCCCVVV
     book INTEGER NOT NULL, chapter INTEGER NOT NULL, verse INTEGER NOT NULL,
-    title TEXT, content TEXT NOT NULL,  -- plain text
+    title TEXT, content TEXT NOT NULL,  -- Markdown
     verse_refs_json TEXT,               -- [end ref], when a note covers a range
     last_modified INTEGER, footnotes_json TEXT,
     media_json TEXT,                    -- only when the module declares media
