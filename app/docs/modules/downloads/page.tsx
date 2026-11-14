@@ -78,13 +78,21 @@ export default function Page() {
         <>
           <h2>Provenance</h2>
           <p>
-            The JSON Schemas here are copies, kept in step with the module tooling by a sync script
-            that records the source revision and a SHA-256 for every file. These copies were taken
-            on <strong>{manifest.generatedAt}</strong>
+            The JSON Schemas here are copies of those in{' '}
+            <a href="https://github.com/mattsbennett/lamp-bible-core/tree/main/Schemas">
+              lamp-bible-core
+            </a>
+            , kept in step by a sync script that records the source revision and a SHA-256 for every
+            file. These copies were taken on <strong>{manifest.generatedAt}</strong>
             {manifest.source.commit && (
               <>
                 {' '}
-                from revision <code>{manifest.source.commit.slice(0, 12)}</code>
+                from revision{' '}
+                <a
+                  href={`https://github.com/mattsbennett/lamp-bible-core/tree/${manifest.source.commit}/Schemas`}
+                >
+                  <code>{manifest.source.commit.slice(0, 12)}</code>
+                </a>
               </>
             )}
             .

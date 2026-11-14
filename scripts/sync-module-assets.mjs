@@ -1,19 +1,23 @@
 #!/usr/bin/env node
 /**
- * Copies the module JSON schemas out of the (private) lamp-bible-modules repo
- * into public/modules/schemas, and records where they came from.
+ * Copies the module JSON schemas out of lamp-bible-core's Schemas/ folder into
+ * public/modules/schemas, and records where they came from. It also hashes the
+ * converter scripts in the private lamp-bible-modules repo that the docs
+ * describe, without copying them.
  *
- * The web repo must stay standalone — Vercel builds it without any access to
- * the private repo — so the copies are committed. The manifest is what makes
- * the copies auditable: it pins the source commit and the SHA-256 of every
- * file, so `--check` can tell you when the upstream originals have moved on.
+ * The web repo must stay standalone — Vercel builds it without either repo —
+ * so the copies are committed. The manifest is what makes the copies
+ * auditable: it pins the source commits and the SHA-256 of every file, so
+ * `--check` can tell you when the upstream originals have moved on.
  *
  *   node scripts/sync-module-assets.mjs            # copy and rewrite manifest
  *   node scripts/sync-module-assets.mjs --check    # report drift, change nothing
- *   node scripts/sync-module-assets.mjs --source ../elsewhere
+ *   node scripts/sync-module-assets.mjs --core ../elsewhere --source ../elsewhere
  *
- * The source repo is only needed by whoever runs this. If it is missing the
- * script says so and exits 0, so it is safe to wire into a build.
+ * The repos are only needed by whoever runs this. Without lamp-bible-core the
+ * script says so and exits 0, so it is safe to wire into a build. Without
+ * lamp-bible-modules it still copies the schemas, keeps the watched hashes the
+ * manifest already has, and says the scripts weren't checked.
  */
 
 import { createHash } from 'node:crypto'
@@ -26,17 +30,18 @@ const webRepo = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 const args = process.argv.slice(2)
 const checkOnly = args.includes('--check')
-const sourceArg = args.indexOf('--source')
+const argument = (flag) => (args.indexOf(flag) !== -1 ? args[args.indexOf(flag) + 1] : undefined)
+const coreRepo = resolve(webRepo, argument('--core') ?? process.env.LAMP_CORE_REPO ?? '../lamp-bible-core')
 const sourceRepo = resolve(
   webRepo,
-  sourceArg !== -1 ? args[sourceArg + 1] : process.env.LAMP_MODULES_REPO || '../lamp-bible-modules'
+  argument('--source') ?? process.env.LAMP_MODULES_REPO ?? '../lamp-bible-modules'
 )
 
 const OUT_DIR = join(webRepo, 'public/modules/schemas')
 const MANIFEST = join(webRepo, 'public/modules/manifest.json')
 
-/** JSON schema files copied verbatim into public/. */
-const COPY_GLOB = { dir: 'schemas', match: (f) => f.endsWith('.json') }
+/** JSON schema files copied verbatim into public/, from lamp-bible-core. */
+const COPY_GLOB = { dir: 'Schemas', match: (f) => f.endsWith('.json') }
 
 /**
  * Files that are not copied, but that the documentation describes. The SQLite
@@ -59,18 +64,19 @@ const WATCHED = [
 
 const sha256 = (buf) => createHash('sha256').update(buf).digest('hex')
 
-function sourceCommit() {
+function repoCommit(repo) {
   try {
-    const out = execFileSync('git', ['-C', sourceRepo, 'rev-parse', 'HEAD'], { encoding: 'utf8' })
+    const out = execFileSync('git', ['-C', repo, 'rev-parse', 'HEAD'], { encoding: 'utf8' })
     return out.trim()
   } catch {
     return null
   }
 }
 
-function sourceIsDirty() {
+/** Whether `repo` has uncommitted changes, under `paths` when given. */
+function repoIsDirty(repo, paths = []) {
   try {
-    const out = execFileSync('git', ['-C', sourceRepo, 'status', '--porcelain'], {
+    const out = execFileSync('git', ['-C', repo, 'status', '--porcelain', '--', ...paths], {
       encoding: 'utf8',
     })
     return out.trim().length > 0
@@ -79,8 +85,8 @@ function sourceIsDirty() {
   }
 }
 
-function collect() {
-  const schemaDir = join(sourceRepo, COPY_GLOB.dir)
+function collect(haveModules) {
+  const schemaDir = join(coreRepo, COPY_GLOB.dir)
   const assets = readdirSync(schemaDir)
     .filter(COPY_GLOB.match)
     .sort()
@@ -95,6 +101,7 @@ function collect() {
       }
     })
 
+  if (!haveModules) return { assets, watched: null }
   const watched = WATCHED.map(([rel, note]) => {
     const abs = join(sourceRepo, rel)
     if (!existsSync(abs)) return { from: rel, note, sha256: null, missing: true }
@@ -110,15 +117,16 @@ function readManifest() {
 }
 
 function main() {
-  if (!existsSync(sourceRepo)) {
-    console.log(`• lamp-bible-modules not found at ${sourceRepo}`)
-    console.log('  Skipping. Set LAMP_MODULES_REPO or pass --source to point at a checkout.')
+  if (!existsSync(join(coreRepo, COPY_GLOB.dir))) {
+    console.log(`• lamp-bible-core's Schemas/ not found at ${coreRepo}`)
+    console.log('  Skipping. Set LAMP_CORE_REPO or pass --core to point at a checkout.')
     process.exit(0)
   }
+  const haveModules = existsSync(sourceRepo)
 
-  const { assets, watched } = collect()
-  const commit = sourceCommit()
-  const dirty = sourceIsDirty()
+  const { assets, watched } = collect(haveModules)
+  const commit = repoCommit(coreRepo)
+  const dirty = repoIsDirty(coreRepo, [COPY_GLOB.dir])
 
   if (checkOnly) {
     const manifest = readManifest()
@@ -141,7 +149,7 @@ function main() {
     }
 
     const watchedByPath = new Map(manifest.watched.map((w) => [w.from, w]))
-    for (const w of watched) {
+    for (const w of watched ?? []) {
       const known = watchedByPath.get(w.from)
       if (!known) problems.push(`newly watched file: ${w.from}`)
       else if (known.sha256 !== w.sha256) {
@@ -158,6 +166,9 @@ function main() {
       }
     }
 
+    if (!haveModules) {
+      console.log(`• lamp-bible-modules not found at ${sourceRepo}; its watched scripts were not checked.`)
+    }
     if (problems.length === 0) {
       console.log(`✓ Module assets are in sync with ${manifest.source.commit?.slice(0, 7)}`)
       process.exit(0)
@@ -174,25 +185,34 @@ function main() {
     writeFileSync(join(webRepo, 'public/modules', asset.path), asset._bytes)
   }
 
+  const previous = readManifest()
   const manifest = {
     $comment:
       'Generated by scripts/sync-module-assets.mjs. Do not edit by hand — run npm run sync:modules.',
     generatedAt: new Date().toISOString().slice(0, 10),
     source: {
-      repo: 'lamp-bible-modules',
-      private: true,
+      repo: 'lamp-bible-core',
       commit,
       dirtyWorkingTree: dirty || undefined,
     },
+    watchedSource: haveModules
+      ? {
+          repo: 'lamp-bible-modules',
+          private: true,
+          commit: repoCommit(sourceRepo),
+          dirtyWorkingTree: repoIsDirty(sourceRepo) || undefined,
+        }
+      : previous?.watchedSource,
     assets: assets.map(({ _bytes, ...rest }) => rest),
-    watched,
+    watched: watched ?? previous?.watched ?? [],
   }
 
   writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n')
 
   console.log(`✓ Copied ${assets.length} schema files from ${commit?.slice(0, 7) ?? 'unknown'}`)
-  if (dirty) console.log('  ! Source working tree is dirty; commit there for a stable reference.')
-  for (const w of watched.filter((w) => w.missing)) {
+  if (dirty) console.log("  ! lamp-bible-core's Schemas/ has uncommitted changes; commit there for a stable reference.")
+  if (!haveModules) console.log(`  ! lamp-bible-modules not found at ${sourceRepo}; kept the watched hashes already recorded.`)
+  for (const w of (watched ?? []).filter((w) => w.missing)) {
     console.log(`  ! Watched file missing upstream: ${w.from}`)
   }
 }

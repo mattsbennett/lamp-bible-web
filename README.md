@@ -43,28 +43,30 @@ Colours are CSS custom properties defined in `app/globals.css`, with a `prefers-
 ## Module assets
 
 The site publishes the JSON Schemas, SQLite table definitions and a working sample module of every
-type, under `public/modules/`. These are committed, so the build never needs the private
-`lamp-bible-modules` repo.
+type, under `public/modules/`. These are committed, so the build needs neither `lamp-bible-core`
+(where the schemas live) nor the private `lamp-bible-modules` repo.
 
 ```bash
-npm run sync:modules     # copy schemas from a local lamp-bible-modules checkout
+npm run sync:modules     # copy schemas from a local lamp-bible-core checkout
 npm run check:modules    # report drift; exits 1 if the copies are stale
 npm run build:samples    # regenerate and verify the sample .lamp modules
 ```
 
 ### Keeping the copies honest
 
-`scripts/sync-module-assets.mjs` copies `schemas/*.json` out of a local checkout of the private
-repo and writes `public/modules/manifest.json`, recording the source commit and a SHA-256 for every
-file. `--check` compares three things and fails if any has moved:
+`scripts/sync-module-assets.mjs` copies `Schemas/*.json` out of a local checkout of
+`lamp-bible-core` and writes `public/modules/manifest.json`, recording the source commit and a
+SHA-256 for every file. `--check` compares three things and fails if any has moved:
 
 1. upstream schemas against the recorded hashes,
 2. the committed copies against the recorded hashes (catches hand-edits),
-3. the upstream converter scripts, which are hashed but not copied, so that a change to how modules
-   are produced upstream flags the prose as needing review.
+3. the converter scripts in the private `lamp-bible-modules` repo, which are hashed but not copied,
+   so that a change to how modules are produced upstream flags the prose as needing review.
 
-It looks for the repo at `../lamp-bible-modules`, overridable with `LAMP_MODULES_REPO` or
-`--source`. If the repo is absent it prints a note and exits 0, so it is safe to run anywhere.
+It looks for core at `../lamp-bible-core` (`LAMP_CORE_REPO` or `--core`) and for the modules repo
+at `../lamp-bible-modules` (`LAMP_MODULES_REPO` or `--source`). Without core it prints a note and
+exits 0, so it is safe to run anywhere. Without the modules repo it still copies the schemas, keeps
+the watched hashes already recorded, and says the scripts weren't checked.
 
 Run `npm run check:modules` before a release; run `npm run sync:modules` when it complains.
 
