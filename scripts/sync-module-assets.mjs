@@ -22,7 +22,7 @@
 
 import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -111,6 +111,12 @@ function collect(haveModules) {
   return { assets, watched }
 }
 
+/** The schema copies now in public/modules/schemas, by file name. */
+function localSchemaCopies() {
+  if (!existsSync(OUT_DIR)) return []
+  return readdirSync(OUT_DIR).filter(COPY_GLOB.match)
+}
+
 function readManifest() {
   if (!existsSync(MANIFEST)) return null
   return JSON.parse(readFileSync(MANIFEST, 'utf8'))
@@ -165,6 +171,12 @@ function main() {
         problems.push(`local copy edited by hand: public/modules/${known.path}`)
       }
     }
+    // A schema still published but no longer in the manifest, such as one
+    // removed upstream before this script removed stale copies.
+    const recorded = new Set(manifest.assets.map((a) => a.path))
+    for (const name of localSchemaCopies()) {
+      if (!recorded.has(`schemas/${name}`)) problems.push(`local copy not in the manifest: public/modules/schemas/${name}`)
+    }
 
     if (!haveModules) {
       console.log(`• lamp-bible-modules not found at ${sourceRepo}; its watched scripts were not checked.`)
@@ -184,6 +196,10 @@ function main() {
   for (const asset of assets) {
     writeFileSync(join(webRepo, 'public/modules', asset.path), asset._bytes)
   }
+  // The folder holds only copies, so one upstream no longer has goes.
+  const current = new Set(assets.map((a) => a.path))
+  const removed = localSchemaCopies().filter((name) => !current.has(`schemas/${name}`))
+  for (const name of removed) rmSync(join(OUT_DIR, name))
 
   const previous = readManifest()
   const manifest = {
@@ -210,6 +226,7 @@ function main() {
   writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n')
 
   console.log(`✓ Copied ${assets.length} schema files from ${commit?.slice(0, 7) ?? 'unknown'}`)
+  for (const name of removed) console.log(`  - Removed public/modules/schemas/${name}, gone upstream`)
   if (dirty) console.log("  ! lamp-bible-core's Schemas/ has uncommitted changes; commit there for a stable reference.")
   if (!haveModules) console.log(`  ! lamp-bible-modules not found at ${sourceRepo}; kept the watched hashes already recorded.`)
   for (const w of (watched ?? []).filter((w) => w.missing)) {

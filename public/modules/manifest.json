@@ -3,12 +3,12 @@
   "generatedAt": "2026-11-14",
   "source": {
     "repo": "lamp-bible-core",
-    "commit": "0d203e4abac6ab82e59f19bcc589a24f35f34eee"
+    "commit": "2756103091183a6ca37b9639d92be991cb66ca18"
   },
   "watchedSource": {
     "repo": "lamp-bible-modules",
     "private": true,
-    "commit": "57c1ffef45ba78b04d924972ba17317e1ab8d258"
+    "commit": "3a572b61adf6a2f0332fce2b657533341ce244e7"
   },
   "assets": [
     {
