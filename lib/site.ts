@@ -2,7 +2,7 @@ export const site = {
   name: 'Lamp Bible',
   tagline: 'A Bible reading companion you own.',
   description:
-    'A study-grade Bible reader with reading plans, notes, devotionals, highlights, lexicons and commentaries — all offline, all yours, in an open module format.',
+    'A study-grade Bible reader with reading plans, notes, writing, highlights, lexicons and commentaries — all offline, all yours, in an open module format.',
   url: 'https://lampbible.com',
   appStoreUrl: 'https://apps.apple.com/us/app/lamp-bible/id6476050185',
   issuesUrl: 'https://github.com/mattsbennett/lamp-bible-ios/issues',

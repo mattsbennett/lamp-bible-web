@@ -79,8 +79,11 @@ export default function Page() {
             </td>
           </tr>
           <tr>
-            <td>Devotionals</td>
-            <td>Your long-form writing, for reading beside the passage it discusses.</td>
+            <td>Your writing</td>
+            <td>
+              A writing collection, listed by its name — My Writing or another — for reading a piece
+              beside the passage it discusses.
+            </td>
           </tr>
         </tbody>
       </Table>
@@ -198,7 +201,7 @@ export default function Page() {
         <li>
           <strong>View Options</strong> in the reader’s menu sets the typeface — serif, the
           default, or sans — the text size, and the <strong>Line Spacing</strong>, in points. The
-          reader’s size is set independently of the tool panel’s and of devotional text.
+          reader’s size is set independently of the tool panel’s and of your writing’s.
         </li>
         <li>Light and dark rendering follows the system appearance.</li>
       </ul>

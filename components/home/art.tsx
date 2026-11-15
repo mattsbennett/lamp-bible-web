@@ -1146,7 +1146,7 @@ export function PhoneWritingArt() {
     'Aa', '|', 'B', 'I', '|', 'listBullet', 'listNumber', '|', 'textQuote', 'link', 'plusCircle',
   ]
   return (
-    <Art label="The writing editor on iPhone: a devotional called Abide in the Vine, its kind and date over the title, set in a serif with a scripture quotation of John 15:5, a footnote, a table and an audio recording, above the formatting bar.">
+    <Art label="The writing editor on iPhone: a piece called Abide in the Vine, its kind — Devotional — and date over the title, set in a serif with a scripture quotation of John 15:5, a footnote, a table and an audio recording, above the formatting bar.">
       <Phone height="h-[560px]" whole className="!bg-[var(--ed-page)]">
         <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
           <Glass round>

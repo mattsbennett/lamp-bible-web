@@ -62,15 +62,15 @@ export default function Page() {
       <h2>What is a <code>.lamp</code> file?</h2>
       <p>
         It is a module: a compressed SQLite database holding one translation, dictionary,
-        commentary, book, reading plan, quiz, notes collection, devotional collection or highlight
+        commentary, book, reading plan, quiz, notes collection, writing collection or highlight
         set. The format is documented in{' '}
         <Link href="/docs/modules/authoring">Authoring modules</Link>.
       </p>
 
       <h2>Can I get my notes out?</h2>
       <p>
-        Yes, at any time and without asking. Notes and devotionals export to plain markdown, a
-        devotional with its images and audio; modules export as <code>.lamp</code> packages. See{' '}
+        Yes, at any time and without asking. Notes and writing export to plain markdown, a piece
+        of writing with its images and audio; modules export as <code>.lamp</code> packages. See{' '}
         <Link href="/docs/import-export">Import &amp; export</Link>.
       </p>
 
@@ -92,7 +92,7 @@ export default function Page() {
 
       <h2>Can I sync between my devices?</h2>
       <p>
-        Yes — through iCloud Drive or a WebDAV server. Your imported modules, notes, devotionals,
+        Yes — through iCloud Drive or a WebDAV server. Your imported modules, notes, writing,
         highlights, reading progress and settings travel; the bundled library does not need to,
         since it is already on every install. Every device sharing a library needs version 1.2 or
         later. See <Link href="/docs/sync">Sync &amp; backup</Link>.

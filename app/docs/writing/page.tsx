@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
-  title: 'Devotionals',
+  title: 'Writing',
   description:
     'Long-form writing in Lamp Bible: a visual and markdown editor with scripture quotes, footnotes, tables, images and recorded audio, plus present mode, sharing and markdown export.',
 }
@@ -11,17 +11,16 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <DocPage
-      href="/docs/devotionals"
-      title="Devotionals"
-      intro="For writing that is not tied to a single verse — devotionals, exhortations, studies, reflections and prayers."
+      href="/docs/writing"
+      title="Writing"
+      intro="For writing that is not tied to a single verse: devotionals, exhortations, studies, reflections, prayers and talks."
     >
-      <h2>Devotionals versus notes</h2>
+      <h2>Writing versus notes</h2>
       <p>
-        <Link href="/docs/notes">Notes</Link> are verse-keyed: they hang off a passage. A devotional
-        is a standalone document. It may cite scripture heavily, and those citations are live links,
-        but the document is organised by its own argument rather than by chapter and verse. The
-        apps call this <strong>Writing</strong>, and it lives behind the <strong>Write</strong>{' '}
-        button on the home screen.
+        <Link href="/docs/notes">Notes</Link> are verse-keyed: they hang off a passage. A piece of
+        writing is a standalone document. It may cite scripture heavily, and those citations are
+        live links, but the document is organised by its own argument rather than by chapter and
+        verse. It lives behind the <strong>Write</strong> button on the home screen.
         {' '}On the Mac the editor adds find and replace, revision history and an AI agent —
         see <Link href="/docs/mac">The Mac app</Link>.
       </p>
@@ -37,7 +36,7 @@ export default function Page() {
 
       <h2>The editor</h2>
       <p>
-        A devotional has five modes, chosen from the button at the bottom of the screen, which
+        A piece has five modes, chosen from the button at the bottom of the screen, which
         shows the mode you are in:
       </p>
       <Table>
@@ -168,7 +167,7 @@ export default function Page() {
       </p>
 
       <h2>Metadata</h2>
-      <p>Each devotional carries fields that make a growing collection navigable:</p>
+      <p>Each piece carries fields that make a growing collection navigable:</p>
       <ul>
         <li>
           <strong>Title and subtitle</strong>, and an author name.
@@ -177,8 +176,8 @@ export default function Page() {
           <strong>Date</strong> — the date you assign it, not just when the file was written.
         </li>
         <li>
-          <strong>Category</strong> — one to a piece. Choose devotional, exhortation, reflection,
-          study or prayer, or one you have used before, or name your own — on iPhone and iPad with{' '}
+          <strong>Category</strong> — one to a piece. Choose Devotional, Exhortation, Reflection,
+          Study or Prayer, or one you have used before, or name your own — on iPhone and iPad with{' '}
           <strong>Custom…</strong> at the end of the list.
         </li>
         <li>
@@ -194,14 +193,14 @@ export default function Page() {
 
       <h2>Present mode</h2>
       <p>
-        Present mode reformats a devotional for delivery from a lectern: text scaled up by a
+        Present mode reformats a piece for delivery from a lectern: text scaled up by a
         multiplier you set, with extra line spacing so you can find your place while looking up,
         and footnotes and links set aside. Text size for reading and presenting is set independently
         of the Bible reader’s.
       </p>
       <Callout title="Slides">
         <p>
-          A devotional turned into a slide deck in Slide Studio on a Mac shows a{' '}
+          A piece turned into a slide deck in Slide Studio on a Mac shows a{' '}
           <strong>Slides</strong> button once the deck has synced, and its deck opens on iPhone and
           iPad to view. See <Link href="/docs/presenting">Slides &amp; presenting</Link>.
         </p>
@@ -209,12 +208,12 @@ export default function Page() {
 
       <h2>Sharing</h2>
       <p>
-        <strong>Share Writing File</strong> sends a devotional through the system share sheet as
+        <strong>Share Writing File</strong> sends a piece through the system share sheet as
         a <code>.lamp</code> file. There are two forms, chosen automatically:
       </p>
       <ul>
         <li>
-          <strong>Plain</strong> — a single JSON document, for devotionals with no media.
+          <strong>Plain</strong> — a single JSON document, for a piece with no media.
         </li>
         <li>
           <strong>Bundled</strong> — a ZIP package carrying the document and its images and audio
@@ -231,7 +230,7 @@ export default function Page() {
 
       <Callout title="Also plain markdown">
         <p>
-          Collections export to markdown, one file per devotional or a single combined file, with
+          Collections export to markdown, one file per piece or a single combined file, with
           media in an accompanying folder. See{' '}
           <Link href="/docs/import-export">Import &amp; export</Link>.
         </p>
@@ -239,8 +238,9 @@ export default function Page() {
 
       <h2>Reading them beside the text</h2>
       <p>
-        The reader’s tool panel has a Devotionals mode, so a piece you wrote — or one someone shared
-        with you — can sit alongside the passage it discusses.
+        The reader’s tool panel lists your writing collections by name, My Writing first, so a
+        piece you wrote — or one someone shared with you — can sit alongside the passage it
+        discusses.
       </p>
     </DocPage>
   )

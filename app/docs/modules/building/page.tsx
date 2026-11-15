@@ -47,9 +47,9 @@ export default function Page() {
         module whose ID is <code>MYBIBLEs</code> must travel as <code>MYBIBLEs.lamp</code>.
       </p>
 
-      <Callout title="Devotionals have two extra shapes">
+      <Callout title="Writing has two extra shapes">
         <p>
-          A devotional shared from the app may also be a plain JSON document, or a ZIP bundle
+          A piece of writing shared from the app may also be a plain JSON document, or a ZIP bundle
           holding the document plus its images and audio. All three use the <code>.lamp</code>{' '}
           extension and the app detects which it is on open. For anything you build yourself, the
           SQLite form below is the one to target.
@@ -213,7 +213,7 @@ assert conn.execute('SELECT count(*) FROM verses').fetchone()[0] > 0`}</code>
 
       <h3>Translation</h3>
       <p>
-        The largest schema. Commentaries, books, notes and devotionals have full-text indexes
+        The largest schema. Commentaries, books, notes and writing have full-text indexes
         too, but this is the only one with an insert trigger to keep it current.
       </p>
       <pre>
@@ -382,11 +382,12 @@ CREATE VIRTUAL TABLE book_sections_fts USING fts5(
 );`}</code>
       </pre>
 
-      <h3>Notes and devotionals</h3>
+      <h3>Notes and writing</h3>
       <p>
         The two editable text types, sharing a small <code>module_meta</code> table. Notes are
         keyed to a verse and cover one book per file; a chapter introduction is a note on verse 0.
-        A devotional module is a single document, which may be dated or placed in a series.
+        A writing module, type <code>devotional</code> in the format, is a single document, which
+        may be dated or placed in a series.
       </p>
       <p>
         A notes module whose JSON has a <code>media</code> list gives <code>note_entries</code> a{' '}
@@ -394,7 +395,7 @@ CREATE VIRTUAL TABLE book_sections_fts USING fts5(
         to. The column’s presence is what tells the app a file speaks about pictures, so a module
         with no media leaves it out rather than leaving it empty. A note’s text is Markdown, and a
         picture in it is written <code>![caption](media/&lt;id&gt;)</code>, as a
-        devotional’s is. The image and audio files themselves are not inside the{' '}
+        writing’s is. The image and audio files themselves are not inside the{' '}
         <code>.lamp</code>: the apps sync the ones a reader adds on their own path (see{' '}
         <Link href="/docs/sync">Sync &amp; backup</Link>), and nothing yet delivers a published
         notes module’s files, so its pictures arrive as references only.

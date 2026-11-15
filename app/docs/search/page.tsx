@@ -6,7 +6,7 @@ import { AnalysisArt } from '@/components/home/art'
 export const metadata: Metadata = {
   title: 'Search',
   description:
-    'Full-text search across translations, lexicons, commentaries, books, notes, devotionals and highlights, with filters for module, tag, Strong’s number and colour, and an analysis of how any Strong’s number is used.',
+    'Full-text search across translations, lexicons, commentaries, books, notes, writing and highlights, with filters for module, tag, Strong’s number and colour, and an analysis of how any Strong’s number is used.',
 }
 
 export default function Page() {
@@ -64,7 +64,7 @@ export default function Page() {
             <td>Your note text, including footnotes</td>
           </tr>
           <tr>
-            <td>Devotionals</td>
+            <td>Writing</td>
             <td>Title, summary and body content</td>
           </tr>
           <tr>
@@ -98,7 +98,7 @@ export default function Page() {
           <strong>Translation</strong> — which translation verse results come from.
         </li>
         <li>
-          <strong>Devotional tags</strong> — pick from the tags you have actually used.
+          <strong>Tags</strong> — pick from the tags you have given your writing.
         </li>
         <li>
           <strong>Highlight colour</strong> — find every passage you marked in a particular colour,

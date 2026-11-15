@@ -79,7 +79,7 @@ export default function AppPrivacy() {
 
           <h2 id="information-stored-on-your-device">Information stored on your device</h2>
           <p>
-            The apps store your modules, reading progress, notes, devotionals, highlights and
+            The apps store your modules, reading progress, notes, writing, highlights and
             settings locally. Photos, camera images and audio recordings are accessed only when you
             choose to add them to your own content; the camera is also used to scan a presentation
             pairing code. WebDAV passwords and presentation pairings are stored in Apple&apos;s
@@ -98,7 +98,7 @@ export default function AppPrivacy() {
             Your chosen provider&apos;s privacy policy and retention practices apply.
           </p>
           <p>
-            What syncs includes your notes, devotionals and their media, highlights, reading
+            What syncs includes your notes and writing and their media, highlights, reading
             progress, settings, and modules you imported — including Bibles you imported yourself.
             Synced files are compressed but not encrypted by Lamp Bible, so their protection is the
             protection your provider gives them.

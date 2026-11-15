@@ -63,14 +63,14 @@ export default function Page() {
       <ul>
         <li>
           Your <Link href="/docs/notes">notes</Link> with their pictures,{' '}
-          <Link href="/docs/devotionals">devotionals</Link> with their images and audio, and every{' '}
+          your <Link href="/docs/writing">writing</Link> with its images and audio, and every{' '}
           <Link href="/docs/highlights">highlight set</Link> with its themes.
         </li>
         <li>Reading plan progress, and which plans you follow.</li>
         <li>
           Your settings: translation and text size, hidden translations and lexicons, lexicon order,
           word hints, highlight colours, reading rate, reminder, how many readers share a plan,
-          quiz age group, devotional text size, and whether AI features are shown.
+          quiz age group, writing text size, and whether AI features are shown.
         </li>
         <li>
           Modules you imported yourself — translations, dictionaries, commentaries, books, plans and
@@ -105,7 +105,7 @@ export default function Page() {
       <p>
         Sync works file by file. One file that fails — a server timeout, say — is reported, and the
         rest still sync. While you are writing, an icon in the Notes panel header and in the
-        devotional editor shows whether your latest change has left the device: synced, syncing,
+        writing editor shows whether your latest change has left the device: synced, syncing,
         waiting to sync, or unavailable — or, with sync off, that it is saved on this device alone.
       </p>
 
@@ -118,7 +118,7 @@ export default function Page() {
         <code>{`Lamp Bible/
 ├── lamp-bible.lampsync      settings, progress, and the list of library files
 ├── Notes/notes.lamp         My Notes
-├── Devotionals/             your devotional collections
+├── Devotionals/             your writing collections
 ├── DevotionalMedia/         their images and audio
 ├── NoteMedia/               pictures in notes, by notes module
 ├── Highlights/              one file per highlight set
@@ -165,7 +165,7 @@ export default function Page() {
       <ul>
         <li>
           <strong>Migrate</strong> — keep your library and send it to the new location on the
-          first sync there: notes, devotionals, highlights, their media, and your settings. It is
+          first sync there: notes, writing, highlights, their media, and your settings. It is
           merged with any library already there, and nothing on the server is removed. Modules you
           imported earlier stay installed on this device but are not copied across, so import them
           again if your other devices need them. Migrating to Local Only simply keeps your library
@@ -173,7 +173,7 @@ export default function Page() {
         </li>
         <li>
           <strong>Switch Only</strong> — start fresh. After a second confirmation,{' '}
-          <strong>Wipe &amp; Switch</strong> deletes your notes, devotionals and highlights from
+          <strong>Wipe &amp; Switch</strong> deletes your notes, writing and highlights from
           this device, then switches.
         </li>
       </ul>
@@ -187,20 +187,20 @@ export default function Page() {
 
       <h2>Conflicts</h2>
       <p>
-        Notes and devotionals merge entry by entry, so editing two different notes on two devices
+        Notes and writing merge entry by entry, so editing two different notes on two devices
         never collides. When the same entry changed on both, the newer change wins.
       </p>
       <p>
         A true conflict — the same entry, different text, and the same change time — is not settled
         silently. Sync keeps this device’s copy, sets the other aside, and carries on. A banner
         offers <strong>Resolve</strong> — in the Notes panel for notes, and in the list of your
-        writing for devotionals, which opens the conflicts on its own when one arrives. Settings →
+        writing for a piece of writing, which opens the conflicts on its own when one arrives. Settings →
         Sync lists every conflict with a Resolve button too.
       </p>
       <p>
         You can keep either version, keep both, or settle every conflict at once. Both versions of
-        a note are kept in the one note; both versions of a devotional become two devotionals, the
-        other device’s marked “[From other device]”. A devotional collection with a conflict
+        a note are kept in the one note; both versions of a piece of writing become two pieces, the
+        other device’s marked “[From other device]”. A writing collection with a conflict
         waiting does not upload until you choose.
       </p>
       <p>
@@ -214,7 +214,7 @@ export default function Page() {
 
       <h2>Deletions</h2>
       <p>
-        Deleting a note, a devotional, a highlight set, a single highlight, a theme, or a module
+        Deleting a note, a piece of writing, a highlight set, a single highlight, a theme, or a module
         or plan of your own is recorded, so your other devices delete it too rather than restoring
         it. An entry edited on another
         device after you deleted it survives. A file that simply goes missing from the server is
@@ -257,7 +257,7 @@ export default function Page() {
           or snapshot the folder on a schedule.
         </li>
         <li>
-          Periodically export your notes and devotionals to markdown — plain files that will
+          Periodically export your notes and writing to markdown — plain files that will
           outlive any app, this one included.
         </li>
       </ul>

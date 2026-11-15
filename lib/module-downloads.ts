@@ -133,7 +133,7 @@ const TYPES: Array<
   },
   {
     id: 'devotional',
-    name: 'Devotional',
+    name: 'Writing',
     editable: true,
     summary: 'A long-form document, not tied to a single passage.',
     sampleContents: 'One short original reading, with a summary, tags and a key scripture.',

@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'The module system',
   description:
-    'Every piece of content in Lamp Bible — translations, lexicons, commentaries, books, plans, quizzes, notes, devotionals and highlights — is a module in the same open format.',
+    'Every piece of content in Lamp Bible — translations, lexicons, commentaries, books, plans, quizzes, notes, writing and highlights — is a module in the same open format.',
 }
 
 export default function Page() {
@@ -24,7 +24,7 @@ export default function Page() {
       </p>
       <p>
         Lamp Bible does not draw that line. A translation is a module. Your notes are a module. A
-        commentary series, a reading plan, a set of highlights, a devotional you wrote last Tuesday —
+        commentary series, a reading plan, a set of highlights, a piece you wrote last Tuesday —
         all modules, all in the same container, all managed in the same place.
       </p>
 
@@ -84,7 +84,7 @@ export default function Page() {
             <td>Yes</td>
           </tr>
           <tr>
-            <td>Devotional</td>
+            <td>Writing</td>
             <td>Your long-form documents, with media</td>
             <td>Yes</td>
           </tr>
@@ -115,7 +115,7 @@ export default function Page() {
       <h2>Managing modules</h2>
       <p>
         The module manager is in Settings → <strong>Module Manager</strong>. It lists what is
-        installed: first, under <strong>Personal</strong>, My Devotionals, My Notes and your
+        installed: first, under <strong>Personal</strong>, My Writing, My Notes and your
         highlight sets, then each type in turn. It filters by type, or by source —{' '}
         <strong>Built In</strong> or <strong>Yours</strong> — and gives a summary of each: verse
         counts, entry counts, how many books a commentary series covers, how many highlights a set
@@ -141,8 +141,8 @@ export default function Page() {
           folder.
         </li>
         <li>
-          <strong>Devotionals as markdown</strong> — either a folder of files, one entry each, or a
-          single file with several entries.
+          <strong>Writing as markdown</strong> — either a folder of files, one piece each, or a
+          single file with several.
         </li>
       </ul>
       <p>
@@ -158,22 +158,22 @@ export default function Page() {
       <h3>Creating</h3>
       <p>
         <strong>+</strong> → <strong>Create New Module</strong> makes an empty notes module,
-        devotional collection or highlight set. Highlight sets ask which translation they belong
+        writing collection or highlight set. Highlight sets ask which translation they belong
         to, since <Link href="/docs/highlights">highlights are translation-specific</Link>. Modules
         can be renamed and their descriptions edited afterwards.
       </p>
 
       <h3>Exporting</h3>
       <p>
-        Notes and devotional modules export as markdown from their menu in the manager, for editing
-        elsewhere. A single devotional also shares through the system share sheet as a{' '}
+        Notes and writing modules export as markdown from their menu in the manager, for editing
+        elsewhere. A single piece of writing also shares through the system share sheet as a{' '}
         <code>.lamp</code> file that carries its media. See{' '}
         <Link href="/docs/import-export">Import &amp; export</Link>.
       </p>
 
       <h3>Deleting and resetting</h3>
       <p>
-        Modules can be deleted individually. My Notes and My Devotionals cannot be deleted, but{' '}
+        Modules can be deleted individually. My Notes and My Writing cannot be deleted, but{' '}
         <strong>Reset</strong> clears their contents while keeping the module itself. With sync on,
         a deletion or reset reaches your other devices too.
       </p>
@@ -193,7 +193,7 @@ export default function Page() {
         </li>
         <li>
           <strong>Content is shareable.</strong> A set of study notes for a book, a highlight scheme
-          for a class, a devotional series — each is a file you can send to someone.
+          for a class, a series of talks — each is a file you can send to someone.
         </li>
         <li>
           <strong>The library is extensible.</strong> Anything you have the rights to use can be

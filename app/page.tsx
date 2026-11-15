@@ -486,7 +486,7 @@ function Writing() {
               ))}
             </ul>
             <Link
-              href="/docs/devotionals"
+              href="/docs/writing"
               className="mt-8 inline-block text-sm font-medium text-accent hover:underline"
             >
               Writing on iPhone and iPad →
@@ -658,7 +658,7 @@ function Modules() {
           <SectionHeading
             eyebrow="The module system"
             title="Every piece of content is a module"
-            body="Translations, dictionaries, commentaries, books, reading plans, quizzes, highlights, notes and devotionals all use the same container: a compressed SQLite package with a .lamp extension. The app treats what ships with it and what you make yourself exactly the same way."
+            body="Translations, dictionaries, commentaries, books, reading plans, quizzes, highlights, notes and writing all use the same container: a compressed SQLite package with a .lamp extension. The app treats what ships with it and what you make yourself exactly the same way."
           />
 
           <div className="mt-8 space-y-5 text-sm leading-relaxed text-muted">
@@ -716,7 +716,7 @@ function Modules() {
               ['Plan', 'Dated reading assignments across the year', 'Read-only'],
               ['Quiz', 'Age-graded questions tied to a plan’s readings', 'Read-only'],
               ['Notes', 'Your verse-anchored study notes', 'You edit'],
-              ['Devotional', 'Your long-form writing, with media', 'You edit'],
+              ['Writing', 'Your long-form documents, with media', 'You edit'],
               ['Highlights', 'Your highlight spans and colour themes', 'You edit'],
             ].map(([name, desc, mode]) => (
               <div key={name} className="flex items-baseline gap-4 py-3 first:pt-0 last:pb-0">
@@ -758,7 +758,7 @@ function Privacy() {
             — or your own WebDAV server such as Nextcloud or Synology.
           </Point>
           <Point title="Exit at any time">
-            Notes and devotionals round-trip through plain markdown. Modules export as{' '}
+            Notes and writing round-trip through plain markdown. Modules export as{' '}
             <code className="rounded border border-line bg-sunken px-1.5 py-0.5 text-[0.85em]">
               .lamp
             </code>{' '}

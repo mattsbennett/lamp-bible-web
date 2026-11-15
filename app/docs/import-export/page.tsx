@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'Import & export',
   description:
-    'Markdown round-trips for notes and devotionals: where to export and import, the file layout, frontmatter fields, footnote handling and embedded media.',
+    'Markdown round-trips for notes and writing: where to export and import, the file layout, frontmatter fields, footnote handling and embedded media.',
 }
 
 export default function Page() {
@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/import-export"
       title="Import & export"
-      intro="Notes and devotionals round-trip through plain markdown, a devotional’s media included. This is where to find it, and the format."
+      intro="Notes and writing round-trip through plain markdown, a piece’s media included. This is where to find it, and the format."
     >
       <h2>Where to find it</h2>
       <Table>
@@ -25,14 +25,14 @@ export default function Page() {
         </thead>
         <tbody>
           <tr>
-            <td>Export a notes or devotional collection</td>
+            <td>Export a notes or writing collection</td>
             <td>
               Settings → <strong>Module Manager</strong>, then the collection’s menu →{' '}
               <strong>Export (Markdown)</strong>. One combined file.
             </td>
           </tr>
           <tr>
-            <td>Export devotionals file by file</td>
+            <td>Export writing file by file</td>
             <td>
               The writing library’s menu → <strong>Export</strong> → <strong>Export All</strong>{' '}
               (one file each, with media) or <strong>Export to Single File</strong>. Both write to{' '}
@@ -41,14 +41,14 @@ export default function Page() {
             </td>
           </tr>
           <tr>
-            <td>Share one devotional</td>
+            <td>Share one piece of writing</td>
             <td>
-              The devotional’s share menu → <strong>Share as Markdown</strong>, or{' '}
+              The piece’s share menu → <strong>Share as Markdown</strong>, or{' '}
               <strong>Share Writing File</strong> for a <code>.lamp</code> that keeps its media.
             </td>
           </tr>
           <tr>
-            <td>Import notes or devotionals</td>
+            <td>Import notes or writing</td>
             <td>
               Settings → <strong>Module Manager</strong> → <strong>+</strong> → Import Module →{' '}
               <strong>Import Notes from Markdown</strong> or{' '}
@@ -57,7 +57,7 @@ export default function Page() {
             </td>
           </tr>
           <tr>
-            <td>Import a devotional file someone sent</td>
+            <td>Import a writing file someone sent</td>
             <td>
               Open it from Files, Mail or AirDrop, or use the writing library’s menu →{' '}
               <strong>Import Writing</strong>. You see a preview before anything is added.
@@ -200,9 +200,9 @@ For God so loved the world...`}</code>
         <li>Markdown inside code blocks is never mistaken for a heading or a footnote.</li>
       </ul>
 
-      <h2>Devotionals</h2>
+      <h2>Writing</h2>
       <p>
-        A single devotional is ordinary markdown with YAML frontmatter. Everything except{' '}
+        A single piece of writing is ordinary markdown with YAML frontmatter. Everything except{' '}
         <code>title</code> is optional.
       </p>
 
@@ -249,15 +249,15 @@ Life brings unexpected storms...[^wind]
         <code>exhortation</code>, <code>reflection</code>, <code>study</code> and{' '}
         <code>prayer</code>; anything else is kept as written, and values that differ only in case
         count as one. An older file’s <code>sermon</code> is read as <code>exhortation</code>. A
-        devotional has one category but any number of <code>tags</code>, which is why the two are
+        piece has one category but any number of <code>tags</code>, which is why the two are
         separate fields. A{' '}
-        <code>## Summary</code> section at the top becomes the devotional’s summary.
+        <code>## Summary</code> section at the top becomes the piece’s summary.
       </p>
 
-      <h3>Several devotionals in one file</h3>
+      <h3>Several pieces in one file</h3>
       <p>
         <strong>Export to Single File</strong> and a collection’s markdown export write each
-        devotional as a <code>##</code> heading, with its details on one line beneath it, and the
+        piece as a <code>##</code> heading, with its details on one line beneath it, and the
         importer reads the same layout back:
       </p>
       <pre>
@@ -271,7 +271,7 @@ Life brings unexpected storms...`}</code>
       </pre>
       <p>
         Entries can also be separated by a <code>---</code> line. In an export, each
-        devotional’s footnotes are numbered 1, 2, 3 in reading order under a{' '}
+        piece’s footnotes are numbered 1, 2, 3 in reading order under a{' '}
         <code>### Footnotes</code> heading.
       </p>
 
@@ -292,8 +292,8 @@ Life brings unexpected storms...`}</code>
 
       <h3>Import behaviour</h3>
       <ul>
-        <li>Each file becomes one devotional; a folder of files becomes that many entries.</li>
-        <li>Imports always add new devotionals, so importing twice creates duplicates.</li>
+        <li>Each file becomes one piece; a folder of files becomes that many.</li>
+        <li>Imports always add new pieces, so importing twice creates duplicates.</li>
         <li>Media files are copied into the app’s storage.</li>
       </ul>
 

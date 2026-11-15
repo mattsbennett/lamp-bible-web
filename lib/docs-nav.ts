@@ -75,8 +75,8 @@ export const docsNav: DocSection[] = [
         summary: 'Verse and chapter notes in markdown, written beside the text you are reading.',
       },
       {
-        title: 'Devotionals',
-        href: '/docs/devotionals',
+        title: 'Writing',
+        href: '/docs/writing',
         summary: 'Long-form writing with footnotes, images, audio, scripture links and present mode.',
       },
       {
@@ -123,7 +123,7 @@ export const docsNav: DocSection[] = [
       {
         title: 'Import & export',
         href: '/docs/import-export',
-        summary: 'Markdown round-trips for notes and devotionals, and where to find them.',
+        summary: 'Markdown round-trips for notes and writing, and where to find them.',
       },
       {
         title: 'Sync & backup',

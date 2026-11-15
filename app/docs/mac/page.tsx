@@ -332,9 +332,8 @@ export default function Page() {
 
       <h2>Writing</h2>
       <p>
-        On the Mac, <Link href="/docs/devotionals">devotionals</Link> are called{' '}
-        <strong>Writing</strong>, and open in their own editor window. Beyond what the iPhone and iPad
-        editor does, the Mac adds:
+        On the Mac, <Link href="/docs/writing">writing</Link> opens in its own editor window. Beyond
+        what the iPhone and iPad editor does, the Mac adds:
       </p>
       <ul>
         <li>

@@ -73,8 +73,8 @@ export default function Page() {
           <tr>
             <td>Write</td>
             <td>
-              Your devotionals, studies and reflections. See{' '}
-              <Link href="/docs/devotionals">Devotionals</Link>.
+              Your writing — devotionals, studies, reflections and talks. See{' '}
+              <Link href="/docs/writing">Writing</Link>.
             </td>
           </tr>
           <tr>

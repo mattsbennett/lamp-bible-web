@@ -40,7 +40,7 @@ export default function Page() {
         <p>
           Verse text is from the Berean Standard Bible under its CC0 1.0 public-domain dedication,
           and the lexicon glosses are from public-domain Strong’s data. Commentary, book, notes,
-          devotional and quiz content was written for these samples. See{' '}
+          writing and quiz content was written for these samples. See{' '}
           <Link href="/content-licences">Content licences</Link> for the source records.
         </p>
       </Callout>

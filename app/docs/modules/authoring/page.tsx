@@ -47,9 +47,9 @@ export default function Page() {
         <code>module_id</code> column as well, every row must carry that same ID.
       </p>
 
-      <Callout title="Devotionals are a special case">
+      <Callout title="Writing is a special case">
         <p>
-          A shared devotional may instead be a plain JSON document, or a ZIP bundle containing the
+          A shared piece of writing may instead be a plain JSON document, or a ZIP bundle containing the
           document plus its images and audio. All three forms use the <code>.lamp</code> extension;
           the app detects which it is on open and previews the contents before importing.
         </p>
@@ -205,7 +205,7 @@ export default function Page() {
       <h2>The schemas</h2>
       <p>
         Each module type has a JSON Schema, all sharing common definitions for annotations,
-        references and metadata; the notes, devotional and book schemas also share one for media.
+        references and metadata; the notes, writing and book schemas also share one for media.
         Every one is downloadable here, along with a worked sample module that validates against
         it.
       </p>
@@ -290,7 +290,7 @@ export default function Page() {
               <code>devotional_schema.json</code>
             </td>
             <td>
-              Metadata, summary, and content either as a flat block array or as
+              Writing: metadata, summary, and content either as a flat block array or as
               introduction/sections/conclusion, plus footnotes.
             </td>
           </tr>
@@ -491,10 +491,10 @@ export default function Page() {
 
       <h2>Media</h2>
       <p>
-        Notes, devotionals and books can reference images and audio, listed once in the document’s
+        Notes, writing and books can reference images and audio, listed once in the document’s
         top-level <code>media</code> array and pointed at by ID. In markdown interchange the files
         live in a <code>media/</code> folder beside the document, with UUID-prefixed filenames to
-        avoid collisions; in a shared devotional package they travel inside the ZIP. A compiled{' '}
+        avoid collisions; in a shared writing package they travel inside the ZIP. A compiled{' '}
         <code>.lamp</code> is a single database, so it carries the references but not the files.
         Supported formats are JPEG, PNG, GIF, WebP and HEIC for images, and M4A, MP3, WAV, AAC and
         OGG for audio — M4A being the recommended choice.

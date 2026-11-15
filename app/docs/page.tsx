@@ -32,7 +32,7 @@ import {
 export const metadata: Metadata = {
   title: 'Documentation',
   description:
-    'Complete documentation for Lamp Bible: the reader, reading plans, notes, devotionals, highlights, search, sync and the module system.',
+    'Complete documentation for Lamp Bible: the reader, reading plans, notes, writing, highlights, search, sync and the module system.',
 }
 
 const icons: Record<string, IconComponent> = {
@@ -45,7 +45,7 @@ const icons: Record<string, IconComponent> = {
   '/docs/lexicons': RenderingIcon,
   '/docs/highlights': HighlightIcon,
   '/docs/notes': NoteIcon,
-  '/docs/devotionals': PenIcon,
+  '/docs/writing': PenIcon,
   '/docs/presenting': SlidesIcon,
   '/docs/ai': ChatIcon,
   '/docs/modules': ModuleIcon,
@@ -144,7 +144,7 @@ export default function DocsIndex() {
           Lamp Bible is an offline Bible reader for close study. It ships with translations under
           documented public-domain and open terms, a set of lexicons and a full cross-reference
           apparatus — the terms for each are on the <Link href="/content-licences">Content
-          licences</Link> page — and on top of that you write your own notes, devotionals and
+          licences</Link> page — and on top of that you write your own notes, writing and
           highlights.
         </p>
         <p>
