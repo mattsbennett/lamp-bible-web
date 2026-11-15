@@ -110,7 +110,10 @@ export default function Page() {
         aloud with the system voices: the reading’s name, each chapter as it starts, then the verse
         text, skipping headings and verse numbers. You can pause, skip a verse back or forward, and
         scrub through the reading. <strong>Follow Along</strong> marks the verse being read and
-        keeps it in view.
+        keeps it in view. A translation in another language is read in that language, without the
+        English name of the reading: each chapter is announced by the translation’s own name for
+        its book, or by its number alone where the translation gives only English names, as the
+        Hebrew and Greek texts do.
       </p>
       <p>
         Reading carries on with the screen locked, with controls on the Lock Screen, and pauses
@@ -137,7 +140,21 @@ export default function Page() {
           headings. Touch and hold a chapter to choose one of its verses. The translation menu at
           the top switches translation; translations are grouped by language, the Hebrew and Greek
           last under <strong>Biblical Languages</strong>, and those tagged with Strong’s numbers
-          say so.
+          say so. In each language the whole Bibles come first, and below a divider the texts of
+          only part of the Bible, such as Brenton’s English Septuagint.
+        </li>
+        <li>
+          The picker lists only the books the translation has, so the Septuagint offers no New
+          Testament. Switching translation keeps your place where the new one has it, and otherwise
+          opens its first book in the same testament. A link, search result or plan reading in a
+          book the translation lacks says so — “Brenton English Septuagint doesn’t include
+          Matthew.” — and offers to read it in a translation that has it.
+        </li>
+        <li>
+          A translation in another language names its books as it does — <em>Génesis</em> in the
+          Reina-Valera, <em>Genèse</em> in the Segond — in the reader’s title, the book picker, the
+          chapter headings and History. Notes, cross-references, commentary and search keep
+          the app’s English names.
         </li>
         <li>
           <strong>Pull past the top or bottom</strong> of a chapter to go to the previous or next

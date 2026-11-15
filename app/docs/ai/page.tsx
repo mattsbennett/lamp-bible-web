@@ -112,8 +112,9 @@ export default function Page() {
       <p>
         Lamp’s tools are read-only: the AI can look up passages, commentary, dictionary entries,
         books, plans, quizzes and — if you allow it — your own study, and analyse a Strong’s number,
-        but cannot change your library. The two exceptions let another app replace a writing’s
-        draft or add a reading plan, and are off unless you turn them on; see{' '}
+        but cannot change your library. The exceptions let an agent start a new writing, and
+        another app replace a writing’s draft or add a reading plan, and each is off unless you
+        turn it on; see <a href="#start-writing">Reader Chat</a> and{' '}
         <a href="#other-apps">Using Lamp in other apps</a>. <strong>Test Module Tools</strong>{' '}
         checks that the tools are working.
       </p>
@@ -195,6 +196,19 @@ export default function Page() {
         Settings → AI &amp; Agents, sets how long a chat is kept after it was last used — two months
         unless you change it — and a chat nothing was said in is not kept at all. Reader Chat
         conversations stay on the Mac and do not sync.
+      </p>
+      <p id="start-writing">
+        A conversation is often where a piece of writing begins. The{' '}
+        <strong>Start a Writing</strong> button in the chat’s header starts a new writing and
+        copies the conversation into the writing’s own chat, where it carries on; right-click a
+        question and choose <strong>Start a Writing from Here…</strong> to copy it up to that
+        point. The copy is made once. Nothing said afterwards in either chat reaches the other, the
+        reader chat stays on the Mac as before, and the copy syncs with the writing. The
+        writing’s chat marks where the copy ends, and the reader chat lists the writings started
+        from it, each with a way to open it. With <strong>Allow agents to start a writing</strong>{' '}
+        on, in Settings → AI &amp; Agents under Reader Chats, you can ask the chat’s agent to start
+        one for you. It is off until you turn it on, and an agent can only add a writing, never
+        change or remove one.
       </p>
 
       <h2>Writing with an agent</h2>
@@ -321,7 +335,9 @@ export default function Page() {
         the passages you name — so a model you already pay for can work out a plan with you, show
         you its days, and put it in your library. Lamp lays the plan out and adds it when it next
         reads its library, and includes it in Today. It adds plans and nothing else: it cannot
-        change or remove anything already there.
+        change or remove anything already there. With{' '}
+        <strong>Allow agents to start a writing</strong> on as well, it can start a new writing,
+        empty or begun with a draft, though it has no Lamp conversation to copy into it.
       </p>
       <p>
         With personal content allowed, it can also read the writings that have an agent workspace —

@@ -202,6 +202,23 @@ export const CompanionIcon: IconComponent = (p) => (
   </Icon>
 )
 
+export const FormsIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M3.5 7h9M3.5 12h6M3.5 17h8" />
+    <path d="M15 9.5h3.2l2.3 2.5-2.3 2.5H15a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z" />
+  </Icon>
+)
+
+/** A scroll, for the Greek Old Testament. */
+export const SeptuagintIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M8.5 4.5h9a2 2 0 0 1 0 4H16" />
+    <path d="M8.5 4.5a2 2 0 0 0-2 2v9" />
+    <path d="M16 6.5v11a2 2 0 0 1-2 2H5.5a2 2 0 0 1 0-4H14" />
+    <path d="M9.5 9h3.5M9.5 12.5h3.5" />
+  </Icon>
+)
+
 export const VersesIcon: IconComponent = (p) => (
   <Icon {...p}>
     <path d="M9 6.5h11M9 12h11M9 17.5h7" />

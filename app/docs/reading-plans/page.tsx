@@ -66,8 +66,9 @@ export default function Page() {
         <strong>Your Plans</strong>. <strong>Follow</strong> as many as you like. A plan you follow
         shows its day of the year and this week’s readings, a circle a day, and on the home screen
         each has its own card with the day’s readings, their total time, and how many you have
-        read. The chevron on the card folds it to a band of the plan’s name and how many are read,
-        for every plan, on that device. Tap the circle beside a reading to mark it read; a
+        read; on a phone the readings are listed in the same card, under it. The chevron on the
+        card folds it to a band of the plan’s name and how many are read, leaving the readings
+        showing, for every plan, on that device. Tap the circle beside a reading to mark it read; a
         three-reading day can be half done. Completions are recorded per plan, per year, so restarting a plan next year gives you
         a fresh slate without erasing history.
       </p>

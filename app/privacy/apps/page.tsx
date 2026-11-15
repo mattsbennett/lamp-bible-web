@@ -19,7 +19,7 @@ export default function AppPrivacy() {
           <h1 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
             Lamp Bible app privacy
           </h1>
-          <p className="mt-3 text-muted">Last updated November 7, 2026.</p>
+          <p className="mt-3 text-muted">Last updated November 14, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -133,14 +133,16 @@ export default function AppPrivacy() {
             files you add to its workspace. The provider&apos;s terms and privacy
             policy apply. Lamp Bible does not operate or proxy these services and does not
             receive your conversations. Writing-agent workspaces, including their
-            conversations, sync with your library; Reader Chat conversations stay on the Mac.
+            conversations, sync with your library; Reader Chat conversations stay on the Mac,
+            except that starting a writing from one copies that conversation into the
+            writing&apos;s workspace, where it syncs with the writing.
           </p>
           <p>
             If you allow other apps to use Lamp Bible&apos;s tools — Claude Desktop, say — what
             they read from your library goes to whichever AI provider that app uses, under that
             app&apos;s and that provider&apos;s terms. The same settings decide what they may
-            read. They can change a writing, or add a reading plan, only if you allow each
-            separately. All of these are off until you turn them on.
+            read. They can change a writing, add a reading plan or start a writing only if you
+            allow each separately. All of these are off until you turn them on.
           </p>
 
           <h2>Children</h2>

@@ -170,7 +170,10 @@ export default function Page() {
       <p>
         A search that names a passage — <code>John 3</code>, <code>Ps 23:1-4</code> — also offers a{' '}
         <strong>Go to</strong> row above the results that opens it in the reader. The search still
-        runs, since “John 3” is also a phrase a commentary might contain.
+        runs, since “John 3” is also a phrase a commentary might contain. A passage can be typed in
+        the book names of the translation you are reading as well as in English, so with the
+        Reina-Valera <code>Juan 3:16</code> offers <strong>Go to Juan 3:16</strong>; accents can
+        be left off.
       </p>
 
       <h3>Results</h3>
@@ -221,9 +224,10 @@ export default function Page() {
         It opens on a card: the word with its transliteration and a short gloss, a speaker to say
         it aloud, three figures — by default how many times it occurs, in how many verses and in
         how many books — and a strip of the whole Bible, a column a book, showing where it falls.
-        The sliders button chooses the card’s three figures from nine, among them the rate per
-        1,000 tagged words and how many different words translate it, and the chart beneath them,
-        or none. Below the card come:
+        The sliders button chooses the card’s three figures from nine, among them how often it
+        occurs among the translation’s tagged words — in every 1,000, or every 10,000 or more for a
+        rare word — and how many different words translate it, and the chart beneath them, or none.
+        Below the card come:
       </p>
       <ul>
         <li>
@@ -231,12 +235,14 @@ export default function Page() {
         </li>
         <li>
           <strong>Translated As</strong> — the English the translation uses for it, commonest first,
-          as a ring or a list. These are the choices translators made, not the range of what the
-          word means; for that, read the definition.
+          as a ring or a list; each slice of the ring with room for it is labelled with its share.
+          These are the choices translators made, not the range of what the word means; for that,
+          read the definition.
         </li>
         <li>
           <strong>Forms</strong> — the spellings it takes in the original, each in Latin letters
-          too, with what each form does.
+          too, with what each form does. Where some occurrences are tagged without a spelling, the
+          ring counts the rest and a line under it says how many are left out.
         </li>
         <li>
           <strong>Grammar</strong> — how it is parsed where it occurs.
@@ -258,25 +264,44 @@ export default function Page() {
           number; tap one for its own analysis.
         </li>
         <li>
-          <strong>Hebrew It Translates</strong> — for a Greek word, the Hebrew words it renders in
-          the Septuagint, each followable to its own analysis.
+          <strong>Verses</strong> — every verse it occurs in, ten to begin with and{' '}
+          <strong>Show All</strong> for the rest, with the word marked as a search marks a match.
+          Tap a rendering, a form, a parsing, a book or a chapter above to narrow the list, and a
+          verse to preview it with a button to open it in the reader.
         </li>
         <li>
-          <strong>Verses</strong> — every verse it occurs in, with the word marked as a search marks
-          a match. Tap a rendering, a form, a parsing, a book or a chapter above to narrow the list,
-          and a verse to preview it with a button to open it in the reader.
+          <strong>In the Septuagint</strong> — for a Greek word, closed until you open it. Where the
+          Septuagint tags the word, as the bundled <code>LXX</code> does, it starts with the
+          word’s own use in the Greek Old Testament: its verses beside the New Testament’s, as two
+          bars that are never added together, with how often each text uses it for its length,
+          and the books it stands in. Then come the Hebrew words it translates there — the whole
+          section is <strong>Hebrew It Translates</strong> where the Septuagint is not tagged —
+          each with its verses, narrowed to those where the Septuagint uses this Greek word, ten
+          at a time, and a way to its own analysis. Tap a book to narrow those verses to it.
         </li>
       </ul>
       <p>
         Every figure depends on how that translation was tagged, so two translations can count the
         same word differently.
       </p>
+      <p>
+        In the Septuagint’s lists, the Greek word is marked where it stands in each verse; turn on{' '}
+        <strong>Greek</strong> to see the Septuagint’s own words under the verse. Where it is
+        uncertain which Hebrew word in a verse the Greek renders, the row says so, and stops saying
+        it once the words’ places settle it. If you have imported an English Septuagint tagged with
+        Strong’s numbers — the Apostolic Bible Polyglot, say — <strong>English from</strong>{' '}
+        chooses whether the rows read it or your own Bible. <strong>How this is counted</strong>{' '}
+        explains the figures. The bundled Septuagint’s tags were made by machine, so a line under
+        its figures says which parts of them are least sure: the case, number and gender, more
+        than which word it is.
+      </p>
       <h3>On the Mac</h3>
       <p>
         The analysis opens beside a Strong’s search — choose <strong>Scripture</strong> in the
         toolbar and type a number in the Strong’s field of the filter bar beneath it, or choose{' '}
         <strong>Analyse</strong> when you type a number into the search box — with the occurrence
-        list to its left, narrowed by anything you click in the analysis. <strong>Analyse</strong>{' '}
+        list to its left, each verse in full with the word marked, narrowed by anything you click
+        in the analysis. <strong>Analyse</strong>{' '}
         on a dictionary entry opens it in the study column instead, beside the passage. It opens on
         the same card, and its tabs are:
       </p>
@@ -286,8 +311,7 @@ export default function Page() {
         </li>
         <li>
           <strong>Overview</strong> — how it is translated, its forms, its grammar — part of
-          speech, case, number, tense and so on — and, for a Greek word, the Hebrew it translates
-          in the Septuagint.
+          speech, case, number, tense and so on.
         </li>
         <li>
           <strong>Spread</strong> — by books, sections or chapters: bars counting occurrences or
@@ -301,6 +325,11 @@ export default function Page() {
         <li>
           <strong>Compare</strong> — the count and the commonest English in every installed
           translation that tags the number.
+        </li>
+        <li>
+          <strong>Septuagint</strong> — for a Greek word the Septuagint uses, and only then: the
+          word in the Greek Old Testament beside the New Testament, and the Hebrew words it renders,
+          each opening on its first ten verses. Click a book’s bar to narrow the verses to it.
         </li>
         <li>
           <strong>Verses</strong> — in the study column, which has no room for a list beside it.

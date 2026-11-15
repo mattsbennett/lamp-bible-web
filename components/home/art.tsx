@@ -335,7 +335,7 @@ export function PlansArt() {
     { passage: 'Acts 18-19', detail: 'Acts · 9 min', read: false },
   ]
   return (
-    <Art label="The Today screen on iPhone: under Daily Reading, a crimson card for The Bible Companion — day 310 of 365, three readings, fifteen minutes, one read — with the opening words of Hosea 3:1 up next and a Continue Reading button, above the list of the day’s readings.">
+    <Art label="The Today screen on iPhone: under Daily Reading, a crimson card for The Bible Companion — day 310 of 365, three readings, fifteen minutes, one read — with the opening words of Hosea 3:1 up next and a Continue Reading button, and the day’s readings listed under it in the same card.">
       <Phone className="!bg-[var(--sys-grouped)]">
         <div className="flex items-center gap-[6px] px-[9px] pb-[6px] pt-[8px]">
           <Glass round>
@@ -360,51 +360,53 @@ export function PlansArt() {
               Manage
             </span>
           </div>
-          <div className="rounded-[14px] p-[14px] text-white shadow-[0_6px_14px_rgb(140_26_51/0.22)]" style={heroGround}>
-            <div className="relative">
-              <p className="text-[8.5px] font-bold tracking-[0.12em] text-white/90">DAY 310 OF 365</p>
-              {/* Laid over the line, as the app does, so the card is no taller for it. */}
-              <span className="absolute right-0 top-1/2 flex h-[21px] w-[21px] -translate-y-1/2 items-center justify-center rounded-full bg-white/20">
-                <Sym name="chevronUp" className="h-[8px] w-[8px] text-white" />
+          {/* The day card heads its readings in one card, as a phone draws it. */}
+          <div className="overflow-hidden rounded-[14px] bg-[var(--sys-cell)] shadow-[0_4px_10px_rgb(0_0_0/0.08)]">
+            <div className="p-[14px] text-white" style={heroGround}>
+              <div className="relative">
+                <p className="text-[8.5px] font-bold tracking-[0.12em] text-white/90">DAY 310 OF 365</p>
+                {/* Laid over the line, as the app does, so the card is no taller for it. */}
+                <span className="absolute right-0 top-1/2 flex h-[21px] w-[21px] -translate-y-1/2 items-center justify-center rounded-full bg-white/20">
+                  <Sym name="chevronUp" className="h-[8px] w-[8px] text-white" />
+                </span>
+              </div>
+              <p className="mt-[3px] text-[19px] font-bold leading-tight">The Bible Companion</p>
+              <div className="mt-[5px] flex justify-between text-[10.5px] text-white/90">
+                <span>3 readings · 15 min</span>
+                <span className="font-semibold">1 of 3 read</span>
+              </div>
+              <div className="mt-[9px] flex gap-[4px]">
+                <span className="h-[4px] flex-1 rounded-full bg-white" />
+                <span className="h-[4px] flex-1 rounded-full bg-white/30" />
+                <span className="h-[4px] flex-1 rounded-full bg-white/30" />
+              </div>
+              <p className="mt-[12px] text-[7.5px] font-bold tracking-[0.1em] text-white/80">UP NEXT · HOSEA 3:1</p>
+              <p className={`${serif} mt-[3px] text-[13px] leading-[1.4]`}>
+                Then said the Lord unto me, Go yet, love a woman beloved of her friend, yet an
+                adulteress…
+              </p>
+              <span className="mt-[12px] flex items-center justify-center gap-[5px] rounded-full bg-white py-[9px] text-[12px] font-semibold text-[rgb(179_33_61)]">
+                <Sym name="bookFill" className="h-[12px] w-[12px]" />
+                Continue Reading
               </span>
             </div>
-            <p className="mt-[3px] text-[19px] font-bold leading-tight">The Bible Companion</p>
-            <div className="mt-[5px] flex justify-between text-[10.5px] text-white/90">
-              <span>3 readings · 15 min</span>
-              <span className="font-semibold">1 of 3 read</span>
-            </div>
-            <div className="mt-[9px] flex gap-[4px]">
-              <span className="h-[4px] flex-1 rounded-full bg-white" />
-              <span className="h-[4px] flex-1 rounded-full bg-white/30" />
-              <span className="h-[4px] flex-1 rounded-full bg-white/30" />
-            </div>
-            <p className="mt-[12px] text-[7.5px] font-bold tracking-[0.1em] text-white/80">UP NEXT · HOSEA 3:1</p>
-            <p className={`${serif} mt-[3px] text-[13px] leading-[1.4]`}>
-              Then said the Lord unto me, Go yet, love a woman beloved of her friend, yet an
-              adulteress…
-            </p>
-            <span className="mt-[12px] flex items-center justify-center gap-[5px] rounded-full bg-white py-[9px] text-[12px] font-semibold text-[rgb(179_33_61)]">
-              <Sym name="bookFill" className="h-[12px] w-[12px]" />
-              Continue Reading
-            </span>
-          </div>
-          <p className="px-[4px] pb-[6px] pt-[14px] text-[10.5px] font-semibold opacity-75">3 Readings</p>
-          <div className="divide-y divide-[color:var(--sys-sep)] rounded-[11px] bg-[var(--sys-cell)]">
-            {readings.map((r) => (
-              <div key={r.passage} className="py-[7px] pl-[8px] pr-[10px]">
-                <div className="flex items-center gap-[8px]">
-                  <Sym
-                    name={r.read ? 'checkmarkCircleFill' : 'circle'}
-                    className={`h-[19px] w-[19px] shrink-0 ${tint}`}
-                  />
-                  <div className="min-w-0 flex-1 leading-tight">
-                    <p className={`text-[12px] font-semibold ${r.read ? label2 : ''}`}>{r.passage}</p>
-                    <p className={`text-[10px] ${label2}`}>{r.detail}</p>
+            <div className="divide-y divide-[color:var(--sys-sep)] py-[3px]">
+              {readings.map((r) => (
+                <div key={r.passage} className="py-[7px] pl-[8px] pr-[10px]">
+                  <div className="flex items-center gap-[8px]">
+                    <Sym
+                      name={r.read ? 'checkmarkCircleFill' : 'circle'}
+                      className={`h-[19px] w-[19px] shrink-0 ${tint}`}
+                    />
+                    <div className="min-w-0 flex-1 leading-tight">
+                      <p className={`text-[12px] font-semibold ${r.read ? label2 : ''}`}>{r.passage}</p>
+                      <p className={`text-[10px] ${label2}`}>{r.detail}</p>
+                    </div>
+                    <Sym name="chevronRight" className={`h-[9px] w-[9px] ${label2}`} />
                   </div>
-                  <Sym name="chevronRight" className={`h-[9px] w-[9px] ${label2}`} />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </Phone>
@@ -660,7 +662,7 @@ const shade = (strength: number) =>
 function ShareRing({ values, size }: { values: number[]; size: number }) {
   const total = values.reduce((a, b) => a + b, 0)
   const r = 50
-  const hole = r * 0.6
+  const hole = r * 0.55
   const angle = (before: number) => -Math.PI / 2 + (2 * Math.PI * before) / total
   const point = (radius: number, at: number) => `${50 + radius * Math.cos(at)} ${50 + radius * Math.sin(at)}`
   return (
@@ -679,6 +681,28 @@ function ShareRing({ values, size }: { values: number[]; size: number }) {
               style={{ fill: shade(1 - (0.75 * i) / (values.length - 1)), stroke: 'var(--sys-cell)' }}
               strokeWidth={1.2}
             />
+          )
+        })}
+        {/* Each slice of 5% or more carries its share, in black, which reads on every shade. */}
+        {values.map((value, i) => {
+          if (value / total < 0.05) return null
+          const before = values.slice(0, i).reduce((a, b) => a + b, 0)
+          const middle = angle(before + value / 2)
+          const at = (r + hole) / 2
+          return (
+            <text
+              key={i}
+              x={50 + at * Math.cos(middle)}
+              y={50 + at * Math.sin(middle)}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill="#000"
+              fontSize={8}
+              fontWeight={600}
+              style={{ fontVariantNumeric: 'tabular-nums' }}
+            >
+              {percent(value / total)}
+            </text>
           )
         })}
       </svg>
@@ -802,7 +826,7 @@ export function AnalysisArt() {
           </div>
         </div>
         <p className={`px-[22px] pt-[5px] text-[8.5px] leading-[1.35] ${label2}`}>
-          About 0.8 in every 1,000 tagged Greek words of the KJV.
+          About 0.8 in every 1,000 tagged words of the KJV.
         </p>
         <div className="mx-[11px] mt-[10px] flex items-center gap-[9px] rounded-[14px] bg-[var(--sys-cell)] px-[12px] py-[7px]">
           <Glyph name="characterBookClosed" className={`h-[14px] w-[14px] shrink-0 ${tint}`} />
@@ -1223,21 +1247,12 @@ export function AgentWorkspaceArt() {
   return (
     <Art
       className="@container"
-      label="The Mac writing editor with the agent workspace open beside it: the draft on the left, set in a serif; on the right the chat’s provider, model and effort, the workspace’s draft status, a context file, the three built-in skills, and a chat in which the agent describes its edit with a diff."
+      label="The Mac writing editor with the agent workspace open beside it: the draft on the left, set in a serif, under tabs for Main Prose and two companion files; on the right the chat’s provider, model and effort, the workspace’s draft status, a context file, the three built-in skills, and a chat in which the agent describes its edit with a diff."
     >
       <MacWindow title="Abide in the Vine" leading={leading} toolbar={toolbar}>
         <div className="grid grid-cols-[minmax(0,1fr)] @xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <div className="flex flex-col">
-            <div className={`flex h-[22px] items-stretch border-b ${sep} text-[9.5px]`}>
-              <span className="flex items-center gap-[4px] border-b-2 border-[color:var(--sys-tint)] px-[10px]">
-                <Sym name="docText" className="h-[10px] w-[10px]" />
-                Main Prose
-              </span>
-              <span className={`flex items-center gap-[4px] px-[10px] ${label2}`}>
-                <Sym name="doc" className="h-[10px] w-[10px]" />
-                outline.md
-              </span>
-            </div>
+            <MacTabBar tabs={[{ title: 'Main Prose', open: true }, { title: 'Outline' }, { title: 'Research Notes' }]} />
             <FormatBar />
             <div className="flex-1 px-[22px] py-[14px] text-[11.5px] leading-[1.6]">
               <p className={`${serif} text-[18px] font-bold leading-tight`}>Abide in the Vine</p>
@@ -1570,12 +1585,30 @@ export function SlideArt() {
  * shade down from the window under the toolbar, the open tab a raised page,
  * and + at the end. A lone tab has no close button.
  */
-function MacTabBar({ title }: { title: string }) {
+/**
+ * The Mac's tab rank, shared by the reader, Search and a writing's documents:
+ * the tabs split the bar, the open one raised, the + at the trailing edge.
+ */
+function MacTabBar({ tabs }: { tabs: Array<{ title: string; open?: boolean }> }) {
   return (
     <div className={`flex h-[23px] border-b ${sep} bg-[var(--mac-tab-track)] pl-[2px]`}>
-      <span className="mx-[1px] my-[2px] flex min-w-0 flex-1 items-center justify-center rounded-[5px] border-[0.5px] border-[color:var(--mac-tab-edge)] bg-[var(--mac-tab-open)] px-[16px] text-[8px] shadow-[0_0.5px_1px_var(--mac-tab-shadow)]">
-        <span className="truncate">{title}</span>
-      </span>
+      {tabs.map((tab, i) => (
+        <span key={tab.title} className="relative flex min-w-0 flex-1">
+          <span
+            className={`mx-[1px] my-[2px] flex min-w-0 flex-1 items-center justify-center rounded-[5px] px-[16px] text-[8px] ${
+              tab.open
+                ? 'border-[0.5px] border-[color:var(--mac-tab-edge)] bg-[var(--mac-tab-open)] shadow-[0_0.5px_1px_var(--mac-tab-shadow)]'
+                : label2
+            }`}
+          >
+            <span className="truncate">{tab.title}</span>
+          </span>
+          {/* A hairline only between two tabs at rest: beside the raised one it would cut into it. */}
+          {i < tabs.length - 1 && !tab.open && !tabs[i + 1].open && (
+            <span className="absolute inset-y-[6px] right-0 w-px bg-[var(--sys-sep)]" />
+          )}
+        </span>
+      ))}
       <span className="flex w-[22px] shrink-0 items-center justify-center">
         <Sym name="plus" className={`h-[9px] w-[9px] ${label2}`} />
       </span>
@@ -1604,7 +1637,7 @@ export function MacAnalysisArt() {
   return (
     <Art
       className="@container"
-      label="Search on the Mac for Strong’s G26 in the KJV, in a tab named G26. The analysis’s card gives ἀγάπη, agápē, love: 117 occurrences in 106 verses, in 24 of 27 books, over a column for each New Testament book, with 1 John named in the accent colour as the book it stands out in. Under the card the Spread tab is open, listing the books with a bar each and a key to the shades. The occurrence list beside it is narrowed to the 18 in 1 John."
+      label="Search on the Mac for Strong’s G26 in the KJV, in a tab named G26. The analysis’s card gives ἀγάπη, agápē, love: 117 occurrences in 106 verses, in 24 of 27 books, over a column for each New Testament book, with 1 John named in the accent colour as the book it stands out in. Under the card, beside Definition, Overview, Companions, Compare and Septuagint, the Spread tab is open, listing the books with a bar each and a key to the shades. The occurrence list beside it is narrowed to the 18 in 1 John."
     >
       <MacWindow
         title="Search"
@@ -1625,7 +1658,7 @@ export function MacAnalysisArt() {
           </>
         }
       >
-        <MacTabBar title="G26" />
+        <MacTabBar tabs={[{ title: 'G26', open: true }]} />
         <div className={`flex gap-[6px] border-b ${sep} px-[10px] py-[6px]`}>
           <span className="hidden h-[19px] items-center gap-[4px] rounded-full bg-[var(--sys-fill)] px-[8px] text-[9px] @md:flex">
             <Sym name="book" className="h-[9px] w-[9px]" />
@@ -1651,11 +1684,12 @@ export function MacAnalysisArt() {
             <div className={`divide-y divide-[color:var(--sys-sep)] px-[9px]`}>
               {occurrences.map((o) => (
                 <div key={o.ref} className="py-[5px]">
-                  <p className="flex items-baseline justify-between text-[10px] font-semibold">
+                  <p className="flex items-baseline justify-between text-[10px] font-bold">
                     {o.ref}
                     <span className={`text-[8.5px] font-normal ${label2}`}>ἀγάπη</span>
                   </p>
-                  <p className={`mt-[1px] line-clamp-2 text-[9px] leading-[1.4] ${label2}`}>
+                  {/* Scripture in the reader's serif and the text's own colour, under its reference. */}
+                  <p className={`${serif} mt-[2px] line-clamp-3 text-[10px] leading-[1.4]`}>
                     {o.before}
                     <span className="rounded-[2px] bg-[var(--mac-match)] font-semibold text-[color:var(--mac-on-match)]">{o.word}</span>
                     {o.after}
@@ -1736,7 +1770,8 @@ export function MacAnalysisArt() {
             </div>
 
             <div className={`flex gap-[10px] border-b ${sep} px-[10px] pt-[9px] text-[9.5px]`}>
-              {['Definition', 'Overview', 'Spread', 'Companions', 'Compare'].map((section) => (
+              {/* ἀγάπη stands in the Septuagint, so it has that tab too. */}
+              {['Definition', 'Overview', 'Spread', 'Companions', 'Compare', 'Septuagint'].map((section) => (
                 <span
                   key={section}
                   className={`border-b-[2px] pb-[4px] ${

@@ -27,6 +27,7 @@ import {
   CompanionIcon,
   FolderIcon,
   FootnoteIcon,
+  FormsIcon,
   FullScreenIcon,
   HighlightIcon,
   HistoryIcon,
@@ -41,6 +42,7 @@ import {
   RemoteIcon,
   RenderingIcon,
   SearchIcon,
+  SeptuagintIcon,
   ShareIcon,
   SkillIcon,
   SlidesIcon,
@@ -136,6 +138,11 @@ const analysisParts: Array<{ title: string; body: string; icon: IconComponent }>
     icon: RenderingIcon,
   },
   {
+    title: 'Forms and grammar',
+    body: 'Each spelling it takes in the Hebrew or Greek, and how it is parsed where it occurs.',
+    icon: FormsIcon,
+  },
+  {
     title: 'By book',
     body: 'Where it falls, with each book marked when it holds more or fewer than its length predicts — by a margin chance would rarely give.',
     icon: ShareIcon,
@@ -149,6 +156,11 @@ const analysisParts: Array<{ title: string; body: string; icon: IconComponent }>
     title: 'Every verse',
     body: 'Tap a translation or a book to list just those verses, each with the word marked.',
     icon: VersesIcon,
+  },
+  {
+    title: 'In the Septuagint',
+    body: 'For a Greek word, its verses in the Greek Old Testament beside the New Testament’s, and the Hebrew words it renders there.',
+    icon: SeptuagintIcon,
   },
 ]
 
@@ -295,9 +307,9 @@ function AnalysisCard() {
             <p className="text-sm font-medium">More room for it on the Mac</p>
           </div>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-            The same analysis — its forms and grammar, every translation that tags the word, and
-            charts by book, section or chapter — opens beside a Strong’s search or beside the
-            passage you are reading, and any of its figures goes on a slide.
+            The same analysis — every translation that tags the word, charts by book, section or
+            chapter, and the Septuagint in a tab of its own — opens beside a Strong’s search or
+            beside the passage you are reading, and any of its figures goes on a slide.
           </p>
           <div className="mt-6">
             <MacAnalysisArt />
@@ -557,7 +569,7 @@ const macFeatures: Array<{ title: string; body: string; href: string; icon: Icon
   },
   {
     title: 'Reader Chat',
-    body: 'Ask about the chapter in front of you, or the words you have selected. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account, on the model you choose. Off until you turn AI features on.',
+    body: 'Ask about the chapter in front of you, or the words you have selected, and start a writing from the conversation when it gets somewhere. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account, on the model you choose. Off until you turn AI features on.',
     href: '/docs/ai',
     icon: ChatIcon,
   },

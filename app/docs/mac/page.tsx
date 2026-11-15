@@ -67,7 +67,18 @@ export default function Page() {
         pick from its verses. Words that are not a reference offer a search instead, and a Strong’s
         number offers its{' '}
         <Link href="/docs/search#analysis">analysis</Link>. Tab moves between the field, the books
-        and the chapters, and the arrow keys move within them.
+        and the chapters, and the arrow keys move within them. The grid lists only the books the
+        translation has, so the Septuagint offers no New Testament.
+      </p>
+      <p>
+        A translation in another language names its books as it does — <em>Génesis</em> in the
+        Reina-Valera, <em>Genèse</em> in the Segond — in the capsule, its tab, Reading History and
+        Recently Read, and you can type a passage in those names, or in English, here, in Go to
+        Anything and in Search; accents can be left off. Notes, cross-references and the analysis
+        keep the app’s English names. A link, history entry or search result in a book the
+        translation lacks says so — “Brenton English Septuagint doesn’t include Matthew” — and
+        offers the passage in a translation that has it, one in the same language first; switching
+        to a translation without the book you are in opens its first book in the same testament.
       </p>
       <p>
         <strong>Go to Anything…</strong> (⌘K) reaches further: a passage, a Strong’s number to look
@@ -110,7 +121,8 @@ export default function Page() {
         Side by Side reads up to three other translations verse by verse beside the one you are
         reading. Turn it on with the <strong>Side by Side</strong> button in the toolbar, or with
         the <strong>+</strong> beside a chapter’s opening, which lists the other translations to
-        read beside it, grouped by language with the Hebrew and Greek last, and marks those tagged
+        read beside it, grouped by language with the Hebrew and Greek last — each language’s whole
+        Bibles first, then below a separator the texts of part of it — and marks those tagged
         with Strong’s numbers. Each column’s title is a menu that changes its translation, makes it the one
         you are reading, or removes its column; the <strong>+</strong> beside the titles adds another.
         Verses are paired through each translation’s own numbering, so a verse that two
@@ -160,8 +172,12 @@ export default function Page() {
       <p>
         The toolbar’s <strong>Read Aloud</strong> button reads the current chapter with the system
         voices, from the beginning or from the selected verse, and can follow the verse being
-        spoken. Choose the voice and speed in Settings → Reader; <strong>Automatic</strong> uses the
-        best voice installed. The same pane’s <strong>Greek Words</strong> chooses how the speaker
+        spoken. Each translation is read in its own language, and outside English each verse is
+        announced by its number alone. Choose the speed in Settings → Reader, and a voice for each
+        language your translations are in; <strong>Automatic</strong> uses the best voice
+        installed. Where no voice speaks a translation’s language — biblical Hebrew and Koine
+        Greek have none — the button is off and says why, rather than reading the text with the
+        wrong sounds. The same pane’s <strong>Greek Words</strong> chooses how the speaker
         beside a Strong’s word says Greek: <strong>Classroom (Erasmian)</strong> or{' '}
         <strong>Modern Greek</strong>, which needs a Greek voice installed.
       </p>
@@ -288,8 +304,10 @@ export default function Page() {
         </tbody>
       </Table>
       <p>
-        Commentary and notes follow the reader as you scroll, unless you turn off{' '}
-        <strong>Link Study Tool Scrolling</strong>; to read another translation beside the text,
+        Commentary and notes follow the reader as you scroll, and scrolling the commentary takes
+        the reader along with it, unless you turn off{' '}
+        <strong>Link Study Tool Scrolling</strong>. Pointing at a commentary’s shortened outline
+        path shows it in full. To read another translation beside the text,
         use Side by Side. A scripture reference anywhere in the column opens a preview, with
         buttons to open it in the current tab or a new one.
       </p>
@@ -343,8 +361,11 @@ export default function Page() {
         </li>
         <li>
           Companion files — an outline, research notes — made with{' '}
-          <strong>New Markdown File…</strong> in the toolbar’s <strong>Workspace</strong> menu. They
-          open as tabs beside the main text; the tab bar appears once there is one.
+          <strong>New Markdown File…</strong> in the toolbar’s <strong>Workspace</strong> menu or
+          the <strong>+</strong> at the end of the tab bar. They open as tabs beside{' '}
+          <strong>Main Prose</strong>, drawn like the reader’s tabs; the tab bar appears once there
+          is one. Main Prose always comes first, a file with unsaved changes shows a dot beside its
+          name, and a file you opened yourself closes from its tab.
         </li>
       </ul>
       <p>
