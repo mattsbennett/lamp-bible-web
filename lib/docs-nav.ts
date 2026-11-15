@@ -85,7 +85,7 @@ export const docsNav: DocSection[] = [
         summary: 'Slide Studio decks from your writing, and an iPhone remote with your speaker notes.',
       },
       {
-        title: 'AI chat & agents',
+        title: 'AI features',
         href: '/docs/ai',
         summary:
           'Plans from a description with Apple Intelligence, and on the Mac, Reader Chat and writing agents through your own AI account.',

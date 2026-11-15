@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
-  title: 'AI chat & agents',
+  title: 'AI features',
   description:
     'Apple Intelligence on iPhone, iPad and Mac for plans made from a description, and on the Mac Reader Chat and writing agents through your own Codex, Claude Code or OpenCode account, with read-only access to your library and skills for weighing what scripture says — and Lamp’s library tools in Claude Desktop, Codex, Cursor or opencode.',
 }
@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <DocPage
       href="/docs/ai"
-      title="AI chat & agents"
+      title="AI features"
       intro="Ask about the passage you are reading, or write with an agent beside you — through an AI account of your own, with read-only access to your library."
     >
       <p>

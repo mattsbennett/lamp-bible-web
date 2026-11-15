@@ -23,7 +23,7 @@ export default function Page() {
         Most of the rest of these docs apply to it as written; this page covers where the Mac
         differs, and what it adds. Slide Studio and AI chat have pages of their own:{' '}
         <Link href="/docs/presenting">Slides &amp; presenting</Link> and{' '}
-        <Link href="/docs/ai">AI chat &amp; agents</Link>.
+        <Link href="/docs/ai">AI features</Link>.
       </p>
 
       {isMacBeta && (
