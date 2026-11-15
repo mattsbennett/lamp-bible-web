@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Platform } from '@/components/docs/Platform'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
@@ -66,23 +67,7 @@ export default function Page() {
         Project’s, matched by machine to the entries of the bundled BDB.
       </p>
 
-      <h2>Looking a word up</h2>
-      <p>
-        In a Strong’s-tagged translation, tap a word — in the reader, in a commentary or in a book.
-        The lexicon view opens on the entry for that word’s Strong’s number, named above the word
-        by the lexicon it comes from; swipe to see the same word in each of your other lexicons. A
-        count beside the number shows how often it occurs, and tapping it searches for every verse
-        that uses it. <strong>Analyse</strong> beside that opens an{' '}
-        <Link href="/docs/search#analysis">analysis</Link> of the word: its definition in each
-        dictionary, how it is translated, its forms and grammar, its distribution, the words found
-        with it, and how other translations count it.
-      </p>
-      <p>
-        The speaker beside the headword says the word aloud — Greek in the way{' '}
-        <strong>Greek Words</strong> in Settings sets, Hebrew from Strong’s own respelling; see{' '}
-        <Link href="/docs/reader">The reader</Link>. An entry’s text can be pressed and selected, to
-        look up, copy or share a word; a tap on a link still follows it.
-      </p>
+      <h2>What an entry holds</h2>
       <p>An entry can include:</p>
       <ul>
         <li>The lemma in its original script, with transliteration and pronunciation.</li>
@@ -104,14 +89,48 @@ export default function Page() {
         </p>
       </Callout>
 
-      <h2>Ordering and hiding</h2>
-      <p>
-        Hebrew and Greek each have their own lexicon order, set in Settings → Translations &amp;
-        Lexicons.
-        The default puts Strong’s first, followed by BDB for Hebrew, and by TBESG and then Dodson for Greek. Drag them
-        to put your preferred dictionary first. Swipe to hide a lexicon from lookups; it stays
-        installed and searchable.
-      </p>
+      <Platform only="ios">
+        <h2>On iPhone and iPad</h2>
+
+        <h3>Looking a word up</h3>
+        <p>
+          In a Strong’s-tagged translation, tap a word — in the reader, in a commentary or in a book.
+          The lexicon view opens on the entry for that word’s Strong’s number, named above the word
+          by the lexicon it comes from; swipe to see the same word in each of your other lexicons. A
+          count beside the number shows how often it occurs, and tapping it searches for every verse
+          that uses it. <strong>Analyse</strong> beside that opens an{' '}
+          <Link href="/docs/search#analysis">analysis</Link> of the word: its definition in each
+          dictionary, how it is translated, its forms and grammar, its distribution, the words found
+          with it, and how other translations count it.
+        </p>
+        <p>
+          The speaker beside the headword says the word aloud — Greek in the way{' '}
+          <strong>Greek Words</strong> in Settings sets, Hebrew from Strong’s own respelling; see{' '}
+          <Link href="/docs/reader">The reader</Link>. An entry’s text can be pressed and selected, to
+          look up, copy or share a word; a tap on a link still follows it.
+        </p>
+        <h3>Ordering and hiding</h3>
+        <p>
+          Hebrew and Greek each have their own lexicon order, set in Settings → Translations &amp;
+          Lexicons.
+          The default puts Strong’s first, followed by BDB for Hebrew, and by TBESG and then Dodson for Greek. Drag them
+          to put your preferred dictionary first. Swipe to hide a lexicon from lookups; it stays
+          installed and searchable.
+        </p>
+      </Platform>
+
+      <Platform only="mac">
+        <h2>On the Mac</h2>
+        <p>
+          In a Strong’s-tagged translation, hovering over a word shows its Strong’s number at the
+          foot of the window, and clicking opens it in the study column’s{' '}
+          <strong>Dictionary</strong> tab. The tab also looks words up by word, lemma or Strong’s
+          number, with a speaker to say the word aloud and <strong>Analyse</strong>, which opens the
+          word’s <Link href="/docs/search#analysis">analysis</Link> in the column, beside the
+          passage. Your lexicon order and hidden lexicons sync, so the order you set on iPhone or
+          iPad applies here too. See <Link href="/docs/reader#on-the-mac">The reader on the Mac</Link>.
+        </p>
+      </Platform>
 
       <h2>Adding your own</h2>
       <p>

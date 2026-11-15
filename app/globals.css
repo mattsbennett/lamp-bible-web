@@ -376,8 +376,37 @@
   .doc > p,
   .doc > ul,
   .doc > ol,
-  .doc > blockquote {
+  .doc > blockquote,
+  .doc .platform > p,
+  .doc .platform > ul,
+  .doc .platform > ol,
+  .doc .platform > blockquote {
     max-width: 38rem;
+  }
+
+  /* A section for one app spaces its blocks as the page does; its heading's margin carries out. */
+  .doc .platform > * + * {
+    margin-top: 1.25rem;
+  }
+
+  /* The device switch: a section for the other app folds away, and a note stands in its place. */
+  .platform-note {
+    display: none;
+    border: 1px dashed var(--line-strong);
+    border-radius: 0.75rem;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  html[data-device='ios'] .only-mac,
+  html[data-device='mac'] .only-ios {
+    display: none !important;
+  }
+
+  html[data-device='ios'] .note-for-mac,
+  html[data-device='mac'] .note-for-ios {
+    display: block;
   }
 
   .doc h4 {

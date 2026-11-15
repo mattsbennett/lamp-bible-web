@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Figure, Table } from '@/components/docs/DocPage'
+import { Platform } from '@/components/docs/Platform'
 import { AnalysisArt } from '@/components/home/art'
 
 export const metadata: Metadata = {
@@ -16,22 +17,10 @@ export default function Page() {
       title="Search"
       intro="Search all installed content, including your notes and writing."
     >
-      <h2>Two scopes</h2>
+      <h2>What search covers</h2>
       <p>
-        Search opens from the home screen, from the search field in the reader’s toolbar, from{' '}
-        <strong>Search</strong> on selected text, and from the occurrence count in a{' '}
-        <Link href="/docs/lexicons">lexicon entry</Link>. Its menu switches between two scopes:
+        Search covers everything you have installed and everything you write, in both apps:
       </p>
-      <ul>
-        <li>
-          <strong>Bible</strong> searches the verses of one translation, by text or by Strong’s
-          number.
-        </li>
-        <li>
-          <strong>Modules</strong> searches everything else you have installed or written.
-        </li>
-      </ul>
-
       <Table>
         <thead>
           <tr>
@@ -81,30 +70,6 @@ export default function Page() {
           </tr>
         </tbody>
       </Table>
-
-      <h2>Filters</h2>
-      <p>
-        In either scope, the scope menu also narrows a search to the Old or New Testament, or to{' '}
-        <strong>One Book</strong>: the verses searched in the Bible scope, and the verses and
-        highlights among the modules.
-      </p>
-      <p>In the Modules scope, results are grouped by type and can be narrowed:</p>
-      <ul>
-        <li>
-          <strong>Specific modules</strong> — every dictionary, one commentary series, one notes
-          module, and so on.
-        </li>
-        <li>
-          <strong>Translation</strong> — which translation verse results come from.
-        </li>
-        <li>
-          <strong>Tags</strong> — pick from the tags you have given your writing.
-        </li>
-        <li>
-          <strong>Highlight colour</strong> — find every passage you marked in a particular colour,
-          with no search term at all.
-        </li>
-      </ul>
 
       <Callout title="Search by highlight colour">
         <p>
@@ -177,114 +142,126 @@ export default function Page() {
         be left off.
       </p>
 
-      <h3>Results</h3>
-      <ul>
-        <li>
-          Text results are ranked by relevance, with the match highlighted in a snippet. For a
-          search of several words, results that hold them together come first.
-        </li>
-        <li>
-          Tap a result to preview it. The preview’s context — one verse, three, or the whole
-          chapter — is adjustable, and a button takes you to the passage.
-        </li>
-        <li>
-          Bible results load a hundred at a time; <strong>Load More Results</strong> extends the
-          list. Module results open on thirty, shared among the types that matched; a type with
-          more to show has <strong>More</strong> in its heading, which lists that type alone, a
-          hundred at a time.
-        </li>
-        <li>
-          <strong>Recent Searches</strong> keeps your last twenty searches that found something, in
-          both scopes, on this device. Choosing one runs it again with the scope and filters it had.
-          They can be cleared.
-        </li>
-      </ul>
+      <Platform only="ios">
+        <h2>On iPhone and iPad</h2>
 
-      <h3>Searching by Strong’s number</h3>
-      <p>
-        A Strong’s search finds every verse in the translation tagged with a number such as{' '}
-        <code>H430</code> or <code>G2316</code>. In a tagged translation, type a number in the
-        Bible scope and <strong>Search Strong’s</strong> and <strong>Analyse</strong> rows appear
-        above the results; the search box does not switch by itself, since a number may be meant as
-        text. Its mode menu switches to <strong>Strong’s</strong> outright, and tapping a word’s
-        count in a lexicon entry starts a Strong’s search. In the Modules scope,{' '}
-        <strong>Strong’s Key</strong> finds the dictionary entries for a number. Zero padding does
-        not matter: <code>H07225</code> and <code>H7225</code> are the same word.
-      </p>
+        <h3>Two scopes</h3>
+        <p>
+          Search opens from the home screen, from the search field in the reader’s toolbar, from{' '}
+          <strong>Search</strong> on selected text, and from the occurrence count in a{' '}
+          <Link href="/docs/lexicons">lexicon entry</Link>. Its menu switches between two scopes:
+        </p>
+        <ul>
+          <li>
+            <strong>Bible</strong> searches the verses of one translation, by text or by Strong’s
+            number.
+          </li>
+          <li>
+            <strong>Modules</strong> searches everything else you have installed or written.
+          </li>
+        </ul>
+
+        <h3>Filters</h3>
+        <p>
+          In either scope, the scope menu also narrows a search to the Old or New Testament, or to{' '}
+          <strong>One Book</strong>: the verses searched in the Bible scope, and the verses and
+          highlights among the modules.
+        </p>
+        <p>In the Modules scope, results are grouped by type and can be narrowed:</p>
+        <ul>
+          <li>
+            <strong>Specific modules</strong> — every dictionary, one commentary series, one notes
+            module, and so on.
+          </li>
+          <li>
+            <strong>Translation</strong> — which translation verse results come from.
+          </li>
+          <li>
+            <strong>Tags</strong> — pick from the tags you have given your writing.
+          </li>
+          <li>
+            <strong>Highlight colour</strong> — find every passage you marked in a particular colour,
+            with no search term at all.
+          </li>
+        </ul>
+
+        <h3>Results</h3>
+        <ul>
+          <li>
+            Text results are ranked by relevance, with the match highlighted in a snippet. For a
+            search of several words, results that hold them together come first.
+          </li>
+          <li>
+            Tap a result to preview it. The preview’s context — one verse, three, or the whole
+            chapter — is adjustable, and a button takes you to the passage.
+          </li>
+          <li>
+            Bible results load a hundred at a time; <strong>Load More Results</strong> extends the
+            list. Module results open on thirty, shared among the types that matched; a type with
+            more to show has <strong>More</strong> in its heading, which lists that type alone, a
+            hundred at a time.
+          </li>
+          <li>
+            <strong>Recent Searches</strong> keeps your last twenty searches that found something, in
+            both scopes, on this device. Choosing one runs it again with the scope and filters it had.
+            They can be cleared.
+          </li>
+        </ul>
+
+        <h3>Searching by Strong’s number</h3>
+        <p>
+          A Strong’s search finds every verse in the translation tagged with a number such as{' '}
+          <code>H430</code> or <code>G2316</code>. In a tagged translation, type a number in the
+          Bible scope and <strong>Search Strong’s</strong> and <strong>Analyse</strong> rows appear
+          above the results; the search box does not switch by itself, since a number may be meant as
+          text. Its mode menu switches to <strong>Strong’s</strong> outright, and tapping a word’s
+          count in a lexicon entry starts a Strong’s search. In the Modules scope,{' '}
+          <strong>Strong’s Key</strong> finds the dictionary entries for a number. Zero padding does
+          not matter: <code>H07225</code> and <code>H7225</code> are the same word.
+        </p>
+
+      </Platform>
+
+      <Platform only="mac">
+        <h2>On the Mac</h2>
+        <p>
+          <strong>Search</strong> in the sidebar groups results by content type,
+          with Scripture first and a preview beside the list. Each type gets a share of the results;
+          use <strong>More in</strong> beside a heading to expand it. Scripture results use your
+          current translation and show how many others match. If it has no matches, another
+          translation is used. Dictionary results show the full entry with <strong>Look Up</strong>{' '}
+          and <strong>Analyse</strong>.
+        </p>
+        <p>
+          Enter a passage reference to open it directly, or a Strong’s number to analyse it.
+          The filter bar narrows results by content type, module, testament, Strong’s key or
+          highlight colour. Writing can also be filtered by date, tag and category.
+        </p>
+        <p>
+          Search keeps tabs too, in the same bar as the reader’s, each named after its words. A
+          search started from the reader goes to a tab already showing it, or to an empty one,
+          before it opens another. Search tabs come back when you relaunch.
+        </p>
+      </Platform>
 
       <h2 id="analysis">Analysing a Strong’s number</h2>
       <p>
-        An analysis gathers everything a translation’s tags say about one Strong’s number. Open it
-        with <strong>Analyse</strong> beside the count of a Strong’s search’s results, from the{' '}
-        <strong>Analyse</strong> row a typed number offers, or with <strong>Analyse</strong> in a{' '}
-        <Link href="/docs/lexicons">lexicon entry</Link>. The <strong>Books</strong> menu at the top
-        narrows it to a testament, a part of the canon or <strong>One Book</strong>.
+        An analysis gathers everything a translation’s tags say about one Strong’s number. It opens
+        on a summary card: the word, its transliteration, a short definition and a button to say
+        it. By default its three figures count occurrences, verses and books, with a chart of
+        occurrences by book; the sliders button chooses three of nine figures, or changes or hides
+        the chart. Options include the number of renderings and frequency per 1,000 tagged words,
+        scaled to 10,000 or more for rare words.
       </p>
       <Figure caption="The analysis of G26, ἀγάπη, in the KJV: its counts, its distribution by book, and how it is translated.">
         <AnalysisArt />
       </Figure>
       <p>
-        The summary card shows the word, transliteration, short definition and pronunciation button.
-        By default, its three figures count occurrences, verses and books, with a chart of
-        occurrences by book. Use the sliders button to choose three of nine figures or change or
-        hide the chart. Options include the number of renderings and frequency per 1,000 tagged
-        words, scaled to 10,000 or more for rare words. Below the card are:
-      </p>
-      <ul>
-        <li>
-          <strong>Definition</strong> — the whole entry, in each dictionary that has the word.
-        </li>
-        <li>
-          <strong>Translated As</strong> — the English the translation uses for it, commonest first,
-          as a ring or a list; each slice of the ring with room for it is labelled with its share.
-          These are the choices translators made, not the range of what the word means; for that,
-          read the definition.
-        </li>
-        <li>
-          <strong>Forms</strong> — original-language spellings, with transliteration and grammatical function. Where some occurrences are tagged without a spelling, the
-          ring counts the rest and a line under it says how many are left out.
-        </li>
-        <li>
-          <strong>Grammar</strong> — how it is parsed where it occurs.
-        </li>
-        <li>
-          <strong>By Book</strong>, <strong>By Section</strong> or <strong>By Chapter</strong> —
-          occurrences shown as bars for books and sections, or a grid for chapters. Bars show
-          totals or counts per 1,000 words. Arrows mark statistically unusual frequencies (↑ or ↓);
-          darker chapter squares indicate higher frequencies.
-        </li>
-        <li>
-          <strong>Found With</strong> — other words that share its verses, with a bar for the
-          strength of each association. A word that shares many verses leads one that shares a
-          few, however rare it is. Tap one to analyse it in turn.
-        </li>
-        <li>
-          <strong>Compare</strong> — the count in every installed translation that tags the
-          number; tap one for its own analysis.
-        </li>
-        <li>
-          <strong>Verses</strong> — every verse it occurs in, ten to begin with and{' '}
-          <strong>Show All</strong> for the rest, with the word marked as a search marks a match.
-          Tap a rendering, a form, a parsing, a book or a chapter above to narrow the list, and a
-          verse to preview it with a button to open it in the reader.
-        </li>
-        <li>
-          <strong>In the Septuagint</strong> — for a Greek word, closed until you open it. Where the
-          Septuagint tags the word, as the bundled <code>LXX</code> does, it starts with the
-          word’s own use in the Greek Old Testament: its verses beside the New Testament’s, as two
-          bars that are never added together, with how often each text uses it for its length,
-          and the books it stands in. Then come the Hebrew words it translates there — the whole
-          section is <strong>Hebrew It Translates</strong> where the Septuagint is not tagged —
-          each with its verses, narrowed to those where the Septuagint uses this Greek word, ten
-          at a time, and a way to its own analysis. Tap a book to narrow those verses to it.
-        </li>
-      </ul>
-      <p>
         Every figure depends on how that translation was tagged, so two translations can count the
         same word differently.
       </p>
       <p>
-        Septuagint results highlight the Greek word in each verse. Enable <strong>Greek</strong>
+        For a Greek word, the Septuagint’s results highlight the Greek word in each verse. Enable <strong>Greek</strong>
         to show the Greek text below it. Rows identify uncertain Hebrew–Greek matches; the warning
         disappears where word positions resolve the match. If you imported a Strong’s-tagged
         English Septuagint, such as the Apostolic Bible Polyglot, <strong>English from</strong>
@@ -292,53 +269,115 @@ export default function Page() {
         the figures. A caption notes that the bundled Septuagint’s machine-generated tags are less
         reliable for case, number and gender than for word identification.
       </p>
-      <h3>On the Mac</h3>
-      <p>
-        The analysis opens beside a Strong’s search — choose <strong>Scripture</strong> in the
-        toolbar and type a number in the Strong’s field of the filter bar beneath it, or choose{' '}
-        <strong>Analyse</strong> when you type a number into the search box — with the occurrence
-        list to its left, each verse in full with the word marked, narrowed by anything you click
-        in the analysis. <strong>Analyse</strong>{' '}
-        on a dictionary entry opens it in the study column instead, beside the passage. It opens on
-        the same card, and its tabs are:
-      </p>
-      <ul>
-        <li>
-          <strong>Definition</strong> — the whole entry, beside a search only.
-        </li>
-        <li>
-          <strong>Overview</strong> — how it is translated, its forms, its grammar — part of
-          speech, case, number, tense and so on.
-        </li>
-        <li>
-          <strong>Spread</strong> — by books, sections or chapters: bars counting occurrences or
-          occurrences per 1,000 words, or a grid of every chapter. Click a bar or a chapter to see
-          its verses.
-        </li>
-        <li>
-          <strong>Companions</strong> — the words found with it, how many verses each shares
-          and the ratio to the count expected by chance.
-        </li>
-        <li>
-          <strong>Compare</strong> — the count and the commonest English in every installed
-          translation that tags the number.
-        </li>
-        <li>
-          <strong>Septuagint</strong> — for a Greek word the Septuagint uses, and only then: the
-          word in the Greek Old Testament beside the New Testament, and the Hebrew words it renders,
-          each opening on its first ten verses. Click a book’s bar to narrow the verses to it.
-        </li>
-        <li>
-          <strong>Verses</strong> — in the study column, which has no room for a list beside it.
-        </li>
-      </ul>
-      <p>
-        Every figure has <strong>Add to Deck</strong>, which puts it on a slide.
-      </p>
-      <p>
-        A deck can chart a Strong’s number too; see{' '}
-        <Link href="/docs/presenting">Presenting</Link>.
-      </p>
+      <Platform only="ios">
+        <h3>Analysis on iPhone and iPad</h3>
+        <p>
+          Open it with <strong>Analyse</strong> beside the count of a Strong’s search’s results,
+          from the <strong>Analyse</strong> row a typed number offers, or with{' '}
+          <strong>Analyse</strong> in a <Link href="/docs/lexicons">lexicon entry</Link>. The{' '}
+          <strong>Books</strong> menu at the top narrows it to a testament, a part of the canon or{' '}
+          <strong>One Book</strong>. Below the card are:
+        </p>
+        <ul>
+          <li>
+            <strong>Definition</strong> — the whole entry, in each dictionary that has the word.
+          </li>
+          <li>
+            <strong>Translated As</strong> — the English the translation uses for it, commonest first,
+            as a ring or a list; each slice of the ring with room for it is labelled with its share.
+            These are the choices translators made, not the range of what the word means; for that,
+            read the definition.
+          </li>
+          <li>
+            <strong>Forms</strong> — original-language spellings, with transliteration and grammatical function. Where some occurrences are tagged without a spelling, the
+            ring counts the rest and a line under it says how many are left out.
+          </li>
+          <li>
+            <strong>Grammar</strong> — how it is parsed where it occurs.
+          </li>
+          <li>
+            <strong>By Book</strong>, <strong>By Section</strong> or <strong>By Chapter</strong> —
+            occurrences shown as bars for books and sections, or a grid for chapters. Bars show
+            totals or counts per 1,000 words. Arrows mark statistically unusual frequencies (↑ or ↓);
+            darker chapter squares indicate higher frequencies.
+          </li>
+          <li>
+            <strong>Found With</strong> — other words that share its verses, with a bar for the
+            strength of each association. A word that shares many verses leads one that shares a
+            few, however rare it is. Tap one to analyse it in turn.
+          </li>
+          <li>
+            <strong>Compare</strong> — the count in every installed translation that tags the
+            number; tap one for its own analysis.
+          </li>
+          <li>
+            <strong>Verses</strong> — every verse it occurs in, ten to begin with and{' '}
+            <strong>Show All</strong> for the rest, with the word marked as a search marks a match.
+            Tap a rendering, a form, a parsing, a book or a chapter above to narrow the list, and a
+            verse to preview it with a button to open it in the reader.
+          </li>
+          <li>
+            <strong>In the Septuagint</strong> — for a Greek word, closed until you open it. Where the
+            Septuagint tags the word, as the bundled <code>LXX</code> does, it starts with the
+            word’s own use in the Greek Old Testament: its verses beside the New Testament’s, as two
+            bars that are never added together, with how often each text uses it for its length,
+            and the books it stands in. Then come the Hebrew words it translates there — the whole
+            section is <strong>Hebrew It Translates</strong> where the Septuagint is not tagged —
+            each with its verses, narrowed to those where the Septuagint uses this Greek word, ten
+            at a time, and a way to its own analysis. Tap a book to narrow those verses to it.
+          </li>
+        </ul>
+      </Platform>
+
+      <Platform only="mac">
+        <h3>Analysis on the Mac</h3>
+        <p>
+          The analysis opens beside a Strong’s search — choose <strong>Scripture</strong> in the
+          toolbar and type a number in the Strong’s field of the filter bar beneath it, or choose{' '}
+          <strong>Analyse</strong> when you type a number into the search box — with the occurrence
+          list to its left, each verse in full with the word marked, narrowed by anything you click
+          in the analysis. <strong>Analyse</strong>{' '}
+          on a dictionary entry opens it in the study column instead, beside the passage. It opens on
+          the same card, and its tabs are:
+        </p>
+        <ul>
+          <li>
+            <strong>Definition</strong> — the whole entry, beside a search only.
+          </li>
+          <li>
+            <strong>Overview</strong> — how it is translated, its forms, its grammar — part of
+            speech, case, number, tense and so on.
+          </li>
+          <li>
+            <strong>Spread</strong> — by books, sections or chapters: bars counting occurrences or
+            occurrences per 1,000 words, or a grid of every chapter. Click a bar or a chapter to see
+            its verses.
+          </li>
+          <li>
+            <strong>Companions</strong> — the words found with it, how many verses each shares
+            and the ratio to the count expected by chance.
+          </li>
+          <li>
+            <strong>Compare</strong> — the count and the commonest English in every installed
+            translation that tags the number.
+          </li>
+          <li>
+            <strong>Septuagint</strong> — for a Greek word the Septuagint uses, and only then: the
+            word in the Greek Old Testament beside the New Testament, and the Hebrew words it renders,
+            each opening on its first ten verses. Click a book’s bar to narrow the verses to it.
+          </li>
+          <li>
+            <strong>Verses</strong> — in the study column, which has no room for a list beside it.
+          </li>
+        </ul>
+        <p>
+          Every figure has <strong>Add to Deck</strong>, which puts it on a slide.
+        </p>
+        <p>
+          A deck can chart a Strong’s number too; see{' '}
+          <Link href="/docs/presenting">Presenting</Link>.
+        </p>
+      </Platform>
     </DocPage>
   )
 }

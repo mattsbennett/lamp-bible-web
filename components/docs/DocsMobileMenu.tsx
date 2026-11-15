@@ -6,6 +6,7 @@ import { allDocLinks } from '@/lib/docs-nav'
 import type { DocsEntry } from '@/lib/docs-index'
 import { DocsSearch } from '@/components/docs/DocsSearch'
 import { DocsSidebar } from '@/components/docs/DocsSidebar'
+import { DeviceSwitch } from '@/components/docs/DeviceSwitch'
 
 /**
  * The docs' search and contents on a narrow screen: a bar under the header naming the page you
@@ -35,6 +36,7 @@ export function DocsMobileMenu({ entries }: { entries: DocsEntry[] }) {
       </summary>
       <div className="mx-auto max-h-[calc(100dvh-8rem)] max-w-6xl overflow-y-auto px-5 pb-8 pt-1 sm:px-8">
         <DocsSearch entries={entries} />
+        <DeviceSwitch className="mt-6" />
         <div className="mt-7">
           <DocsSidebar />
         </div>

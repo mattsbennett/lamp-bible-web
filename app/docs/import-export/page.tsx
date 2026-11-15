@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Platform } from '@/components/docs/Platform'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
@@ -15,56 +16,100 @@ export default function Page() {
       title="Import & export"
       intro="Import and export notes and writing as markdown. Writing exports can include attached media."
     >
-      <h2>Where to find it</h2>
-      <Table>
-        <thead>
-          <tr>
-            <th>To</th>
-            <th>Go to</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Export a notes or writing collection</td>
-            <td>
-              Settings → <strong>Module Manager</strong>, then the collection’s menu →{' '}
-              <strong>Export (Markdown)</strong>. One combined file.
-            </td>
-          </tr>
-          <tr>
-            <td>Export writing file by file</td>
-            <td>
-              The writing library’s menu → <strong>Export</strong> → <strong>Export All</strong>{' '}
-              (one file each, with media) or <strong>Export to Single File</strong>. Both write to{' '}
-              <code>iCloud Drive/Lamp Bible/Export/Devotionals/</code>, so they need iCloud Drive
-              sync.
-            </td>
-          </tr>
-          <tr>
-            <td>Share one piece of writing</td>
-            <td>
-              The piece’s share menu → <strong>Share as Markdown</strong>, or{' '}
-              <strong>Share Writing File</strong> for a <code>.lamp</code> that keeps its media.
-            </td>
-          </tr>
-          <tr>
-            <td>Import notes or writing</td>
-            <td>
-              Settings → <strong>Module Manager</strong> → <strong>+</strong> → Import Module →{' '}
-              <strong>Import Notes from Markdown</strong> or{' '}
-              <strong>Import Writing from Markdown</strong>. Choose one file or a folder of
-              files, then the collection it goes into, or a new one.
-            </td>
-          </tr>
-          <tr>
-            <td>Import a writing file someone sent</td>
-            <td>
-              Open it from Files, Mail or AirDrop, or use the writing library’s menu →{' '}
-              <strong>Import Writing</strong>. You see a preview before anything is added.
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+      <Platform only="ios">
+        <h2>Where to find it on iPhone and iPad</h2>
+        <Table>
+          <thead>
+            <tr>
+              <th>To</th>
+              <th>Go to</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Export a notes or writing collection</td>
+              <td>
+                Settings → <strong>Module Manager</strong>, then the collection’s menu →{' '}
+                <strong>Export (Markdown)</strong>. One combined file.
+              </td>
+            </tr>
+            <tr>
+              <td>Export writing file by file</td>
+              <td>
+                The writing library’s menu → <strong>Export</strong> → <strong>Export All</strong>{' '}
+                (one file each, with media) or <strong>Export to Single File</strong>. Both write to{' '}
+                <code>iCloud Drive/Lamp Bible/Export/Devotionals/</code>, so they need iCloud Drive
+                sync.
+              </td>
+            </tr>
+            <tr>
+              <td>Share one piece of writing</td>
+              <td>
+                The piece’s share menu → <strong>Share as Markdown</strong>, or{' '}
+                <strong>Share Writing File</strong> for a <code>.lamp</code> that keeps its media.
+              </td>
+            </tr>
+            <tr>
+              <td>Import notes or writing</td>
+              <td>
+                Settings → <strong>Module Manager</strong> → <strong>+</strong> → Import Module →{' '}
+                <strong>Import Notes from Markdown</strong> or{' '}
+                <strong>Import Writing from Markdown</strong>. Choose one file or a folder of
+                files, then the collection it goes into, or a new one.
+              </td>
+            </tr>
+            <tr>
+              <td>Import a writing file someone sent</td>
+              <td>
+                Open it from Files, Mail or AirDrop, or use the writing library’s menu →{' '}
+                <strong>Import Writing</strong>. You see a preview before anything is added.
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </Platform>
+
+      <Platform only="mac">
+        <h2>Where to find it on the Mac</h2>
+        <Table>
+          <thead>
+            <tr>
+              <th>To</th>
+              <th>Go to</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Export a notes, writing or book collection as markdown</td>
+              <td>
+                <strong>Modules</strong> in the sidebar, then the collection’s menu.
+              </td>
+            </tr>
+            <tr>
+              <td>Export one piece of writing</td>
+              <td>
+                Its menu in Writing exports a <code>.lamp</code> file that keeps its media; the
+                preview’s controls share it as markdown.
+              </td>
+            </tr>
+            <tr>
+              <td>Export a book’s notes or a translation’s highlights</td>
+              <td>
+                The <strong>Study Data</strong> menu at the foot of the study column’s Notes tab, as
+                JSON or a <code>.lamp</code> module.
+              </td>
+            </tr>
+            <tr>
+              <td>Import notes or writing</td>
+              <td>
+                <strong>Import or Create Content</strong> (⇧⌘M) → <strong>Import Personal
+                Content</strong>: notes or writing from markdown, or notes and highlights from JSON
+                or <code>.lamp</code>.
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </Platform>
 
       <h2>Notes</h2>
       <p>

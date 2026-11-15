@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Platform } from '@/components/docs/Platform'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
@@ -52,11 +53,6 @@ export default function Page() {
         Choose in Settings under <strong>Sync</strong>. There is no Lamp Bible account and no Lamp
         Bible server. Even with sync switched on, the only parties involved are you and the storage
         you chose.
-      </p>
-      <p>
-        On a Mac, Settings → Sync offers <strong>iCloud Drive or Folder</strong> — choose the same
-        Lamp Bible folder in iCloud Drive that your iPhone uses — or WebDAV with the same server
-        address. See <Link href="/docs/mac">The Mac app</Link> for how sync differs there.
       </p>
 
       <h2>What syncs</h2>
@@ -159,30 +155,32 @@ export default function Page() {
         </p>
       </Callout>
 
-      <h2>Switching method</h2>
-      <p>Changing the sync method asks what to do with what is already on this device:</p>
-      <ul>
-        <li>
-          <strong>Migrate</strong> — keep your library and send it to the new location on the
-          first sync there: notes, writing, highlights, their media, and your settings. It is
-          merged with any library already there, and nothing on the server is removed. Modules you
-          imported earlier stay installed on this device but are not copied across, so import them
-          again if your other devices need them. Migrating to Local Only simply keeps your library
-          on the device.
-        </li>
-        <li>
-          <strong>Switch Only</strong> — start fresh. After a second confirmation,{' '}
-          <strong>Wipe &amp; Switch</strong> deletes your notes, writing and highlights from
-          this device, then switches.
-        </li>
-      </ul>
+      <Platform only="ios">
+        <h2>Switching method</h2>
+        <p>Changing the sync method asks what to do with what is already on this device:</p>
+        <ul>
+          <li>
+            <strong>Migrate</strong> — keep your library and send it to the new location on the
+            first sync there: notes, writing, highlights, their media, and your settings. It is
+            merged with any library already there, and nothing on the server is removed. Modules you
+            imported earlier stay installed on this device but are not copied across, so import them
+            again if your other devices need them. Migrating to Local Only simply keeps your library
+            on the device.
+          </li>
+          <li>
+            <strong>Switch Only</strong> — start fresh. After a second confirmation,{' '}
+            <strong>Wipe &amp; Switch</strong> deletes your notes, writing and highlights from
+            this device, then switches.
+          </li>
+        </ul>
 
-      <Callout tone="warn" title="Local data will be deleted">
-        <p>
-          Wipe &amp; Switch deletes local data rather than archiving it, even when the new method is
-          Local Only. Export anything you are unsure about first.
-        </p>
-      </Callout>
+        <Callout tone="warn" title="Local data will be deleted">
+          <p>
+            Wipe &amp; Switch deletes local data rather than archiving it, even when the new method is
+            Local Only. Export anything you are unsure about first.
+          </p>
+        </Callout>
+      </Platform>
 
       <h2>Conflicts</h2>
       <p>
@@ -243,6 +241,32 @@ export default function Page() {
           update it. Until you do, it stops syncing or misses changes made elsewhere.
         </li>
       </ul>
+
+      <Platform only="mac">
+        <h2>On the Mac</h2>
+        <p>
+          Settings → Sync chooses <strong>iCloud Drive or Folder</strong> — the same Lamp Bible
+          folder in iCloud Drive that your iPhone uses — or <strong>WebDAV</strong> with the same
+          server address, and connects to the same library as your iPhone and iPad. The Mac syncs
+          when it opens, sends your changes a few seconds after you make them, and checks every
+          half-minute for changes from your other devices while it is open;{' '}
+          <strong>Sync Now</strong> starts a sync. When a note or a piece of writing changed on two
+          devices, the Sync pane shows it under <strong>Needs Your Decision</strong>, where you
+          compare the versions and keep one.
+        </p>
+        <p>
+          Turning sync <strong>Off</strong> pauses it but keeps the folder, server address, username
+          and password, so you can turn it back on without entering them again. To disconnect for
+          good — leaving a server, or handing over a shared Mac — choose{' '}
+          <strong>Forget Sync Details…</strong>, which removes them and turns sync off. Neither
+          deletes anything already synced, on the Mac or on the server.
+        </p>
+        <p>
+          The Mac also syncs slide decks and their pictures, and each writing’s agent workspace —
+          companion files, context, skills, revisions and agent conversations. Reader tabs, history
+          and Reader Chat conversations stay on each Mac.
+        </p>
+      </Platform>
 
       <h2>Backup strategy</h2>
       <p>Sync propagates deletions as well as edits. Keep separate backups:</p>

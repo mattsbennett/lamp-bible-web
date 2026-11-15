@@ -2,6 +2,8 @@ export type DocLink = {
   title: string
   href: string
   summary: string
+  /** A page about one app only, labelled with it in the sidebar and in search. */
+  only?: 'ios' | 'mac'
 }
 
 export type DocSection = {
@@ -19,14 +21,16 @@ export const docsNav: DocSection[] = [
         summary: 'An introduction to Lamp Bible and its documentation.',
       },
       {
-        title: 'Getting started',
+        title: 'Get started on iPhone & iPad',
         href: '/docs/getting-started',
         summary: 'Install the app, pick a translation, and find your way around the home screen.',
+        only: 'ios',
       },
       {
-        title: 'The Mac app',
+        title: 'Get started on Mac',
         href: '/docs/mac',
-        summary: 'Tabs, layouts, the study column, writing, building modules and sync on the Mac.',
+        summary: 'Install the beta, and find your way around the window: sidebar, tabs and study column.',
+        only: 'mac',
       },
     ],
   },
@@ -135,6 +139,12 @@ export const docsNav: DocSection[] = [
   {
     title: 'Reference',
     links: [
+      {
+        title: 'Keyboard shortcuts',
+        href: '/docs/mac/keyboard',
+        summary: 'Every shortcut in the Mac app, from moving between chapters to building a deck.',
+        only: 'mac',
+      },
       {
         title: 'What ships in the app',
         href: '/docs/included-content',

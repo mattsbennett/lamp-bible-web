@@ -4,6 +4,7 @@ import { docsNav } from '@/lib/docs-nav'
 import { docsIndex } from '@/lib/docs-index'
 import { site } from '@/lib/site'
 import { DocsSearch } from '@/components/docs/DocsSearch'
+import { DeviceTag } from '@/components/docs/DocsSidebar'
 import {
   BooksIcon,
   ChatIcon,
@@ -125,7 +126,10 @@ export default function DocsIndex() {
                 >
                   <Chip href={link.href} />
                   <span className="min-w-0 flex-1">
-                    <span className="block font-medium">{link.title}</span>
+                    <span className="block font-medium">
+                      {link.title}
+                      <DeviceTag link={link} />
+                    </span>
                     <span className="mt-0.5 block text-sm leading-relaxed text-muted">{link.summary}</span>
                   </span>
                   <svg viewBox="0 0 12 12" className="h-3 w-3 shrink-0 text-faint transition-transform group-hover:translate-x-0.5" aria-hidden="true">

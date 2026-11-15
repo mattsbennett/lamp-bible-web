@@ -445,7 +445,7 @@ function Writing() {
     {
       title: 'The Mac editor',
       body: 'Visual and Markdown editing, find and replace, a Details pane for series, tags and key scriptures, footnotes edited beside their marker, companion files as tabs, and a Revision History for every change.',
-      href: '/docs/mac',
+      href: '/docs/writing#on-the-mac',
       icon: HistoryIcon,
       art: <MacEditorArt />,
       badge: macLabel,
@@ -582,7 +582,7 @@ const macFeatures: Array<{ title: string; body: string; href: string; icon: Icon
   {
     title: 'A reader built for the Mac',
     body: 'Tabs and separate windows, a Today page with your plans and where you left off, a study column with commentary, verse notes, original language and dictionary, up to three other translations side by side, and today’s readings in the menu bar.',
-    href: '/docs/mac',
+    href: '/docs/reader#on-the-mac',
     icon: WindowsIcon,
   },
   {
@@ -594,7 +594,7 @@ const macFeatures: Array<{ title: string; body: string; href: string; icon: Icon
   {
     title: 'Make your own modules',
     body: 'Drop in module JSON, see it validated, and build an integrity-checked .lamp of any of the nine types, ready to install or share.',
-    href: '/docs/mac#make-a-module',
+    href: '/docs/modules#on-the-mac',
     icon: ModuleIcon,
   },
 ]

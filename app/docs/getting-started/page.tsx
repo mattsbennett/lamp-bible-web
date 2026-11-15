@@ -1,19 +1,19 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
-import { downloadPaths, isMacBeta, site } from '@/lib/site'
+import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Getting started',
+  title: 'Get started on iPhone & iPad',
   description:
-    'Install Lamp Bible, choose a translation, and find your way around the home screen, the reader, search, books, writing and settings.',
+    'Install Lamp Bible on iPhone or iPad, choose a translation, and find your way around the home screen, the reader, search, books, writing and settings.',
 }
 
 export default function Page() {
   return (
     <DocPage
       href="/docs/getting-started"
-      title="Getting started"
+      title="Get started on iPhone & iPad"
       intro="Install Lamp Bible, choose a translation and learn the main controls."
     >
       <h2>Install</h2>
@@ -22,8 +22,7 @@ export default function Page() {
         <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">
           App Store
         </a>{' '}
-        for iPhone and iPad, and a <Link href={downloadPaths.mac}>direct download</Link> for Mac
-        {isMacBeta && ', in beta'}. There is nothing to sign up for and nothing to buy. The first
+        for iPhone and iPad. There is nothing to sign up for and nothing to buy. The first
         launch unpacks the bundled module database onto the device, which takes a few seconds;
         after that the entire library works with no network connection.
       </p>
@@ -88,8 +87,8 @@ export default function Page() {
       </Table>
       <p>
         The readings themselves are covered in <Link href="/docs/reading-plans">Reading plans</Link>.
-        {' '}On a Mac, the sidebar takes the place of the home screen — see{' '}
-        <Link href="/docs/mac">The Mac app</Link>.
+        {' '}Using a Mac too? See <Link href="/docs/mac">Get started on Mac</Link>; with the same
+        sync on both, they share one library.
       </p>
 
       <h2>Choose your translation</h2>

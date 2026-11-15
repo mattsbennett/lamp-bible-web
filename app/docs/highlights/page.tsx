@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Platform } from '@/components/docs/Platform'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
@@ -52,10 +53,7 @@ export default function Page() {
 
       <h2>Colours</h2>
       <p>
-        Colours are stored as hex values, so you are not limited to a fixed palette. The highlight
-        controls in the reader’s menu start with yellow, green, blue and pink; <strong>+</strong>{' '}
-        adds any colour from the system colour picker. Drag colours to put the ones you use most
-        first — the rest fold into an overflow control — and long-press one to remove it. Your
+        Colours are stored as hex values, so you are not limited to a fixed palette, and your
         palette syncs with your settings.
       </p>
 
@@ -77,9 +75,8 @@ export default function Page() {
       <p>
         A highlight set groups highlights for one translation in a{' '}
         <Link href="/docs/modules">module</Link>. Keep separate sets for personal study, classes
-        or study series. Your first highlight in a translation creates its first set. Use the
-        module manager to create, rename or delete sets, and the highlight controls to choose
-        the active set.
+        or study series. Your first highlight in a translation creates its first set, and new
+        highlights go into the set you have chosen as the active one.
       </p>
 
       <h2>Themes: naming what a colour means</h2>
@@ -99,10 +96,42 @@ export default function Page() {
         </li>
       </ul>
       <p>
-        To add one, long-press a colour in the highlight controls and choose{' '}
-        <strong>Add Theme</strong>; the name then shows under that colour. Themes belong to the
-        active set, so a class set and a personal set can mean different things by the same colour.
+        Themes belong to the active set, so a class set and a personal set can mean different
+        things by the same colour.
       </p>
+
+      <Platform only="ios">
+        <h2>On iPhone and iPad</h2>
+        <p>
+          Tap a verse number to highlight the whole verse, or select any span of text and choose
+          Highlight. The highlight controls in the reader’s menu start with yellow, green, blue and
+          pink; <strong>+</strong> adds any colour from the system colour picker. Drag colours to
+          put the ones you use most first — the rest fold into an overflow control — and long-press
+          one to remove it. The same controls choose the active set; the module manager creates,
+          renames and deletes sets.
+        </p>
+        <p>
+          To add a theme, long-press a colour in the highlight controls and choose{' '}
+          <strong>Add Theme</strong>; the name then shows under that colour.
+        </p>
+      </Platform>
+
+      <Platform only="mac">
+        <h2>On the Mac</h2>
+        <p>
+          Right-click a verse to highlight it. To highlight part of a verse, choose{' '}
+          <strong>Highlight Words…</strong>, then a set, style and colour or a theme. You can also
+          save a new theme here. Existing highlights each have a <strong>Remove</strong> button.{' '}
+          <strong>Delete Set…</strong> deletes the set and all its highlights across translations.{' '}
+          <strong>Remove Highlight</strong> in a verse’s menu clears your highlights on that verse,
+          leaving installed module highlights intact.
+        </p>
+        <p>
+          The study column’s Notes tab shows the selected verse’s highlights and lists the
+          chapter’s highlights to go to. Its <strong>Study Data</strong> menu exports a
+          translation’s highlights as JSON or a <code>.lamp</code> module, and imports them back.
+        </p>
+      </Platform>
 
       <h2>Portability</h2>
       <p>

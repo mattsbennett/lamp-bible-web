@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Platform } from '@/components/docs/Platform'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
@@ -105,78 +106,115 @@ export default function Page() {
         takes its place.
       </p>
 
-      <h2>Managing modules</h2>
-      <p>
-        The module manager is in Settings → <strong>Module Manager</strong>. It lists what is
-        installed: first, under <strong>Personal</strong>, My Writing, My Notes and your
-        highlight sets, then each type in turn. It filters by type, or by source —{' '}
-        <strong>Built In</strong> or <strong>Yours</strong> — and gives a summary of each: verse
-        counts, entry counts, how many books a commentary series covers, how many highlights a set
-        holds, how many days a plan runs.
-      </p>
-
-      <h3>Importing</h3>
-      <p>
-        <strong>+</strong> → <strong>Import Module</strong> accepts four kinds of import:
-      </p>
-      <ul>
-        <li>
-          <strong>A <code>.lamp</code> package</strong> — any module type. Its integrity is checked
-          first, and if a module with the same identifier is already installed you are asked
-          whether to overwrite it.
-        </li>
-        <li>
-          <strong>A Bible you own</strong>, as USFM, OSIS, Zefania, plain XML or a SWORD module —
-          see <Link href="/docs/modules/import-bible">Importing a Bible</Link>.
-        </li>
-        <li>
-          <strong>Notes as markdown</strong> — verse-linked study notes, from a single file or a
-          folder.
-        </li>
-        <li>
-          <strong>Writing as markdown</strong> — either a folder of files, one piece each, or a
-          single file with several.
-        </li>
-      </ul>
-      <p>
-        Books import from the <Link href="/docs/books">Books</Link> library, which also accepts a
-        book’s source JSON and compiles it on the device. Other module types install from{' '}
-        <code>.lamp</code> files only; to turn JSON into one, see{' '}
-        <Link href="/docs/modules/building">Building a .lamp file</Link>. Because{' '}
-        <code>.lamp</code> is registered as a document type, you can also open a module from Files,
-        Mail or a share sheet and it will be handed to the app. Either way, a banner says what came
-        in once it is ready to use.
-      </p>
-
-      <h3>Creating</h3>
-      <p>
-        <strong>+</strong> → <strong>Create New Module</strong> makes an empty notes module,
-        writing collection or highlight set. Highlight sets ask which translation they belong
-        to, since <Link href="/docs/highlights">highlights are translation-specific</Link>. Modules
-        can be renamed and their descriptions edited afterwards.
-      </p>
-
-      <h3>Exporting</h3>
-      <p>
-        Notes and writing modules export as markdown from their menu in the manager, for editing
-        elsewhere. A single piece of writing also shares through the system share sheet as a{' '}
-        <code>.lamp</code> file that carries its media. See{' '}
-        <Link href="/docs/import-export">Import &amp; export</Link>.
-      </p>
-
-      <h3>Deleting and resetting</h3>
-      <p>
-        Modules can be deleted individually. My Notes and My Writing cannot be deleted, but{' '}
-        <strong>Reset</strong> clears their contents while keeping the module itself. With sync on,
-        a deletion or reset reaches your other devices too.
-      </p>
-
-      <Callout tone="warn" title="Delete and reset are destructive">
+      <Platform only="ios">
+        <h2>On iPhone and iPad</h2>
         <p>
-          A deleted module and the entries a reset clears are removed from every synced device.
-          Export anything you care about first.
+          The module manager is in Settings → <strong>Module Manager</strong>. It lists what is
+          installed: first, under <strong>Personal</strong>, My Writing, My Notes and your
+          highlight sets, then each type in turn. It filters by type, or by source —{' '}
+          <strong>Built In</strong> or <strong>Yours</strong> — and gives a summary of each: verse
+          counts, entry counts, how many books a commentary series covers, how many highlights a set
+          holds, how many days a plan runs.
         </p>
-      </Callout>
+
+        <h3>Importing</h3>
+        <p>
+          <strong>+</strong> → <strong>Import Module</strong> accepts four kinds of import:
+        </p>
+        <ul>
+          <li>
+            <strong>A <code>.lamp</code> package</strong> — any module type. Its integrity is checked
+            first, and if a module with the same identifier is already installed you are asked
+            whether to overwrite it.
+          </li>
+          <li>
+            <strong>A Bible you own</strong>, as USFM, OSIS, Zefania, plain XML or a SWORD module —
+            see <Link href="/docs/modules/import-bible">Importing a Bible</Link>.
+          </li>
+          <li>
+            <strong>Notes as markdown</strong> — verse-linked study notes, from a single file or a
+            folder.
+          </li>
+          <li>
+            <strong>Writing as markdown</strong> — either a folder of files, one piece each, or a
+            single file with several.
+          </li>
+        </ul>
+        <p>
+          Books import from the <Link href="/docs/books">Books</Link> library, which also accepts a
+          book’s source JSON and compiles it on the device. Other module types install from{' '}
+          <code>.lamp</code> files only; to turn JSON into one, see{' '}
+          <Link href="/docs/modules/building">Building a .lamp file</Link>. Because{' '}
+          <code>.lamp</code> is registered as a document type, you can also open a module from Files,
+          Mail or a share sheet and it will be handed to the app. Either way, a banner says what came
+          in once it is ready to use.
+        </p>
+
+        <h3>Creating</h3>
+        <p>
+          <strong>+</strong> → <strong>Create New Module</strong> makes an empty notes module,
+          writing collection or highlight set. Highlight sets ask which translation they belong
+          to, since <Link href="/docs/highlights">highlights are translation-specific</Link>. Modules
+          can be renamed and their descriptions edited afterwards.
+        </p>
+
+        <h3>Exporting</h3>
+        <p>
+          Notes and writing modules export as markdown from their menu in the manager, for editing
+          elsewhere. A single piece of writing also shares through the system share sheet as a{' '}
+          <code>.lamp</code> file that carries its media. See{' '}
+          <Link href="/docs/import-export">Import &amp; export</Link>.
+        </p>
+
+        <h3>Deleting and resetting</h3>
+        <p>
+          Modules can be deleted individually. My Notes and My Writing cannot be deleted, but{' '}
+          <strong>Reset</strong> clears their contents while keeping the module itself. With sync on,
+          a deletion or reset reaches your other devices too.
+        </p>
+
+        <Callout tone="warn" title="Delete and reset are destructive">
+          <p>
+            A deleted module and the entries a reset clears are removed from every synced device.
+            Export anything you care about first.
+          </p>
+        </Callout>
+      </Platform>
+
+      <Platform only="mac">
+        <h2>On the Mac</h2>
+        <p>
+          Open <strong>Modules</strong> in the sidebar to see installed content. My Writing, My Notes
+          and My Highlights appear first, followed by other module types. Each added module has a
+          menu to export or remove it. Export formats include <code>.lamp</code> and, for books,
+          writing and notes, markdown. Bundled modules are labelled <strong>Built In</strong>.{' '}
+          <strong>Import or Create Content</strong> (⇧⌘M) offers:
+        </p>
+        <ul>
+          <li>
+            <strong>Install Module</strong> — one or more <code>.lamp</code> files.
+          </li>
+          <li>
+            <strong>Import a Bible</strong> — a USFM, OSIS, Zefania or XML Bible, or a SWORD module,
+            you own. See <Link href="/docs/modules/import-bible">Importing a Bible</Link>.
+          </li>
+          <li>
+            <strong>Create Module</strong> — drop module JSON in, and the app identifies its type,
+            validates it against the schema and lists any problems. <strong>Build .lamp</strong>{' '}
+            compiles it, checks the result’s integrity and shows its SHA-256, ready to show in
+            Finder or install. Every module type can be built, books included. See{' '}
+            <Link href="/docs/modules/authoring">Authoring modules</Link>.
+          </li>
+          <li>
+            <strong>Import Personal Content</strong> — notes or writing from markdown, or notes and
+            highlights from JSON or <code>.lamp</code>.
+          </li>
+        </ul>
+        <p>
+          Double-clicking a <code>.lamp</code> or <code>.lampdeck</code> file in Finder opens it in
+          Lamp Bible too.
+        </p>
+      </Platform>
 
       <h2>Next</h2>
       <ul>

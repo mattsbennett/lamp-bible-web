@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Platform } from '@/components/docs/Platform'
 import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
@@ -15,207 +16,223 @@ export default function Page() {
       title="Slides & presenting"
       intro="Create slides on the Mac, then present with your iPhone as a remote."
     >
-      <h2>Slide Studio</h2>
       <p>
-        Decks are made in <strong>Slide Studio</strong> on the Mac. Build one from a piece of
-        writing with <strong>Build Presentation Deck</strong> in the editor’s toolbar or the Writing
-        list, or start with <strong>New Presentation Deck</strong> in the File menu. A deck you
-        built from a writing stays linked to it.
-      </p>
-      <p>
-        Use the slide list to reorder, duplicate, hide or delete slides. The inspector has two panes:
-        <strong>Slide</strong> contains layout previews, content and <strong>Skip while presenting</strong>;
-        <strong>Deck</strong> sets the title, aspect ratio (16:9 or 4:3), typeface and theme.
-        <strong>Lamp Dark</strong> and <strong>Parchment</strong> preview your first slide.
-      </p>
-      <p>
-        Decks save automatically. <strong>Undo Edit</strong> and <strong>Redo Edit</strong> group
-        typing into changes. If a deck cannot be saved, for example while its title is empty,
-        Lamp keeps a local draft and restores it when reopened. The <strong>Deck</strong> menu
-        also lets you save, import, export and delete decks.
+        Decks are built in Slide Studio on the Mac and presented from it. An iPhone or iPad runs a
+        presentation as its remote, with your speaker notes, and shows the decks you have made once
+        they sync.
       </p>
 
-      <h3>Layouts and content</h3>
-      <Table>
-        <thead>
-          <tr>
-            <th>Layout</th>
-            <th>For</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Title, Closing</td>
-            <td>Opening and closing slides, optionally with passages under the heading</td>
-          </tr>
-          <tr>
-            <td>Title &amp; Body</td>
-            <td>A heading with text, bullets or a numbered list</td>
-          </tr>
-          <tr>
-            <td>Scripture</td>
-            <td>A passage with its citation</td>
-          </tr>
-          <tr>
-            <td>Quotation</td>
-            <td>A quotation from another source, with its citation</td>
-          </tr>
-          <tr>
-            <td>Two Columns</td>
-            <td>Two passages or lists to compare, each column with its own heading</td>
-          </tr>
-          <tr>
-            <td>Image</td>
-            <td>A picture beside the text, or behind the whole slide</td>
-          </tr>
-          <tr>
-            <td>Blank</td>
-            <td>Anything else</td>
-          </tr>
-        </tbody>
-      </Table>
-      <p>
-        <strong>Choose Scripture</strong> inserts a passage from any installed translation together
-        with its citation. Quotation marks and ellipses are set typographically on the slide while
-        your text is kept as typed. Words over a background picture are kept legible by blurring
-        and tinting behind them, and images take an accessibility description.
-      </p>
-      <p>
-        To chart a Strong’s number, enter the number and translation. Optionally limit the books
-        (such as <code>NT</code> or <code>Matthew-John</code>), rendering, form or grammatical value.
-        Group counts by book, section, rendering, form, grammar, translation or associated word.
-        Choose bars, columns in Bible order, a chapter grid, proportions, or a headword card above
-        book columns.
-      </p>
-      <p>
-        Charts use the same library data as <Link href="/docs/search#analysis">word analysis</Link>
-        and match the slide’s colours. A key marks statistically unusual book frequencies, and a
-        caption identifies tags added during module creation. To reuse an analysis figure,
-        choose <strong>Add to Deck</strong> on that figure.
-      </p>
-      <p>
-        Slide Studio checks a deck as you go. Errors stop it saving, exporting or playing until
-        they are fixed; warnings — low contrast, a crowded slide, a picture without a description,
-        content a layout will not show — are listed but do not.
-      </p>
-
-      <h3>Speaker notes from your manuscript</h3>
-      <p>
-        Each slide has <strong>Presenter Notes</strong>. Write them freely, or turn on{' '}
-        <strong>Follow the writing</strong> and give each slide the phrase where its part of the
-        talk <strong>Begins at</strong>: the linked writing is then split across the slides as your
-        notes, and stays in step as you keep editing it. If you change the writing so that a phrase
-        is no longer there, the slide says so.
-      </p>
-
-      <Callout title="Let an agent draft it">
+      <Platform only="mac">
+        <h2>Slide Studio</h2>
         <p>
-          A writing’s <Link href="/docs/ai">agent workspace</Link> includes a skill that builds a
-          deck from the writing, checks it and imports it into Slide Studio, ready to edit.
+          Decks are made in <strong>Slide Studio</strong> on the Mac. Build one from a piece of
+          writing with <strong>Build Presentation Deck</strong> in the editor’s toolbar or the Writing
+          list, or start with <strong>New Presentation Deck</strong> in the File menu. A deck you
+          built from a writing stays linked to it.
         </p>
-      </Callout>
-
-      <h2>Presenting on the Mac</h2>
-      <p>
-        <strong>Play</strong> presents the deck full screen — on a second display, if one is
-        connected. Hidden slides are skipped.
-      </p>
-      <Table>
-        <thead>
-          <tr>
-            <th>To</th>
-            <th>Press</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Go forward</td>
-            <td>→, ↓, Page Down, Space, Return, or click</td>
-          </tr>
-          <tr>
-            <td>Go back</td>
-            <td>←, ↑, Page Up, ⇧Space or Delete</td>
-          </tr>
-          <tr>
-            <td>First / last slide</td>
-            <td>Home / End</td>
-          </tr>
-          <tr>
-            <td>Black the screen</td>
-            <td>B or .</td>
-          </tr>
-          <tr>
-            <td>Stop</td>
-            <td>Esc</td>
-          </tr>
-        </tbody>
-      </Table>
-      <p>
-        The pointer hides itself when it sits still. The Mac shows the audience only the slide;
-        your notes, the next slide and the time are on the remote.
-      </p>
-
-      <h2>The iPhone and iPad remote</h2>
-      <p>
-        Lamp Bible on an iPhone or iPad can run the presentation, with your speaker notes in front of
-        you.
-      </p>
-      <ol>
-        <li>
-          On the Mac, choose <strong>Pair Remote</strong> in Slide Studio. It shows a QR code and a
-          sixteen-letter code.
-        </li>
-        <li>
-          On the phone, tap the remote button at the top of the home screen. The Mac appears under{' '}
-          <strong>Nearby</strong>; choose it, then <strong>Scan QR Code</strong> or type the code.
-        </li>
-        <li>
-          From then on, the phone reconnects to that Mac without pairing again. Either side can
-          forget the other.
-        </li>
-      </ol>
-      <p>
-        The remote shows the current slide and, when there is room, the next one; your presenter
-        notes, at a size you choose; the slide number and the time since you started. Tap the slide
-        or <strong>Next</strong> to move on, use <strong>Previous</strong> or{' '}
-        <strong>Choose slide</strong> to go anywhere, and black the audience screen from the phone.
-        Pictures show as placeholders on the remote.
-      </p>
-
-      <Callout title="Same network, encrypted">
         <p>
-          The phone and the Mac must be on the same local network, or near enough for peer-to-peer
-          discovery. Both apps ask for permission to use the local network. The connection is
-          encrypted with a key that comes from pairing, and nothing passes through the internet.
-          Pair before the projector is on: anyone who sees the code can pair with that Mac.
+          Use the slide list to reorder, duplicate, hide or delete slides. The inspector has two panes:
+          <strong>Slide</strong> contains layout previews, content and <strong>Skip while presenting</strong>;
+          <strong>Deck</strong> sets the title, aspect ratio (16:9 or 4:3), typeface and theme.
+          <strong>Lamp Dark</strong> and <strong>Parchment</strong> preview your first slide.
         </p>
-      </Callout>
+        <p>
+          Decks save automatically. <strong>Undo Edit</strong> and <strong>Redo Edit</strong> group
+          typing into changes. If a deck cannot be saved, for example while its title is empty,
+          Lamp keeps a local draft and restores it when reopened. The <strong>Deck</strong> menu
+          also lets you save, import, export and delete decks.
+        </p>
+
+        <h3>Layouts and content</h3>
+        <Table>
+          <thead>
+            <tr>
+              <th>Layout</th>
+              <th>For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Title, Closing</td>
+              <td>Opening and closing slides, optionally with passages under the heading</td>
+            </tr>
+            <tr>
+              <td>Title &amp; Body</td>
+              <td>A heading with text, bullets or a numbered list</td>
+            </tr>
+            <tr>
+              <td>Scripture</td>
+              <td>A passage with its citation</td>
+            </tr>
+            <tr>
+              <td>Quotation</td>
+              <td>A quotation from another source, with its citation</td>
+            </tr>
+            <tr>
+              <td>Two Columns</td>
+              <td>Two passages or lists to compare, each column with its own heading</td>
+            </tr>
+            <tr>
+              <td>Image</td>
+              <td>A picture beside the text, or behind the whole slide</td>
+            </tr>
+            <tr>
+              <td>Blank</td>
+              <td>Anything else</td>
+            </tr>
+          </tbody>
+        </Table>
+        <p>
+          <strong>Choose Scripture</strong> inserts a passage from any installed translation together
+          with its citation. Quotation marks and ellipses are set typographically on the slide while
+          your text is kept as typed. Words over a background picture are kept legible by blurring
+          and tinting behind them, and images take an accessibility description.
+        </p>
+        <p>
+          To chart a Strong’s number, enter the number and translation. Optionally limit the books
+          (such as <code>NT</code> or <code>Matthew-John</code>), rendering, form or grammatical value.
+          Group counts by book, section, rendering, form, grammar, translation or associated word.
+          Choose bars, columns in Bible order, a chapter grid, proportions, or a headword card above
+          book columns.
+        </p>
+        <p>
+          Charts use the same library data as <Link href="/docs/search#analysis">word analysis</Link>
+          and match the slide’s colours. A key marks statistically unusual book frequencies, and a
+          caption identifies tags added during module creation. To reuse an analysis figure,
+          choose <strong>Add to Deck</strong> on that figure.
+        </p>
+        <p>
+          Slide Studio checks a deck as you go. Errors stop it saving, exporting or playing until
+          they are fixed; warnings — low contrast, a crowded slide, a picture without a description,
+          content a layout will not show — are listed but do not.
+        </p>
+
+        <h3>Speaker notes from your manuscript</h3>
+        <p>
+          Each slide has <strong>Presenter Notes</strong>. Write them freely, or turn on{' '}
+          <strong>Follow the writing</strong> and give each slide the phrase where its part of the
+          talk <strong>Begins at</strong>: the linked writing is then split across the slides as your
+          notes, and stays in step as you keep editing it. If you change the writing so that a phrase
+          is no longer there, the slide says so.
+        </p>
+
+        <Callout title="Let an agent draft it">
+          <p>
+            A writing’s <Link href="/docs/ai">agent workspace</Link> includes a skill that builds a
+            deck from the writing, checks it and imports it into Slide Studio, ready to edit.
+          </p>
+        </Callout>
+
+        <h2>Presenting on the Mac</h2>
+        <p>
+          <strong>Play</strong> presents the deck full screen — on a second display, if one is
+          connected. Hidden slides are skipped.
+        </p>
+        <Table>
+          <thead>
+            <tr>
+              <th>To</th>
+              <th>Press</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Go forward</td>
+              <td>→, ↓, Page Down, Space, Return, or click</td>
+            </tr>
+            <tr>
+              <td>Go back</td>
+              <td>←, ↑, Page Up, ⇧Space or Delete</td>
+            </tr>
+            <tr>
+              <td>First / last slide</td>
+              <td>Home / End</td>
+            </tr>
+            <tr>
+              <td>Black the screen</td>
+              <td>B or .</td>
+            </tr>
+            <tr>
+              <td>Stop</td>
+              <td>Esc</td>
+            </tr>
+          </tbody>
+        </Table>
+        <p>
+          The pointer hides itself when it sits still. The Mac shows the audience only the slide;
+          your notes, the next slide and the time are on the remote.
+        </p>
+      </Platform>
+
+      <Platform only="ios">
+        <h2>The iPhone and iPad remote</h2>
+        <p>
+          Lamp Bible on an iPhone or iPad can run the presentation, with your speaker notes in front of
+          you.
+        </p>
+        <ol>
+          <li>
+            On the Mac, choose <strong>Pair Remote</strong> in Slide Studio. It shows a QR code and a
+            sixteen-letter code.
+          </li>
+          <li>
+            On the phone, tap the remote button at the top of the home screen. The Mac appears under{' '}
+            <strong>Nearby</strong>; choose it, then <strong>Scan QR Code</strong> or type the code.
+          </li>
+          <li>
+            From then on, the phone reconnects to that Mac without pairing again. Either side can
+            forget the other.
+          </li>
+        </ol>
+        <p>
+          The remote shows the current slide and, when there is room, the next one; your presenter
+          notes, at a size you choose; the slide number and the time since you started. Tap the slide
+          or <strong>Next</strong> to move on, use <strong>Previous</strong> or{' '}
+          <strong>Choose slide</strong> to go anywhere, and black the audience screen from the phone.
+          Pictures show as placeholders on the remote.
+        </p>
+
+        <Callout title="Same network, encrypted">
+          <p>
+            The phone and the Mac must be on the same local network, or near enough for peer-to-peer
+            discovery. Both apps ask for permission to use the local network. The connection is
+            encrypted with a key that comes from pairing, and nothing passes through the internet.
+            Pair before the projector is on: anyone who sees the code can pair with that Mac.
+          </p>
+        </Callout>
+      </Platform>
 
       <h2>Sharing and printing decks</h2>
-      <ul>
-        <li>
-          <strong>Export PDF</strong> in the Deck menu makes a PDF of the slides, one per page
-          (<strong>Slides Only…</strong>), or of each slide above its speaker notes for printing
-          (<strong>Slides with Speaker Notes…</strong>). Hidden slides are left out, and the pages
-          are numbered as the slides are presented.
-        </li>
-        <li>
-          <strong>Export Deck…</strong> saves a <code>.lampdeck</code> file, which another Mac can
-          open in Slide Studio with <strong>Import Deck…</strong>. Pictures are not included in the
-          file.
-        </li>
-        <li>
-          Decks sync to your other devices. On iPhone and iPad, <strong>Slide Decks</strong> in the
-          Write library’s menu shows each deck as a card with its first slides listed, and a writing
-          with a deck shows a <strong>Slides</strong> button. A deck opens full screen — on an
-          iPhone, turned sideways — one slide at a time, skipping hidden slides, with its presenter
-          notes and a list of slides to jump to. Decks are edited only on the Mac.
-        </li>
-        <li>
-          Deleting a writing deletes the decks built from it, on every device; the Mac names them
-          before it does.
-        </li>
-      </ul>
+      <p>
+        Decks sync to your other devices, and are edited only on the Mac. Deleting a writing deletes
+        the decks built from it, on every device; the Mac names them before it does.
+      </p>
+
+      <Platform only="mac">
+        <ul>
+          <li>
+            <strong>Export PDF</strong> in the Deck menu makes a PDF of the slides, one per page
+            (<strong>Slides Only…</strong>), or of each slide above its speaker notes for printing
+            (<strong>Slides with Speaker Notes…</strong>). Hidden slides are left out, and the
+            pages are numbered as the slides are presented.
+          </li>
+          <li>
+            <strong>Export Deck…</strong> saves a <code>.lampdeck</code> file, which another Mac can
+            open in Slide Studio with <strong>Import Deck…</strong>. Pictures are not included in
+            the file.
+          </li>
+        </ul>
+      </Platform>
+
+      <Platform only="ios">
+        <p>
+          On iPhone and iPad, <strong>Slide Decks</strong> in the Write library’s menu shows each
+          deck as a card with its first slides listed, and a writing with a deck shows a{' '}
+          <strong>Slides</strong> button. A deck opens full screen — on an iPhone, turned sideways —
+          one slide at a time, skipping hidden slides, with its presenter notes and a list of slides
+          to jump to.
+        </p>
+      </Platform>
     </DocPage>
   )
 }

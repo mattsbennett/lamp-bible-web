@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Platform } from '@/components/docs/Platform'
 import { DocPage, Callout } from '@/components/docs/DocPage'
 
 export const metadata: Metadata = {
@@ -27,61 +28,70 @@ export default function Page() {
         <Link href="/docs/modules/authoring">book schema</Link>.
       </p>
 
-      <h2>The library</h2>
-      <p>
-        Open <strong>Books</strong> on the home screen to browse installed books by cover.
-        Started books appear under <strong>Continue Reading</strong>. The rest are grouped by
-        genre, with uncategorised titles under <strong>Other Books</strong>. Choose{' '}
-        <strong>Group By</strong> → <strong>None</strong> for a single shelf, or search by title,
-        author or tag. To add a book, choose <strong>Import Book</strong> and select a{' '}
-        <code>.lamp</code> file or source JSON, which Lamp compiles on the device. You can also
-        open book files from Files, Mail or AirDrop.
-      </p>
-
-      <h2>Reading</h2>
-      <ul>
-        <li>
-          <strong>Contents</strong> shows the book’s outline, with your bookmarks above it, and
-          searches within the book. <strong>Bookmark Section</strong> in the toolbar marks the
-          section you are in.
-        </li>
-        <li>
-          <strong>Text Settings</strong> sets the book’s typeface, text size and line spacing.
-        </li>
-        <li>
-          Each section can name the passages it is about; tap one to open it in the{' '}
-          <Link href="/docs/reader">reader</Link>.
-        </li>
-        <li>
-          Scripture references open the passage, Strong’s numbers open the lexicon, and footnote
-          markers open their note.
-        </li>
-        <li>Images open full screen; audio plays in place, with a seekable waveform.</li>
-        <li>Previous and next buttons at the foot of each section step through the book.</li>
-        <li>
-          The book’s own row at the top of Contents opens its <strong>Details</strong>: the
-          publication record, tags and rights statement.
-        </li>
-        <li>Books written right to left are laid out right to left.</li>
-      </ul>
-      <p>
-        The app remembers the last section you read in each book, on that device.
-      </p>
-
-      <Callout title="On a Mac">
-        <p>
-          The Mac reads books in three panes — contents, text and details — with bookmarks, its
-          own text settings, and a reading position that syncs between Macs. Its list of books is
-          grouped by genre the same way, and <strong>Group Books</strong> turns that off.
-        </p>
-      </Callout>
-
       <h2>Finding things in books</h2>
       <p>
         Every installed book is in the full-text index. Search across your modules and book
         sections appear alongside commentary and notes; a result opens the book at that section.
         See <Link href="/docs/search">Search</Link>.
       </p>
+
+      <Platform only="ios">
+        <h2>On iPhone and iPad</h2>
+
+        <h3>The library</h3>
+        <p>
+          Open <strong>Books</strong> on the home screen to browse installed books by cover.
+          Started books appear under <strong>Continue Reading</strong>. The rest are grouped by
+          genre, with uncategorised titles under <strong>Other Books</strong>. Choose{' '}
+          <strong>Group By</strong> → <strong>None</strong> for a single shelf, or search by title,
+          author or tag. To add a book, choose <strong>Import Book</strong> and select a{' '}
+          <code>.lamp</code> file or source JSON, which Lamp compiles on the device. You can also
+          open book files from Files, Mail or AirDrop.
+        </p>
+
+        <h3>Reading</h3>
+        <ul>
+          <li>
+            <strong>Contents</strong> shows the book’s outline, with your bookmarks above it, and
+            searches within the book. <strong>Bookmark Section</strong> in the toolbar marks the
+            section you are in.
+          </li>
+          <li>
+            <strong>Text Settings</strong> sets the book’s typeface, text size and line spacing.
+          </li>
+          <li>
+            Each section can name the passages it is about; tap one to open it in the{' '}
+            <Link href="/docs/reader">reader</Link>.
+          </li>
+          <li>
+            Scripture references open the passage, Strong’s numbers open the lexicon, and footnote
+            markers open their note.
+          </li>
+          <li>Images open full screen; audio plays in place, with a seekable waveform.</li>
+          <li>Previous and next buttons at the foot of each section step through the book.</li>
+          <li>
+            The book’s own row at the top of Contents opens its <strong>Details</strong>: the
+            publication record, tags and rights statement.
+          </li>
+          <li>Books written right to left are laid out right to left.</li>
+        </ul>
+        <p>
+          The app remembers the last section you read in each book, on that device.
+        </p>
+      </Platform>
+
+      <Platform only="mac">
+        <h2>On the Mac</h2>
+        <p>
+          <strong>Books</strong> in the sidebar reads in three resizable columns — your books,
+          grouped by genre unless you choose otherwise from <strong>Group Books</strong>, the
+          contents, and the text — with search within the book, bookmarks, and your own typeface,
+          size and spacing. Your place, down to the paragraph, and your bookmarks sync between
+          Macs. <strong>Open in Book Reader</strong> moves a book into a window of its own, and{' '}
+          <strong>Share Section</strong> copies a link straight to the section. ⌥⌘← and ⌥⌘→ step
+          between sections.
+        </p>
+      </Platform>
 
       <Callout tone="warn" title="Licensing">
         <p>

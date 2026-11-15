@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { allDocLinks } from '@/lib/docs-nav'
 import { uniqueSlugger } from '@/lib/slug'
 import { OnThisPage, OnThisPageFolded, type TocItem } from '@/components/docs/OnThisPage'
+import { Platform, type Device } from '@/components/docs/Platform'
+import { DeviceSwitch } from '@/components/docs/DeviceSwitch'
 
 /** An element's words, as a heading's anchor and its contents entry read them. */
 function textOf(node: ReactNode): string {
@@ -14,24 +16,30 @@ function textOf(node: ReactNode): string {
 
 /**
  * Gives each heading in the body an id, by the rule the docs search links with, and lists the
- * sections for the page's contents. Headings sit directly in the body, or in a fragment there.
+ * sections for the page's contents. Headings sit directly in the body, in a fragment there, or in
+ * a section for one app, whose sub-headings are listed too, marked with the app they belong to.
  */
 function withAnchors(children: ReactNode) {
   const slug = uniqueSlugger()
   const toc: TocItem[] = []
-  const walk = (nodes: ReactNode): ReactNode =>
+  let hasPlatforms = false
+  const walk = (nodes: ReactNode, only?: Device): ReactNode =>
     Children.map(nodes, (node) => {
       if (!isValidElement(node)) return node
-      const element = node as ReactElement<{ id?: string; children?: ReactNode }>
-      if (element.type === Fragment) return <Fragment>{walk(element.props.children)}</Fragment>
+      const element = node as ReactElement<{ id?: string; only?: Device; children?: ReactNode }>
+      if (element.type === Fragment) return <Fragment>{walk(element.props.children, only)}</Fragment>
+      if (element.type === Platform) {
+        hasPlatforms = true
+        return cloneElement(element, {}, walk(element.props.children, element.props.only))
+      }
       if (element.type !== 'h2' && element.type !== 'h3') return element
       const title = textOf(element.props.children)
       const id = slug(title, element.props.id)
-      if (element.type === 'h2') toc.push({ id, title })
+      if (element.type === 'h2' || only) toc.push({ id, title, level: element.type === 'h2' ? 2 : 3, only })
       return cloneElement(element, { id })
     })
   const content = walk(children)
-  return { content, toc }
+  return { content, toc, hasPlatforms }
 }
 
 /**
@@ -53,9 +61,9 @@ export function DocPage({
   const index = allDocLinks.findIndex((l) => l.href === href)
   const prev = index > 0 ? allDocLinks[index - 1] : undefined
   const next = index >= 0 && index < allDocLinks.length - 1 ? allDocLinks[index + 1] : undefined
-  const { content, toc } = withAnchors(children)
+  const { content, toc, hasPlatforms } = withAnchors(children)
   // A page of one or two sections is its own contents.
-  const hasContents = toc.length > 2
+  const hasContents = toc.filter((item) => item.level === 2).length > 2
 
   return (
     <div className={hasContents ? 'xl:grid xl:grid-cols-[minmax(0,1fr)_12rem] xl:gap-12' : ''}>
@@ -64,6 +72,10 @@ export function DocPage({
           <h1 className="font-serif text-3xl tracking-tight sm:text-4xl">{title}</h1>
           <p className="mt-3 max-w-2xl text-lg leading-relaxed text-muted">{intro}</p>
         </header>
+
+        {/* On a narrow screen the sidebar's device switch is out of sight, so a page with
+            sections for one app carries its own. */}
+        {hasPlatforms && <DeviceSwitch className="mb-6 lg:hidden" />}
 
         {hasContents && (
           <div className="mb-10 xl:hidden">

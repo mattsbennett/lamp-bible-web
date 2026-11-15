@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { docsNav } from '@/lib/docs-nav'
+import { docsNav, type DocLink } from '@/lib/docs-nav'
 
 export function DocsSidebar() {
   const pathname = usePathname()
@@ -43,6 +43,7 @@ export function DocsSidebar() {
                       }
                     >
                       {link.title}
+                      <DeviceTag link={link} />
                     </Link>
                   </li>
                 )
@@ -52,5 +53,20 @@ export function DocsSidebar() {
         ))}
       </ul>
     </nav>
+  )
+}
+
+/**
+ * Marks a page that is about one app only, unless its title already says which, as "Get started
+ * on Mac" does.
+ */
+export function DeviceTag({ link }: { link: DocLink }) {
+  if (!link.only) return null
+  const name = link.only === 'mac' ? 'Mac' : 'iPhone'
+  if (link.title.includes(name)) return null
+  return (
+    <span className="ml-2 rounded-full border border-line px-1.5 py-px align-[1px] text-[0.65rem] font-medium uppercase tracking-wide text-faint">
+      {name}
+    </span>
   )
 }

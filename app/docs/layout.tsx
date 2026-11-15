@@ -3,6 +3,7 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { DocsSidebar } from '@/components/docs/DocsSidebar'
 import { DocsSearch } from '@/components/docs/DocsSearch'
 import { DocsMobileMenu } from '@/components/docs/DocsMobileMenu'
+import { DeviceSwitch } from '@/components/docs/DeviceSwitch'
 import { docsIndex } from '@/lib/docs-index'
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
@@ -16,6 +17,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           {/* Held under the header, the search fixed above a list that scrolls on its own, so the
               list's foot is reachable on a long page and the results are never clipped by it. */}
           <div className="sticky top-16 flex max-h-[calc(100dvh-4rem)] flex-col pt-14">
+            <DeviceSwitch className="mb-5 shrink-0" />
             <div className="relative z-10 mb-7 shrink-0">
               <DocsSearch entries={entries} shortcut />
             </div>

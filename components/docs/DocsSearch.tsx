@@ -3,6 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { DocsEntry } from '@/lib/docs-index'
+import { revealDevice } from '@/components/docs/DeviceSwitch'
 
 /** Words as the search compares them: no case, no accents, one kind of apostrophe. */
 function fold(text: string) {
@@ -67,6 +68,8 @@ export function DocsSearch({
   }, [shortcut])
 
   const go = (entry: DocsEntry) => {
+    // A result in a section the device switch hides would open on nothing.
+    revealDevice(entry.only)
     setOpen(false)
     setQuery('')
     input.current?.blur()
@@ -153,7 +156,14 @@ export function DocsSearch({
               onMouseEnter={() => setActive(i)}
               className={`cursor-pointer rounded-lg px-3 py-2 ${i === active ? 'bg-sunken' : ''}`}
             >
-              <span className="block text-sm font-medium text-ink">{entry.heading ?? entry.page}</span>
+              <span className="flex items-baseline gap-2 text-sm font-medium text-ink">
+                {entry.heading ?? entry.page}
+                {entry.only && (
+                  <span className="rounded-full border border-line px-1.5 text-[0.65rem] font-medium uppercase tracking-wide text-faint">
+                    {entry.only === 'mac' ? 'Mac' : 'iPhone'}
+                  </span>
+                )}
+              </span>
               <span className="mt-0.5 block truncate text-xs text-muted">
                 {entry.heading ? `${entry.section} · ${entry.page}` : entry.detail}
               </span>

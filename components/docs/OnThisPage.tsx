@@ -2,7 +2,16 @@
 
 import { useEffect, useState } from 'react'
 
-export type TocItem = { id: string; title: string }
+export type TocItem = {
+  id: string
+  title: string
+  /** 3 for a sub-section, listed under its section. */
+  level?: 2 | 3
+  /** The app a section is for, so its entry folds away with it. */
+  only?: 'ios' | 'mac'
+}
+
+const itemClass = (item: TocItem) => `${item.only ? `only-${item.only}` : ''} ${item.level === 3 ? 'pl-3' : ''}`
 
 /**
  * The page's sections, beside it on a wide screen. The one being read is marked: the last whose
@@ -17,13 +26,15 @@ export function OnThisPage({ items }: { items: TocItem[] }) {
       .filter((heading): heading is HTMLElement => heading !== null)
     const update = () => {
       const line = window.innerHeight * 0.25
-      let reached: string | undefined = headings[0]?.id
-      for (const heading of headings) {
+      // Sections the device switch has folded away take no part.
+      const shown = headings.filter((heading) => heading.offsetParent !== null)
+      let reached: string | undefined = shown[0]?.id
+      for (const heading of shown) {
         if (heading.getBoundingClientRect().top <= line) reached = heading.id
       }
       // At the foot of the page the last section is the one being read, however short.
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
-        reached = headings.at(-1)?.id
+        reached = shown.at(-1)?.id
       }
       setCurrent(reached)
     }
@@ -41,11 +52,11 @@ export function OnThisPage({ items }: { items: TocItem[] }) {
       <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-faint">On this page</p>
       <ul className="space-y-0.5 border-l border-line text-sm">
         {items.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className={itemClass(item)}>
             <a
               href={`#${item.id}`}
               aria-current={current === item.id ? 'location' : undefined}
-              className={`-ml-px block border-l-2 py-1 pl-3.5 leading-snug transition-colors ${
+              className={`-ml-px block border-l-2 py-1 pl-3.5 leading-snug transition-colors ${item.level === 3 ? 'text-[0.8rem]' : ''} ${
                 current === item.id
                   ? 'border-[var(--accent)] text-ink'
                   : 'border-transparent text-muted hover:border-line-strong hover:text-ink'
@@ -72,7 +83,7 @@ export function OnThisPageFolded({ items }: { items: TocItem[] }) {
       </summary>
       <ul className="border-t border-line px-4 py-2.5 text-sm">
         {items.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className={itemClass(item)}>
             <a href={`#${item.id}`} className="block py-1.5 text-muted hover:text-ink">
               {item.title}
             </a>
