@@ -52,7 +52,7 @@ export default function Page() {
             <td>
               Settings → <strong>Module Manager</strong> → <strong>+</strong> → Import Module →{' '}
               <strong>Import Notes from Markdown</strong> or{' '}
-              <strong>Import Devotionals from Markdown</strong>. Choose one file or a folder of
+              <strong>Import Writing from Markdown</strong>. Choose one file or a folder of
               files, then the collection it goes into, or a new one.
             </td>
           </tr>
