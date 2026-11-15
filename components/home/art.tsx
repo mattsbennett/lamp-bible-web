@@ -279,6 +279,201 @@ export function ReaderArt() {
   )
 }
 
+/** The KJV's divine name, in small capitals as the reader sets it apart. */
+function Lord() {
+  return <span className="text-[0.8em] tracking-[0.05em]">LORD</span>
+}
+
+/**
+ * The hero's iPhone: the reader at Psalm 119, a verse a line as the KJV's poetry is set, with
+ * the verse the site takes its name from highlighted. It rises from the foot of the hero.
+ */
+export function HeroArt({
+  whole = false,
+  height = 'h-[380px] sm:h-[440px] lg:h-[500px]',
+}: {
+  /** The whole phone, bottom and all, where it stands on its own rather than rising from an edge. */
+  whole?: boolean
+  height?: string
+} = {}) {
+  const verses: Array<[number, ReactNode]> = [
+    [103, 'How sweet are thy words unto my taste! yea, sweeter than honey to my mouth!'],
+    [104, 'Through thy precepts I get understanding: therefore I hate every false way.'],
+    [105, <span key="105" style={highlightFill('#FFCC00')}>Thy word is a lamp unto my feet, and a light unto my path.</span>],
+    [106, 'I have sworn, and I will perform it, that I will keep thy righteous judgments.'],
+    [107, <>I am afflicted very much: quicken me, O <Lord />, according unto thy word.</>],
+    [108, <>Accept, I beseech thee, the freewill offerings of my mouth, O <Lord />, and teach me thy judgments.</>],
+    [109, 'My soul is continually in my hand: yet do I not forget thy law.'],
+    [110, 'The wicked have laid a snare for me: yet I erred not from thy precepts.'],
+    [111, 'Thy testimonies have I taken as an heritage for ever: for they are the rejoicing of my heart.'],
+  ]
+  return (
+    <Art label="Lamp Bible on iPhone at Psalm 119 in the KJV, a verse to a line, with verse 105 — “Thy word is a lamp unto my feet, and a light unto my path” — highlighted in yellow.">
+      <Phone height={height} whole={whole} className="!max-w-[19.5rem]">
+        <ReaderHeader translation="KJV" chapter="Psalm 119" />
+        <div className="space-y-[7px] px-[18px] pt-[10px]">
+          {verses.map(([n, text]) => (
+            <Scripture key={n} className="!text-[14px] !leading-[1.55]">
+              <V n={n} />
+              {text}
+            </Scripture>
+          ))}
+        </div>
+      </Phone>
+    </Art>
+  )
+}
+
+/**
+ * The hero on a wide screen: a MacBook with the Mac reader at Psalm 119 — the passage capsule in
+ * the toolbar, tabs under it, verse 105 selected, highlighted and noted, and the study column on
+ * Notes showing that verse's highlight and note.
+ */
+export function HeroLaptopArt() {
+  const verses: Array<[number, ReactNode]> = [
+    [103, 'How sweet are thy words unto my taste! yea, sweeter than honey to my mouth!'],
+    [104, 'Through thy precepts I get understanding: therefore I hate every false way.'],
+    [105, <span key="105" style={highlightFill('#FFCC00')}>Thy word is a lamp unto my feet, and a light unto my path.</span>],
+    [106, 'I have sworn, and I will perform it, that I will keep thy righteous judgments.'],
+    [107, <>I am afflicted very much: quicken me, O <Lord />, according unto thy word.</>],
+    [108, <>Accept, I beseech thee, the freewill offerings of my mouth, O <Lord />, and teach me thy judgments.</>],
+    [109, 'My soul is continually in my hand: yet do I not forget thy law.'],
+    [110, 'The wicked have laid a snare for me: yet I erred not from thy precepts.'],
+    [111, 'Thy testimonies have I taken as an heritage for ever: for they are the rejoicing of my heart.'],
+    [112, 'I have inclined mine heart to perform thy statutes alway, even unto the end.'],
+  ]
+  return (
+    <Art label="Lamp Bible on a MacBook: the reader at Psalm 119 in the KJV, in a tab beside John 1 and Romans 8, with verse 105 selected, highlighted in yellow and marked with a note. The study column beside it is on Notes, with the highlight colours, yellow chosen, and a note titled “A lamp, not a floodlight”: “Light enough for the next step, not the whole road.”">
+      <div className="mx-auto w-full max-w-[44rem]">
+        {/* The screen: a black bezel round the window, the camera's notch at its top. */}
+        <div className="relative rounded-t-[18px] border-[9px] border-b-[11px] border-[#0c0c0d] bg-[#0c0c0d] shadow-[0_30px_60px_-30px_rgb(28_18_8/0.6)]">
+          <span className="absolute left-1/2 top-[-9px] z-10 h-[9px] w-[64px] -translate-x-1/2 rounded-b-[5px] bg-[#0c0c0d]" />
+          <MacWindow
+            className="!rounded-[6px] !border-0 !shadow-none"
+            leading={
+              <span className={`hidden items-center gap-[10px] @lg:flex ${label2}`}>
+                <Sym name="sidebarLeft" className="h-[12px] w-[12px]" />
+                <Sym name="uturnBackward" className="h-[11px] w-[11px]" />
+                <Sym name="uturnForward" className={`h-[11px] w-[11px] ${label3}`} />
+                <Sym name="clockArrow" className="h-[11px] w-[11px]" />
+              </span>
+            }
+            toolbar={
+              <>
+                <MacGlass className="!gap-[9px]">
+                  <span className="flex">
+                    <Sym name="chevronLeft" className="h-[8px] w-[8px]" />
+                    <Sym name="chevronLeft" className="-ml-[4px] h-[8px] w-[8px]" />
+                  </span>
+                  <Sym name="chevronLeft" className="h-[8px] w-[8px]" />
+                  <span className="flex items-center gap-[5px] font-medium">
+                    <Glyph name="booksVertical" className="h-[10px] w-[10px]" />
+                    KJV · Psalms 119
+                    <Sym name="chevronDown" className={`h-[6px] w-[6px] ${label2}`} />
+                  </span>
+                  <Sym name="chevronRight" className="h-[8px] w-[8px]" />
+                  <span className="flex">
+                    <Sym name="chevronRight" className="h-[8px] w-[8px]" />
+                    <Sym name="chevronRight" className="-ml-[4px] h-[8px] w-[8px]" />
+                  </span>
+                </MacGlass>
+                <MacGlass className="hidden !gap-[9px] @lg:flex">
+                  <span className="text-[10px] font-medium">Aa</span>
+                  <Glyph name="speakerWave2" className="h-[11px] w-[11px]" />
+                </MacGlass>
+                <MacGlass className="!px-[3px]">
+                  <span className="flex h-[17px] w-[17px] items-center justify-center rounded-full bg-[var(--sys-label2)] text-[color:var(--mac-window)]">
+                    <Sym name="sidebarLeft" className="h-[11px] w-[11px] -scale-x-100" />
+                  </span>
+                </MacGlass>
+              </>
+            }
+          >
+            <MacTabBar tabs={[{ title: 'Psalms 119', open: true }, { title: 'John 1' }, { title: 'Romans 8' }]} />
+            <div className="grid h-[19rem] grid-cols-[minmax(0,1fr)] @lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
+              <div className="overflow-hidden bg-[var(--lamp-page)] px-[28px] pt-[16px]">
+                <div className="mx-auto max-w-[24rem] space-y-[6px]">
+                  {verses.map(([n, text]) => (
+                    <div key={n} className="relative">
+                      {n === 105 && (
+                        <>
+                          {/* The selected verse's bar, and its note, in the margin. */}
+                          <span className="absolute -left-[14px] bottom-[2px] top-[2px] w-[2.5px] rounded-full bg-[var(--sys-tint)]" />
+                          <Sym name="noteText" className="absolute -left-[26px] top-[3px] h-[10px] w-[10px] text-[color:var(--sys-orange)]" />
+                        </>
+                      )}
+                      <Scripture className="!text-[12.5px] !leading-[1.55]">
+                        <V n={n} />
+                        {text}
+                      </Scripture>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className={`hidden border-l ${sep} bg-[var(--mac-inspector)] @lg:block`}>
+                <div className={`flex gap-[10px] border-b ${sep} px-[12px] pt-[8px] text-[9px]`}>
+                  {['Commentary', 'Verse', 'Notes', 'Dictionary'].map((tab) => (
+                    <span
+                      key={tab}
+                      className={`border-b-[2px] pb-[4px] ${
+                        tab === 'Notes' ? 'border-[color:var(--sys-tint)] font-semibold' : 'border-transparent text-[color:var(--mac-secondary)]'
+                      }`}
+                    >
+                      {tab}
+                    </span>
+                  ))}
+                </div>
+                <div className="space-y-[12px] px-[12px] py-[11px]">
+                  <p className="text-[12px] font-bold">Psalms 119:105</p>
+                  <div>
+                    <p className={`flex items-center gap-[4px] text-[8.5px] font-semibold ${label2}`}>
+                      <Sym name="highlighter" className="h-[9px] w-[9px]" />
+                      Highlight
+                    </p>
+                    {/* The palette the Mac offers, Yellow chosen. */}
+                    <div className="mt-[7px] flex items-center gap-[8px]">
+                      {['#FFCC00', '#34C759', '#007AFF', '#FF2D55', '#FF9500', '#AF52DE'].map((hex, i) => (
+                        <span
+                          key={hex}
+                          className={`h-[13px] w-[13px] rounded-full ${i === 0 ? 'ring-2 ring-[color:var(--sys-label2)] ring-offset-1 ring-offset-[var(--mac-inspector)]' : ''}`}
+                          style={{ backgroundColor: hex }}
+                        />
+                      ))}
+                      <Sym name="xmarkCircleFill" className={`h-[12px] w-[12px] ${label3}`} />
+                    </div>
+                  </div>
+                  <span className={`block border-t ${sep}`} />
+                  <div>
+                    <p className={`flex items-center gap-[4px] text-[8.5px] font-semibold ${label2}`}>
+                      <Sym name="noteText" className="h-[9px] w-[9px]" />
+                      Personal Note
+                    </p>
+                    <p className="mt-[6px] rounded-[5px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-control)] px-[7px] py-[3px] text-[9.5px]">
+                      A lamp, not a floodlight
+                    </p>
+                    <div className="mt-[6px] rounded-[5px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-control)] px-[8px] py-[7px] text-[9.5px] leading-[1.5]">
+                      <p>
+                        Light enough for the next step, not the whole road. Compare{' '}
+                        <span className={blue}>Proverbs 6:23</span>.
+                      </p>
+                      <span className="mt-[7px] block h-[4px] w-[70%] rounded-full bg-[var(--sys-fill)]" />
+                      <span className="mt-[5px] block h-[4px] w-[45%] rounded-full bg-[var(--sys-fill)]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </MacWindow>
+        </div>
+        {/* The base: wider than the screen, with the thumb notch in its lip. */}
+        <div className="relative -mx-[6%] h-[12px] rounded-b-[12px] bg-gradient-to-b from-[#d9d9dc] to-[#a9a9ae] shadow-[0_14px_24px_-14px_rgb(28_18_8/0.55)] dark:from-[#5a5a5e] dark:to-[#3a3a3e]">
+          <span className="absolute left-1/2 top-0 h-[5px] w-[16%] -translate-x-1/2 rounded-b-[6px] bg-[#bdbdc1] dark:bg-[#48484c]" />
+        </div>
+      </div>
+    </Art>
+  )
+}
+
 /** The Treasury of Scripture Knowledge's notes on Romans 8:28, as the bundled module has them. */
 const tskRomans828: Array<[keyword: string, references: string]> = [
   ['we know', 'Rom 8:35-39; Rom 5:3; Rom 5:4; Gen 50:20; Deut 8:2; Deut 8:3; Deut 8:16; Ps 46:1…'],

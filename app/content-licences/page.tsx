@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { Callout, Table } from '@/components/docs/DocPage'
+import { OnThisPage, OnThisPageFolded } from '@/components/docs/OnThisPage'
 
 export const metadata: Metadata = {
   title: 'Content licences',
@@ -12,11 +14,56 @@ export const metadata: Metadata = {
 
 const externalProps = { target: '_blank', rel: 'noopener noreferrer' } as const
 
+const sections = [
+  { id: 'translations', title: 'Translations' },
+  { id: 'lexicons', title: 'Lexicons' },
+  { id: 'cross-references', title: 'Cross-references' },
+  { id: 'reading-plans-and-quizzes', title: 'Reading plans and quizzes' },
+  { id: 'user-created-modules', title: 'User-created modules' },
+  { id: 'corrections', title: 'Corrections' },
+]
+
+/** Which kind of rights basis a work rests on, told apart by a dot as well as by its words. */
+const kinds = {
+  public: { colour: '#3f9a5f', name: 'Public domain' },
+  open: { colour: '#4a7fd1', name: 'Open licence' },
+  grant: { colour: '#c98a1b', name: 'Permission or grant' },
+}
+
+function Rights({ kind, children }: { kind: keyof typeof kinds; children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-sunken px-2.5 py-0.5 text-[0.8rem] font-medium">
+      <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: kinds[kind].colour }} />
+      {children}
+    </span>
+  )
+}
+
+/** A source's note of changes, a click away so the notices above it stay readable. */
+function Changes({ children }: { children: ReactNode }) {
+  return (
+    <details className="group rounded-xl border border-line bg-raised">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-medium [&::-webkit-details-marker]:hidden">
+        What Lamp Bible changed
+        <svg viewBox="0 0 12 12" className="h-3 w-3 shrink-0 text-faint transition-transform group-open:rotate-180" aria-hidden="true">
+          <path d="m2.5 4.5 3.5 3.5 3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </summary>
+      <div className="space-y-4 border-t border-line px-4 py-4 text-[0.95rem] leading-relaxed">{children}</div>
+    </details>
+  )
+}
+
+function Note({ children }: { children: ReactNode }) {
+  return <span className="mt-1 block text-[0.8rem] leading-snug text-muted">{children}</span>
+}
+
 export default function ContentLicences() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-20">
+      <main className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-20 xl:grid xl:grid-cols-[minmax(0,1fr)_12rem] xl:gap-14">
+        <div className="min-w-0">
         <header className="border-b border-line pb-8">
           <h1 className="font-serif text-3xl tracking-tight sm:text-4xl">Content licences</h1>
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
@@ -24,6 +71,10 @@ export default function ContentLicences() {
           </p>
           <p className="mt-3 text-sm text-faint">Last reviewed November 14, 2026.</p>
         </header>
+
+        <div className="mt-8 xl:hidden">
+          <OnThisPageFolded items={sections} />
+        </div>
 
         <div className="doc mt-10">
           <Callout title="Public domain is not the only category">
@@ -33,9 +84,17 @@ export default function ContentLicences() {
               Bible&apos;s software and module format do not change the rights in the underlying
               content.
             </p>
+            <p className="flex flex-wrap gap-x-4 gap-y-1">
+              {Object.values(kinds).map((kind) => (
+                <span key={kind.name} className="inline-flex items-center gap-1.5 text-[0.8rem]">
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: kind.colour }} />
+                  {kind.name}
+                </span>
+              ))}
+            </p>
           </Callout>
 
-          <h2>Translations</h2>
+          <h2 id="translations">Translations</h2>
           <Table>
             <thead>
               <tr>
@@ -48,30 +107,35 @@ export default function ContentLicences() {
               <tr>
                 <td><code>ASVs</code> — American Standard Version</td>
                 <td>CrossWire SWORD module v2.0</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td><code>BSBs</code> — Berean Standard Bible</td>
                 <td>Official Strong&apos;s USFM archive, obtained August 12, 2026</td>
                 <td>
-                  <a href="https://creativecommons.org/publicdomain/zero/1.0/" {...externalProps}>CC0 1.0</a>{' '}
-                  public-domain dedication
+                  <Rights kind="public">
+                    <a href="https://creativecommons.org/publicdomain/zero/1.0/" {...externalProps}>CC0 1.0</a>
+                  </Rights>
+                  <Note>Public-domain dedication</Note>
                 </td>
               </tr>
               <tr>
                 <td><code>Brenton</code> — Brenton English Septuagint</td>
                 <td>eBible.org <code>eng-Brenton</code> USFM, source files dated October 7, 2026</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td><code>KJVs</code> — King James Version with Strong&apos;s and morphology</td>
                 <td>CrossWire KJV module v3.1</td>
-                <td>CrossWire any-purpose grant; source metadata also labels it GPL</td>
+                <td>
+                  <Rights kind="grant">CrossWire grant</Rights>
+                  <Note>Any-purpose grant; source metadata also labels it GPL</Note>
+                </td>
               </tr>
               <tr>
                 <td><code>LSG</code> — Louis Segond 1910 (French)</td>
                 <td>eBible.org <code>fraLSG</code> USFM, source files dated October 30, 2026</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td><code>LXX</code> — Brenton Greek Septuagint, tagged</td>
@@ -80,38 +144,48 @@ export default function ContentLicences() {
                   STEPBible-Data, upstream commit <code>5de0a47f35f0</code> (November 2, 2026)
                 </td>
                 <td>
-                  Public domain text; its tags{' '}
-                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  <Rights kind="public">Public domain</Rights>
+                  <Note>
+                    The text; its tags are{' '}
+                    <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  </Note>
                 </td>
               </tr>
               <tr>
                 <td><code>RV1909</code> — Reina-Valera 1909 (Spanish)</td>
                 <td>eBible.org <code>spaRV1909</code> USFM, source files dated August 10, 2015</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td><code>TAGNT</code> — Translators Amalgamated Greek New Testament</td>
                 <td>STEPBible-Data, upstream commit <code>5de0a47f35f0</code> (November 2, 2026)</td>
                 <td>
-                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  <Rights kind="open">
+                    <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  </Rights>
                 </td>
               </tr>
               <tr>
                 <td><code>TAHOT</code> — Translators Amalgamated Hebrew Old Testament</td>
                 <td>STEPBible-Data, upstream commit <code>5de0a47f35f0</code> (November 2, 2026)</td>
                 <td>
-                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  <Rights kind="open">
+                    <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  </Rights>
                 </td>
               </tr>
               <tr>
                 <td><code>WEBs</code> — World English Bible</td>
                 <td>World English Bible source text</td>
-                <td>Public domain; “World English Bible” is an eBible.org trademark</td>
+                <td>
+                  <Rights kind="public">Public domain</Rights>
+                  <Note>“World English Bible” is an eBible.org trademark</Note>
+                </td>
               </tr>
               <tr>
                 <td><code>YLT</code> — Young&apos;s Literal Translation</td>
                 <td>CrossWire SWORD module v1.1, 1898 edition</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
             </tbody>
           </Table>
@@ -130,7 +204,7 @@ export default function ContentLicences() {
             CrossWire Bible Society © 2003–2023 and grants a general public licence to use the text
             for any purpose. Version 3.1 labels its distribution licence “GPL.” Its modern OSIS
             markup and New Testament Strong&apos;s tagging are CrossWire work. Lamp Bible relies on the
-            express any-purpose grant for its converted <code>KJVs</code> content while preserving the
+            express any-purpose grant for its converted <code>KJVs</code>{' '}content while preserving the
             module&apos;s GPL label rather than calling the enhanced dataset public domain.
           </p>
           <p>
@@ -158,31 +232,33 @@ export default function ContentLicences() {
             </a>
             .
           </p>
-          <p>
-            Lamp Bible changed the data in these ways. Each word&apos;s inflected form, Strong&apos;s
-            key, dictionary form and morphology tag are carried over; the datasets&apos; other columns
-            — editions, variants, glosses, Spanish renderings and sub-meanings — are not.
-            Strong&apos;s keys are normalised to their plain form, so the disambiguated{' '}
-            <code>H7225G</code> is recorded as <code>H7225</code>, and STEPBible&apos;s{' '}
-            <code>H9xxx</code> codes for Hebrew prefixes and suffixes are not offered as lexicon keys;
-            they remain visible in the morphology tag. Morpheme divisions and attached marks are removed
-            from the Hebrew word, and the segmented form stays in the morphology tag.
-          </p>
-          <p>
-            Each module is one text rather than the amalgamation. <code>TAGNT</code> carries the words
-            of the Nestlé-Aland editions, the reading the dataset notes as the one almost all
-            translations follow, so words read only by the Textus Receptus or by other editions are
-            absent. <code>TAHOT</code> carries the dataset&apos;s reading text: the Leningrad Codex,
-            with the scribes&apos; marginal corrections (Qere) read in place of the written text they
-            correct, and that written text (Ketiv) given in a footnote at the word. It includes the
-            dataset&apos;s restorations of Joshua 21:36–37 and the end of Nehemiah 7:68 from their
-            parallels, each footnoted, and leaves out the words the dataset reconstructs from the
-            Septuagint. Everything left out remains in the upstream dataset.
-          </p>
+          <Changes>
+            <p>
+              Each word&apos;s inflected form, Strong&apos;s
+              key, dictionary form and morphology tag are carried over; the datasets&apos; other columns
+              — editions, variants, glosses, Spanish renderings and sub-meanings — are not.
+              Strong&apos;s keys are normalised to their plain form, so the disambiguated{' '}
+              <code>H7225G</code> is recorded as <code>H7225</code>, and STEPBible&apos;s{' '}
+              <code>H9xxx</code> codes for Hebrew prefixes and suffixes are not offered as lexicon keys;
+              they remain visible in the morphology tag. Morpheme divisions and attached marks are removed
+              from the Hebrew word, and the segmented form stays in the morphology tag.
+            </p>
+            <p>
+              Each module is one text rather than the amalgamation. <code>TAGNT</code> carries the words
+              of the Nestlé-Aland editions, the reading the dataset notes as the one almost all
+              translations follow, so words read only by the Textus Receptus or by other editions are
+              absent. <code>TAHOT</code>{' '}carries the dataset&apos;s reading text: the Leningrad Codex,
+              with the scribes&apos; marginal corrections (Qere) read in place of the written text they
+              correct, and that written text (Ketiv) given in a footnote at the word. It includes the
+              dataset&apos;s restorations of Joshua 21:36–37 and the end of Nehemiah 7:68 from their
+              parallels, each footnoted, and leaves out the words the dataset reconstructs from the
+              Septuagint. Everything left out remains in the upstream dataset.
+            </p>
+          </Changes>
 
           <h3>Brenton&apos;s Septuagint</h3>
           <p>
-            The <code>LXX</code> and <code>Brenton</code> modules are the Greek text printed with Sir
+            The <code>LXX</code> and <code>Brenton</code>{' '}modules are the Greek text printed with Sir
             Lancelot C. L. Brenton&apos;s 1851 translation of the Septuagint, and that translation, both
             in the public domain, from eBible.org&apos;s{' '}
             <a href="https://ebible.org/grcbrent/copyright.htm" {...externalProps}>grcbrent</a> and{' '}
@@ -205,25 +281,26 @@ export default function ContentLicences() {
               STEPBible.github.io/STEPBible-Data
             </a>
             : the Translators Amalgamated Greek NT and Hebrew OT, and the Translators Brief lexicons
-            of Extended Strong&apos;s for Greek and Hebrew.
-          </p>
-          <p>
-            Lamp Bible changed the data in these ways. STEPBible has not tagged this text: Lamp
+            of Extended Strong&apos;s for Greek and Hebrew. STEPBible has not tagged this text: Lamp
             Bible&apos;s own program assigned the numbers, dictionary forms and morphology codes to
-            Brenton&apos;s words. A word spelt like a form in the Greek New Testament takes that
-            form&apos;s reading, other forms are read from the paradigms of the lexicon&apos;s
-            entries, and where a form has several readings a statistical model trained on the tagged
-            New Testament chooses one in context. Proper names the New Testament does not use carry
-            the Hebrew Strong&apos;s number of the name in the corresponding Hebrew verse, matched by
-            how the Septuagint spells Hebrew names. The tagging was made by machine and has not been
-            checked by hand; its errors are Lamp Bible&apos;s, not STEPBible&apos;s. No other tagged
-            Septuagint was used to make it. The program, the tagged text and its measured accuracy
-            are published at{' '}
-            <a href="https://github.com/mattsbennett/lamp-septuagint-strongs" {...externalProps}>
-              github.com/mattsbennett/lamp-septuagint-strongs
-            </a>
-            .
+            Brenton&apos;s words, by machine and unchecked by hand, so its errors are Lamp
+            Bible&apos;s, not STEPBible&apos;s.
           </p>
+          <Changes>
+            <p>
+              A word spelt like a form in the Greek New Testament takes that
+              form&apos;s reading, other forms are read from the paradigms of the lexicon&apos;s
+              entries, and where a form has several readings a statistical model trained on the tagged
+              New Testament chooses one in context. Proper names the New Testament does not use carry
+              the Hebrew Strong&apos;s number of the name in the corresponding Hebrew verse, matched by
+              how the Septuagint spells Hebrew names. No other tagged Septuagint was used to make it. The program, the tagged text and its measured accuracy
+              are published at{' '}
+              <a href="https://github.com/mattsbennett/lamp-septuagint-strongs" {...externalProps}>
+                github.com/mattsbennett/lamp-septuagint-strongs
+              </a>
+              .
+            </p>
+          </Changes>
 
           <h3>Reina-Valera 1909 and Louis Segond 1910</h3>
           <p>
@@ -239,7 +316,7 @@ export default function ContentLicences() {
             numbering, so its verses line up with the other translations.
           </p>
 
-          <h2>Lexicons</h2>
+          <h2 id="lexicons">Lexicons</h2>
           <Table>
             <thead>
               <tr>
@@ -252,18 +329,20 @@ export default function ContentLicences() {
               <tr>
                 <td>Strong&apos;s Hebrew Dictionary</td>
                 <td>James Strong, 1890; CrossWire/Open Scriptures data</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td>Strong&apos;s Greek Dictionary</td>
                 <td>James Strong, 1890; CrossWire/Open Scriptures data</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td>Translators Brief Lexicon of Extended Strong&apos;s for Greek (TBESG)</td>
                 <td>STEPBible-Data, upstream commit <code>5de0a47f35f0</code> (November 2, 2026)</td>
                 <td>
-                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  <Rights kind="open">
+                    <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  </Rights>
                 </td>
               </tr>
               <tr>
@@ -273,7 +352,10 @@ export default function ContentLicences() {
                     Unabridged BDB Hebrew Lexicon dataset
                   </a>
                 </td>
-                <td>Public-domain work and dataset</td>
+                <td>
+                  <Rights kind="public">Public domain</Rights>
+                  <Note>The work and the dataset</Note>
+                </td>
               </tr>
               <tr>
                 <td>Strong&apos;s Hebrew to BDB mapping</td>
@@ -282,16 +364,20 @@ export default function ContentLicences() {
                   <code>21c9add13bc7</code> (September 2, 2019)
                 </td>
                 <td>
-                  <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  <Rights kind="open">
+                    <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>CC BY 4.0</a>
+                  </Rights>
                 </td>
               </tr>
               <tr>
                 <td>Dodson Greek-English Lexicon</td>
                 <td>John Jeffrey Dodson; CrossWire distribution record</td>
                 <td>
-                  <a href="https://www.crosswire.org/sword/copyright/ModInfoCopyright.jsp?modName=Dodson" {...externalProps}>
-                    Public domain
-                  </a>
+                  <Rights kind="public">
+                    <a href="https://www.crosswire.org/sword/copyright/ModInfoCopyright.jsp?modName=Dodson" {...externalProps}>
+                      Public domain
+                    </a>
+                  </Rights>
                 </td>
               </tr>
             </tbody>
@@ -313,29 +399,31 @@ export default function ContentLicences() {
             Testament</em> (1922), completed from Middle Liddell (1889) and by STEPBible&apos;s
             scholars.
           </p>
-          <p>
-            Lamp Bible changed the data in these ways. Entries are keyed by Strong&apos;s number
-            without leading zeros (<code>G0025</code> is <code>G25</code>), and STEPBible&apos;s
-            extended numbers keep theirs. Where STEPBible divides one number into parts that share a
-            definition, the definition is given once with the parts&apos; glosses; a part with its own
-            definition is its own sense. Scripture references are linked to Lamp&apos;s English verse
-            numbering. The Old Testament references mostly follow it but some follow the Hebrew
-            numbering; where the two number a verse differently, a reference is read as Hebrew only
-            where the word is in that reading&apos;s verse of Brenton&apos;s Greek Septuagint and not
-            in the English reading&apos;s, and never where the Hebrew reading falls on a psalm&apos;s
-            title. References tagged “1Ki” or “2Ki” where the definition prints 1 or 2 Kingdoms are
-            linked to 1 or 2 Samuel. References tagged for Esther, a code the source also uses for 1
-            and 2 Esdras and Esther&apos;s Greek additions, are linked only where the word is in that
-            verse of the Greek Esther, not counting its lettered additions. References to the
-            Apocrypha, and those neither numbering has a verse for, are left as text.
-            STEPBible&apos;s grammar codes for the article and the demonstrative pronouns are named
-            apart. The source marks “(AS)” and “(ML)” are written out as “(Abbott-Smith)” and
-            “(Middle Liddell)”. The extended Strong&apos;s and unified Strong&apos;s columns are not
-            carried over. Where a definition names the Hebrew words the Septuagint renders with the
-            word, they are also listed with their Strong&apos;s numbers, matched using
-            STEPBible&apos;s Translators Brief lexicon of Extended Strongs for Hebrew (TBESH), under
-            the same licence.
-          </p>
+          <Changes>
+            <p>
+              Entries are keyed by Strong&apos;s number
+              without leading zeros (<code>G0025</code> is <code>G25</code>), and STEPBible&apos;s
+              extended numbers keep theirs. Where STEPBible divides one number into parts that share a
+              definition, the definition is given once with the parts&apos; glosses; a part with its own
+              definition is its own sense. Scripture references are linked to Lamp&apos;s English verse
+              numbering. The Old Testament references mostly follow it but some follow the Hebrew
+              numbering; where the two number a verse differently, a reference is read as Hebrew only
+              where the word is in that reading&apos;s verse of Brenton&apos;s Greek Septuagint and not
+              in the English reading&apos;s, and never where the Hebrew reading falls on a psalm&apos;s
+              title. References tagged “1Ki” or “2Ki” where the definition prints 1 or 2 Kingdoms are
+              linked to 1 or 2 Samuel. References tagged for Esther, a code the source also uses for 1
+              and 2 Esdras and Esther&apos;s Greek additions, are linked only where the word is in that
+              verse of the Greek Esther, not counting its lettered additions. References to the
+              Apocrypha, and those neither numbering has a verse for, are left as text.
+              STEPBible&apos;s grammar codes for the article and the demonstrative pronouns are named
+              apart. The source marks “(AS)” and “(ML)” are written out as “(Abbott-Smith)” and
+              “(Middle Liddell)”. The extended Strong&apos;s and unified Strong&apos;s columns are not
+              carried over. Where a definition names the Hebrew words the Septuagint renders with the
+              word, they are also listed with their Strong&apos;s numbers, matched using
+              STEPBible&apos;s Translators Brief lexicon of Extended Strongs for Hebrew (TBESH), under
+              the same licence.
+            </p>
+          </Changes>
 
           <h3>Open Scriptures Hebrew Lexicon</h3>
           <p>
@@ -350,23 +438,25 @@ export default function ContentLicences() {
             . The text of Brown, Driver and Briggs and of Strong&apos;s dictionary remains in the
             public domain.
           </p>
-          <p>
-            Lamp Bible changed the data in these ways. The index joins Strong&apos;s numbers to the
-            entries of Open Scriptures&apos; own digitisation of BDB, and the bundled BDB is another
-            digitisation of the same lexicon. Open Scriptures&apos; entries were matched to the
-            bundled ones by their order, headwords, cited verses and glosses, and by whether an entry
-            only points to another, and each pair is given with the matched entry. Pairs whose entry
-            has no confident match are left out, and so are the index&apos;s augment letters, so{' '}
-            <code>7227a</code> and <code>7227b</code> are both <code>H7227</code>. Strong&apos;s
-            numbers the index gives no matched entry keep the Strong&apos;s numbers the BDB dataset
-            itself records, so those few pairs are not Open Scriptures&apos;. Where the dataset lists
-            a number only after another headword&apos;s, the entry is kept only if it contains the
-            word as Open Scriptures&apos; Strong&apos;s dictionary, under the same licence, spells it
-            and, where that dictionary calls the word a name, is about a name. The matching was made
-            by machine; its errors are Lamp Bible&apos;s.
-          </p>
+          <Changes>
+            <p>
+              The index joins Strong&apos;s numbers to the
+              entries of Open Scriptures&apos; own digitisation of BDB, and the bundled BDB is another
+              digitisation of the same lexicon. Open Scriptures&apos; entries were matched to the
+              bundled ones by their order, headwords, cited verses and glosses, and by whether an entry
+              only points to another, and each pair is given with the matched entry. Pairs whose entry
+              has no confident match are left out, and so are the index&apos;s augment letters, so{' '}
+              <code>7227a</code> and <code>7227b</code> are both <code>H7227</code>. Strong&apos;s
+              numbers the index gives no matched entry keep the Strong&apos;s numbers the BDB dataset
+              itself records, so those few pairs are not Open Scriptures&apos;. Where the dataset lists
+              a number only after another headword&apos;s, the entry is kept only if it contains the
+              word as Open Scriptures&apos; Strong&apos;s dictionary, under the same licence, spells it
+              and, where that dictionary calls the word a name, is about a name. The matching was made
+              by machine; its errors are Lamp Bible&apos;s.
+            </p>
+          </Changes>
 
-          <h2>Cross-references</h2>
+          <h2 id="cross-references">Cross-references</h2>
 
           <h3>Treasury of Scripture Knowledge, Enhanced v1.2</h3>
           <p>
@@ -403,7 +493,7 @@ export default function ContentLicences() {
             format; it does not add Bible quotation text to this dataset.
           </p>
 
-          <h2>Reading plans and quizzes</h2>
+          <h2 id="reading-plans-and-quizzes">Reading plans and quizzes</h2>
           <Table>
             <thead>
               <tr>
@@ -416,17 +506,17 @@ export default function ContentLicences() {
               <tr>
                 <td>The Bible Companion</td>
                 <td>Robert Roberts</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td>Children&apos;s Bible Companion: Junior</td>
                 <td>Birmingham Central Christadelphian Sunday School Committee</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td>Children&apos;s Bible Companion: Intermediate</td>
                 <td>Birmingham Central Christadelphian Sunday School Committee</td>
-                <td>Public domain</td>
+                <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
                 <td>The Bible Companion Quizzes</td>
@@ -440,7 +530,7 @@ export default function ContentLicences() {
             credits as provenance.
           </p>
 
-          <h2>User-created modules</h2>
+          <h2 id="user-created-modules">User-created modules</h2>
           <p>
             The module format is a container, not permission to copy a work. Import content only if
             you created it, it is public domain where you use it, or its licence expressly permits
@@ -448,13 +538,20 @@ export default function ContentLicences() {
             redistribution rights. See <Link href="/docs/modules/authoring">Authoring modules</Link>.
           </p>
 
-          <h2>Corrections</h2>
+          <h2 id="corrections">Corrections</h2>
           <p>
             If a credit, source or licence is incomplete, please report it through the contact
             address in the footer. Lamp Bible will investigate and correct or remove affected
             content where necessary.
           </p>
         </div>
+        </div>
+
+        <aside className="hidden xl:block">
+          <div className="sticky top-24">
+            <OnThisPage items={sections} />
+          </div>
+        </aside>
       </main>
       <SiteFooter />
     </>

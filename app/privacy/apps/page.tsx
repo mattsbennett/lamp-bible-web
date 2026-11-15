@@ -3,17 +3,34 @@ import Link from 'next/link'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { site } from '@/lib/site'
+import { EmailLink } from '@/components/EmailLink'
+import { OnThisPage, OnThisPageFolded } from '@/components/docs/OnThisPage'
 
 export const metadata: Metadata = {
   title: 'App privacy',
   description: 'Privacy declaration for the Lamp Bible apps.',
 }
 
+const sections = [
+  { id: 'information-collected-by-lamp-bible', title: 'Information collected by Lamp Bible' },
+  { id: 'information-stored-on-your-device', title: 'Information stored on your device' },
+  { id: 'optional-sync', title: 'Optional sync' },
+  { id: 'presentation-remote', title: 'Presentation remote' },
+  { id: 'links-and-external-bible-apps', title: 'Links and external Bible apps' },
+  { id: 'apple-intelligence', title: 'Apple Intelligence' },
+  { id: 'the-ai-features-switch', title: 'The AI features switch' },
+  { id: 'software-updates-on-mac', title: 'Software updates on Mac' },
+  { id: 'ai-chat-on-mac', title: 'AI chat on Mac' },
+  { id: 'children', title: 'Children' },
+  { id: 'contact-and-changes', title: 'Contact and changes' },
+]
+
 export default function AppPrivacy() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
+      <main className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-20 xl:grid xl:grid-cols-[minmax(0,1fr)_12rem] xl:gap-14">
+        <div className="min-w-0 max-w-3xl">
         <header className="border-b border-line pb-8">
           <p className="text-sm font-medium text-accent"><Link href="/privacy">Privacy</Link></p>
           <h1 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
@@ -22,15 +39,45 @@ export default function AppPrivacy() {
           <p className="mt-3 text-muted">Last updated November 14, 2026.</p>
         </header>
 
-        <div className="doc mt-10">
-          <h2>Information collected by Lamp Bible</h2>
+        <section aria-labelledby="at-a-glance" className="mt-8 rounded-2xl border border-line bg-sunken p-6">
+          <h2 id="at-a-glance" className="font-serif text-xl tracking-tight">At a glance</h2>
+          <ul className="mt-4 space-y-3 text-[0.95rem] leading-relaxed">
+            {[
+              'No account, advertising, tracking, crash reporting or analytics. Lamp Bible receives nothing about your reading, your library or your notes.',
+              'Your library stays on your device. Sync is off unless you choose iCloud Drive or your own WebDAV server, and Lamp Bible runs neither.',
+              'AI features are optional and off by default. They run on your device or through an AI provider you sign in to yourself; nothing goes to Lamp Bible.',
+              'On a Mac, update checks fetch a small feed from lampbible.com, and the app asks before checking automatically.',
+            ].map((point) => (
+              <li key={point} className="flex gap-3">
+                <svg viewBox="0 0 16 16" className="mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true">
+                  <path d="m3.5 8.5 3 3 6-7" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-sm text-muted">
+            Questions or a privacy request?{' '}
+            <EmailLink subject="Privacy" className="font-medium text-accent underline-offset-4 hover:underline">
+              Email us
+            </EmailLink>
+            .
+          </p>
+        </section>
+
+        <div className="mt-8 xl:hidden">
+          <OnThisPageFolded items={sections} />
+        </div>
+
+        <div className="doc mt-12">
+          <h2 id="information-collected-by-lamp-bible">Information collected by Lamp Bible</h2>
           <p>
             The apps have no Lamp Bible account, advertising, tracking SDK, crash-reporting SDK or
             product analytics. Lamp Bible does not receive your reading activity, library, notes,
             searches, identifiers, location, contacts, photos, recordings or credentials.
           </p>
 
-          <h2>Information stored on your device</h2>
+          <h2 id="information-stored-on-your-device">Information stored on your device</h2>
           <p>
             The apps store your modules, reading progress, notes, devotionals, highlights and
             settings locally. Photos, camera images and audio recordings are accessed only when you
@@ -41,7 +88,7 @@ export default function AppPrivacy() {
             by deleting the app.
           </p>
 
-          <h2>Optional sync</h2>
+          <h2 id="optional-sync">Optional sync</h2>
           <p>
             Sync is off unless you choose a backend. With iCloud Drive, imported and user-created
             modules and settings are stored in the Lamp Bible folder in your own iCloud Drive and
@@ -63,7 +110,7 @@ export default function AppPrivacy() {
             Removing cloud copies is done in iCloud Drive or on your WebDAV server.
           </p>
 
-          <h2>Presentation remote</h2>
+          <h2 id="presentation-remote">Presentation remote</h2>
           <p>
             An iPhone or iPad can act as a remote for a presentation running in Lamp Bible on a Mac.
             When you open the remote, the app asks for permission to use the local network, and
@@ -76,14 +123,14 @@ export default function AppPrivacy() {
             on” followed by the Mac&apos;s computer name, until you quit the app.
           </p>
 
-          <h2>Links and external Bible apps</h2>
+          <h2 id="links-and-external-bible-apps">Links and external Bible apps</h2>
           <p>
             If you ask Lamp Bible to open a passage in another Bible app or website, the passage
             reference is handed to that service. Its privacy policy applies from that point. Lamp
             Bible does not receive information back about what you do there.
           </p>
 
-          <h2>Apple Intelligence</h2>
+          <h2 id="apple-intelligence">Apple Intelligence</h2>
           <p>
             Where Apple Intelligence is available, a new reading plan can start from a description
             you type, such as “the Gospels in a month”. Apple&apos;s on-device model reads the
@@ -92,7 +139,7 @@ export default function AppPrivacy() {
             is on in Settings.
           </p>
 
-          <h2>The AI features switch</h2>
+          <h2 id="the-ai-features-switch">The AI features switch</h2>
           <p>
             Show AI Features, in Settings → AI Features on iPhone and iPad and in Settings → AI &amp;
             Agents on a Mac, decides whether the apps offer any AI feature at all: plans made from a
@@ -103,7 +150,7 @@ export default function AppPrivacy() {
             you sync with. Turning it off keeps your chats and drafts.
           </p>
 
-          <h2>Software updates on Mac</h2>
+          <h2 id="software-updates-on-mac">Software updates on Mac</h2>
           <p>
             The Mac app is distributed outside the App Store and updates itself with the
             open-source Sparkle framework. It asks before checking for updates automatically,
@@ -117,7 +164,7 @@ export default function AppPrivacy() {
             statement.
           </p>
 
-          <h2>AI chat on Mac</h2>
+          <h2 id="ai-chat-on-mac">AI chat on Mac</h2>
           <p>
             The Mac app&apos;s AI features work only through an AI provider&apos;s command-line
             tool that you install and sign in to yourself. Lamp Bible starts that tool on your
@@ -145,19 +192,27 @@ export default function AppPrivacy() {
             allow each separately. All of these are off until you turn them on.
           </p>
 
-          <h2>Children</h2>
+          <h2 id="children">Children</h2>
           <p>
             Lamp Bible does not knowingly collect personal information from children. The apps do
             not contain advertising, accounts or behavioural analytics.
           </p>
 
-          <h2>Contact and changes</h2>
+          <h2 id="contact-and-changes">Contact and changes</h2>
           <p>
-            Questions or privacy requests can be sent to {site.email}. If this declaration changes,
-            the updated version and date will be published here. Material changes will also be
-            communicated through the app or its App Store listing where appropriate.
+            Questions or privacy requests can be sent to <EmailLink subject="Privacy" />. If this
+            declaration changes, the updated version and date will be published here. Material
+            changes will also be communicated through the app or its App Store listing where
+            appropriate.
           </p>
         </div>
+        </div>
+
+        <aside className="hidden xl:block">
+          <div className="sticky top-24">
+            <OnThisPage items={sections} />
+          </div>
+        </aside>
       </main>
       <SiteFooter />
     </>

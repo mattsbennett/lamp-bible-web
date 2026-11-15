@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { downloadPaths, site } from '@/lib/site'
+import { site } from '@/lib/site'
+import { DownloadLink, HeaderNav, MobileMenu, type NavItem } from '@/components/HeaderNav'
 
-const nav = [
+const nav: NavItem[] = [
   { href: '/#features', label: 'Features' },
   { href: '/#modules', label: 'Modules' },
   { href: '/docs', label: 'Docs' },
@@ -12,37 +13,17 @@ const nav = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-canvas-blur backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-5 sm:px-8">
+      <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-5 sm:h-16 sm:gap-6 sm:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <Image src="/lampflame.svg" alt="" width={14} height={28} priority />
           <span className="font-serif text-lg tracking-tight">{site.name}</span>
         </Link>
-
-        <nav className="ml-auto hidden items-center gap-7 text-sm text-muted sm:flex">
-          {nav.map((item) => (
-            <Link key={item.href} href={item.href} className="transition-colors hover:text-ink">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Goes to the download page rather than one store, so every platform is one click away. */}
-        <Link
-          href={downloadPaths.page}
-          className="ml-auto rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:ml-0"
-        >
-          Download
-        </Link>
+        <HeaderNav items={nav} />
+        <div className="ml-auto flex items-center gap-3 sm:ml-0">
+          <DownloadLink />
+          <MobileMenu items={nav} />
+        </div>
       </div>
-
-      {/* Compact nav row for narrow screens — no JS, just a scrollable strip. */}
-      <nav className="flex gap-5 overflow-x-auto border-t border-line px-5 py-2.5 text-sm text-muted sm:hidden">
-        {nav.map((item) => (
-          <Link key={item.href} href={item.href} className="whitespace-nowrap">
-            {item.label}
-          </Link>
-        ))}
-      </nav>
     </header>
   )
 }

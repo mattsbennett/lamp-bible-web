@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { DocPage, Callout, Table } from '@/components/docs/DocPage'
+import { DocPage, Callout, Figure, Table } from '@/components/docs/DocPage'
+import { PlansArt } from '@/components/home/art'
 
 export const metadata: Metadata = {
   title: 'Reading plans',
@@ -77,6 +78,10 @@ export default function Page() {
         which is how you catch up on a missed day or read ahead.
       </p>
 
+      <Figure caption="The day’s card for The Bible Companion: the day of the year, the readings and how long they take, and what is up next.">
+        <PlansArt />
+      </Figure>
+
       <h3>Reading time estimates</h3>
       <p>
         Every reading on the home screen shows its kind and an estimated time; the Readings menu
@@ -132,7 +137,7 @@ export default function Page() {
       <p>
         On the Mac, <strong>New Plan…</strong> in Reading Plans opens the same form in a sheet,
         with the days laid out beside it as you fill it in; <strong>Fill In the Form</strong>{' '}
-        reads a description on macOS 26, with <strong>Show AI Features</strong> on in Settings → AI
+        reads a description on macOS 26, with <strong>Show AI Features</strong>{' '}on in Settings → AI
         &amp; Agents. Delete a plan of your own from its menu.
       </p>
 

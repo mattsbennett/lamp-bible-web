@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { DocPage, Callout, Table } from '@/components/docs/DocPage'
+import { DocPage, Callout, Figure, Table } from '@/components/docs/DocPage'
+import { AnalysisArt } from '@/components/home/art'
 
 export const metadata: Metadata = {
   title: 'Search',
@@ -220,6 +221,9 @@ export default function Page() {
         <Link href="/docs/lexicons">lexicon entry</Link>. The <strong>Books</strong> menu at the top
         narrows it to a testament, a part of the canon or <strong>One Book</strong>.
       </p>
+      <Figure caption="The analysis of G26, ἀγάπη, in the KJV: its counts, where it falls book by book, and how it is translated.">
+        <AnalysisArt />
+      </Figure>
       <p>
         It opens on a card: the word with its transliteration and a short gloss, a speaker to say
         it aloud, three figures — by default how many times it occurs, in how many verses and in

@@ -8,6 +8,8 @@ import {
   AgentWorkspaceArt,
   AnalysisArt,
   ExternalAppsArt,
+  HeroArt,
+  HeroLaptopArt,
   HighlightsArt,
   MacAnalysisArt,
   MacEditorArt,
@@ -185,15 +187,25 @@ export default function Home() {
 function Hero() {
   return (
     <section className="hero-glow border-b border-line">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.1fr_auto]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-5 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center lg:gap-10 lg:py-24">
         <div>
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
-            Bible reading companion
-          </p>
-          <h1 className="mt-5 font-serif text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/lampicon.png"
+              alt=""
+              width={96}
+              height={96}
+              className="h-10 w-10 rounded-[22%] ring-1 ring-black/10 shadow-[0_8px_18px_-8px_rgba(28,18,8,0.5)]"
+              priority
+            />
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">
+              Bible reading companion
+            </p>
+          </div>
+          <h1 className="mt-6 font-serif text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-[2.6rem] xl:text-[3rem]">
             Everything you study,
-            <br />
-            in one place you own.
+            {/* Broken only where the line is long enough to hold each half whole. */}
+            <br className="hidden sm:block" /> in one place you own.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             Lamp Bible puts translations, lexicons, commentaries, reading plans, your notes,
@@ -229,15 +241,13 @@ function Hero() {
           </p>
         </div>
 
-        <div className="justify-self-center lg:justify-self-end">
-          <Image
-            src="/lampicon.png"
-            alt="Lamp Bible app icon"
-            width={256}
-            height={256}
-            className="h-56 w-56 rounded-[22%] ring-1 ring-black/10 shadow-[0_30px_70px_-20px_rgba(28,18,8,0.55)] sm:h-64 sm:w-64"
-            priority
-          />
+        {/* On a phone or tablet, the phone, rising from the hero's bottom edge as the feature
+            cards' phones do; on a wide screen, the Mac. */}
+        <div className="self-end lg:hidden">
+          <HeroArt />
+        </div>
+        <div className="hidden lg:block">
+          <HeroLaptopArt />
         </div>
       </div>
     </section>
@@ -259,6 +269,15 @@ function Features() {
             <FeatureCard key={feature.title} feature={feature} />
           ))}
           <AnalysisCard />
+        </div>
+
+        {/* Halfway down a long page, the way in again, rather than only at the foot. */}
+        <div className="mt-12 flex flex-col items-start gap-5 rounded-2xl border border-line bg-sunken px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <div>
+            <p className="font-serif text-xl tracking-tight">All of this is free, with nothing to sign up for.</p>
+            <p className="mt-1 text-sm text-muted">On iPhone and iPad today{hasMacDownload ? ', and on the Mac in beta' : ''}.</p>
+          </div>
+          <AppStoreBadge />
         </div>
       </div>
     </section>
@@ -343,7 +362,7 @@ function FeatureCard({ feature }: { feature: Feature }) {
           {badge && <Badge>{badge}</Badge>}
         </div>
         <h3 className="mt-5 font-serif text-xl tracking-tight">{title}</h3>
-        <p className="mt-2.5 text-sm leading-relaxed text-muted">{body}</p>
+        <p className="mt-2.5 text-[0.95rem] leading-relaxed text-muted">{body}</p>
         {href && (
           <Link
             href={href}

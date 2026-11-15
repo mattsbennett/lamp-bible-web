@@ -356,11 +356,28 @@
     scroll-margin-top: 7rem;
   }
 
+  /* Serif like the h2s, a step down, so a sub-heading never reads as a bold paragraph. */
   .doc h3 {
-    font-size: 1.075rem;
-    font-weight: 600;
-    margin-top: 2.25rem;
+    font-family: var(--font-serif);
+    font-size: 1.28rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    margin-top: 2.5rem;
     scroll-margin-top: 7rem;
+  }
+
+  /* A heading belongs to what follows it, so it sits closer to that than to what came before. */
+  .doc h2 + *,
+  .doc h3 + * {
+    margin-top: 0.75rem;
+  }
+
+  /* About seventy characters a line for running text; tables and asides keep the full column. */
+  .doc > p,
+  .doc > ul,
+  .doc > ol,
+  .doc > blockquote {
+    max-width: 38rem;
   }
 
   .doc h4 {
@@ -483,8 +500,68 @@
     vertical-align: top;
   }
 
-  .doc td:first-child {
-    white-space: nowrap;
+  /* On a phone a row is a card: its first cell the title, the rest each under its column's name. */
+  @media (max-width: 639.98px) {
+    /* A long inline sample wraps rather than pushing the page wider than the screen. */
+    .doc code {
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .doc pre code {
+      white-space: pre;
+      overflow-wrap: normal;
+    }
+
+    .doc table.stack,
+    .doc table.stack tbody,
+    .doc table.stack tr,
+    .doc table.stack td {
+      display: block;
+    }
+
+    .doc table.stack {
+      min-width: 0;
+    }
+
+    .doc table.stack thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+
+    .doc table.stack tr {
+      padding: 0.85rem 1rem;
+    }
+
+    .doc table.stack tr + tr {
+      border-top: 1px solid var(--line);
+    }
+
+    .doc table.stack td {
+      padding: 0;
+      border: 0;
+    }
+
+    .doc table.stack td:first-child {
+      font-weight: 600;
+    }
+
+    .doc table.stack td + td {
+      margin-top: 0.45rem;
+    }
+
+    .doc table.stack td + td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-faint);
+    }
   }
 
   .doc strong {

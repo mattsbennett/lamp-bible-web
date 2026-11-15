@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { DocPage, Callout, Table } from '@/components/docs/DocPage'
+import { DocPage, Callout, Figure, Table } from '@/components/docs/DocPage'
+import { ReaderArt } from '@/components/home/art'
 
 export const metadata: Metadata = {
   title: 'The reader',
@@ -28,10 +29,14 @@ export default function Page() {
       <p>
         In a Strong’s-tagged translation, tapping a word opens its lexicon entry. Which lexicon
         appears first depends on your configured order — see{' '}
-        <Link href="/docs/lexicons">Lexicons</Link>. Turn on <strong>Show Word Hints</strong> in
+        <Link href="/docs/lexicons">Lexicons</Link>. Turn on <strong>Show Word Hints</strong>{' '}in
         Settings → Translations &amp; Lexicons to underline every tagged word, so you can see at a
         glance which words have entries behind them.
       </p>
+
+      <Figure caption="Tapping “Word” in John 1:1 opens its Strong’s entry, with buttons to search its verses and analyse it.">
+        <ReaderArt />
+      </Figure>
 
       <h3>Verse actions</h3>
       <p>

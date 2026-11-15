@@ -219,6 +219,49 @@ export const SeptuagintIcon: IconComponent = (p) => (
   </Icon>
 )
 
+export const CompassIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="m15.5 8.5-2 5-5 2 2-5z" />
+  </Icon>
+)
+
+export const BooksIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M4.5 4.5h3.5v15H4.5zM8 6.5h3.5v13H8z" />
+    <path d="m13.2 6.9 3.4-.9 3.4 12.6-3.4.9z" />
+  </Icon>
+)
+
+export const PackageIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M12 3.5 19.5 7.5v9L12 20.5 4.5 16.5v-9z" />
+    <path d="M4.5 7.5 12 11.5l7.5-4M12 11.5v9" />
+  </Icon>
+)
+
+export const DownloadIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M12 4v10.5M7.5 10l4.5 4.5 4.5-4.5" />
+    <path d="M4.5 15.5v3a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-3" />
+  </Icon>
+)
+
+export const ExportIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M12 14.5V4M7.5 8.5 12 4l4.5 4.5" />
+    <path d="M8.5 11.5H6a1.5 1.5 0 0 0-1.5 1.5v5.5A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5V13a1.5 1.5 0 0 0-1.5-1.5h-2.5" />
+  </Icon>
+)
+
+export const QuestionIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.6" />
+    <path d="M12 16.9h.01" strokeWidth={2.4} />
+  </Icon>
+)
+
 export const VersesIcon: IconComponent = (p) => (
   <Icon {...p}>
     <path d="M9 6.5h11M9 12h11M9 17.5h7" />
