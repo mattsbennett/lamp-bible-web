@@ -87,7 +87,8 @@ export const docsNav: DocSection[] = [
       {
         title: 'AI chat & agents',
         href: '/docs/ai',
-        summary: 'Reader Chat and writing agents through your own AI account, with read-only access.',
+        summary:
+          'Plans from a description with Apple Intelligence, and on the Mac, Reader Chat and writing agents through your own AI account.',
       },
     ],
   },

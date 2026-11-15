@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'AI chat & agents',
   description:
-    'Reader Chat and writing agents on the Mac, using your own Codex, Claude Code or OpenCode account with read-only access to your library and skills for weighing what scripture says — and Lamp’s library tools in Claude Desktop, Codex, Cursor or opencode.',
+    'Apple Intelligence on iPhone, iPad and Mac for plans made from a description, and on the Mac Reader Chat and writing agents through your own Codex, Claude Code or OpenCode account, with read-only access to your library and skills for weighing what scripture says — and Lamp’s library tools in Claude Desktop, Codex, Cursor or opencode.',
 }
 
 export default function Page() {
@@ -16,15 +16,19 @@ export default function Page() {
       intro="Ask about the passage you are reading, or write with an agent beside you — through an AI account of your own, with read-only access to your library."
     >
       <p>
-        AI in Lamp Bible is optional, Mac-only, and runs through an AI tool you already use. Lamp
-        Bible has no AI service of its own: it starts your provider’s command-line tool on your Mac,
-        and gives it read-only tools for looking things up in your library.
+        AI in Lamp Bible is optional, and Lamp Bible has no AI service of its own. On iPhone, iPad
+        and Mac, Apple Intelligence can make a{' '}
+        <Link href="/docs/reading-plans">reading plan</Link> from a description, using the model on
+        the device, and the system’s Writing Tools work in what you write. The Mac adds Reader Chat
+        and writing agents, which run through an AI tool you already use: Lamp starts your
+        provider’s command-line tool on your Mac, and gives it read-only tools for looking things up
+        in your library. Most of this page is about those.
       </p>
 
       <h2 id="turning-on">Turning it on</h2>
       <p>
-        AI is off until you turn it on. Until then, Settings → AI &amp; Agents shows one switch,{' '}
-        <strong>Show AI Features</strong>, and nothing else in Lamp mentions AI. Off hides Reader
+        AI is off until you turn it on. Until then, Settings → AI &amp; Agents on the Mac shows one
+        switch, <strong>Show AI Features</strong>, and nothing else in Lamp mentions AI. Off hides Reader
         Chat, the writing agent and plans made from a description, turns off the system’s Writing
         Tools in Lamp’s text, and withdraws what other apps may read through Lamp. Your chats and
         drafts are kept for when you turn it back on. A library that was already using AI starts
@@ -33,7 +37,8 @@ export default function Page() {
       <p>
         The switch is shared with your iPhone and iPad, where it is Settings →{' '}
         <strong>AI Features</strong> and covers making a{' '}
-        <Link href="/docs/reading-plans">reading plan</Link> from a description.
+        <Link href="/docs/reading-plans">reading plan</Link> from a description and the system’s
+        Writing Tools in Lamp’s text.
       </p>
 
       <h2>Setting up</h2>
