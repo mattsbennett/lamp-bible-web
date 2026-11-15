@@ -19,7 +19,7 @@ export default function Page() {
     <DocPage
       href="/docs/modules/authoring"
       title="Authoring modules"
-      intro="The data model: how a module document is shaped, how verses are referenced, and how annotations attach to text. For the mechanics of producing the file, see Building a .lamp file."
+      intro="Define module content, verse references and text annotations. See Building a .lamp file to compile it."
     >
       <h2>The pipeline</h2>
       <p>
@@ -92,8 +92,7 @@ export default function Page() {
 
       <p>
         Ranges are expressed as a start and end pair, conventionally <code>sv</code> and{' '}
-        <code>ev</code>. Because the encoding sorts correctly as an integer, range queries and
-        ordering come free.
+        <code>ev</code>. Because the encoding sorts correctly as an integer, references can be sorted and queried as integer ranges.
       </p>
 
       <h2>Annotated text</h2>
@@ -127,8 +126,7 @@ export default function Page() {
 
       <p>
         <code>start</code> is inclusive and <code>end</code> exclusive, so{' '}
-        <code>text[start:end]</code> must equal the annotation’s own <code>text</code> field. That
-        redundancy is deliberate — it is what lets a validator catch a bad offset.
+        <code>text[start:end]</code> must equal the annotation’s own <code>text</code> field. Validators use this match to detect incorrect offsets.
       </p>
 
       <Callout tone="warn" title="Never count offsets by hand">
@@ -502,9 +500,8 @@ export default function Page() {
 
       <h2>Building and installing</h2>
       <p>
-        Once the JSON is right, turning it into an installable file is four steps: create the
-        tables, insert your rows, compress with raw DEFLATE, verify. That is covered in full — with
-        the table definitions for every type and a complete reference implementation — on{' '}
+        To compile valid JSON, create the tables, insert rows, compress with raw DEFLATE and verify
+        the result. For table definitions and a reference implementation, see{' '}
         <Link href="/docs/modules/building">Building a .lamp file</Link>.
       </p>
       <p>

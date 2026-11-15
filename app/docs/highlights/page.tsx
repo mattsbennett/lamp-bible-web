@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/highlights"
       title="Highlights"
-      intro="Character-precise marking, organised into sets, with names attached to what your colours mean."
+      intro="Highlight words or verses, organise highlights into sets and name colours by topic."
     >
       <h2>Styles</h2>
       <p>A highlight has both a colour and a style. There are four styles:</p>
@@ -75,12 +75,11 @@ export default function Page() {
 
       <h2>Sets</h2>
       <p>
-        A highlight set is a named collection of highlights for one translation — and it is a{' '}
-        <Link href="/docs/modules">module</Link> like everything else. That means you can keep more
-        than one: a personal set and a set for a class you teach, a set for a study series you are
-        working through. The first highlight you make in a translation creates a set for it
-        automatically; create, rename and delete others in the module manager, and choose the
-        active set from the highlight controls.
+        A highlight set groups highlights for one translation in a{' '}
+        <Link href="/docs/modules">module</Link>. Keep separate sets for personal study, classes
+        or study series. Your first highlight in a translation creates its first set. Use the
+        module manager to create, rename or delete sets, and the highlight controls to choose
+        the active set.
       </p>
 
       <h2>Themes: naming what a colour means</h2>
@@ -89,16 +88,14 @@ export default function Page() {
         set. “Yellow fill” becomes <em>Promises</em>. “Blue dotted underline” becomes{' '}
         <em>Questions to come back to</em>.
       </p>
-      <p>This is worth doing for two reasons:</p>
+      <p>Themes help you remember your colour scheme:</p>
       <ul>
         <li>
-          It survives you. Six months on, you will not remember the scheme you invented; the app
-          will.
+          Names record what each colour and style represents.
         </li>
         <li>
-          It makes colour a search key. Filtering{' '}
-          <Link href="/docs/search">search</Link> by that colour returns every passage you marked
-          with it — an index of your own reading, built as a side effect of marking the text.
+          Filter{' '}
+          <Link href="/docs/search">search</Link> by colour to find passages you marked with it.
         </li>
       </ul>
       <p>

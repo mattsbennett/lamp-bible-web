@@ -71,7 +71,7 @@ type Feature = {
 
 const features: Feature[] = [
   {
-    title: 'A study-grade reader',
+    title: 'Read and study',
     body: 'Eleven public-domain and openly licensed texts — English, Spanish and French translations, the Hebrew and Greek, and the Septuagint in Greek and English. The KJV, the BSB, the Hebrew and Greek, and the Greek Septuagint are tagged with Strong’s numbers: tap a tagged word for its lexicon entry. Red letters, headings, poetry and paragraphs are kept as published.',
     href: '/docs/reader',
     icon: ReaderIcon,
@@ -88,23 +88,23 @@ const features: Feature[] = [
     bleed: true,
   },
   {
-    title: 'Reading plans that keep up',
-    body: 'Three public-domain Companion plans, or one you make from the passages you want to read: tick off each reading, see the day and the week at a glance, know how long the day will take at your pace, and get a reminder and a widget.',
+    title: 'Reading plans',
+    body: 'Follow one of three Companion plans or make your own. Track your progress, estimate reading time, and use reminders and a Home Screen widget.',
     href: '/docs/reading-plans',
     icon: PlanIcon,
     art: <PlansArt />,
     bleed: true,
   },
   {
-    title: 'Highlights with meaning',
-    body: 'Four styles and any colour, kept in sets. Name a colour — “Promises”, “Calling” — and the meaning travels with your highlights.',
+    title: 'Named highlights',
+    body: 'Highlight in four styles and any colour. Organise highlights into sets and name colours by topic, such as “Promises” or “Calling”.',
     href: '/docs/highlights',
     icon: HighlightIcon,
     art: <HighlightsArt />,
     bleed: true,
   },
   {
-    title: 'Notes anchored to verses',
+    title: 'Verse and chapter notes',
     body: 'Write on a verse, a range or a whole chapter, in formatted text that sits beside the passage and exports as plain markdown.',
     href: '/docs/notes',
     icon: NoteIcon,
@@ -113,8 +113,8 @@ const features: Feature[] = [
   },
   // Sync sits before Search so that Search leads straight into the analysis card after the grid.
   {
-    title: 'Sync on your terms',
-    body: 'Keep everything on the device, sync through iCloud Drive, or use your own WebDAV server. No account, ever.',
+    title: 'Optional sync',
+    body: 'Keep your library on one device or sync through iCloud Drive or your own WebDAV server. No Lamp Bible account required.',
     href: '/docs/sync',
     icon: SyncIcon,
     art: <SyncArt />,
@@ -122,7 +122,7 @@ const features: Feature[] = [
     span: 'full-small',
   },
   {
-    title: 'Search that reaches everything',
+    title: 'Search your library',
     body: 'One index across translations, lexicons, commentaries, books, notes, writing, plans, quizzes and highlights — by word, part of a word, phrase or Strong’s number, narrowed by book, module, tag or highlight colour.',
     href: '/docs/search',
     icon: SearchIcon,
@@ -136,22 +136,22 @@ const features: Feature[] = [
 const analysisParts: Array<{ title: string; body: string; icon: IconComponent }> = [
   {
     title: 'Translated as',
-    body: 'Every English word translators chose for it, commonest first, on a ring or as a list.',
+    body: 'Compare English renderings by frequency in a chart or list.',
     icon: RenderingIcon,
   },
   {
     title: 'Forms and grammar',
-    body: 'Each spelling it takes in the Hebrew or Greek, and how it is parsed where it occurs.',
+    body: 'See the Hebrew or Greek forms and their grammatical parsing.',
     icon: FormsIcon,
   },
   {
     title: 'By book',
-    body: 'Where it falls, with each book marked when it holds more or fewer than its length predicts — by a margin chance would rarely give.',
+    body: 'Compare occurrences by book, with statistically unusual frequencies marked.',
     icon: ShareIcon,
   },
   {
     title: 'Found with',
-    body: 'The words that share its verses, the most certain first. Tap one to study it next.',
+    body: 'Find words that occur in the same verses, ranked by statistical confidence. Tap a word to study it.',
     icon: CompanionIcon,
   },
   {
@@ -203,14 +203,13 @@ function Hero() {
             </p>
           </div>
           <h1 className="mt-6 font-serif text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-[2.6rem] xl:text-[3rem]">
-            Everything you study,
+            Read, study and write
             {/* Broken only where the line is long enough to hold each half whole. */}
-            <br className="hidden sm:block" /> in one place you own.
+            <br className="hidden sm:block" /> with Lamp Bible.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            Lamp Bible puts translations, lexicons, commentaries, reading plans, your notes,
-            writing and highlights behind a single reader — working offline, with no account,
-            and stored in an open format you can export at any time.
+            Read the Bible alongside lexicons and commentaries. Follow a reading plan, take notes
+            and draft a talk. Your library works offline, needs no account and can be exported.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -260,8 +259,8 @@ function Features() {
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
         <SectionHeading
           eyebrow="Features"
-          title="Built for reading closely"
-          body="Not a verse-of-the-day app. Lamp Bible is for people who read a passage, look up a word, check a commentary, and write down what they found."
+          title="Tools for Bible study"
+          body="Look up words, compare commentary and take notes alongside the passage."
         />
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -274,7 +273,7 @@ function Features() {
         {/* Halfway down a long page, the way in again, rather than only at the foot. */}
         <div className="mt-12 flex flex-col items-start gap-5 rounded-2xl border border-line bg-sunken px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <div>
-            <p className="font-serif text-xl tracking-tight">All of this is free, with nothing to sign up for.</p>
+            <p className="font-serif text-xl tracking-tight">Free, with no account required.</p>
             <p className="mt-1 text-sm text-muted">On iPhone and iPad today{hasMacDownload ? ', and on the Mac in beta' : ''}.</p>
           </div>
           <AppStoreBadge />
@@ -296,8 +295,8 @@ function AnalysisCard() {
           </h3>
           <p className="mt-2.5 text-sm leading-relaxed text-muted sm:text-base">
             Open the analysis from a word’s lexicon entry or a Strong’s search, and Lamp Bible counts
-            that word across the translation: how often it occurs, how it is translated, where it
-            gathers and what it keeps company with. The King James translates ἀγάπη as “love” 86
+            that word across the translation: how often it occurs, how it is translated, which books use it
+            and which words occur alongside it. The King James translates ἀγάπη as “love” 86
             times — and as “charity” 27.
           </p>
           <Link
@@ -323,7 +322,7 @@ function AnalysisCard() {
         <div className="lg:order-2 lg:self-center lg:pb-10">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <Badge>{macLabel}</Badge>
-            <p className="text-sm font-medium">More room for it on the Mac</p>
+            <p className="text-sm font-medium">Word analysis on the Mac</p>
           </div>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
             The same analysis — every translation that tags the word, charts by book, section or
@@ -392,7 +391,7 @@ function FeatureCard({ feature }: { feature: Feature }) {
 /** What writing on iPhone and iPad already does, shown beside the phone editor. */
 const phoneWriting: Array<{ title: string; body: string; icon: IconComponent }> = [
   {
-    title: 'Footnotes that keep count',
+    title: 'Automatic footnote numbering',
     body: 'Numbered in order of first mention, with any label you like. Tap a marker to reach its note.',
     icon: FootnoteIcon,
   },
@@ -412,7 +411,7 @@ const phoneWriting: Array<{ title: string; body: string; icon: IconComponent }> 
     icon: FullScreenIcon,
   },
   {
-    title: 'Slides in your pocket',
+    title: 'Presentation remote',
     body: 'Open decks made on the Mac, and run a Mac presentation as its remote, with speaker notes, a timer and black-out.',
     icon: RemoteIcon,
   },
@@ -421,7 +420,7 @@ const phoneWriting: Array<{ title: string; body: string; icon: IconComponent }> 
 const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = [
   {
     title: 'Chat',
-    body: 'Ask for a draft, a cut or a check, on the model and effort you choose for that chat. Its edits go straight into the draft, and every one lands in Revisions, where you can undo it.',
+    body: 'Ask an agent to draft, shorten or review your writing. Choose the model and effort for each chat. Edits are saved in Revisions and can be undone.',
     icon: ChatIcon,
   },
   {
@@ -444,7 +443,7 @@ const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = 
 function Writing() {
   const macWriting: Feature[] = [
     {
-      title: 'A writing desk on the Mac',
+      title: 'The Mac editor',
       body: 'Visual and Markdown editing, find and replace, a Details pane for series, tags and key scriptures, footnotes edited beside their marker, companion files as tabs, and a Revision History for every change.',
       href: '/docs/mac',
       icon: HistoryIcon,
@@ -469,7 +468,7 @@ function Writing() {
             <SectionHeading
               eyebrow="Writing"
               title="Write, then present"
-              body="Devotionals, sermons and studies get a proper editor rather than a notes field, and go from manuscript to slides without leaving Lamp Bible."
+              body="Write devotionals, sermons and studies, then create slides in the Mac app."
             />
             <p className="mt-10 text-xs font-semibold uppercase tracking-wider text-faint">
               On iPhone and iPad
@@ -503,7 +502,7 @@ function Writing() {
                 <Badge>{macLabel}</Badge>
               </div>
               <h3 className="mt-5 font-serif text-2xl tracking-tight sm:text-3xl">
-                An agent at your writing desk
+                Write with an AI agent
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
                 Open a workspace beside any piece of writing and work on it with the AI you already
@@ -543,7 +542,7 @@ function Writing() {
             <div>
               <IconChip icon={PlugIcon} size="sm" />
               <h4 className="mt-5 font-serif text-xl tracking-tight sm:text-2xl">
-                Or bring Lamp to the AI app you already use
+                Connect your AI app
               </h4>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
                 With AI features on, turn on{' '}
@@ -588,7 +587,7 @@ const macFeatures: Array<{ title: string; body: string; href: string; icon: Icon
   },
   {
     title: 'Reader Chat',
-    body: 'Ask about the chapter in front of you, or the words you have selected, and start a writing from the conversation when it gets somewhere. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account, on the model you choose. Off until you turn AI features on.',
+    body: 'Ask about the chapter in front of you, or the words you have selected, and start a writing from the conversation when you want to develop an idea. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account, on the model you choose. Off until you turn AI features on.',
     href: '/docs/ai',
     icon: ChatIcon,
   },
@@ -606,8 +605,8 @@ function MacFeatures() {
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
         <SectionHeading
           eyebrow="On the Mac"
-          title="Study with room to spread out"
-          body={`The Mac app${isMacBeta ? ', now in beta,' : ''} reads the same library and syncs with your iPhone and iPad, and adds the tools that want a bigger screen and a keyboard.`}
+          title="Lamp Bible for Mac"
+          body={`The Mac app${isMacBeta ? ', now in beta,' : ''} syncs with your iPhone and iPad and adds desktop editing and presentation tools.`}
         />
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -663,13 +662,11 @@ function Modules() {
 
           <div className="mt-8 space-y-5 text-sm leading-relaxed text-muted">
             <p>
-              That has a practical consequence. Your notes are not rows locked inside an app
-              database — they are a module you can export, edit as markdown, back up to your own
-              server, and import somewhere else. So are your highlights, with the colour meanings
-              you gave them.
+              Export your notes as a module or edit them as markdown. You can also export
+              highlights with their colour names, and back up both to your own server.
             </p>
             <p>
-              It also means the library is extensible. Build a <code className="rounded border border-line bg-canvas px-1.5 py-0.5 text-[0.85em]">.lamp</code>{' '}
+              Build a <code className="rounded border border-line bg-canvas px-1.5 py-0.5 text-[0.85em]">.lamp</code>{' '}
               file from the published JSON schemas and the app will install it, index it for search
               and show it in the reader beside everything else.
             </p>
@@ -757,12 +754,12 @@ function Privacy() {
             Choose local-only storage, iCloud Drive — where your files stay visible in the Files app
             — or your own WebDAV server such as Nextcloud or Synology.
           </Point>
-          <Point title="Exit at any time">
+          <Point title="Export your work">
             Notes and writing round-trip through plain markdown. Modules export as{' '}
             <code className="rounded border border-line bg-sunken px-1.5 py-0.5 text-[0.85em]">
               .lamp
             </code>{' '}
-            packages. Nothing is trapped.
+            packages.
           </Point>
         </div>
       </div>

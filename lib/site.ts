@@ -1,8 +1,8 @@
 export const site = {
   name: 'Lamp Bible',
-  tagline: 'A Bible reading companion you own.',
+  tagline: 'Read, study and write with Lamp Bible.',
   description:
-    'A study-grade Bible reader with reading plans, notes, writing, highlights, lexicons and commentaries — all offline, all yours, in an open module format.',
+    'A free offline Bible reader with reading plans, notes, writing, highlights, lexicons and commentaries. No account required.',
   url: 'https://lampbible.com',
   appStoreUrl: 'https://apps.apple.com/us/app/lamp-bible/id6476050185',
   issuesUrl: 'https://github.com/mattsbennett/lamp-bible-ios/issues',

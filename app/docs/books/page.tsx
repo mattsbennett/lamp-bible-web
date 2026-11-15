@@ -17,10 +17,9 @@ export default function Page() {
     >
       <h2>What a book is</h2>
       <p>
-        A book is a <Link href="/docs/modules">module</Link> like a translation or a commentary,
-        but organised the way a book is — front matter, parts, chapters, sections and appendices —
-        rather than by verse. Its text can carry headings, quotations, lists, tables, images and
-        audio, and its scripture references and Strong’s numbers are links.
+        A book <Link href="/docs/modules">module</Link> has front matter, parts, chapters,
+        sections and appendices. It can include headings, quotations, lists, tables, images and
+        audio, with links for scripture references and Strong’s numbers.
       </p>
       <p>
         No books ship with the app. You add the ones you have: a <code>.lamp</code> book module
@@ -30,14 +29,13 @@ export default function Page() {
 
       <h2>The library</h2>
       <p>
-        <strong>Books</strong> on the home screen shelves what is installed by its covers — the
-        books you have started under <strong>Continue Reading</strong>, then a shelf for each
-        genre, with books that name none under <strong>Other Books</strong> at the end — and
-        searches by title, author or tag. <strong>Group By</strong> → <strong>None</strong> puts
-        them all on one shelf. To add one, choose{' '}
-        <strong>Import Book</strong> and pick a <code>.lamp</code> file — or the book’s source
-        JSON, which the app compiles on the device. Opening a book file from Files, Mail or AirDrop
-        works too.
+        Open <strong>Books</strong> on the home screen to browse installed books by cover.
+        Started books appear under <strong>Continue Reading</strong>. The rest are grouped by
+        genre, with uncategorised titles under <strong>Other Books</strong>. Choose{' '}
+        <strong>Group By</strong> → <strong>None</strong> for a single shelf, or search by title,
+        author or tag. To add a book, choose <strong>Import Book</strong> and select a{' '}
+        <code>.lamp</code> file or source JSON, which Lamp compiles on the device. You can also
+        open book files from Files, Mail or AirDrop.
       </p>
 
       <h2>Reading</h2>

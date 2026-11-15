@@ -52,11 +52,11 @@ npm run check:modules    # report drift; exits 1 if the copies are stale
 npm run build:samples    # regenerate and verify the sample .lamp modules
 ```
 
-### Keeping the copies honest
+### Checking module assets
 
 `scripts/sync-module-assets.mjs` copies `Schemas/*.json` out of a local checkout of
 `lamp-bible-core` and writes `public/modules/manifest.json`, recording the source commit and a
-SHA-256 for every file. `--check` compares three things and fails if any has moved:
+SHA-256 for every file. `--check` fails if any of these differ:
 
 1. upstream schemas against the recorded hashes,
 2. the committed copies against the recorded hashes (catches hand-edits),
@@ -68,13 +68,12 @@ at `../lamp-bible-modules` (`LAMP_MODULES_REPO` or `--source`). Without core it 
 exits 0, so it is safe to run anywhere. Without the modules repo it still copies the schemas, keeps
 the watched hashes already recorded, and says the scripts weren't checked.
 
-Run `npm run check:modules` before a release; run `npm run sync:modules` when it complains.
+Run `npm run check:modules` before a release; run `npm run sync:modules` when it reports changes.
 
 ### Sample modules
 
 `scripts/build_sample_modules.py` builds one small `.lamp` of each of the nine module types, plus
-the source JSON and the DDL, using only the Python standard library. It doubles as the reference
-implementation the docs walk through, so it is written to be read. Each sample is named
+the source JSON and the DDL, using only the Python standard library. The documentation uses it as a reference implementation. Each sample is named
 `<module id>.lamp`, which the iOS app requires, and carries the `module_format` row the apps read
 first.
 
@@ -85,8 +84,7 @@ copy of the same definitions.
 
 `scripts/verify_sample_modules.py` decompresses each result, runs `PRAGMA integrity_check`, checks
 the `module_format` row against the file name, queries it, and asserts that every annotation,
-footnote marker and highlight offset still covers the text it claims. Offsets are the one thing that
-can be wrong in a file that otherwise looks perfect, so they are checked rather than trusted.
+footnote marker and highlight offset still covers the text it claims. These checks catch incorrect offsets that SQLite integrity checks cannot detect.
 
 When core's command-line tool is available (`$LAMP_CORE_CLI`, or
 `../lamp-bible-core/.build/debug/lamp-module`, built by `swift build` in that repo), the verifier

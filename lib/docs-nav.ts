@@ -16,7 +16,7 @@ export const docsNav: DocSection[] = [
       {
         title: 'Overview',
         href: '/docs',
-        summary: 'What Lamp Bible is, how it is put together, and where to go next.',
+        summary: 'An introduction to Lamp Bible and its documentation.',
       },
       {
         title: 'Getting started',
@@ -98,7 +98,7 @@ export const docsNav: DocSection[] = [
       {
         title: 'The module system',
         href: '/docs/modules',
-        summary: 'Everything in the app is a module. What that means and how to manage them.',
+        summary: 'Install, create, export and manage library modules.',
       },
       {
         title: 'Importing a Bible',
@@ -123,7 +123,7 @@ export const docsNav: DocSection[] = [
       {
         title: 'Import & export',
         href: '/docs/import-export',
-        summary: 'Markdown round-trips for notes and writing, and where to find them.',
+        summary: 'Import and export notes and writing as markdown.',
       },
       {
         title: 'Sync & backup',

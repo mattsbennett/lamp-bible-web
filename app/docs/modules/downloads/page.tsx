@@ -21,14 +21,13 @@ export default function Page() {
     <DocPage
       href="/docs/modules/downloads"
       title="Downloads"
-      intro="Everything you need to build a module: a working example of each type, the schemas they validate against, and the table definitions the app reads."
+      intro="Download sample modules, source JSON, schemas and SQLite table definitions."
     >
       <h2>Sample modules</h2>
       <p>
-        Each of these is a real, installable <code>.lamp</code> file. They are deliberately tiny —
-        a few verses or entries each — so you can decompress one, open it in any SQLite browser,
-        and see the whole thing at once. Download one to your device and open it to watch the
-        import work.
+        Each sample is an installable <code>.lamp</code> file with a few verses or entries.
+        Download and open one to import it, or decompress it and inspect the tables in a
+        SQLite browser.
       </p>
       <p>
         Each file is named after the module it holds. Keep the name if you pass one on: on iPhone
@@ -106,7 +105,7 @@ export default function Page() {
         </>
       )}
 
-      <h2>Where to go next</h2>
+      <h2>Related guides</h2>
       <ul>
         <li>
           <Link href="/docs/modules/building">Building a .lamp file</Link> — the mechanics, step by

@@ -13,16 +13,14 @@ export default function Page() {
     <DocPage
       href="/docs/writing"
       title="Writing"
-      intro="For writing that is not tied to a single verse: devotionals, exhortations, studies, reflections, prayers and talks."
+      intro="Write devotionals, studies, prayers and talks with scripture links, footnotes and media."
     >
       <h2>Writing versus notes</h2>
       <p>
-        <Link href="/docs/notes">Notes</Link> are verse-keyed: they hang off a passage. A piece of
-        writing is a standalone document. It may cite scripture heavily, and those citations are
-        live links, but the document is organised by its own argument rather than by chapter and
-        verse. It lives behind the <strong>Write</strong> button on the home screen.
-        {' '}On the Mac the editor adds find and replace, revision history and an AI agent —
-        see <Link href="/docs/mac">The Mac app</Link>.
+        <Link href="/docs/notes">Notes</Link> attach to verses or chapters. Writing is for standalone
+        documents with linked scripture references. Open <strong>Write</strong> on the home screen.
+        The Mac editor also has find and replace, revision history and an optional AI agent.
+        See <Link href="/docs/mac">The Mac app</Link>.
       </p>
 
       <h2>The library</h2>
@@ -70,8 +68,7 @@ export default function Page() {
         </tbody>
       </Table>
       <p>
-        What you write is stored as the markdown you wrote, so switching between the visual and
-        markdown editors never rewrites your text. Edits save a few seconds after you stop typing,
+        The editor stores your original markdown and preserves it when you switch editing modes. Edits save a few seconds after you stop typing,
         and an icon in the toolbar shows when they have synced.
       </p>
 
@@ -138,11 +135,10 @@ export default function Page() {
 
       <h3>Inserting scripture</h3>
       <p>
-        Rather than typing a reference and hoping you got it right, <strong>Scripture Quote</strong>{' '}
-        lets you pick translation, book, chapter, and start and end verse, choose whether to keep
-        the verse numbers, and preview the text before inserting it with its citation. For a
-        reference in running text, add a scripture <strong>Link</strong>: in Read and Present modes
-        it opens the passage in a preview.
+        Choose <strong>Scripture Quote</strong>, then select a translation, book, chapter and
+        verse range. Choose whether to include verse numbers and preview the quotation before
+        inserting it with its citation. To cite a passage without quoting it, insert a scripture
+        <strong>Link</strong>. In Read and Present modes, the link opens a passage preview.
       </p>
 
       <h3>Footnotes</h3>
@@ -152,10 +148,9 @@ export default function Page() {
         number to return. Notes can run to several lines and carry bold, italic and links.
       </p>
       <p>
-        Footnotes are numbered 1, 2, 3 in the order they are first referred to, wherever they were
-        written. In the markdown a marker can have any label — <code>[^1]</code>,{' '}
-        <code>[^lewis]</code>, <code>[^2a]</code> — and the label you chose is kept; only the
-        numbering shown to a reader is worked out. A marker used twice shares one note.
+        Footnotes are numbered in order of first reference. Markdown labels such as{' '}
+        <code>[^1]</code>, <code>[^lewis]</code> and <code>[^2a]</code> are preserved; only the
+        displayed numbers change. Repeated markers link to the same note.
       </p>
 
       <h3>Images and audio</h3>
@@ -167,7 +162,7 @@ export default function Page() {
       </p>
 
       <h2>Metadata</h2>
-      <p>Each piece carries fields that make a growing collection navigable:</p>
+      <p>Use these fields to organise and find your writing:</p>
       <ul>
         <li>
           <strong>Title and subtitle</strong>, and an author name.
@@ -217,7 +212,7 @@ export default function Page() {
         </li>
         <li>
           <strong>Bundled</strong> — a ZIP package carrying the document and its images and audio
-          together, so nothing breaks in transit.
+          together.
         </li>
       </ul>
       <p>

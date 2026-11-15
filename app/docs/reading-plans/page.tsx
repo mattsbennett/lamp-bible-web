@@ -61,17 +61,18 @@ export default function Page() {
 
       <h2>Following plans</h2>
       <p>
-        The home screen is today’s readings. Tap <strong>Manage</strong> beside Daily Reading — or{' '}
-        <strong>Reading Plan</strong>, before you follow any — for the list of plans: Lamp’s own
-        under <strong>Built In</strong>, and the ones you made or added under{' '}
-        <strong>Your Plans</strong>. <strong>Follow</strong> as many as you like. A plan you follow
-        shows its day of the year and this week’s readings, a circle a day, and on the home screen
-        each has its own card with the day’s readings, their total time, and how many you have
-        read; on a phone the readings are listed in the same card, under it. The chevron on the
-        card folds it to a band of the plan’s name and how many are read, leaving the readings
-        showing, for every plan, on that device. Tap the circle beside a reading to mark it read; a
-        three-reading day can be half done. Completions are recorded per plan, per year, so restarting a plan next year gives you
-        a fresh slate without erasing history.
+        Tap <strong>Manage</strong> beside Daily Reading on the home screen, or{' '}
+        <strong>Reading Plan</strong> if you follow none. Bundled plans appear under{' '}
+        <strong>Built In</strong>; added plans appear under <strong>Your Plans</strong>.
+        Choose <strong>Follow</strong> for each plan you want.
+      </p>
+      <p>
+        Each followed plan shows the day of the year and a circle for each day of the week.
+        Its home-screen card lists today’s readings, total reading time and completion count.
+        On iPhone, readings appear within the card. The chevron collapses the summary to the
+        plan name and completion count, leaving readings visible; this applies to all plans on
+        that device. Tap a reading’s circle to mark it complete. Progress is stored separately
+        for each plan and year, preserving previous years’ history.
       </p>
       <p>
         The date at the top moves backwards and forwards a day at a time, or tap it to pick one —
@@ -92,7 +93,7 @@ export default function Page() {
         rate sets the pace of <Link href="/docs/reader">read aloud</Link>.
       </p>
       <p>
-        Reading together? Set <strong>Readers</strong> in Settings → Reading Plans to how many of
+        For group reading, set <strong>Readers</strong> in Settings → Reading Plans to how many of
         you take turns. With more than one, each reading shows how many verses each reader takes,
         and tapping that changes the number.
       </p>
@@ -114,12 +115,12 @@ export default function Page() {
 
       <h2 id="making-a-plan">Making your own plan</h2>
       <p>
-        <strong>New Plan</strong>, at the end of Your Plans, makes a plan from what you want to
-        read. Write the passages as you would anywhere — <code>Matthew–John</code>,{' '}
-        <code>Psalms 1–41</code> — and add more with <strong>Read Something Alongside</strong>, for
-        some of each every day. Each part is spread over the plan or read at so many chapters a
-        day. Then say how many days of reading, or, when every part has a pace,{' '}
-        <strong>Until Read Through</strong>; when it starts; and which days are off.
+        Choose <strong>New Plan</strong> at the end of Your Plans. Enter passages such as{' '}
+        <code>Matthew–John</code> or <code>Psalms 1–41</code>. Use{' '}
+        <strong>Read Something Alongside</strong> to add parallel readings. For each part, choose
+        to spread it over the plan or read a set number of chapters per day. Set the duration,
+        start date and days off. If every part has a daily pace, you can choose{' '}
+        <strong>Until Read Through</strong> instead of a fixed duration.
       </p>
       <p>
         On iOS 26 with Apple Intelligence, you can describe the plan instead — “the Gospels in a
@@ -143,9 +144,8 @@ export default function Page() {
 
       <h2>Daily reminder</h2>
       <p>
-        A single local notification can be scheduled at a time of your choosing — 6:30 pm by default
-        — reminding you of the day’s readings. It is a local notification, so it needs no account
-        and no server.
+        Set a daily reminder for your preferred time (6:30 pm by default). The notification
+        runs locally and needs no account or server.
       </p>
 
       <h2>Quizzes</h2>
@@ -158,10 +158,10 @@ export default function Page() {
         The bundled quiz has five questions a reading for each of five age groups, from young
         children to adults. Choose a group from <strong>Questions For</strong> at the top of the
         quiz; your choice is remembered. Each question has a theme, and the passages it cites are
-        set out beneath it as cards, to weigh before answering — swipe between them, and tap{' '}
+        shown beneath it as cards — swipe between them, and tap{' '}
         <strong>Read in Context</strong> to open one in the reader.{' '}
         <strong>Show Answer</strong> reveals the answer, and <strong>Next Question</strong> moves
-        on. It is a set of questions to discuss rather than a test, with no scoring. The quiz menu
+        on. The questions are for discussion and are not scored. The quiz menu
         can <strong>Always Show Answers</strong>, for use with a group, and the quiz can be read
         aloud. If a reading has no questions for the selected group, the app says so and suggests
         another.

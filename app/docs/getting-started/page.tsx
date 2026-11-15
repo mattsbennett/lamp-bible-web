@@ -14,7 +14,7 @@ export default function Page() {
     <DocPage
       href="/docs/getting-started"
       title="Getting started"
-      intro="Install the app, pick a translation, and learn what lives behind each button on the home screen."
+      intro="Install Lamp Bible, choose a translation and learn the main controls."
     >
       <h2>Install</h2>
       <p>
@@ -28,7 +28,7 @@ export default function Page() {
         after that the entire library works with no network connection.
       </p>
 
-      <Callout title="What you get on day one">
+      <Callout title="Included content">
         <p>
           Eleven translations, five lexicons, two cross-reference sets, three public-domain reading
           plans and a quiz module are included in the install. See{' '}
@@ -102,8 +102,7 @@ export default function Page() {
         The Berean Standard Bible and the King James Version carry Strong’s numbers on individual
         words, as do <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts, and{' '}
         <code>LXX</code>, the Greek Septuagint. In those translations you can tap a word to open its
-        lexicon entry. The others read
-        perfectly well but have no word-level lookups.
+        lexicon entry. Other translations have no word-level lookups.
       </p>
       <p>
         If you never use some of the bundled translations, hide them in the same settings screen
@@ -120,7 +119,7 @@ export default function Page() {
         number yourself. The same figure sets the pace of read aloud.
       </p>
 
-      <h2>Decide where your work lives</h2>
+      <h2>Choose storage and sync</h2>
       <p>
         Before you write much, go to Settings and choose a sync method. The options are local-only,
         iCloud Drive, or a WebDAV server of your own. Switching later is supported and the app will
@@ -128,7 +127,7 @@ export default function Page() {
         <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
 
-      <Callout tone="warn" title="Local-only means local-only">
+      <Callout tone="warn" title="Back up local-only data">
         <p>
           With sync set to Local Only, nothing leaves the device — including to a backup. If the
           device is lost, so is your work. Use{' '}
@@ -151,8 +150,7 @@ export default function Page() {
           the other lexicons.
         </li>
         <li>
-          Select a phrase and choose Highlight. Long-press a colour to give it a name, so it means
-          something later.
+          Select a phrase and choose Highlight. Long-press a colour to name it by topic.
         </li>
         <li>
           Choose <strong>Show Tools</strong> from the reader’s menu, switch the panel to{' '}

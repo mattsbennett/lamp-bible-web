@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/modules/import-bible"
       title="Importing a Bible"
-      intro="If you already have a Bible as a file — from a publisher, a Bible society or a SWORD library — Lamp Bible can turn it into a translation module you read like any other."
+      intro="Import a Bible file from a publisher, Bible society or SWORD library as a Lamp translation module."
     >
       <h2>Where to start</h2>
       <p>
@@ -76,11 +76,10 @@ export default function Page() {
 
       <h3>SWORD modules</h3>
       <p>
-        Lamp Bible reads SWORD Bibles stored as <code>zText</code>, <code>zText4</code>,{' '}
-        <code>RawText</code> or <code>RawText4</code> with ZIP compression; marked up in OSIS, ThML,
-        GBF or plain text; and numbered the KJV or NRSV way. It explains why when a module is
-        outside that — a commentary or dictionary rather than a Bible, BZIP2 compression, Synodal
-        verse numbering, TEI markup — rather than importing something broken.
+        Supported SWORD Bibles use <code>zText</code>, <code>zText4</code>, <code>RawText</code>
+        or <code>RawText4</code> with ZIP compression, OSIS/ThML/GBF/plain-text markup, and KJV
+        or NRSV verse numbering. Unsupported inputs produce an explanation. These include
+        commentary and dictionary modules, BZIP2 compression, Synodal numbering and TEI markup.
       </p>
 
       <h3>Locked SWORD modules</h3>

@@ -17,12 +17,9 @@ export default function Page() {
     >
       <h2>Translations</h2>
       <p>
-        The translations use several different rights bases rather than one blanket public-domain
-        claim. Those marked for Strong’s carry Strong’s numbers on individual words, which is what
-        enables tap-to-lexicon lookups: the Berean Standard Bible and the King James Version among
-        the English, <code>TAHOT</code> and <code>TAGNT</code>, the Hebrew and Greek texts
-        themselves, tagged word by word with morphology too, and <code>LXX</code>, the Greek
-        Septuagint, likewise.
+        Rights vary by translation. Strong’s-tagged texts support word-level lexicon lookups:
+        BSB, KJV, the Hebrew <code>TAHOT</code>, Greek <code>TAGNT</code> and Greek Septuagint
+        <code>LXX</code>. The Hebrew and Greek texts also include morphology.
       </p>
       <p>
         The World English Bible and the American Standard Version are published with Strong’s

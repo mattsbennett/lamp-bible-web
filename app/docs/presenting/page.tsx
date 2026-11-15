@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/presenting"
       title="Slides & presenting"
-      intro="Build a deck from a talk you have written, present it on the Mac, and run it from the phone in your hand with your notes on it."
+      intro="Create slides on the Mac, then present with your iPhone as a remote."
     >
       <h2>Slide Studio</h2>
       <p>
@@ -23,16 +23,16 @@ export default function Page() {
         built from a writing stays linked to it.
       </p>
       <p>
-        The slide list down the side reorders, duplicates, hides and deletes slides. The inspector
-        beside the slide has two panes. <strong>Slide</strong> shows the layouts as pictures to
-        choose from, <strong>Skip while presenting</strong>, and the slide’s content.{' '}
-        <strong>Deck</strong> sets the title, the aspect ratio (16:9 or 4:3), the theme —{' '}
-        <strong>Lamp Dark</strong> or <strong>Parchment</strong>, each shown as your first slide
-        drawn in it — and the typeface. Decks save themselves as you work; the{' '}
-        <strong>Undo Edit</strong> and <strong>Redo Edit</strong> toolbar buttons take back a
-        change, a burst of typing at a time. A deck that can’t be saved yet — a title cleared to
-        retype it, say — is kept as a draft on the Mac, and comes back when you reopen it. The{' '}
-        <strong>Deck</strong> menu in the toolbar saves, imports, exports and deletes the deck.
+        Use the slide list to reorder, duplicate, hide or delete slides. The inspector has two panes:
+        <strong>Slide</strong> contains layout previews, content and <strong>Skip while presenting</strong>;
+        <strong>Deck</strong> sets the title, aspect ratio (16:9 or 4:3), typeface and theme.
+        <strong>Lamp Dark</strong> and <strong>Parchment</strong> preview your first slide.
+      </p>
+      <p>
+        Decks save automatically. <strong>Undo Edit</strong> and <strong>Redo Edit</strong> group
+        typing into changes. If a deck cannot be saved, for example while its title is empty,
+        Lamp keeps a local draft and restores it when reopened. The <strong>Deck</strong> menu
+        also lets you save, import, export and delete decks.
       </p>
 
       <h3>Layouts and content</h3>
@@ -81,17 +81,17 @@ export default function Page() {
         and tinting behind them, and images take an accessibility description.
       </p>
       <p>
-        A chart shows how a Strong’s number is used. Give it the number, a translation and, if you
-        like, a run of books such as <code>NT</code> or <code>Matthew-John</code>, and narrow it, if
-        you want, to one way the word is translated, one form or one grammatical value. Then choose
-        what to count — by book, section, how it is translated, form, a grammatical feature, each
-        translation side by side, or the words found with it — and how to draw it: bars, columns in
-        Bible order, a grid of chapters, a share of the whole, or the analysis’s headword card over
-        a column for each book. Lamp works the figures out from your library, the same way as the{' '}
-        <Link href="/docs/search#analysis">analysis</Link>, and draws them in the slide’s colours; a
-        key says which books hold more or fewer than chance would give. Where a chart rests on tags
-        a translation gained when its module was built, a line under it says so.{' '}
-        <strong>Add to Deck</strong>, on any figure in the analysis, starts a chart from it.
+        To chart a Strong’s number, enter the number and translation. Optionally limit the books
+        (such as <code>NT</code> or <code>Matthew-John</code>), rendering, form or grammatical value.
+        Group counts by book, section, rendering, form, grammar, translation or associated word.
+        Choose bars, columns in Bible order, a chapter grid, proportions, or a headword card above
+        book columns.
+      </p>
+      <p>
+        Charts use the same library data as <Link href="/docs/search#analysis">word analysis</Link>
+        and match the slide’s colours. A key marks statistically unusual book frequencies, and a
+        caption identifies tags added during module creation. To reuse an analysis figure,
+        choose <strong>Add to Deck</strong> on that figure.
       </p>
       <p>
         Slide Studio checks a deck as you go. Errors stop it saving, exporting or playing until

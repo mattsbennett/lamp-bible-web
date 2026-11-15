@@ -13,19 +13,12 @@ export default function Page() {
     <DocPage
       href="/docs/modules"
       title="The module system"
-      intro="One container format for everything the app reads and everything you write. This page covers the concepts and day-to-day management; the format itself is documented separately."
+      intro="Install, export and manage modules for your library and personal work."
     >
-      <h2>The idea</h2>
+      <h2>What is a module?</h2>
       <p>
-        Most Bible apps draw a hard line between <em>their</em> content and <em>your</em> content.
-        The translations are library data; your notes are rows in a private database. The two are
-        handled by different code, exported by different means, and one of them is usually not
-        exportable at all.
-      </p>
-      <p>
-        Lamp Bible does not draw that line. A translation is a module. Your notes are a module. A
-        commentary series, a reading plan, a set of highlights, a piece you wrote last Tuesday —
-        all modules, all in the same container, all managed in the same place.
+        A module contains a translation, commentary, reading plan or other content. Your notes,
+        writing and highlights are modules too. All use the same file format and module manager.
       </p>
 
       <h2>The nine types</h2>
@@ -185,26 +178,6 @@ export default function Page() {
         </p>
       </Callout>
 
-      <h2>Why this matters in practice</h2>
-      <ul>
-        <li>
-          <strong>Nothing is trapped.</strong> Everything you write can leave the app as markdown or
-          as a package, at any time, without asking anyone.
-        </li>
-        <li>
-          <strong>Content is shareable.</strong> A set of study notes for a book, a highlight scheme
-          for a class, a series of talks — each is a file you can send to someone.
-        </li>
-        <li>
-          <strong>The library is extensible.</strong> Anything you have the rights to use can be
-          converted into a module and used exactly like built-in content.
-        </li>
-        <li>
-          <strong>Search covers everything.</strong> Because all modules land in the same indexes,
-          one query reaches library content and your own writing together.
-        </li>
-      </ul>
-
       <h2>Next</h2>
       <ul>
         <li>
@@ -213,8 +186,7 @@ export default function Page() {
         </li>
         <li>
           <Link href="/docs/modules/downloads">Downloads</Link> — an installable sample module of
-          every type, with its source JSON, the schemas and the table definitions. The quickest way
-          in is to take one apart.
+          every type, with its source JSON, the schemas and the table definitions. Use these as examples for your own modules.
         </li>
         <li>
           <Link href="/docs/modules/building">Building a .lamp file</Link> — the mechanics:

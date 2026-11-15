@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/lexicons"
       title="Lexicons"
-      intro="Word-level lookups from tagged translations, and how to control which dictionary answers first."
+      intro="Look up Hebrew and Greek words and choose which lexicon opens first."
     >
       <h2>What is included</h2>
 
@@ -74,7 +74,7 @@ export default function Page() {
         count beside the number shows how often it occurs, and tapping it searches for every verse
         that uses it. <strong>Analyse</strong> beside that opens an{' '}
         <Link href="/docs/search#analysis">analysis</Link> of the word: its definition in each
-        dictionary, how it is translated, its forms and grammar, where it gathers, the words found
+        dictionary, how it is translated, its forms and grammar, its distribution, the words found
         with it, and how other translations count it.
       </p>
       <p>
@@ -109,9 +109,8 @@ export default function Page() {
         Hebrew and Greek each have their own lexicon order, set in Settings → Translations &amp;
         Lexicons.
         The default puts Strong’s first, followed by BDB for Hebrew, and by TBESG and then Dodson for Greek. Drag them
-        so that the dictionary you actually trust appears first, and swipe to hide the ones you
-        never read — hidden lexicons stay installed and searchable, they just stop appearing in
-        lookups.
+        to put your preferred dictionary first. Swipe to hide a lexicon from lookups; it stays
+        installed and searchable.
       </p>
 
       <h2>Adding your own</h2>

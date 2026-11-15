@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/sync"
       title="Sync & backup"
-      intro="Three options, no account in any of them. Pick where your library lives; every device that points at the same place shares it."
+      intro="Keep your library on one device or share it across devices using iCloud Drive or WebDAV."
     >
       <h2>The three options</h2>
 
@@ -34,15 +34,15 @@ export default function Page() {
           <tr>
             <td>iCloud Drive</td>
             <td>
-              Your library lives in a Lamp Bible folder in your own iCloud Drive, visible in the
+              Your library is stored in a Lamp Bible folder in your own iCloud Drive, visible in the
               Files app.
             </td>
           </tr>
           <tr>
             <td>WebDAV</td>
             <td>
-              Your library lives on a server you run or rent — Nextcloud, ownCloud, Synology, or
-              anything else speaking WebDAV.
+              Your library is stored on a server you run or rent — Nextcloud, ownCloud, Synology, or
+              another WebDAV-compatible server.
             </td>
           </tr>
         </tbody>
@@ -84,7 +84,7 @@ export default function Page() {
         </li>
       </ul>
 
-      <p>Some things deliberately stay on the device that made them:</p>
+      <p>The following stay on each device:</p>
       <ul>
         <li>Bundled modules, which every install already has.</li>
         <li>Your WebDAV password and the choice of sync method.</li>
@@ -100,7 +100,7 @@ export default function Page() {
         Sync runs when the app opens and each time you return to it, a few seconds after you stop
         editing, and once more as you leave it if anything is waiting to go. While the app is open it
         also checks every half-minute for changes from your other devices. <strong>Sync Now</strong>{' '}
-        forces a pass and reports an error if one fails.
+        starts a sync and reports any errors.
       </p>
       <p>
         Sync works file by file. One file that fails — a server timeout, say — is reported, and the
@@ -149,8 +149,7 @@ export default function Page() {
         The server must support the standard methods — <code>PROPFIND</code>, <code>GET</code>,{' '}
         <code>HEAD</code>, <code>PUT</code>, <code>DELETE</code> and <code>MKCOL</code> — with
         conditional writes, and Basic authentication. Nextcloud, ownCloud and Synology all do.
-        Synology servers, which can be slow to show an upload back, are waited on rather than
-        written twice.
+        For Synology servers, Lamp waits for uploaded files to appear before retrying.
       </p>
 
       <Callout title="Use HTTPS">
@@ -178,7 +177,7 @@ export default function Page() {
         </li>
       </ul>
 
-      <Callout tone="warn" title="Wipe means wipe">
+      <Callout tone="warn" title="Local data will be deleted">
         <p>
           Wipe &amp; Switch deletes local data rather than archiving it, even when the new method is
           Local Only. Export anything you are unsure about first.
@@ -191,11 +190,10 @@ export default function Page() {
         never collides. When the same entry changed on both, the newer change wins.
       </p>
       <p>
-        A true conflict — the same entry, different text, and the same change time — is not settled
-        silently. Sync keeps this device’s copy, sets the other aside, and carries on. A banner
-        offers <strong>Resolve</strong> — in the Notes panel for notes, and in the list of your
-        writing for a piece of writing, which opens the conflicts on its own when one arrives. Settings →
-        Sync lists every conflict with a Resolve button too.
+        If an entry has different text but the same modification time on two devices, Lamp keeps
+        the local version and sets the other aside for review. Choose <strong>Resolve</strong>
+        in the Notes panel, writing list or Settings → Sync. The writing list opens conflicts
+        automatically when they arrive.
       </p>
       <p>
         You can keep either version, keep both, or settle every conflict at once. Both versions of
@@ -204,12 +202,10 @@ export default function Page() {
         waiting does not upload until you choose.
       </p>
       <p>
-        A highlight set that changed on both devices is merged highlight by highlight: each one
-        this device lacks is added, and none is taken away for being missing from the other copy,
-        so only a deletion removes one. The set’s name, and its themes’ names, go to whichever copy
-        changed last. Settings are merged one at a time: each takes the value from the device that
-        changed it, and one changed on both takes the later change. Ticking or unticking a reading, and following or dropping a plan, is
-        merged the same way, so an untick on one device is not undone by another.
+        Highlight sets merge individual highlights. Missing highlights are added; only recorded
+        deletions remove them. The latest change determines set and theme names. Settings,
+        reading completions and followed plans also merge individually, with the latest change
+        taking precedence. This includes unmarking a reading or unfollowing a plan.
       </p>
 
       <h2>Deletions</h2>
@@ -249,16 +245,15 @@ export default function Page() {
       </ul>
 
       <h2>Backup strategy</h2>
-      <p>Sync is not the same thing as backup. A reasonable belt-and-braces routine:</p>
+      <p>Sync propagates deletions as well as edits. Keep separate backups:</p>
       <ul>
-        <li>Use iCloud Drive or WebDAV, so a lost device is not a lost library.</li>
+        <li>Use iCloud Drive or WebDAV to keep a copy on another device or server.</li>
         <li>
           Back up the sync folder itself — iCloud Drive and most WebDAV servers can keep versions,
           or snapshot the folder on a schedule.
         </li>
         <li>
-          Periodically export your notes and writing to markdown — plain files that will
-          outlive any app, this one included.
+          Periodically export notes and writing to markdown, which you can read in any text editor.
         </li>
       </ul>
       <p>

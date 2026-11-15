@@ -5,7 +5,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'AI features',
   description:
-    'Apple Intelligence on iPhone, iPad and Mac for plans made from a description, and on the Mac Reader Chat and writing agents through your own Codex, Claude Code or OpenCode account, with read-only access to your library and skills for weighing what scripture says — and Lamp’s library tools in Claude Desktop, Codex, Cursor or opencode.',
+    'Set up optional AI features: reading plans, Reader Chat, writing agents and access from other AI apps.',
 }
 
 export default function Page() {
@@ -13,26 +13,22 @@ export default function Page() {
     <DocPage
       href="/docs/ai"
       title="AI features"
-      intro="Ask about the passage you are reading, or write with an agent beside you — through an AI account of your own, with read-only access to your library."
+      intro="Use your own AI account to discuss passages or edit writing. Library lookups are read-only."
     >
       <p>
-        AI in Lamp Bible is optional, and Lamp Bible has no AI service of its own. On iPhone, iPad
-        and Mac, Apple Intelligence can make a{' '}
-        <Link href="/docs/reading-plans">reading plan</Link> from a description, using the model on
-        the device, and the system’s Writing Tools work in what you write. The Mac adds Reader Chat
-        and writing agents, which run through an AI tool you already use: Lamp starts your
-        provider’s command-line tool on your Mac, and gives it read-only tools for looking things up
-        in your library. Most of this page is about those.
+        AI features are optional. Apple Intelligence can create a{' '}
+        <Link href="/docs/reading-plans">reading plan</Link> from a description on iPhone, iPad
+        and Mac, using the on-device model. System Writing Tools are also available in the editor.
+        On the Mac, Reader Chat and writing agents use your provider’s command-line tool with
+        read-only access to your library. Lamp Bible does not run an AI service.
       </p>
 
       <h2 id="turning-on">Turning it on</h2>
       <p>
-        AI is off until you turn it on. Until then, Settings → AI &amp; Agents on the Mac shows one
-        switch, <strong>Show AI Features</strong>, and nothing else in Lamp mentions AI. Off hides Reader
-        Chat, the writing agent and plans made from a description, turns off the system’s Writing
-        Tools in Lamp’s text, and withdraws what other apps may read through Lamp. Your chats and
-        drafts are kept for when you turn it back on. A library that was already using AI starts
-        with it on.
+        Turn on <strong>Show AI Features</strong> in Settings → AI &amp; Agents on the Mac.
+        AI is off by default, except for libraries already using it. Turning it off hides Reader
+        Chat, writing agents and plan generation, disables system Writing Tools in Lamp, and
+        revokes other apps’ access to Lamp. Your chats and drafts are retained.
       </p>
       <p>
         The switch is shared with your iPhone and iPad, where it is Settings →{' '}
@@ -126,13 +122,12 @@ export default function Page() {
 
       <h3 id="model">Provider, model and effort</h3>
       <p>
-        At the top of each chat, three menus choose the provider, the model and the effort. Lamp
-        names no model of its own: the menu offers the provider’s default, the names the provider
-        itself keeps pointed at its current models — <code>opus</code>, <code>sonnet</code> and{' '}
-        <code>haiku</code> for Claude Code — and <strong>Other Model…</strong> for a name you type,
-        which is passed on as it is. Effort is low to max for Claude Code, a value you type for
-        Codex, and for OpenCode the variants the installed tool lists for the model you named. The
-        choices belong to the chat, so two tabs can use two providers or two models at once.
+        Use the menus at the top of a chat to choose its provider, model and effort. The model
+        menu offers the provider’s default and model aliases, such as <code>opus</code>,{' '}
+        <code>sonnet</code> and <code>haiku</code> for Claude Code. Choose{' '}
+        <strong>Other Model…</strong> to enter a name, which Lamp passes to the provider unchanged.
+        Claude Code offers effort levels from low to max; Codex accepts a typed value; OpenCode
+        lists the variants supported by its installed tool. Each chat has its own settings.
       </p>
 
       <h2 id="skills">Study skills</h2>
@@ -142,7 +137,7 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>sola-scriptura</strong> tells what a passage states from what is inferred from it
+          <strong>sola-scriptura</strong> distinguishes what a passage states from what is inferred from it
           or brought to it. Asked about one claim, it says whether scripture establishes it, in a
           paragraph with the text quoted. Given a whole piece of writing, it goes through it claim
           by claim — stated, entailed, inferred, imported, unsupported or contrary — and ranks what
@@ -157,9 +152,8 @@ export default function Page() {
         </li>
       </ul>
       <p>
-        Both measure against the text alone. They look passages up rather than quoting from memory,
-        report a commentary’s view as that commentary’s, and never count what your library happens
-        to hold as evidence for a reading. Reader Chat and writing agents have both;{' '}
+        Both skills instruct agents to assess claims against scripture. They look passages up rather than quoting from memory,
+        report a commentary’s view as that commentary’s, and distinguish the contents of your library from evidence for an interpretation. Reader Chat and writing agents have both;{' '}
         <a href="#other-apps">other apps</a> get them as prompts.
       </p>
 
@@ -183,48 +177,38 @@ export default function Page() {
         of the chat says what it can reach.
       </p>
       <p>
-        Replies appear as they are written, and with Claude Code a line says what the agent is doing
-        meanwhile — the tool it is using, and the passage it is reading. Afterwards, a line under
-        your question names the tools its answer used. A reply keeps arriving if you close the
-        chat, switch it for Study Tools or leave the reader, and is there when you come back. A
-        message you send while a reply is still arriving waits its turn: until it goes, you can
-        reword it, send it sooner than the others waiting, or remove it, and it is still waiting
-        if you quit.
+        Replies appear as they are generated. Claude Code also shows its current tool and passage;
+        completed replies list the tools used beneath your question. Replies continue when you
+        close the chat, switch to Study Tools or leave the reader. Messages sent during a reply
+        are queued. You can edit, prioritise or remove queued messages, and the queue survives
+        quitting the app.
       </p>
       <p>
-        Each reader tab keeps its own chat, and comes back to it when you relaunch.{' '}
-        <strong>Chats</strong> starts a new one or goes back to an earlier one, each listed by how
-        it opened; its search field finds a chat by anything said in it, by you or in a reply. A
-        chat open in another tab is marked as such. Right-click a question and choose{' '}
-        <strong>Fork From Here</strong> to carry the conversation on from that point as a chat of
-        its own, leaving the original exactly as it was. <strong>Keep chats for</strong>, in
-        Settings → AI &amp; Agents, sets how long a chat is kept after it was last used — two months
-        unless you change it — and a chat nothing was said in is not kept at all. Reader Chat
-        conversations stay on the Mac and do not sync.
+        Each reader tab retains its chat across launches. Use <strong>Chats</strong> to start or
+        reopen a conversation, or search its questions and replies. The list identifies chats open
+        in other tabs. Right-click a question and choose <strong>Fork From Here</strong> to start
+        a separate conversation from that point. In Settings → AI &amp; Agents,{' '}
+        <strong>Keep chats for</strong> sets retention from the last use (two months by default).
+        Empty chats are discarded. Reader Chat conversations stay on the Mac and do not sync.
       </p>
       <p id="start-writing">
-        A conversation is often where a piece of writing begins. The{' '}
-        <strong>Start a Writing</strong> button in the chat’s header starts a new writing and
-        copies the conversation into the writing’s own chat, where it carries on; right-click a
-        question and choose <strong>Start a Writing from Here…</strong> to copy it up to that
-        point. The copy is made once. Nothing said afterwards in either chat reaches the other, the
-        reader chat stays on the Mac as before, and the copy syncs with the writing. The
-        writing’s chat marks where the copy ends, and the reader chat lists the writings started
-        from it, each with a way to open it. With <strong>Allow agents to start a writing</strong>{' '}
-        on, in Settings → AI &amp; Agents under Reader Chats, you can ask the chat’s agent to start
-        one for you. It is off until you turn it on, and an agent can only add a writing, never
-        change or remove one.
+        Choose <strong>Start a Writing</strong> in the chat header to create a document and copy
+        the conversation into its agent chat. To copy only part, right-click a question and choose{' '}
+        <strong>Start a Writing from Here…</strong>. The chats are independent after copying:
+        Reader Chat stays on this Mac, while the writing’s chat syncs. The new chat marks the end
+        of the copied conversation; the original links to writings created from it.
+        To let an agent create a writing, enable <strong>Allow agents to start a writing</strong>
+        in Settings → AI &amp; Agents → Reader Chats. This is off by default and permits creation
+        only, not changes to or deletion of existing writings.
       </p>
 
       <h2>Writing with an agent</h2>
       <p>
-        In the writing editor, the <strong>Agent</strong> button opens a workspace for that piece of
-        writing. The agent works on the same text you do: the draft in the editor and the agent’s
-        copy are kept in step as either of you changes it, and every change goes into{' '}
-        <strong>Revisions</strong>, where you can undo it or restore an earlier version. If you and
-        the agent change an open file at once, you choose whose version to keep. The agent is told
-        which file is open in the editor and the text you have selected in it, so you can point at
-        a paragraph and ask about it.
+        Choose <strong>Agent</strong> in the writing editor to open the document’s workspace.
+        The editor and agent share the draft. Changes are saved in <strong>Revisions</strong>,
+        where you can undo them or restore an earlier version. If you and the agent edit a file
+        at the same time, you choose which version to keep. The agent receives the active filename
+        and selected text, so you can select a paragraph and ask about it.
       </p>
       <ul>
         <li>
@@ -336,13 +320,11 @@ export default function Page() {
         and <strong>Read the Hebrew or Greek</strong>.
       </p>
       <p>
-        With <strong>Allow other apps to add reading plans</strong> on, it can also add a plan over
-        the passages you name — so a model you already pay for can work out a plan with you, show
-        you its days, and put it in your library. Lamp lays the plan out and adds it when it next
-        reads its library, and includes it in Today. It adds plans and nothing else: it cannot
-        change or remove anything already there. With{' '}
-        <strong>Allow agents to start a writing</strong> on as well, it can start a new writing,
-        empty or begun with a draft, though it has no Lamp conversation to copy into it.
+        Enable <strong>Allow other apps to add reading plans</strong> to let an agent create
+        a plan for the passages you specify. Lamp adds it to the library and Today when it next
+        reads the library. This permission does not allow changes to or deletion of existing content.
+        With <strong>Allow agents to start a writing</strong> also enabled, the agent can create
+        an empty writing or one with a draft. No Lamp conversation is copied into it.
       </p>
       <p>
         With personal content allowed, it can also read the writings that have an agent workspace —

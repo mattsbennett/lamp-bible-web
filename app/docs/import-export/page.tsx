@@ -13,7 +13,7 @@ export default function Page() {
     <DocPage
       href="/docs/import-export"
       title="Import & export"
-      intro="Notes and writing round-trip through plain markdown, a piece’s media included. This is where to find it, and the format."
+      intro="Import and export notes and writing as markdown. Writing exports can include attached media."
     >
       <h2>Where to find it</h2>
       <Table>
@@ -101,7 +101,7 @@ The Word became flesh.
 
       <h3>What the importer reads</h3>
       <p>
-        Import is more forgiving than export. It reads the layout above, a file holding one book,
+        Import accepts the layout above, a file holding one book,
         and the layout earlier versions exported, which starts with YAML frontmatter naming the
         book:
       </p>
@@ -176,9 +176,8 @@ For God so loved the world...`}</code>
       </Table>
 
       <p>
-        Heading levels do not matter, so a single book’s notes and a combined file both work. A
-        heading that looks like a reference but is not a real verse fails the import with the
-        heading named, rather than guessing.
+        Heading levels can vary. Both single-book and combined files are accepted. An invalid
+        verse reference stops the import, and the error identifies the heading.
       </p>
 
       <h3>Footnotes</h3>
@@ -278,7 +277,7 @@ Life brings unexpected storms...`}</code>
       <h3>Blocks</h3>
       <p>
         Paragraphs, headings, blockquotes, tables, and bulleted and numbered lists map directly to
-        the editor. Two conventions are worth memorising:
+        the editor. Use these two conventions:
       </p>
       <ul>
         <li>
@@ -299,7 +298,7 @@ Life brings unexpected storms...`}</code>
 
       <h2>Media</h2>
       <p>
-        Media referenced by markdown lives in a <code>media/</code> folder alongside it, and the
+        Media referenced by markdown is stored in a <code>media/</code> folder alongside it, and the
         markdown links to each file by name.
       </p>
 

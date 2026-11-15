@@ -13,13 +13,13 @@ export default function Page() {
     <DocPage
       href="/docs/notes"
       title="Notes"
-      intro="Study notes anchored to the text — written where you are reading, and yours to take with you."
+      intro="Add notes to verses, verse ranges or whole chapters. Search, sync and export them."
     >
       <h2>How notes are organised</h2>
-      <p>Notes are verse-keyed. Within a chapter, a note attaches to one of three things:</p>
+      <p>A note can cover:</p>
       <ul>
         <li>
-          <strong>A single verse</strong> — the common case.
+          <strong>A single verse</strong>.
         </li>
         <li>
           <strong>A verse range</strong> — including ranges that cross a chapter boundary.
@@ -30,16 +30,15 @@ export default function Page() {
         </li>
       </ul>
       <p>
-        Your notes live together in one notes <Link href="/docs/modules">module</Link>, called My
-        Notes. You can create more notes modules in the module manager — one for a class you teach,
-        say — and switch between them from the Notes panel’s title menu.
+        Your notes are stored in a <Link href="/docs/modules">module</Link>, called My
+        Notes. Create additional modules in the module manager, such as one for a class,
+        and switch between them from the Notes panel’s title menu.
       </p>
 
       <h2>Writing them</h2>
       <p>
         Open the <Link href="/docs/reader">tool panel</Link> and switch it to Notes. The panel
-        shows the chapter note and then every verse note in order, and — because its scroll is
-        linked to the reader — keeps pace with the passage as you move through it.
+        shows the chapter note followed by verse notes in order. It scrolls with the reader.
       </p>
       <ul>
         <li>
@@ -107,16 +106,12 @@ export default function Page() {
         the passage the note is attached to.
       </p>
 
-      <h2>Getting notes in and out</h2>
+      <h2>Import and export</h2>
       <p>
         Notes round-trip through markdown: export a whole notes module from the module manager, and
         import a markdown file of notes into any notes module. The export carries the notes’ text;
         the pictures in them are not exported with it. The format is documented in full on the{' '}
         <Link href="/docs/import-export">Import &amp; export</Link> page.
-      </p>
-      <p>
-        This is the deliberate escape hatch: your notes are ordinary markdown files, readable in any
-        text editor, whether or not you keep using this app.
       </p>
 
       <h2>Sync</h2>

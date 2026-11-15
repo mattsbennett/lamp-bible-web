@@ -14,11 +14,11 @@ export default function Page() {
     <DocPage
       href="/docs/reader"
       title="The reader"
-      intro="The passage view, and the tools that sit around it: word lookups, commentary, notes, read aloud and navigation."
+      intro="Read passages, look up words, view commentary and notes, and listen to readings."
     >
       <h2>The text</h2>
       <p>
-        Verse text is rendered from the translation module, which carries more than plain strings.
+        The reader preserves the formatting supplied by each translation module.
         Depending on the translation, a chapter can include section headings, paragraph breaks,
         poetry and stanza layout, superscriptions, italic supplied words, the divine name set
         apart, red-letter marking for the words of Christ, and per-word Strong’s numbers with
@@ -30,8 +30,7 @@ export default function Page() {
         In a Strong’s-tagged translation, tapping a word opens its lexicon entry. Which lexicon
         appears first depends on your configured order — see{' '}
         <Link href="/docs/lexicons">Lexicons</Link>. Turn on <strong>Show Word Hints</strong>{' '}in
-        Settings → Translations &amp; Lexicons to underline every tagged word, so you can see at a
-        glance which words have entries behind them.
+        Settings → Translations &amp; Lexicons to underline every tagged word, to show which words have lexicon entries.
       </p>
 
       <Figure caption="Tapping “Word” in John 1:1 opens its Strong’s entry, with buttons to search its verses and analyse it.">
@@ -49,11 +48,11 @@ export default function Page() {
 
       <h2>The tool panel</h2>
       <p>
-        <strong>Show Tools</strong> splits the reader to show a panel beneath the text. On an iPad
-        it can sit to the right instead — choose <strong>Split Right</strong> from the panel’s menu,
-        or set the panel position in Settings — under one header that runs across the passage and
-        the panel. Drag the divider to resize the panel; drag it well past the panel’s smallest size
-        and let go to close it. The panel’s title menu chooses what it shows:
+        Choose <strong>Show Tools</strong> to open a panel below the passage. On iPad, choose
+        <strong>Split Right</strong> from the panel menu, or change its position in Settings,
+        to place it beside the passage under a shared header. Drag the divider to resize it;
+        drag well past its minimum size and release to close it. Choose the content from the
+        panel’s title menu:
       </p>
 
       <Table>
@@ -99,7 +98,7 @@ export default function Page() {
       <Callout title="When a series has no volume for a book">
         <p>
           Commentary series rarely cover all 66 books. If the selected series has no volume for the
-          book you are in, the panel says so rather than showing an empty pane — pick a different
+          current book, the panel shows a message. Pick a different
           series from the panel’s title menu.
         </p>
       </Callout>
@@ -114,14 +113,15 @@ export default function Page() {
 
       <h2>Read aloud</h2>
       <p>
-        When you open a plan reading, a speaker button in the reader’s header reads the passage
-        aloud with the system voices: the reading’s name, each chapter as it starts, then the verse
-        text, skipping headings and verse numbers. You can pause, skip a verse back or forward, and
-        scrub through the reading. <strong>Follow Along</strong> marks the verse being read and
-        keeps it in view. A translation in another language is read in that language, without the
-        English name of the reading: each chapter is announced by the translation’s own name for
-        its book, or by its number alone where the translation gives only English names, as the
-        Hebrew and Greek texts do.
+        For plan readings, the speaker button reads the passage using system voices. It announces
+        the reading and each chapter, then reads the verses without headings or verse numbers.
+        Pause, skip between verses or scrub through the reading. <strong>Follow Along</strong>
+        highlights the current verse and keeps it visible.
+      </p>
+      <p>
+        Non-English translations use a voice for their language and omit the English reading name.
+        Chapters use the translation’s book names. Where only English names are available,
+        including the Hebrew and Greek texts, only the chapter number is announced.
       </p>
       <p>
         Reading carries on with the screen locked, with controls on the Lock Screen, and pauses
@@ -129,13 +129,12 @@ export default function Page() {
         reading rate, so the plan’s time estimates and the voice agree.
       </p>
       <p>
-        Choose the voice in Settings under Read Aloud. <strong>Automatic</strong> names the best
-        voice installed for the translation’s language; if that is a basic voice, the app says so
-        and shows how to download a better one, and if there is no voice at all, where to add one.{' '}
-        <strong>Greek Words</strong>, in the same section, chooses how the speaker beside a Greek
-        word in a lexicon entry or an analysis says it: <strong>Classroom (Erasmian)</strong> or{' '}
-        <strong>Modern Greek</strong>, which needs a Greek voice installed. Hebrew is said from
-        Strong’s own respelling. Saying a single word only lowers other audio while it speaks.
+        Choose a voice in Settings → Read Aloud. <strong>Automatic</strong> selects the best
+        installed voice for the translation’s language. If only a basic voice is available, or
+        none, Lamp explains how to download one. For individual Greek words in lexicons and
+        analysis, <strong>Greek Words</strong> offers <strong>Classroom (Erasmian)</strong> or
+        <strong>Modern Greek</strong>; the latter requires an installed Greek voice. Hebrew words
+        use Strong’s pronunciation respelling. Single-word playback briefly lowers other audio.
       </p>
 
       <h2>Getting around</h2>

@@ -125,12 +125,12 @@ const included = [
   },
   {
     icon: ModuleIcon,
-    title: 'Nothing to sign up for',
-    body: 'No account, no subscription and no advertising, and nothing to buy.',
+    title: 'Free to use',
+    body: 'No account, subscription, advertising or in-app purchases.',
   },
   {
     icon: SyncIcon,
-    title: 'Your work, where you choose',
+    title: 'Storage and sync',
     body: 'Keep it on the device, sync through iCloud Drive or your own WebDAV server, and export it as plain files any time.',
   },
 ]
@@ -156,7 +156,7 @@ function MacCard() {
           href="/docs/mac"
           className="inline-flex h-10 items-center rounded-full border border-line-strong px-5 text-sm font-medium transition-colors hover:border-ink"
         >
-          See what the Mac app does
+          Explore the Mac app
         </Link>
       </PlatformCard>
     )

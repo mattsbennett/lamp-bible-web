@@ -14,7 +14,7 @@ export default function Page() {
     <DocPage
       href="/docs/search"
       title="Search"
-      intro="One index over everything installed — the text you read and the text you wrote."
+      intro="Search all installed content, including your notes and writing."
     >
       <h2>Two scopes</h2>
       <p>
@@ -106,7 +106,7 @@ export default function Page() {
         </li>
       </ul>
 
-      <Callout title="Colour search is the payoff for naming your themes">
+      <Callout title="Search by highlight colour">
         <p>
           If you have named a highlight colour “Promises” in a{' '}
           <Link href="/docs/highlights">highlight theme</Link>, searching by that colour effectively
@@ -203,8 +203,7 @@ export default function Page() {
       <h3>Searching by Strong’s number</h3>
       <p>
         A Strong’s search finds every verse in the translation tagged with a number such as{' '}
-        <code>H430</code> or <code>G2316</code> — the fastest route from “what does this word mean
-        here” to “where else is this word used”. In a tagged translation, type a number in the
+        <code>H430</code> or <code>G2316</code>. In a tagged translation, type a number in the
         Bible scope and <strong>Search Strong’s</strong> and <strong>Analyse</strong> rows appear
         above the results; the search box does not switch by itself, since a number may be meant as
         text. Its mode menu switches to <strong>Strong’s</strong> outright, and tapping a word’s
@@ -221,17 +220,15 @@ export default function Page() {
         <Link href="/docs/lexicons">lexicon entry</Link>. The <strong>Books</strong> menu at the top
         narrows it to a testament, a part of the canon or <strong>One Book</strong>.
       </p>
-      <Figure caption="The analysis of G26, ἀγάπη, in the KJV: its counts, where it falls book by book, and how it is translated.">
+      <Figure caption="The analysis of G26, ἀγάπη, in the KJV: its counts, its distribution by book, and how it is translated.">
         <AnalysisArt />
       </Figure>
       <p>
-        It opens on a card: the word with its transliteration and a short gloss, a speaker to say
-        it aloud, three figures — by default how many times it occurs, in how many verses and in
-        how many books — and a strip of the whole Bible, a column a book, showing where it falls.
-        The sliders button chooses the card’s three figures from nine, among them how often it
-        occurs among the translation’s tagged words — in every 1,000, or every 10,000 or more for a
-        rare word — and how many different words translate it, and the chart beneath them, or none.
-        Below the card come:
+        The summary card shows the word, transliteration, short definition and pronunciation button.
+        By default, its three figures count occurrences, verses and books, with a chart of
+        occurrences by book. Use the sliders button to choose three of nine figures or change or
+        hide the chart. Options include the number of renderings and frequency per 1,000 tagged
+        words, scaled to 10,000 or more for rare words. Below the card are:
       </p>
       <ul>
         <li>
@@ -244,8 +241,7 @@ export default function Page() {
           read the definition.
         </li>
         <li>
-          <strong>Forms</strong> — the spellings it takes in the original, each in Latin letters
-          too, with what each form does. Where some occurrences are tagged without a spelling, the
+          <strong>Forms</strong> — original-language spellings, with transliteration and grammatical function. Where some occurrences are tagged without a spelling, the
           ring counts the rest and a line under it says how many are left out.
         </li>
         <li>
@@ -253,10 +249,9 @@ export default function Page() {
         </li>
         <li>
           <strong>By Book</strong>, <strong>By Section</strong> or <strong>By Chapter</strong> —
-          where it occurs. Books and sections are bars, counted in occurrences or per 1,000 words,
-          and an arrow marks one that holds more (↑) or fewer (↓) than its length would lead you to
-          expect, by more than chance. Chapters are a grid of squares, darker where the word is
-          commoner.
+          occurrences shown as bars for books and sections, or a grid for chapters. Bars show
+          totals or counts per 1,000 words. Arrows mark statistically unusual frequencies (↑ or ↓);
+          darker chapter squares indicate higher frequencies.
         </li>
         <li>
           <strong>Found With</strong> — other words that share its verses, with a bar for the
@@ -289,15 +284,13 @@ export default function Page() {
         same word differently.
       </p>
       <p>
-        In the Septuagint’s lists, the Greek word is marked where it stands in each verse; turn on{' '}
-        <strong>Greek</strong> to see the Septuagint’s own words under the verse. Where it is
-        uncertain which Hebrew word in a verse the Greek renders, the row says so, and stops saying
-        it once the words’ places settle it. If you have imported an English Septuagint tagged with
-        Strong’s numbers — the Apostolic Bible Polyglot, say — <strong>English from</strong>{' '}
-        chooses whether the rows read it or your own Bible. <strong>How this is counted</strong>{' '}
-        explains the figures. The bundled Septuagint’s tags were made by machine, so a line under
-        its figures says which parts of them are least sure: the case, number and gender, more
-        than which word it is.
+        Septuagint results highlight the Greek word in each verse. Enable <strong>Greek</strong>
+        to show the Greek text below it. Rows identify uncertain Hebrew–Greek matches; the warning
+        disappears where word positions resolve the match. If you imported a Strong’s-tagged
+        English Septuagint, such as the Apostolic Bible Polyglot, <strong>English from</strong>
+        switches between it and your selected Bible. <strong>How this is counted</strong> explains
+        the figures. A caption notes that the bundled Septuagint’s machine-generated tags are less
+        reliable for case, number and gender than for word identification.
       </p>
       <h3>On the Mac</h3>
       <p>
@@ -324,7 +317,7 @@ export default function Page() {
         </li>
         <li>
           <strong>Companions</strong> — the words found with it, how many verses each shares
-          and how many times chance that is.
+          and the ratio to the count expected by chance.
         </li>
         <li>
           <strong>Compare</strong> — the count and the commonest English in every installed

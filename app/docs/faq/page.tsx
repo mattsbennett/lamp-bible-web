@@ -25,7 +25,7 @@ export default function Page() {
       <h2>Do I need an account?</h2>
       <p>
         No. There is no Lamp Bible account. Sync, when you turn it on, uses your iCloud Drive or
-        your own WebDAV server — never an account with us, because there isn’t one.
+        your own WebDAV server .
         {' '}The Mac’s optional <Link href="/docs/ai">AI chat</Link>, hidden until you turn on Show AI
         Features, signs in to an AI provider account of your own.
       </p>
@@ -69,7 +69,7 @@ export default function Page() {
 
       <h2>Can I get my notes out?</h2>
       <p>
-        Yes, at any time and without asking. Notes and writing export to plain markdown, a piece
+        Yes. Notes and writing export to plain markdown, a piece
         of writing with its images and audio; modules export as <code>.lamp</code> packages. See{' '}
         <Link href="/docs/import-export">Import &amp; export</Link>.
       </p>
@@ -77,7 +77,7 @@ export default function Page() {
       <h2>What happens if I stop using the app?</h2>
       <p>
         Export everything to markdown first and you keep ordinary text files that open in any
-        editor. That is the point of the format.
+        editor.
       </p>
 
       <h2>Which devices does it run on?</h2>
@@ -93,7 +93,7 @@ export default function Page() {
       <h2>Can I sync between my devices?</h2>
       <p>
         Yes — through iCloud Drive or a WebDAV server. Your imported modules, notes, writing,
-        highlights, reading progress and settings travel; the bundled library does not need to,
+        highlights, reading progress and settings sync; the bundled library does not need to,
         since it is already on every install. Every device sharing a library needs version 1.2 or
         later. See <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>

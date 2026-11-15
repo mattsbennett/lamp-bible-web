@@ -29,7 +29,7 @@ export default function Page() {
       {isMacBeta && (
         <Callout title="A beta">
           <p>
-            The Mac app changes from one update to the next, and you may meet a bug. It checks for
+            The Mac beta may contain bugs. It checks for
             updates if you allow it, and <strong>Lamp Bible → Check for Updates…</strong> looks at
             once. If something goes wrong,{' '}
             <a href={site.issuesUrl} target="_blank" rel="noopener noreferrer">
@@ -59,26 +59,27 @@ export default function Page() {
 
       <h2>The reader</h2>
       <p>
-        The capsule in the middle of the toolbar shows where you are, with arrows either side for
-        the previous and next chapter and, further out, the previous and next book. Click it, or
-        press <strong>⌘L</strong>, to go somewhere else: type a reference such as{' '}
-        <code>John 3:16</code> and press Return, or choose a translation and a book and click a
-        chapter in the grid. To land on a verse, hold or force click a chapter, or press Space, and
-        pick from its verses. Words that are not a reference offer a search instead, and a Strong’s
-        number offers its{' '}
-        <Link href="/docs/search#analysis">analysis</Link>. Tab moves between the field, the books
-        and the chapters, and the arrow keys move within them. The grid lists only the books the
-        translation has, so the Septuagint offers no New Testament.
+        The toolbar shows the current passage. The inner arrows move between chapters; the outer
+        arrows move between books. Click the passage or press <strong>⌘L</strong> to navigate.
+        Type a reference such as <code>John 3:16</code> and press Return, or choose a translation,
+        book and chapter. Hold or force-click a chapter, or press Space, to choose a verse.
       </p>
       <p>
-        A translation in another language names its books as it does — <em>Génesis</em> in the
-        Reina-Valera, <em>Genèse</em> in the Segond — in the capsule, its tab, Reading History and
-        Recently Read, and you can type a passage in those names, or in English, here, in Go to
-        Anything and in Search; accents can be left off. Notes, cross-references and the analysis
-        keep the app’s English names. A link, history entry or search result in a book the
-        translation lacks says so — “Brenton English Septuagint doesn’t include Matthew” — and
-        offers the passage in a translation that has it, one in the same language first; switching
-        to a translation without the book you are in opens its first book in the same testament.
+        Text that is not a reference offers a search; a Strong’s number offers its{' '}
+        <Link href="/docs/search#analysis">analysis</Link>. Use Tab to move between the field,
+        books and chapters, and arrow keys within each. Only books available in the translation
+        are listed.
+      </p>
+      <p>
+        Book names follow the translation’s language, such as <em>Génesis</em> in Reina-Valera
+        and <em>Genèse</em> in Segond. These names appear in the toolbar, tabs, Reading History
+        and Recently Read. Passage entry, Go to Anything and Search accept localised or English
+        names, with or without accents. Notes, cross-references and analysis use English names.
+      </p>
+      <p>
+        If a link, history entry or search result refers to a missing book, Lamp explains why and
+        offers another translation, preferring the same language. Switching to a translation
+        without the current book opens its first book in the same testament.
       </p>
       <p>
         <strong>Go to Anything…</strong> (⌘K) reaches further: a passage, a Strong’s number to look
@@ -89,25 +90,20 @@ export default function Page() {
 
       <h3>Tabs</h3>
       <p>
-        The reader keeps tabs, in a bar beneath the toolbar. <strong>⌘T</strong>, or the{' '}
-        <strong>+</strong> at the end of the bar, opens a new tab on a page that chooses its
-        passage: type a reference, pick a translation, book and chapter, or click one of the
-        chapters under <strong>Recently Read</strong>. Drag a tab to move it, and press ⌃Tab or
-        ⌃⇧Tab to step through them; a tab’s close button shows when you point at it. A tab is named
-        after its chapter until you right-click it and choose <strong>Rename Tab…</strong>, and then
-        keeps that name as you read on; the same menu duplicates or closes it.
+        Press <strong>⌘T</strong> or the <strong>+</strong> below the toolbar to open a reader tab.
+        Enter a reference, choose a translation and chapter, or select <strong>Recently Read</strong>.
+        Drag tabs to reorder them; use ⌃Tab and ⌃⇧Tab to switch tabs. Hover to show a tab’s close
+        button. Tabs are named after their chapter. Right-click for <strong>Rename Tab…</strong>,
+        Duplicate or Close. A custom name stays as you navigate.
       </p>
       <p>
-        Each tab keeps its own study column — open or shut, on the tool it was showing — and its
-        own Reader Chat. Choosing a tab shows it as you left it, scrolled to the same verse, and
-        tabs come back as they were when you relaunch. <strong>Reading History</strong> keeps the
-        last hundred places you have been, across launches.
+        Each tab remembers its verse, study column state and Reader Chat across launches.
+        <strong>Reading History</strong> retains the last 100 locations.
       </p>
       <p>
-        <strong>New Reader Window</strong> (⌥⌘N) opens another reader. Each window has its own
-        place in scripture, its own tabs and its own back and forward, so two windows can sit on
-        different chapters, and each comes back with its own tabs. Notes and highlights are shared:
-        one made in either window shows in both at once.
+        <strong>New Reader Window</strong> (⌥⌘N) opens an independent reader with its own tabs,
+        passage and navigation history. Windows restore their tabs on relaunch. Notes and
+        highlights are shared and appear immediately in all windows.
       </p>
 
       <h3>Layout and text</h3>
@@ -118,18 +114,17 @@ export default function Page() {
         keeps to a comfortable line length, which grows with the text size.
       </p>
       <p>
-        Side by Side reads up to three other translations verse by verse beside the one you are
-        reading. Turn it on with the <strong>Side by Side</strong> button in the toolbar, or with
-        the <strong>+</strong> beside a chapter’s opening, which lists the other translations to
-        read beside it, grouped by language with the Hebrew and Greek last — each language’s whole
-        Bibles first, then below a separator the texts of part of it — and marks those tagged
-        with Strong’s numbers. Each column’s title is a menu that changes its translation, makes it the one
-        you are reading, or removes its column; the <strong>+</strong> beside the titles adds another.
-        Verses are paired through each translation’s own numbering, so a verse that two
-        translations number differently still sits beside its match. Each column shows its own
-        highlights and translator’s notes. Where the columns would be too narrow — with the study
-        column open, say — the other translations move beneath each verse, labelled with their
-        short names.
+        Choose <strong>Side by Side</strong> in the toolbar or <strong>+</strong> beside a
+        chapter’s opening to compare up to three additional translations. The picker groups
+        translations by language, with Hebrew and Greek last. Within each language, complete
+        Bibles appear before partial texts; Strong’s-tagged translations are marked.
+      </p>
+      <p>
+        Use a column’s title menu to change its translation, make it the primary translation or
+        remove it. The <strong>+</strong> beside the titles adds a column. Verses align even when
+        translations number them differently. Each column retains its own highlights and
+        translator’s notes. When space is limited, additional translations appear beneath each
+        verse, labelled with their abbreviations.
       </p>
 
       <h3>Marks in the margin</h3>
@@ -170,16 +165,17 @@ export default function Page() {
 
       <h3>Read aloud</h3>
       <p>
-        The toolbar’s <strong>Read Aloud</strong> button reads the current chapter with the system
-        voices, from the beginning or from the selected verse, and can follow the verse being
-        spoken. Each translation is read in its own language, and outside English each verse is
-        announced by its number alone. Choose the speed in Settings → Reader, and a voice for each
-        language your translations are in; <strong>Automatic</strong> uses the best voice
-        installed. Where no voice speaks a translation’s language — biblical Hebrew and Koine
-        Greek have none — the button is off and says why, rather than reading the text with the
-        wrong sounds. The same pane’s <strong>Greek Words</strong> chooses how the speaker
-        beside a Strong’s word says Greek: <strong>Classroom (Erasmian)</strong> or{' '}
-        <strong>Modern Greek</strong>, which needs a Greek voice installed.
+        Choose <strong>Read Aloud</strong> in the toolbar to hear the chapter from the beginning
+        or selected verse, with optional verse tracking. The system reads each translation in its
+        language; non-English verses are announced by number alone. Set speed and language voices
+        in Settings → Reader. <strong>Automatic</strong> selects the best installed voice.
+        If no voice supports the language, including biblical Hebrew and Koine Greek, the button
+        is disabled with an explanation.
+      </p>
+      <p>
+        For individual Greek words, <strong>Greek Words</strong> in the same settings pane offers
+        <strong>Classroom (Erasmian)</strong> or <strong>Modern Greek</strong>. Modern Greek
+        requires an installed Greek voice.
       </p>
 
       <h3>Keyboard</h3>
@@ -314,15 +310,17 @@ export default function Page() {
 
       <h3>Notes and highlights</h3>
       <p>
-        A note has an optional title and formatted text, saved as markdown, and can cover a range of
-        verses within the chapter. <strong>Attach Image</strong> in its format bar adds a picture,
-        which syncs with the note. Save with <strong>⌘S</strong>; saving an empty note deletes it.
-        To highlight part of a verse, use <strong>Highlight Words…</strong>: choose the set, a
-        style and a colour, or apply a <Link href="/docs/highlights">theme</Link> — and save a new
-        theme from there. It also lists what the verse is already highlighted with, each with a{' '}
-        <strong>Remove</strong> button, and <strong>Delete Set…</strong> removes one of your sets
-        and every highlight in it, in every translation. <strong>Remove Highlight</strong> in a
-        verse’s menu clears all of your own highlights from that verse; a module’s highlights stay.
+        Notes have an optional title and formatted text stored as markdown. They can span verses
+        within a chapter. Use <strong>Attach Image</strong> to add a picture, which syncs with the
+        note. Press <strong>⌘S</strong> to save; saving an empty note deletes it.
+      </p>
+      <p>
+        To highlight part of a verse, choose <strong>Highlight Words…</strong>, then a set, style
+        and colour or a <Link href="/docs/highlights">theme</Link>. You can also save a new theme
+        here. Existing highlights each have a <strong>Remove</strong> button.
+        <strong>Delete Set…</strong> deletes the set and all its highlights across translations.
+        <strong>Remove Highlight</strong> in a verse’s menu clears your highlights on that verse,
+        leaving installed module highlights intact.
       </p>
       <p>
         The <strong>Study Data</strong> menu at the foot of the Notes tab exports a book’s notes or a
@@ -368,15 +366,16 @@ export default function Page() {
         </li>
       </ul>
       <p>
-        Writing saves itself shortly after you stop typing; ⌘S saves at once. The Writing list
-        sorts, groups and filters your collection, and ⌘F finds in the preview of the piece
-        selected in it. Above the preview, a strip steps to the previous or next writing, opens the
-        piece to edit, shares it as markdown and sets the text’s appearance; the{' '}
-        <strong>Hide Writing List</strong> button gives the preview the whole window. Its{' '}
-        <strong>Present</strong> button shows the selected piece full screen for
-        reading from. Export a piece as a <code>.lamp</code> file from its menu, or a collection as
-        markdown from Modules. Deleting a piece also deletes the decks built from it, and the Mac
-        names them before it does.
+        Writing saves automatically after you stop typing; ⌘S saves immediately. The Writing list
+        supports sorting, grouping and filtering. Press ⌘F to search the selected document’s preview.
+        Controls above the preview navigate between documents, open the editor, share markdown and
+        change text appearance. <strong>Hide Writing List</strong> expands the preview;
+        <strong>Present</strong> displays it full screen.
+      </p>
+      <p>
+        Export one document as a <code>.lamp</code> file from its menu, or a collection as markdown
+        from Modules. Deleting a document also deletes its linked decks; Lamp lists them before
+        confirming deletion.
       </p>
 
       <h2>Books</h2>
@@ -391,16 +390,17 @@ export default function Page() {
 
       <h2>Search</h2>
       <p>
-        The Mac’s search covers everything <Link href="/docs/search">Search</Link> describes in one
-        list, grouped by kind with Scripture first, and previews the selected result beside it in
-        the reader’s own type. Each kind gets a share of the list, and one with more to show offers{' '}
-        <strong>More in</strong> it beside its heading. Scripture comes from the translation you are
-        reading, noting how many others also match, or from another translation when yours has
-        none. A dictionary result shows the whole entry, with <strong>Look Up</strong> and{' '}
-        <strong>Analyse</strong>. Typing a reference puts a row to go straight to it above the
-        results, and typing a Strong’s number one to analyse it. The filter bar under the toolbar
-        narrows the results by kind of content, by module, to the Old or New Testament, by
-        Strong’s key or highlight colour, and — for writing — by date, tag and category.
+        <Link href="/docs/search">Search</Link> groups results by content type, with Scripture
+        first and a preview beside the list. Each type gets a share of the results; use
+        <strong>More in</strong> beside a heading to expand it. Scripture results use your current
+        translation and show how many others match. If it has no matches, another translation is
+        used. Dictionary results show the full entry with <strong>Look Up</strong> and
+        <strong>Analyse</strong>.
+      </p>
+      <p>
+        Enter a passage reference to open it directly, or a Strong’s number to analyse it.
+        The filter bar narrows results by content type, module, testament, Strong’s key or
+        highlight colour. Writing can also be filtered by date, tag and category.
       </p>
       <p>
         Search keeps tabs too, in the same bar as the reader’s, each named after its words. A search
@@ -430,12 +430,11 @@ export default function Page() {
 
       <h2 id="make-a-module">Modules, importing and building</h2>
       <p>
-        <strong>Modules</strong> in the sidebar shelves everything installed: your own My Writing,
-        My Notes and My Highlights first, then a shelf for each kind of module. A module you
-        installed or made has a menu on its card to export or remove it — as a <code>.lamp</code>,
-        or as markdown for books, writing and notes — and one that came with Lamp says{' '}
-        <strong>Built In</strong>. <strong>Import or Create Content</strong> (⇧⌘M) gathers every way
-        in:
+        Open <strong>Modules</strong> in the sidebar to see installed content. My Writing,
+        My Notes and My Highlights appear first, followed by other module types. Each added module
+        has a menu to export or remove it. Export formats include <code>.lamp</code> and, for
+        books, writing and notes, markdown. Bundled modules are labelled <strong>Built In</strong>.
+        <strong>Import or Create Content</strong> (⇧⌘M) offers:
       </p>
       <ul>
         <li>
@@ -468,7 +467,7 @@ export default function Page() {
         <strong>WebDAV</strong>, and connects to the same library as your iPhone and iPad. The Mac
         syncs when it opens, sends your changes a few seconds after you make them, and checks every
         half-minute for changes from your other devices while it is open;{' '}
-        <strong>Sync Now</strong> forces a pass. When a note or a piece of writing changed on two
+        <strong>Sync Now</strong> starts a sync. When a note or a piece of writing changed on two
         devices, the Sync pane shows it
         under <strong>Needs Your Decision</strong>, where you compare the versions and keep one.
       </p>
@@ -480,7 +479,7 @@ export default function Page() {
         deletes anything already synced, on the Mac or on the server.
       </p>
       <p>
-        The Mac also syncs what only it makes: slide decks and their pictures, and each writing’s
+        The Mac also syncs slide decks and their pictures, and each writing’s
         agent workspace — companion files, context, skills, revisions and agent conversations.
         Reader tabs, history and Reader Chat conversations stay on each Mac.
       </p>
