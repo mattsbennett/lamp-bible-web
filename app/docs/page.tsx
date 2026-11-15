@@ -84,7 +84,7 @@ export default function DocsIndex() {
         <p className="mt-3 max-w-2xl text-lg leading-relaxed text-muted">
           Everything Lamp Bible can do, and how the pieces fit together.
         </p>
-        <div className="mt-7 max-w-2xl">
+        <div className="mt-7">
           <DocsSearch entries={docsIndex()} size="large" />
           <p className="mt-2.5 hidden text-sm text-faint sm:block">
             Try “highlights”, “WebDAV” or “Strong’s”.
