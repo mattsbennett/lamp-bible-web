@@ -524,13 +524,15 @@ const heroGround: CSSProperties = {
 }
 
 export function PlansArt() {
+  // Day 11 of The Bible Companion as the bundled plan has it, timed at 183 words a minute over
+  // the KJV's text, as the app times a reading.
   const readings = [
-    { passage: '2 Chronicles 35', detail: 'History · 5 min', read: true },
-    { passage: 'Hosea 3', detail: 'Prophets · 1 min', read: false },
-    { passage: 'Acts 18-19', detail: 'Acts · 9 min', read: false },
+    { passage: 'Genesis 20-21', detail: 'Law · 7 min', read: true },
+    { passage: 'Psalms 23-25', detail: 'Wisdom · 4 min', read: false },
+    { passage: 'Matthew 13', detail: 'Gospels · 8 min', read: false },
   ]
   return (
-    <Art label="Today on iPhone: The Bible Companion at day 310, with one of three readings complete, an estimated fifteen minutes and a Continue Reading button.">
+    <Art label="Today on iPhone: The Bible Companion at day 11, with one of three readings complete, an estimated nineteen minutes, Psalm 23 up next — “The Lord is my shepherd; I shall not want.” — and a Continue Reading button.">
       <Phone className="!bg-[var(--sys-grouped)]">
         <div className="flex items-center gap-[6px] px-[9px] pb-[6px] pt-[8px]">
           <Glass round>
@@ -538,7 +540,7 @@ export function PlansArt() {
           </Glass>
           <Glass className="min-w-0 flex-1 gap-[5px]">
             <Sym name="calendar" className="h-[11px] w-[11px] shrink-0" />
-            <span className="truncate text-[11px]">Friday, November 6</span>
+            <span className="truncate text-[11px]">Sunday, January 11</span>
           </Glass>
           <Glass round>
             <Sym name="chevronRight" className="h-[12px] w-[12px]" />
@@ -559,7 +561,7 @@ export function PlansArt() {
           <div className="overflow-hidden rounded-[14px] bg-[var(--sys-cell)] shadow-[0_4px_10px_rgb(0_0_0/0.08)]">
             <div className="p-[14px] text-white" style={heroGround}>
               <div className="relative">
-                <p className="text-[8.5px] font-bold tracking-[0.12em] text-white/90">DAY 310 OF 365</p>
+                <p className="text-[8.5px] font-bold tracking-[0.12em] text-white/90">DAY 11 OF 365</p>
                 {/* Laid over the line, as the app does, so the card is no taller for it. */}
                 <span className="absolute right-0 top-1/2 flex h-[21px] w-[21px] -translate-y-1/2 items-center justify-center rounded-full bg-white/20">
                   <Sym name="chevronUp" className="h-[8px] w-[8px] text-white" />
@@ -567,7 +569,7 @@ export function PlansArt() {
               </div>
               <p className="mt-[3px] text-[19px] font-bold leading-tight">The Bible Companion</p>
               <div className="mt-[5px] flex justify-between text-[10.5px] text-white/90">
-                <span>3 readings · 15 min</span>
+                <span>3 readings · 19 min</span>
                 <span className="font-semibold">1 of 3 read</span>
               </div>
               <div className="mt-[9px] flex gap-[4px]">
@@ -575,10 +577,9 @@ export function PlansArt() {
                 <span className="h-[4px] flex-1 rounded-full bg-white/30" />
                 <span className="h-[4px] flex-1 rounded-full bg-white/30" />
               </div>
-              <p className="mt-[12px] text-[7.5px] font-bold tracking-[0.1em] text-white/80">UP NEXT · HOSEA 3:1</p>
+              <p className="mt-[12px] text-[7.5px] font-bold tracking-[0.1em] text-white/80">UP NEXT · PSALMS 23:1</p>
               <p className={`${serif} mt-[3px] text-[13px] leading-[1.4]`}>
-                Then said the Lord unto me, Go yet, love a woman beloved of her friend, yet an
-                adulteress…
+                The Lord is my shepherd; I shall not want.
               </p>
               <span className="mt-[12px] flex items-center justify-center gap-[5px] rounded-full bg-white py-[9px] text-[12px] font-semibold text-[rgb(179_33_61)]">
                 <Sym name="bookFill" className="h-[12px] w-[12px]" />
