@@ -340,9 +340,8 @@ function AnalysisCard() {
             <p className="text-sm font-medium">Word analysis on iPhone and iPad</p>
           </div>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            On iPhone and iPad, analysis opens as a sheet over what you are reading. Below the card
-            come the definition, how the word is translated, its forms and grammar, where it falls,
-            the words found with it, and every verse.
+            Analysis opens over your passage, with definitions, word forms and grammar. Tap a word
+            form or book to filter the matching verses.
           </p>
           <div className="mt-8 lg:mt-auto lg:pt-8">
             <AnalysisArt />
