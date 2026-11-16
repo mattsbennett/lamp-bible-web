@@ -318,7 +318,7 @@ function AnalysisCard() {
         </ul>
       </div>
       <div className="grid gap-10 border-t border-line bg-sunken px-5 pt-8 sm:px-10 lg:grid-cols-[18.5rem_minmax(0,1fr)] lg:gap-12 lg:pt-10">
-        <div className="lg:order-2 lg:self-center lg:pb-10">
+        <div className="lg:order-2 lg:pb-10">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <Badge>{macLabel}</Badge>
             <p className="text-sm font-medium">Word analysis on the Mac</p>
@@ -332,9 +332,21 @@ function AnalysisCard() {
             <MacAnalysisArt />
           </div>
         </div>
-        {/* Set on the card's bottom edge, so the phone runs off it however tall the Mac column is. */}
-        <div className="lg:order-1 lg:self-end">
-          <AnalysisArt />
+        {/* Its own heading level with the Mac's, and the phone set on the card's bottom edge, so
+            it runs off the card however tall the Mac column is. */}
+        <div className="flex flex-col lg:order-1">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <Badge>iPhone &amp; iPad</Badge>
+            <p className="text-sm font-medium">Word analysis on iPhone and iPad</p>
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            On iPhone and iPad, analysis opens as a sheet over what you are reading. Below the card
+            come the definition, how the word is translated, its forms and grammar, where it falls,
+            the words found with it, and every verse.
+          </p>
+          <div className="mt-8 lg:mt-auto lg:pt-8">
+            <AnalysisArt />
+          </div>
         </div>
       </div>
     </article>
