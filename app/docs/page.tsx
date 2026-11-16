@@ -83,7 +83,7 @@ export default function DocsIndex() {
       <header className="border-b border-line pb-10">
         <h1 className="font-serif text-3xl tracking-tight sm:text-4xl">Documentation</h1>
         <p className="mt-3 max-w-2xl text-lg leading-relaxed text-muted">
-          Everything Lamp Bible can do, and how the pieces fit together.
+          Guides to reading, studying and writing with Lamp Bible.
         </p>
         <div className="mt-7">
           <DocsSearch entries={docsIndex()} size="large" />
@@ -145,17 +145,14 @@ export default function DocsIndex() {
       <section className="doc mt-14 border-t border-line pt-10">
         <h2>How it fits together</h2>
         <p>
-          Lamp Bible is an offline Bible reader for close study. It ships with translations under
-          documented public-domain and open terms, a set of lexicons and a full cross-reference
-          apparatus — the terms for each are on the <Link href="/content-licences">Content
-          licences</Link> page — and on top of that you write your own notes, writing and
-          highlights.
+          Lamp Bible includes translations, lexicons and cross-references for offline study.
+          You can add notes, highlights and longer writing. See{' '}
+          <Link href="/content-licences">Content licences</Link> for each source’s terms.
         </p>
         <p>
-          All of it, the bundled library and your own work, is stored in the same{' '}
-          <Link href="/docs/modules">module format</Link>. There is no account, no server that
-          belongs to us, and no telemetry: your work stays on the device, syncs through iCloud Drive,
-          or syncs to a WebDAV server you run.
+          Library content and your work use the same <Link href="/docs/modules">module format</Link>.
+          Keep your library on one device or sync through iCloud Drive or a WebDAV server.
+          Lamp Bible needs no account and collects no telemetry.
         </p>
       </section>
 

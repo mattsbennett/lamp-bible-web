@@ -212,7 +212,7 @@ function Chip({ children }: { children: ReactNode }) {
 
 export function ReaderArt() {
   return (
-    <Art label="Lamp Bible on iPhone at John 1 in the KJV, set in a serif with the book’s name over “Chapter 1”. The Strong’s entry for “Word” — G3056, λόγος — is open in a sheet over the text, with a button to say it aloud, and buttons to search its 314 verses and to analyse it.">
+    <Art label="iPhone reader at John 1, with the lexicon entry for “Word” (G3056, λόγος), pronunciation, verse search and analysis controls.">
       <Phone height="h-[360px] lg:h-[530px]">
         <ReaderHeader translation="KJV" chapter="John 1" />
         <div className="px-[16px]">
@@ -308,7 +308,7 @@ export function HeroArt({
     [111, 'Thy testimonies have I taken as an heritage for ever: for they are the rejoicing of my heart.'],
   ]
   return (
-    <Art label="Lamp Bible on iPhone at Psalm 119 in the KJV, a verse to a line, with verse 105 — “Thy word is a lamp unto my feet, and a light unto my path” — highlighted in yellow.">
+    <Art label="iPhone reader showing Psalm 119 in the KJV, with verse 105 highlighted in yellow.">
       <Phone height={height} whole={whole} className="!max-w-[19.5rem]">
         <ReaderHeader translation="KJV" chapter="Psalm 119" />
         <div className="space-y-[7px] px-[18px] pt-[10px]">
@@ -343,7 +343,7 @@ export function HeroLaptopArt() {
     [112, 'I have inclined mine heart to perform thy statutes alway, even unto the end.'],
   ]
   return (
-    <Art label="Lamp Bible on a MacBook: the reader at Psalm 119 in the KJV, in a tab beside John 1 and Romans 8, with verse 105 selected, highlighted in yellow and marked with a note. The study column beside it is on Notes, with the highlight colours, yellow chosen, and a note titled “A lamp, not a floodlight”: “Light enough for the next step, not the whole road.”">
+    <Art label="Mac reader at Psalm 119, with John 1 and Romans 8 in other tabs. Verse 105 is highlighted, with a study note comparing it to Proverbs 6:23.">
       <div className="mx-auto w-full max-w-[44rem]">
         {/* The screen: a black bezel round the window, the camera's notch at its top. */}
         <div className="relative rounded-t-[18px] border-[9px] border-b-[11px] border-[#0c0c0d] bg-[#0c0c0d] shadow-[0_30px_60px_-30px_rgb(28_18_8/0.6)]">
@@ -449,11 +449,11 @@ export function HeroLaptopArt() {
                       Personal Note
                     </p>
                     <p className="mt-[6px] rounded-[5px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-control)] px-[7px] py-[3px] text-[9.5px]">
-                      A lamp, not a floodlight
+                      A light for the path
                     </p>
                     <div className="mt-[6px] rounded-[5px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-control)] px-[8px] py-[7px] text-[9.5px] leading-[1.5]">
                       <p>
-                        Light enough for the next step, not the whole road. Compare{' '}
+                        Compare the image of a lamp here with{' '}
                         <span className={blue}>Proverbs 6:23</span>.
                       </p>
                       <span className="mt-[7px] block h-[4px] w-[70%] rounded-full bg-[var(--sys-fill)]" />
@@ -483,7 +483,7 @@ const tskRomans828: Array<[keyword: string, references: string]> = [
 
 export function StudyArt() {
   return (
-    <Art label="Lamp Bible on iPhone at Romans 8, with the study panel under the text showing the Treasury of Scripture Knowledge’s cross-references for verse 28 as blue links.">
+    <Art label="iPhone reader at Romans 8, with Treasury of Scripture Knowledge cross-references below the passage.">
       <Phone>
         <ReaderHeader translation="KJV" chapter="Romans 8" />
         <Scripture className="px-[16px] pt-[2px]">
@@ -530,7 +530,7 @@ export function PlansArt() {
     { passage: 'Acts 18-19', detail: 'Acts · 9 min', read: false },
   ]
   return (
-    <Art label="The Today screen on iPhone: under Daily Reading, a crimson card for The Bible Companion — day 310 of 365, three readings, fifteen minutes, one read — with the opening words of Hosea 3:1 up next and a Continue Reading button, and the day’s readings listed under it in the same card.">
+    <Art label="Today on iPhone: The Bible Companion at day 310, with one of three readings complete, an estimated fifteen minutes and a Continue Reading button.">
       <Phone className="!bg-[var(--sys-grouped)]">
         <div className="flex items-center gap-[6px] px-[9px] pb-[6px] pt-[8px]">
           <Glass round>
@@ -623,7 +623,7 @@ export function HighlightsArt() {
     { hex: '#FF2D55' },
   ]
   return (
-    <Art label="Romans 8:28 on iPhone with a yellow highlight and a blue underline, and the reader’s menu open on Highlights: four styles, colours named Promises and Calling, the highlight set, and Hide Highlights.">
+    <Art label="Romans 8:28 with yellow highlighting and a blue underline. The Highlights menu shows styles, sets and colours named Promises and Calling.">
       <Phone>
         <ReaderHeader translation="KJV" chapter="Romans 8" />
         <Scripture className="px-[16px]">
@@ -710,7 +710,7 @@ export function HighlightsArt() {
 
 export function NotesArt() {
   return (
-    <Art label="The Notes panel on iPhone below Romans 8: a note on verses 28 to 30 in formatted text, with its footnote giving the Greek word for “called”.">
+    <Art label="iPhone Notes panel with a formatted note on Romans 8:28–30 and a footnote about the Greek word for “called”.">
       <Phone>
         <ReaderHeader translation="KJV" chapter="Romans 8" />
         <Scripture className="px-[16px] pt-[2px]">
@@ -762,7 +762,7 @@ export function SearchArt() {
     { ref: 'John 4:39', parts: ['And many of the Samaritans of that city believed on him for ', 'the saying', ' of the woman…'] },
   ]
   return (
-    <Art label="Search on iPhone for Strong’s number G3056 in the KJV, narrowed to John: 36 results with an Analyse button, listing John 1:1, 1:14, 2:22, 4:37 and 4:39 with the words for it marked — “the Word”, “the word”, “saying”.">
+    <Art label="iPhone search for G3056 in the KJV’s Gospel of John: 36 results, matching words highlighted and an Analyse button.">
       <Phone height="h-[330px] lg:h-[500px]">
         <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
           <Glass round>
@@ -920,7 +920,7 @@ export function AnalysisArt() {
   const total = agapeRenderings.reduce((sum, r) => sum + r.count, 0)
   const chart = 58
   return (
-    <Art label="The word analysis on iPhone for G26, ἀγάπη (agápē, love): 117 occurrences in 106 verses of the KJV, in 24 of 27 books, with a column for each book — 1 John and Ephesians in the accent colour as more than expected, Matthew, Mark, Luke and Acts in grey as fewer. Below, a way to the whole definition, and how it is translated, on a ring: love 86 times, charity 27, and four once each.">
+    <Art label="iPhone analysis of G26, ἀγάπη (love), in the KJV: 117 occurrences in 106 verses across 24 books. Charts show book frequencies and renderings, including “love” 86 times and “charity” 27 times.">
       <Phone height="h-[440px] lg:h-[480px]" className="!bg-[var(--sys-grouped)]">
         <div className={`flex items-center gap-2 border-b ${sep} px-[9px] pb-[6px] pt-[8px]`}>
           <Glass round>
@@ -939,13 +939,13 @@ export function AnalysisArt() {
           }}
         >
           <p className="flex items-center gap-[7px]">
-            <span className={`${serif} text-[30px] font-semibold leading-none`}>ἀγάπη</span>
+            <span className={`${serif} text-[30px] font-semibold leading-none`}>ἀγάπη</span>{' '}
             <span className="rounded-full bg-[var(--lamp-tile)] px-[6px] py-[2px] text-[9.5px] font-semibold opacity-80">G26</span>
             <Glyph name="speakerWave2" className={`h-[12px] w-[12px] ${caption}`} />
             <Sym name="sliderHorizontal3" className={`ml-auto h-[13px] w-[13px] ${tint}`} />
           </p>
           <p className="mt-[3px] flex items-baseline gap-[6px]">
-            <span className={`${serif} text-[13px] italic opacity-80`}>agápē</span>
+            <span className={`${serif} text-[13px] italic opacity-80`}>agápē</span>{' '}
             <span className="text-[13px] font-medium">love</span>
           </p>
           <div className="mt-[11px] grid grid-cols-3">
@@ -1087,7 +1087,7 @@ function IconTile({ name, colour }: { name: SymbolName; colour: string }) {
 export function SyncArt() {
   const sectionHeader = 'px-[22px] pb-[5px] pt-[12px] text-[10.5px] font-semibold opacity-75'
   return (
-    <Art label="Lamp Bible’s Settings on iPhone: the app’s card saying it syncs with iCloud Drive, then Sync — iCloud Drive chosen as the sync method, connected, with sixteen modules synced and a Sync Now button.">
+    <Art label="iPhone sync settings with iCloud Drive connected, sixteen modules synced and a Sync Now button.">
       <Phone className="!bg-[var(--sys-grouped)]">
         <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
           <Glass round>
@@ -1146,7 +1146,7 @@ export function PhoneWritingArt() {
     'Aa', '|', 'B', 'I', '|', 'listBullet', 'listNumber', '|', 'textQuote', 'link', 'plusCircle',
   ]
   return (
-    <Art label="The writing editor on iPhone: a piece called Abide in the Vine, its kind — Devotional — and date over the title, set in a serif with a scripture quotation of John 15:5, a footnote, a table and an audio recording, above the formatting bar.">
+    <Art label="iPhone editor showing “Abide in the Vine” with a John 15:5 quotation, footnote, table, audio recording and formatting controls.">
       <Phone height="h-[560px]" whole className="!bg-[var(--ed-page)]">
         <div className="flex items-center gap-2 px-[9px] pb-[6px] pt-[8px]">
           <Glass round>
@@ -1179,7 +1179,7 @@ export function PhoneWritingArt() {
               <p className="text-[11.5px] italic text-[color:var(--ed-muted)]">John 15:5</p>
             </div>
             <p className="mt-[9px]">
-              Fruit is never the branch’s own work; it is what the vine does through it.
+              Jesus connects bearing fruit with remaining in him.
               <sup className={`ml-[1px] font-sans text-[0.7em] font-semibold ${blue}`}>[1]</sup>
             </p>
             <div className="mt-[9px] grid grid-cols-2 overflow-hidden rounded-[2px] border border-[color:var(--ed-rule)] text-[11px]">
@@ -1442,7 +1442,7 @@ export function AgentWorkspaceArt() {
   return (
     <Art
       className="@container"
-      label="The Mac writing editor with the agent workspace open beside it: the draft on the left, set in a serif, under tabs for Main Prose and two companion files; on the right the chat’s provider, model and effort, the workspace’s draft status, a context file, the three built-in skills, and a chat in which the agent describes its edit with a diff."
+      label="Mac editor with a draft and companion-file tabs beside an agent workspace. The workspace shows model settings, context, skills and a chat reviewing draft edits."
     >
       <MacWindow title="Abide in the Vine" leading={leading} toolbar={toolbar}>
         <div className="grid grid-cols-[minmax(0,1fr)] @xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -1452,8 +1452,7 @@ export function AgentWorkspaceArt() {
             <div className="flex-1 px-[22px] py-[14px] text-[11.5px] leading-[1.6]">
               <p className={`${serif} text-[18px] font-bold leading-tight`}>Abide in the Vine</p>
               <p className={`${serif} mt-[7px]`}>
-                Fruit is never the branch’s own work. It is what the vine does through a branch
-                that stays.
+                Jesus connects bearing fruit with remaining in him.
                 <sup className={`ml-[1px] font-sans text-[0.75em] font-semibold ${blue}`}>[1]</sup>
               </p>
               <div className="mt-[8px] space-y-[7px]">
@@ -1517,7 +1516,7 @@ export function AgentWorkspaceArt() {
                 </p>
                 <p className="mt-[3px] flex items-center gap-[4px] text-[9.5px]">
                   <Sym name="doc" className={`h-[10px] w-[10px] ${label2}`} />
-                  earlier-talk.md
+                  earlier-talk.md{' '}
                   <span className={`text-[8px] ${label3}`}>12 KB</span>
                 </p>
               </div>
@@ -1567,7 +1566,7 @@ export function AgentWorkspaceArt() {
                     - Jesus says a great deal in this chapter about fruit.
                   </p>
                   <p className="truncate bg-[rgb(52_199_89/0.14)] px-[7px] font-mono text-[8.5px] text-[color:var(--sys-green)]">
-                    + Fruit is never the branch’s own work.
+                    + Jesus connects bearing fruit with remaining in him.
                   </p>
                 </div>
               </div>
@@ -1605,7 +1604,7 @@ export function MacEditorArt() {
   return (
     <Art
       className="@container"
-      label="The Mac writing editor replacing “abide” with “remain”, its matches marked in yellow, beside the Details pane: the piece’s title, date, category, tags, and its series and key scripture folded."
+      label="Mac editor replacing “abide” with “remain”, with matches highlighted and document details beside the draft."
     >
       <MacWindow title="Abide in the Vine" leading={leading} toolbar={toolbar}>
         <div className="grid grid-cols-[minmax(0,1fr)] @md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
@@ -1680,7 +1679,7 @@ export function SlideArt() {
   return (
     <Art
       className="@container"
-      label="Slide Studio on the Mac: the deck’s slides down the side beside a Scripture slide in the Lamp Dark theme quoting John 15:5 with an amber citation, with the presenter notes following the writing below it."
+      label="Mac Slide Studio with a John 15:5 scripture slide, a slide list and speaker notes linked to the manuscript."
     >
       <MacWindow
         title="Abide in the Vine"
@@ -1760,8 +1759,7 @@ export function SlideArt() {
               </div>
               <p className={`mt-[3px] text-[8.5px] ${label2}`}>Begins at “I am the vine”</p>
               <p className={`mt-[3px] rounded-[6px] border ${sep} bg-[var(--mac-control)] px-[7px] py-[4px] leading-[1.45]`}>
-                <span className="underline decoration-[color:var(--sys-tint)]">I am the vine</span>, he says, and we
-                are the branches — not the gardener, and not the fruit.
+                <span className="underline decoration-[color:var(--sys-tint)]">I am the vine</span> introduces the image of Jesus as the vine and his disciples as branches.
               </p>
             </div>
             <div className={`flex items-center gap-[4px] border-t ${sep} px-[10px] py-[4px] text-[8.5px] ${label2}`}>
@@ -1832,7 +1830,7 @@ export function MacAnalysisArt() {
   return (
     <Art
       className="@container"
-      label="Search on the Mac for Strong’s G26 in the KJV, in a tab named G26. The analysis’s card gives ἀγάπη, agápē, love: 117 occurrences in 106 verses, in 24 of 27 books, over a column for each New Testament book, with 1 John named in the accent colour as the book it stands out in. Under the card, beside Definition, Overview, Companions, Compare and Septuagint, the Spread tab is open, listing the books with a bar each and a key to the shades. The occurrence list beside it is narrowed to the 18 in 1 John."
+      label="Mac analysis of G26 in the KJV: 117 occurrences in 106 verses across 24 books. The Spread tab charts occurrences by book; the verse list is filtered to eighteen occurrences in 1 John."
     >
       <MacWindow
         title="Search"
@@ -1903,7 +1901,7 @@ export function MacAnalysisArt() {
               }}
             >
               <p className="flex items-center gap-[7px]">
-                <span className={`${serif} text-[22px] font-semibold leading-none`}>ἀγάπη</span>
+                <span className={`${serif} text-[22px] font-semibold leading-none`}>ἀγάπη</span>{' '}
                 <span className="rounded-full bg-[var(--sys-fill)] px-[6px] py-[1px] text-[9px] font-semibold tabular-nums opacity-80">G26</span>
                 <Glyph name="speakerWave2" className={`h-[11px] w-[11px] ${label2}`} />
                 <span className={`ml-auto flex items-center gap-[9px] ${label2}`}>
@@ -1912,7 +1910,7 @@ export function MacAnalysisArt() {
                 </span>
               </p>
               <p className="mt-[3px] flex items-baseline gap-[6px] text-[10.5px]">
-                <span className={`${serif} italic ${label2}`}>agápē</span>
+                <span className={`${serif} italic ${label2}`}>agápē</span>{' '}
                 <span className="font-medium">love</span>
               </p>
               <div className="mt-[9px] grid grid-cols-3 gap-[9px]">
@@ -2072,7 +2070,7 @@ export function ExternalAppsArt() {
   return (
     <Art
       className="@container"
-      label="Lamp Bible’s Settings on the Mac, at AI & Agents: under Use Lamp in Other Apps, switches allowing other apps to read the library, to change writings and to add reading plans are on, with an Add to Claude Desktop button and Copy buttons for opencode, Codex and Cursor."
+      label="Mac AI settings with external-app permissions for library access, draft edits and reading plans, plus setup controls for Claude Desktop, OpenCode, Codex and Cursor."
     >
       <div className="app-ui @container overflow-hidden rounded-[12px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-window)] art-shadow">
         <div className="grid grid-cols-[minmax(0,1fr)] @lg:grid-cols-[112px_minmax(0,1fr)]">

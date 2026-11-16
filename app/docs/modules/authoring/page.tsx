@@ -41,10 +41,9 @@ export default function Page() {
         better.
       </p>
       <p>
-        The library bundled inside the app keeps many modules in a single database, so its tables
-        carry identifier columns to separate co-resident modules. A standalone <code>.lamp</code>{' '}
-        names its one module in a <code>module_format</code> table instead; where its tables keep a{' '}
-        <code>module_id</code> column as well, every row must carry that same ID.
+        The bundled database contains multiple modules, identified by columns in its tables.
+        A standalone <code>.lamp</code> identifies its single module in <code>module_format</code>.
+        Any <code>module_id</code> columns must use that same ID in every row.
       </p>
 
       <Callout title="Writing is a special case">
@@ -97,9 +96,8 @@ export default function Page() {
 
       <h2>Annotated text</h2>
       <p>
-        Text fields are either a plain string or an object carrying the string plus offset-based
-        annotations. Keeping annotations out of the text — rather than wrapping it in markup — means
-        the plain text stays clean for search, display and speech.
+        Text fields accept a string or an object containing text and offset-based annotations.
+        Storing annotations separately lets search, display and speech use the same plain text.
       </p>
 
       <pre>
@@ -321,11 +319,10 @@ export default function Page() {
 
       <h3>Commentary schema 2.2</h3>
       <p>
-        Version 2.2 adds a second way to write a pericope, meant for commentaries converted from a
-        printed edition. Instead of <code>verses</code>, a pericope may carry <code>content</code>:
-        an array of classified blocks — heading, translation, commentary, paragraph and so on — in
-        the order they appear in the source, each recording where in the source it came from. Do
-        not reorder them by role or by verse; the app shows them in the order given.
+        Version 2.2 supports commentaries converted from print. A pericope can use{' '}
+        <code>content</code> instead of <code>verses</code>: an ordered array of typed blocks, such
+        as headings, translations, commentary and paragraphs. Each records its source location.
+        Preserve source order; the app does not regroup blocks by role or verse.
       </p>
       <p>
         Footnotes can likewise be defined once for the whole book, in a top-level{' '}
@@ -339,10 +336,10 @@ export default function Page() {
         commentary uses.
       </p>
       <p>
-        A volume is shown by <code>meta.title</code>, or by <code>meta.name</code> where it has no
-        title, so one of the two is required. <code>meta.description</code> is kept as the
-        volume’s own description. <code>sourceVolumes</code>, the published-volume details, is
-        read when the module is built to check the volume’s details, and is not stored in it.
+        Volumes display <code>meta.title</code>, falling back to <code>meta.name</code>; one is
+        required. <code>meta.description</code> stores the volume description.{' '}
+        <code>sourceVolumes</code> is used to validate published-volume details at build time
+        and is not stored in the compiled module.
       </p>
 
       <h3>A book’s genre</h3>
@@ -430,15 +427,16 @@ export default function Page() {
 
       <h3>Annotations added at build time</h3>
       <p>
-        If you matched annotation data onto the text yourself, rather than taking it from the
-        source as printed, say so in <code>meta.sourceTexts.annotations</code>. Each entry names
-        the <code>part</code> (<code>strongs</code> for the Strong’s numbers, <code>forms</code> for
-        the original-language spellings), the <code>source</code> it came from, named as you would
-        cite it, and the <code>method</code>. The app joins the two into one sentence — “Greek
-        spellings in BSB come from <em>source</em>, <em>method</em>.” — so write the method as a
-        clause: begin it lower-case and leave off the closing full stop. The bundled Berean
-        Standard Bible records this way that its Greek and Hebrew spellings were copied from the
-        BSB’s own translation tables by matching each verse’s Strong’s numbers.
+        Record annotations added during conversion in <code>meta.sourceTexts.annotations</code>.
+        Each entry identifies the <code>part</code> (<code>strongs</code> for Strong’s numbers or{' '}
+        <code>forms</code> for original-language spellings), a citable <code>source</code> and the{' '}
+        <code>method</code> used.
+      </p>
+      <p>
+        Lamp combines source and method into a sentence: “Greek spellings in BSB come from{' '}
+        <em>source</em>, <em>method</em>.” Write the method as a lowercase clause without a final
+        full stop. The bundled BSB uses this field to record that its spellings were copied
+        from BSB translation tables by matching each verse’s Strong’s numbers.
       </p>
 
       <h2>Worked example: highlights</h2>
@@ -472,12 +470,10 @@ export default function Page() {
         hex code, written without the <code>#</code>.
       </p>
       <p>
-        A set may also name itself in <code>meta.setId</code>, for an identity a module ID cannot
-        hold: the apps’ default set for a translation is{' '}
-        <code>personal-highlights:&lt;translation&gt;</code>, and a module ID has no colon. The
-        file is still named after <code>meta.id</code>, while <code>highlight_meta.id</code> holds
-        the set ID, which is how the apps tell one set from another. Without{' '}
-        <code>setId</code>, the set is known by its module ID.
+        Use <code>meta.setId</code> when the set’s identity differs from its module ID. For example,
+        the default set is <code>personal-highlights:&lt;translation&gt;</code>, but module IDs cannot
+        contain colons. The filename still uses <code>meta.id</code>; <code>highlight_meta.id</code>{' '}
+        stores the set ID. Without <code>setId</code>, the module ID identifies the set.
       </p>
 
       <Callout tone="warn" title="Offsets are tied to exact wording">
@@ -489,13 +485,14 @@ export default function Page() {
 
       <h2>Media</h2>
       <p>
-        Notes, writing and books can reference images and audio, listed once in the document’s
-        top-level <code>media</code> array and pointed at by ID. In markdown interchange the files
-        live in a <code>media/</code> folder beside the document, with UUID-prefixed filenames to
-        avoid collisions; in a shared writing package they travel inside the ZIP. A compiled{' '}
-        <code>.lamp</code> is a single database, so it carries the references but not the files.
-        Supported formats are JPEG, PNG, GIF, WebP and HEIC for images, and M4A, MP3, WAV, AAC and
-        OGG for audio — M4A being the recommended choice.
+        Notes, writing and books list media once in the top-level <code>media</code> array and
+        reference items by ID. Markdown exports store files in a neighbouring <code>media/</code>{' '}
+        folder with UUID-prefixed names. Shared writing packages include media in the ZIP.
+        Compiled <code>.lamp</code> databases contain references only, not media files.
+      </p>
+      <p>
+        Image formats: JPEG, PNG, GIF, WebP and HEIC. Audio formats: M4A (recommended), MP3, WAV,
+        AAC and OGG.
       </p>
 
       <h2>Building and installing</h2>
@@ -512,7 +509,7 @@ export default function Page() {
 
       <Callout tone="warn" title="Rights">
         <p>
-          The format makes almost any text importable. That is not permission to redistribute one.
+          Module creation and redistribution require permission to use the source content.
           Create a module only from content you made, content that is public domain where you use
           it, or content whose licence expressly permits the copying and conversion. Share a module
           only when you also have redistribution rights, and preserve every required credit,

@@ -18,16 +18,15 @@ export default function Page() {
       <h2>Translations</h2>
       <p>
         Rights vary by translation. Strong’s-tagged texts support word-level lexicon lookups:
-        BSB, KJV, the Hebrew <code>TAHOT</code>, Greek <code>TAGNT</code> and Greek Septuagint
+        BSB, KJV, the Hebrew <code>TAHOT</code>, Greek <code>TAGNT</code> and Greek Septuagint{' '}
         <code>LXX</code>. The Hebrew and Greek texts also include morphology.
       </p>
       <p>
-        The World English Bible and the American Standard Version are published with Strong’s
-        numbers too, but those were aligned by machine and many sit on the neighbouring word, so
-        Lamp Bible leaves them out. Their identifiers keep the <code>s</code> they were given when
-        they had them, since your highlights and notes are filed under the identifier. The Spanish
-        and French files carry Strong’s numbers as well, which their publisher gives no source or
-        licence for, so those are left out too.
+        Lamp omits the machine-aligned Strong’s tags from the World English Bible and American
+        Standard Version because many identify neighbouring words. Their module IDs retain the{' '}
+        <code>s</code> suffix to preserve links to notes and highlights. Spanish and French source
+        files also include Strong’s tags, but these are omitted because the publisher provides
+        no source or licence for them.
       </p>
 
       <Table>

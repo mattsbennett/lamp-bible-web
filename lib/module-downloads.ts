@@ -146,7 +146,7 @@ const TYPES: Array<
     editable: true,
     summary: 'Highlight spans and colour themes for one translation.',
     sampleContents:
-      'Four highlights against the sample translation — one in each of the four styles, with character offsets that land on real words — and two colour themes.',
+      'Four highlights in the sample translation, one per style, with character offsets and two colour themes.',
     sampleId: 'sample-highlights',
     schemaFiles: ['highlight_schema.json'],
   },

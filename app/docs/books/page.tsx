@@ -83,13 +83,14 @@ export default function Page() {
       <Platform only="mac">
         <h2>On the Mac</h2>
         <p>
-          <strong>Books</strong> in the sidebar reads in three resizable columns — your books,
-          grouped by genre unless you choose otherwise from <strong>Group Books</strong>, the
-          contents, and the text — with search within the book, bookmarks, and your own typeface,
-          size and spacing. Your place, down to the paragraph, and your bookmarks sync between
-          Macs. <strong>Open in Book Reader</strong> moves a book into a window of its own, and{' '}
-          <strong>Share Section</strong> copies a link straight to the section. ⌥⌘← and ⌥⌘→ step
-          between sections.
+          Open <strong>Books</strong> in the sidebar for three resizable columns: the library,
+          contents and text. Use <strong>Group Books</strong> to change genre grouping. You can search
+          within a book, bookmark sections and set the typeface, size and spacing. Bookmarks and your
+          position within a paragraph sync between Macs.
+        </p>
+        <p>
+          <strong>Open in Book Reader</strong> opens a separate window. <strong>Share Section</strong>{' '}
+          copies a section link. Use ⌥⌘← and ⌥⌘→ to move between sections.
         </p>
       </Platform>
 

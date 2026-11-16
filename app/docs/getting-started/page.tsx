@@ -18,13 +18,10 @@ export default function Page() {
     >
       <h2>Install</h2>
       <p>
-        Lamp Bible is a free download on the{' '}
-        <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">
-          App Store
-        </a>{' '}
-        for iPhone and iPad. There is nothing to sign up for and nothing to buy. The first
-        launch unpacks the bundled module database onto the device, which takes a few seconds;
-        after that the entire library works with no network connection.
+        Download Lamp Bible free from the{' '}
+        <a href={site.appStoreUrl} target="_blank" rel="noopener noreferrer">App Store</a>{' '}
+        for iPhone and iPad. No account or purchase is required. The first launch takes a few
+        seconds to prepare the included library, which then works offline.
       </p>
 
       <Callout title="Included content">
@@ -38,8 +35,8 @@ export default function Page() {
 
       <h2>The home screen</h2>
       <p>
-        Lamp Bible opens on today: the readings from the plans you follow, with a date at the top
-        to step through the days. Everything else is a button along the bottom of the screen.
+        The home screen shows today’s readings from your followed plans. Use the date at the top
+        to change days and the buttons along the bottom to open other features.
       </p>
 
       <Table>
@@ -86,9 +83,8 @@ export default function Page() {
         </tbody>
       </Table>
       <p>
-        The readings themselves are covered in <Link href="/docs/reading-plans">Reading plans</Link>.
-        {' '}Using a Mac too? See <Link href="/docs/mac">Get started on Mac</Link>; with the same
-        sync on both, they share one library.
+        See <Link href="/docs/reading-plans">Reading plans</Link>.
+        {' '}For Mac setup, see <Link href="/docs/mac">Get started on Mac</Link>. Connect both apps to the same sync location to share a library.
       </p>
 
       <h2>Choose your translation</h2>
@@ -120,10 +116,8 @@ export default function Page() {
 
       <h2>Choose storage and sync</h2>
       <p>
-        Before you write much, go to Settings and choose a sync method. The options are local-only,
-        iCloud Drive, or a WebDAV server of your own. Switching later is supported and the app will
-        offer to bring your library with it, but making the choice up front saves a step. See{' '}
-        <Link href="/docs/sync">Sync &amp; backup</Link>.
+        Choose Local Only, iCloud Drive or WebDAV in Settings. You can switch later and move
+        your library to the new location. See <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
 
       <Callout tone="warn" title="Back up local-only data">

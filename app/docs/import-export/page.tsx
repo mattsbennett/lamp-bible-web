@@ -6,7 +6,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'Import & export',
   description:
-    'Markdown round-trips for notes and writing: where to export and import, the file layout, frontmatter fields, footnote handling and embedded media.',
+    'Import and export notes and writing as markdown, with file layouts, metadata, footnote syntax and media handling.',
 }
 
 export default function Page() {
@@ -292,9 +292,7 @@ Life brings unexpected storms...[^wind]
         <code>category</code> takes any value. The editors suggest <code>devotional</code>,{' '}
         <code>exhortation</code>, <code>reflection</code>, <code>study</code> and{' '}
         <code>prayer</code>; anything else is kept as written, and values that differ only in case
-        count as one. An older file’s <code>sermon</code> is read as <code>exhortation</code>. A
-        piece has one category but any number of <code>tags</code>, which is why the two are
-        separate fields. A{' '}
+        count as one. An older file’s <code>sermon</code> is read as <code>exhortation</code>. Each piece has one category and any number of <code>tags</code>. A{' '}
         <code>## Summary</code> section at the top becomes the piece’s summary.
       </p>
 
@@ -369,8 +367,7 @@ Life brings unexpected storms...`}</code>
       <Callout title="Markdown shared alone carries no media">
         <p>
           Share as Markdown sends the text without its images and audio, so their links will not
-          resolve elsewhere. Use Share Writing File, or an export with its media folder, when
-          the media matters.
+          resolve elsewhere. Use Share Writing File, or an export with its media folder, to include media.
         </p>
       </Callout>
 

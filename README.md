@@ -32,9 +32,12 @@ lib/
 ### Adding a documentation page
 
 1. Create `app/docs/<slug>/page.tsx` exporting `metadata` and a default component wrapped in `<DocPage>`.
-2. Add the page to `docsNav` in `lib/docs-nav.ts`. That single entry drives the sidebar, the docs index cards, and the previous/next links at the foot of each page.
+2. Add the page to `docsNav` in `lib/docs-nav.ts`. This entry controls the sidebar, docs index and previous/next links.
 
-Doc body content is plain markup — `h2`, `p`, `ul`, `pre`, `table` — styled by the `.doc` rules in `app/globals.css`. Wrap tables in the `<Table>` helper so wide content scrolls inside its own container.
+Write page content in JSX using headings, paragraphs, lists and code blocks. The `.doc` rules in
+`app/globals.css` provide styling. Use `<Table>` for responsive tables. For device-specific
+instructions, wrap sections in `<Platform only="ios">` or `<Platform only="mac">`; the device
+switch filters them. Set `only` on the navigation entry for pages that cover one platform.
 
 ### Theming
 
@@ -64,8 +67,8 @@ SHA-256 for every file. `--check` fails if any of these differ:
    so that a change to how modules are produced upstream flags the prose as needing review.
 
 It looks for core at `../lamp-bible-core` (`LAMP_CORE_REPO` or `--core`) and for the modules repo
-at `../lamp-bible-modules` (`LAMP_MODULES_REPO` or `--source`). Without core it prints a note and
-exits 0, so it is safe to run anywhere. Without the modules repo it still copies the schemas, keeps
+at `../lamp-bible-modules` (`LAMP_MODULES_REPO` or `--source`). Without core it prints a note
+and exits 0 without checking the schemas. Without the modules repo it still copies the schemas, keeps
 the watched hashes already recorded, and says the scripts weren't checked.
 
 Run `npm run check:modules` before a release; run `npm run sync:modules` when it reports changes.
@@ -73,7 +76,8 @@ Run `npm run check:modules` before a release; run `npm run sync:modules` when it
 ### Sample modules
 
 `scripts/build_sample_modules.py` builds one small `.lamp` of each of the nine module types, plus
-the source JSON and the DDL, using only the Python standard library. The documentation uses it as a reference implementation. Each sample is named
+the source JSON and the DDL, using only the Python standard library. The documentation uses it
+as a reference implementation. Each sample is named
 `<module id>.lamp`, which the iOS app requires, and carries the `module_format` row the apps read
 first.
 
@@ -84,7 +88,8 @@ copy of the same definitions.
 
 `scripts/verify_sample_modules.py` decompresses each result, runs `PRAGMA integrity_check`, checks
 the `module_format` row against the file name, queries it, and asserts that every annotation,
-footnote marker and highlight offset still covers the text it claims. These checks catch incorrect offsets that SQLite integrity checks cannot detect.
+footnote marker and highlight offset still covers the text it claims. These checks catch
+incorrect offsets that SQLite integrity checks cannot detect.
 
 When core's command-line tool is available (`$LAMP_CORE_CLI`, or
 `../lamp-bible-core/.build/debug/lamp-module`, built by `swift build` in that repo), the verifier
@@ -99,7 +104,9 @@ Without the tool it prints a note and skips those checks.
 
 ### Platform availability
 
-`lib/site.ts` holds the platform list. Flipping a platform from `planned` to `available` and giving it an `href` updates the hero, the download section and the FAQ together.
+`lib/site.ts` defines Mac release metadata. Set `macRelease.url` to the hosted build to enable
+Mac downloads. Update the version, build number, release date, file size, SHA-256 and Sparkle
+signature for each release; the download pages and update feed use these values.
 
 ## Deployment
 

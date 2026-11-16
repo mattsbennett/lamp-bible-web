@@ -34,7 +34,7 @@ export default function Page() {
     <DocPage
       href="/docs/mac/keyboard"
       title="Keyboard shortcuts"
-      intro="The Mac app’s shortcuts, by where you use them. Each also appears beside its command in the menu bar."
+      intro="Mac keyboard shortcuts, grouped by task. You can also find them beside commands in the menu bar."
     >
       <h2>Moving through scripture</h2>
       <Keys

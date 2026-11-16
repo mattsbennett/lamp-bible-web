@@ -6,7 +6,7 @@ import { DocPage, Callout, Table } from '@/components/docs/DocPage'
 export const metadata: Metadata = {
   title: 'Slides & presenting',
   description:
-    'Build slide decks from your writing in Slide Studio on the Mac, present them full screen, export PDFs, and drive them from an iPhone or iPad remote with your speaker notes.',
+    'Create slides in Slide Studio on Mac, export PDFs and present with an iPhone or iPad remote and speaker notes.',
 }
 
 export default function Page() {
@@ -17,9 +17,8 @@ export default function Page() {
       intro="Create slides on the Mac, then present with your iPhone as a remote."
     >
       <p>
-        Decks are built in Slide Studio on the Mac and presented from it. An iPhone or iPad runs a
-        presentation as its remote, with your speaker notes, and shows the decks you have made once
-        they sync.
+        Create and present decks in Slide Studio on the Mac. Use an iPhone or iPad as a remote
+        with speaker notes, or view synced decks on either device.
       </p>
 
       <Platform only="mac">
@@ -31,9 +30,9 @@ export default function Page() {
           built from a writing stays linked to it.
         </p>
         <p>
-          Use the slide list to reorder, duplicate, hide or delete slides. The inspector has two panes:
-          <strong>Slide</strong> contains layout previews, content and <strong>Skip while presenting</strong>;
-          <strong>Deck</strong> sets the title, aspect ratio (16:9 or 4:3), typeface and theme.
+          Use the slide list to reorder, duplicate, hide or delete slides. The inspector has two panes:{' '}
+          <strong>Slide</strong> contains layout previews, content and <strong>Skip while presenting</strong>;{' '}
+          <strong>Deck</strong> sets the title, aspect ratio (16:9 or 4:3), typeface and theme.{' '}
           <strong>Lamp Dark</strong> and <strong>Parchment</strong> preview your first slide.
         </p>
         <p>
@@ -83,10 +82,10 @@ export default function Page() {
           </tbody>
         </Table>
         <p>
-          <strong>Choose Scripture</strong> inserts a passage from any installed translation together
-          with its citation. Quotation marks and ellipses are set typographically on the slide while
-          your text is kept as typed. Words over a background picture are kept legible by blurring
-          and tinting behind them, and images take an accessibility description.
+          <strong>Choose Scripture</strong> inserts a passage and citation from an installed
+          translation. Slides display typographic quotation marks and ellipses while preserving your
+          source text. Background images are blurred and tinted behind text for legibility. You can
+          add accessibility descriptions to images.
         </p>
         <p>
           To chart a Strong’s number, enter the number and translation. Optionally limit the books
@@ -96,24 +95,22 @@ export default function Page() {
           book columns.
         </p>
         <p>
-          Charts use the same library data as <Link href="/docs/search#analysis">word analysis</Link>
+          Charts use the same library data as <Link href="/docs/search#analysis">word analysis</Link>{' '}
           and match the slide’s colours. A key marks statistically unusual book frequencies, and a
           caption identifies tags added during module creation. To reuse an analysis figure,
           choose <strong>Add to Deck</strong> on that figure.
         </p>
         <p>
-          Slide Studio checks a deck as you go. Errors stop it saving, exporting or playing until
-          they are fixed; warnings — low contrast, a crowded slide, a picture without a description,
-          content a layout will not show — are listed but do not.
+          Slide Studio checks decks as you edit. Errors prevent saving, exporting and playback.
+          Warnings flag low contrast, crowded slides, missing image descriptions and content hidden
+          by the layout, but do not block these actions.
         </p>
 
         <h3>Speaker notes from your manuscript</h3>
         <p>
-          Each slide has <strong>Presenter Notes</strong>. Write them freely, or turn on{' '}
-          <strong>Follow the writing</strong> and give each slide the phrase where its part of the
-          talk <strong>Begins at</strong>: the linked writing is then split across the slides as your
-          notes, and stays in step as you keep editing it. If you change the writing so that a phrase
-          is no longer there, the slide says so.
+          Enter <strong>Presenter Notes</strong> for each slide, or enable <strong>Follow the writing</strong>.
+          For linked notes, set each slide’s <strong>Begins at</strong> phrase. Lamp divides the manuscript
+          at those phrases and updates the notes as you edit. A warning appears if a phrase is removed.
         </p>
 
         <Callout title="Let an agent draft it">
@@ -185,11 +182,10 @@ export default function Page() {
           </li>
         </ol>
         <p>
-          The remote shows the current slide and, when there is room, the next one; your presenter
-          notes, at a size you choose; the slide number and the time since you started. Tap the slide
-          or <strong>Next</strong> to move on, use <strong>Previous</strong> or{' '}
-          <strong>Choose slide</strong> to go anywhere, and black the audience screen from the phone.
-          Pictures show as placeholders on the remote.
+          The remote shows the current slide, next slide when space allows, presenter notes with
+          adjustable text size, slide number and elapsed time. Tap the slide or <strong>Next</strong>{' '}
+          to advance. Use <strong>Previous</strong> or <strong>Choose slide</strong> to navigate, or
+          black out the audience screen. Images appear as placeholders on the remote.
         </p>
 
         <Callout title="Same network, encrypted">
@@ -226,11 +222,9 @@ export default function Page() {
 
       <Platform only="ios">
         <p>
-          On iPhone and iPad, <strong>Slide Decks</strong> in the Write library’s menu shows each
-          deck as a card with its first slides listed, and a writing with a deck shows a{' '}
-          <strong>Slides</strong> button. A deck opens full screen — on an iPhone, turned sideways —
-          one slide at a time, skipping hidden slides, with its presenter notes and a list of slides
-          to jump to.
+          Open <strong>Slide Decks</strong> in the Write library’s menu, or tap a document’s{' '}
+          <strong>Slides</strong> button. Decks display full screen, in landscape on iPhone, with
+          presenter notes and a slide list for navigation. Hidden slides are skipped.
         </p>
       </Platform>
     </DocPage>

@@ -76,7 +76,7 @@ export default function Page() {
 
       <h3>SWORD modules</h3>
       <p>
-        Supported SWORD Bibles use <code>zText</code>, <code>zText4</code>, <code>RawText</code>
+        Supported SWORD Bibles use <code>zText</code>, <code>zText4</code>, <code>RawText</code>{' '}
         or <code>RawText4</code> with ZIP compression, OSIS/ThML/GBF/plain-text markup, and KJV
         or NRSV verse numbering. Unsupported inputs produce an explanation. These include
         commentary and dictionary modules, BZIP2 compression, Synodal numbering and TEI markup.
@@ -84,18 +84,16 @@ export default function Page() {
 
       <h3>Locked SWORD modules</h3>
       <p>
-        Some SWORD Bibles are sold locked, with an unlock key sent on purchase. When you import
-        one, the app asks for that key, and shows where to get one if the module says. A wrong key
-        is caught and you are asked again. The key is used once to unlock the text and is not
-        stored; the result is an ordinary translation module.
+        Locked SWORD Bibles require the unlock key supplied with your purchase. Lamp prompts for
+        it and shows the publisher’s instructions if available. An invalid key prompts another
+        attempt. The key is used once and not stored; the imported module is unlocked.
       </p>
 
       <h2>The review</h2>
       <p>Before anything is installed, a review shows:</p>
       <ul>
         <li>
-          What was found — <em>66 books, 1,189 chapters and 31,102 verses</em> — and the format it
-          came from.
+          The number of books, chapters and verses found, and the source format.
         </li>
         <li>
           The <strong>Name</strong>, <strong>Abbreviation</strong> and <strong>Language</strong>,
@@ -109,8 +107,7 @@ export default function Page() {
         <li>The copyright line the file carries.</li>
       </ul>
       <p>
-        Nothing in that list blocks an import; it is there so you know exactly what you are
-        getting.
+        These notices describe the conversion and do not block the import.
       </p>
 
       <h3>Replacing an earlier import</h3>

@@ -41,11 +41,10 @@ export default function Page() {
       <Platform only="ios">
         <h2>On iPhone and iPad</h2>
         <p>
-          With <strong>Show AI Features</strong> on in Settings → AI Features,{' '}
-          <strong>Make from Description</strong> appears when you{' '}
-          <Link href="/docs/reading-plans#making-a-plan">make a reading plan</Link>, on iOS 26 with
-          Apple Intelligence, and the system’s Writing Tools work in what you write. The
-          description is read by the model on the device, and nothing goes to Lamp Bible.
+          On iOS 26 with Apple Intelligence, enable <strong>Show AI Features</strong> in Settings
+          → AI Features to use <strong>Make from Description</strong> for{' '}
+          <Link href="/docs/reading-plans">reading plans</Link> and system Writing Tools in the editor.
+          Plan descriptions are processed on the device and are not sent to Lamp Bible.
         </p>
       </Platform>
 
@@ -124,13 +123,12 @@ export default function Page() {
           </tbody>
         </Table>
         <p>
-          Lamp’s tools are read-only: the AI can look up passages, commentary, dictionary entries,
-          books, plans, quizzes and — if you allow it — your own study, and analyse a Strong’s number,
-          but cannot change your library. The exceptions let an agent start a new writing, and
-          another app replace a writing’s draft or add a reading plan, and each is off unless you
-          turn it on; see <a href="#start-writing">Reader Chat</a> and{' '}
-          <a href="#other-apps">Using Lamp in other apps</a>. <strong>Test Module Tools</strong>{' '}
-          checks that the tools are working.
+          Library tools can search and read passages, commentary, dictionaries, books, plans and
+          quizzes, and analyse Strong’s numbers. They can read personal study content if you enable it.
+          Creating writings, replacing drafts from other apps and adding plans require separate
+          permissions, all off by default. See <a href="#start-writing">Reader Chat</a> and{' '}
+          <a href="#other-apps">Using Lamp in other apps</a>. Use <strong>Test Module Tools</strong>{' '}
+          to check the connection.
         </p>
 
         <h3 id="model">Provider, model and effort</h3>
@@ -150,18 +148,15 @@ export default function Page() {
         </p>
         <ul>
           <li>
-            <strong>sola-scriptura</strong> distinguishes what a passage states from what is inferred from it
-            or brought to it. Asked about one claim, it says whether scripture establishes it, in a
-            paragraph with the text quoted. Given a whole piece of writing, it goes through it claim
-            by claim — stated, entailed, inferred, imported, unsupported or contrary — and ranks what
-            it finds by how much of the argument rests on each.
+            <strong>sola-scriptura</strong> assesses claims against quoted scripture. For a single
+            claim, it explains whether the text establishes it. For a draft, it classifies each claim
+            as stated, entailed, inferred, imported, unsupported or contrary, and ranks findings by
+            their importance to the argument.
           </li>
           <li>
-            <strong>original-languages</strong> reads the Hebrew or Greek behind a verse, word by
-            word with each word’s parsing, and shows where translations differ and whether the
-            difference is a translator’s decision. It turns to TBESG first for Greek and to BDB for
-            Hebrew, and follows a Greek word to the Hebrew it renders in the Septuagint. Given a
-            writing, it checks the claims it makes about the original.
+            <strong>original-languages</strong> examines Hebrew or Greek words and their parsing,
+            compares translations and checks claims about the original text. It consults TBESG first
+            for Greek and BDB for Hebrew, and traces Greek words to the Hebrew they translate in the Septuagint.
           </li>
         </ul>
         <p>
@@ -178,11 +173,10 @@ export default function Page() {
           through the read-only tools, and cannot edit files or run commands.
         </p>
         <p>
-          Each message is sent with the chapter and translation you are reading, the verse marked in
-          the reader, and any words you have selected in it, traced to their verses. With{' '}
-          <strong>Include personal writing, notes, and highlights</strong> on, it also carries your
-          own notes and highlights in that chapter; with it off, the chat is told they are not shared.
-          A line under the chapter’s name says what the next message will carry.
+          Each message includes your current chapter, translation, selected verse and selected words
+          with their verse references. Enabling <strong>Include personal writing, notes, and highlights</strong>{' '}
+          also sends your notes and highlights for that chapter. When disabled, the chat is told that
+          this content is not shared. A line below the chapter name lists what the next message will include.
         </p>
         <p>
           The chat looks only in the modules your Module Access setting allows, so a module you have
@@ -208,9 +202,10 @@ export default function Page() {
           Choose <strong>Start a Writing</strong> in the chat header to create a document and copy
           the conversation into its agent chat. To copy only part, right-click a question and choose{' '}
           <strong>Start a Writing from Here…</strong>. The chats are independent after copying:
-          Reader Chat stays on this Mac, while the writing’s chat syncs. The new chat marks the end
-          of the copied conversation; the original links to writings created from it.
-          To let an agent create a writing, enable <strong>Allow agents to start a writing</strong>
+          Reader Chat stays on this Mac, while the writing’s chat syncs. The new chat marks the end of the copied conversation; the original links to writings created from it.
+        </p>
+        <p>
+          To let an agent create a writing, enable <strong>Allow agents to start a writing</strong>{' '}
           in Settings → AI &amp; Agents → Reader Chats. This is off by default and permits creation
           only, not changes to or deletion of existing writings.
         </p>
@@ -225,16 +220,15 @@ export default function Page() {
         </p>
         <ul>
           <li>
-            <strong>Chat</strong> is a conversation with the agent, headed by the workspace folder it
-            reads and edits. Its edits go straight into the draft, and each one is in Revisions.
-            When Claude Code needs permission — to run a command or fetch a web page, say — it asks
-            in the chat: <strong>Allow</strong>, <strong>Always Allow</strong> for that exact kind of
-            request, or <strong>Deny</strong>. A message sent while the agent is working waits its
-            turn, as in Reader Chat, and closing the Agent pane does not stop it.{' '}
-            <strong>Undo This Turn…</strong>, on a question’s right-click menu, puts the draft back as
-            it was before that turn and takes the turn, and everything after it, out of the
-            conversation. Anything you wrote since is replaced, but the restore is recorded in
-            Revisions, so you can put it back.
+            <strong>Chat</strong> shows the workspace folder the agent can read and edit. Edits appear
+            in the draft and are saved in Revisions. Claude Code requests permissions in chat, with{' '}
+            <strong>Allow</strong>, <strong>Always Allow</strong> for that request type, and <strong>Deny</strong>.
+            New messages queue while the agent works; closing the pane does not stop it.
+            <p>
+              Right-click a question and choose <strong>Undo This Turn…</strong> to restore the draft
+              from before that turn and remove that turn and later messages. This also replaces your
+              subsequent edits. The restoration is saved in Revisions and can be undone.
+            </p>
           </li>
           <li>
             <strong>Terminal</strong> runs the provider’s own tool directly, continuing the same
@@ -259,11 +253,10 @@ export default function Page() {
 
         <Callout tone="warn" title="What a writing agent sees">
           <p>
-            A writing agent always has the writing it was opened from, its details, its companion
-            files and the context you added, whatever the personal-content setting says. It can also
-            use its provider tool’s own abilities, such as web search or shell commands, as your
-            settings for that tool allow. Building decks needs Python 3, which macOS offers to install
-            the first time it is used.
+            A writing agent can always read its document, metadata, companion files and added context,
+            regardless of the personal-content setting. It can also use web search or shell commands
+            when permitted by its provider tool’s settings. Building decks requires Python 3;
+            macOS offers to install it on first use.
           </p>
         </Callout>
 
@@ -359,13 +352,14 @@ export default function Page() {
 
       <h2>Privacy</h2>
       <p>
-        A plan made from a description is worked out by Apple Intelligence’s model on the device.
-        Reader Chat and writing agents on the Mac send your messages — and whatever the agent reads
-        to answer them — to the provider you chose, under that provider’s terms and privacy policy;
-        if you never connect a provider, no AI tool is ever started. What another app reads through
-        Lamp’s tools goes to whichever AI provider that app uses, under its terms. In every case
-        nothing goes to Lamp Bible, which does not operate or proxy these services and never sees
-        your conversations. See the <Link href="/privacy/apps">app privacy declaration</Link>.
+        Apple Intelligence processes plan descriptions on the device. On the Mac, Reader Chat
+        and writing agents send messages and retrieved content to your chosen provider under its
+        terms and privacy policy. No provider tool starts unless you connect a provider. Content
+        read by another AI app goes to that app’s provider under its terms.
+      </p>
+      <p>
+        Lamp Bible does not operate or proxy these services and does not receive your conversations.
+        See the <Link href="/privacy/apps">app privacy declaration</Link>.
       </p>
     </DocPage>
   )

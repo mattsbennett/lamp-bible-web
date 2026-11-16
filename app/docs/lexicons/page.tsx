@@ -56,15 +56,15 @@ export default function Page() {
       </Table>
 
       <p>
-        All five ship inside the app. Strong’s, BDB and Dodson have public-domain source records;
-        TBESG is STEPBible’s, under CC BY 4.0, with definitions mostly from Abbott-Smith’s{' '}
-        <em>Manual Greek Lexicon of the New Testament</em>, and it covers the Septuagint’s Greek as
-        well as the New Testament’s. The exact source and rights basis for each is listed under{' '}
-        <Link href="/content-licences">Content licences</Link>.
-        A mapping table connects Strong’s Hebrew numbers to their BDB entries, since the two systems
-        do not correspond one-to-one — a single Strong’s number can resolve to several BDB entries
-        for different words or homographs. Its pairs are the Open Scriptures Hebrew Bible
-        Project’s, matched by machine to the entries of the bundled BDB.
+        All five lexicons are included. Strong’s, BDB and Dodson use public-domain sources.
+        STEPBible publishes TBESG under CC BY 4.0, with definitions mostly from Abbott-Smith’s{' '}
+        <em>Manual Greek Lexicon of the New Testament</em>. It covers both New Testament and
+        Septuagint Greek. See <Link href="/content-licences">Content licences</Link> for sources and terms.
+      </p>
+      <p>
+        A mapping table links Hebrew Strong’s numbers to BDB entries. One number may link to
+        several entries for different words or homographs. The mapping uses the Open Scriptures
+        Hebrew Bible Project’s pairs, matched by machine to the bundled BDB.
       </p>
 
       <h2>What an entry holds</h2>
@@ -83,9 +83,8 @@ export default function Page() {
 
       <Callout title="Following a chain">
         <p>
-          BDB definitions cross-reference other BDB entries, and those entries cite verses. Because
-          both are links, a lookup can turn into a chain of entries and passages — the reader’s{' '}
-          <Link href="/docs/reader">history list</Link> is how you get back.
+          BDB entries link to other entries and scripture passages. Use the reader’s{' '}
+          <Link href="/docs/reader">history list</Link> to return to earlier passages.
         </p>
       </Callout>
 
@@ -94,20 +93,16 @@ export default function Page() {
 
         <h3>Looking a word up</h3>
         <p>
-          In a Strong’s-tagged translation, tap a word — in the reader, in a commentary or in a book.
-          The lexicon view opens on the entry for that word’s Strong’s number, named above the word
-          by the lexicon it comes from; swipe to see the same word in each of your other lexicons. A
-          count beside the number shows how often it occurs, and tapping it searches for every verse
-          that uses it. <strong>Analyse</strong> beside that opens an{' '}
-          <Link href="/docs/search#analysis">analysis</Link> of the word: its definition in each
-          dictionary, how it is translated, its forms and grammar, its distribution, the words found
-          with it, and how other translations count it.
+          Tap a tagged word in the reader, commentary or a book to open its lexicon entry. The
+          lexicon’s name appears above the word; swipe to compare other lexicons. Tap the occurrence
+          count to find its verses, or <strong>Analyse</strong> for{' '}
+          <Link href="/docs/search#analysis">definitions, renderings, forms, grammar and usage statistics</Link>.
         </p>
         <p>
-          The speaker beside the headword says the word aloud — Greek in the way{' '}
-          <strong>Greek Words</strong> in Settings sets, Hebrew from Strong’s own respelling; see{' '}
-          <Link href="/docs/reader">The reader</Link>. An entry’s text can be pressed and selected, to
-          look up, copy or share a word; a tap on a link still follows it.
+          Tap the speaker to hear the headword. Greek pronunciation follows the{' '}
+          <strong>Greek Words</strong> setting; Hebrew uses Strong’s respelling. See{' '}
+          <Link href="/docs/reader">The reader</Link>. Press and select text to look up, copy or share
+          it, or tap a link to follow it.
         </p>
         <h3>Ordering and hiding</h3>
         <p>
@@ -122,13 +117,12 @@ export default function Page() {
       <Platform only="mac">
         <h2>On the Mac</h2>
         <p>
-          In a Strong’s-tagged translation, hovering over a word shows its Strong’s number at the
-          foot of the window, and clicking opens it in the study column’s{' '}
-          <strong>Dictionary</strong> tab. The tab also looks words up by word, lemma or Strong’s
-          number, with a speaker to say the word aloud and <strong>Analyse</strong>, which opens the
-          word’s <Link href="/docs/search#analysis">analysis</Link> in the column, beside the
-          passage. Your lexicon order and hidden lexicons sync, so the order you set on iPhone or
-          iPad applies here too. See <Link href="/docs/reader#on-the-mac">The reader on the Mac</Link>.
+          Hover over a tagged word to see its Strong’s number at the bottom of the window. Click
+          to open the Dictionary tab, where you can also search by word, lemma or Strong’s number.
+          Use the speaker for pronunciation or <strong>Analyse</strong> for{' '}
+          <Link href="/docs/search#analysis">word analysis</Link> beside the passage. Lexicon order
+          and visibility sync with iPhone and iPad. See{' '}
+          <Link href="/docs/reader#on-the-mac">The reader on the Mac</Link>.
         </p>
       </Platform>
 

@@ -50,9 +50,8 @@ export default function Page() {
       </Table>
 
       <p>
-        Choose in Settings under <strong>Sync</strong>. There is no Lamp Bible account and no Lamp
-        Bible server. Even with sync switched on, the only parties involved are you and the storage
-        you chose.
+        Choose a method in Settings → <strong>Sync</strong>. The app connects directly to your
+        chosen storage provider. Lamp Bible has no sync server or account.
       </p>
 
       <h2>What syncs</h2>
@@ -99,16 +98,15 @@ export default function Page() {
         starts a sync and reports any errors.
       </p>
       <p>
-        Sync works file by file. One file that fails — a server timeout, say — is reported, and the
-        rest still sync. While you are writing, an icon in the Notes panel header and in the
-        writing editor shows whether your latest change has left the device: synced, syncing,
-        waiting to sync, or unavailable — or, with sync off, that it is saved on this device alone.
+        Sync processes files separately, reporting failed transfers while continuing with the rest.
+        An icon in the Notes panel and writing editor shows the status: synced, syncing, waiting,
+        unavailable or, when sync is off, saved on this device only.
       </p>
 
       <h3>What is in the folder</h3>
       <p>
-        The library is ordinary files, which you can see in the Files app or on your server. Each
-        file is a compressed <code>.lamp</code> <Link href="/docs/modules">module</Link>:
+        You can view the library folder in Files or on your server. Content is stored as compressed{' '}
+        <code>.lamp</code> <Link href="/docs/modules">modules</Link>, alongside settings and media:
       </p>
       <pre>
         <code>{`Lamp Bible/
@@ -189,7 +187,7 @@ export default function Page() {
       </p>
       <p>
         If an entry has different text but the same modification time on two devices, Lamp keeps
-        the local version and sets the other aside for review. Choose <strong>Resolve</strong>
+        the local version and sets the other aside for review. Choose <strong>Resolve</strong>{' '}
         in the Notes panel, writing list or Settings → Sync. The writing list opens conflicts
         automatically when they arrive.
       </p>
@@ -208,12 +206,10 @@ export default function Page() {
 
       <h2>Deletions</h2>
       <p>
-        Deleting a note, a piece of writing, a highlight set, a single highlight, a theme, or a module
-        or plan of your own is recorded, so your other devices delete it too rather than restoring
-        it. An entry edited on another
-        device after you deleted it survives. A file that simply goes missing from the server is
-        never taken as a deletion. Deleted files are remembered for 180 days; a device that has
-        been away longer than that brings them back once.
+        Deletions of notes, writings, highlights, themes and your modules or plans sync to other
+        devices. An entry edited elsewhere after deletion is kept. A file missing from the server
+        is not treated as deleted. Deletion records last 180 days; a device offline for longer
+        can restore those files when it reconnects.
       </p>
 
       <h2>Upgrading from an earlier version</h2>
@@ -245,21 +241,16 @@ export default function Page() {
       <Platform only="mac">
         <h2>On the Mac</h2>
         <p>
-          Settings → Sync chooses <strong>iCloud Drive or Folder</strong> — the same Lamp Bible
-          folder in iCloud Drive that your iPhone uses — or <strong>WebDAV</strong> with the same
-          server address, and connects to the same library as your iPhone and iPad. The Mac syncs
-          when it opens, sends your changes a few seconds after you make them, and checks every
-          half-minute for changes from your other devices while it is open;{' '}
-          <strong>Sync Now</strong> starts a sync. When a note or a piece of writing changed on two
-          devices, the Sync pane shows it under <strong>Needs Your Decision</strong>, where you
-          compare the versions and keep one.
+          In Settings → Sync, choose <strong>iCloud Drive or Folder</strong> and select the Lamp Bible
+          folder used by your iPhone or iPad, or choose <strong>WebDAV</strong> with the same server address.
+          The Mac syncs on launch, shortly after edits and every 30 seconds while open. Use{' '}
+          <strong>Sync Now</strong> to start a sync manually. Conflicting notes or writings appear
+          under <strong>Needs Your Decision</strong>, where you compare versions and choose one.
         </p>
         <p>
-          Turning sync <strong>Off</strong> pauses it but keeps the folder, server address, username
-          and password, so you can turn it back on without entering them again. To disconnect for
-          good — leaving a server, or handing over a shared Mac — choose{' '}
-          <strong>Forget Sync Details…</strong>, which removes them and turns sync off. Neither
-          deletes anything already synced, on the Mac or on the server.
+          Turning sync <strong>Off</strong> pauses it and retains your folder, server address,
+          username and password for reconnection. <strong>Forget Sync Details…</strong> removes those
+          details and turns sync off. Neither action deletes files on the Mac or server.
         </p>
         <p>
           The Mac also syncs slide decks and their pictures, and each writing’s agent workspace —

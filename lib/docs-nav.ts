@@ -29,7 +29,7 @@ export const docsNav: DocSection[] = [
       {
         title: 'Get started on Mac',
         href: '/docs/mac',
-        summary: 'Install the beta, and find your way around the window: sidebar, tabs and study column.',
+        summary: 'Install the Mac app and learn the sidebar, reader tabs and study tools.',
         only: 'mac',
       },
     ],
@@ -71,7 +71,7 @@ export const docsNav: DocSection[] = [
       {
         title: 'Highlights',
         href: '/docs/highlights',
-        summary: 'Four styles, custom colours, multiple sets, and named themes for what a colour means.',
+        summary: 'Highlight styles, custom colours, sets and named themes.',
       },
       {
         title: 'Notes',
@@ -92,7 +92,7 @@ export const docsNav: DocSection[] = [
         title: 'AI features',
         href: '/docs/ai',
         summary:
-          'Plans from a description with Apple Intelligence, and on the Mac, Reader Chat and writing agents through your own AI account.',
+          'Optional plan generation, Reader Chat, writing agents and connections to other AI apps.',
       },
     ],
   },
@@ -132,7 +132,7 @@ export const docsNav: DocSection[] = [
       {
         title: 'Sync & backup',
         href: '/docs/sync',
-        summary: 'Local-only, iCloud Drive, or your own WebDAV server. What syncs, conflicts and upgrading.',
+        summary: 'Choose storage, set up sync, resolve conflicts and back up your library.',
       },
     ],
   },

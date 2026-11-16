@@ -139,8 +139,7 @@ export default function SoftwareLicences() {
 
           <h2>Reference data</h2>
           <p>
-            Both apps also include this data, which lines up verses that translations number
-            differently.
+            Both apps use this data to align verses across different numbering systems.
           </p>
           <Table>
             <thead>

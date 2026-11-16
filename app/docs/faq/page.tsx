@@ -24,10 +24,9 @@ export default function Page() {
 
       <h2>Do I need an account?</h2>
       <p>
-        No. There is no Lamp Bible account. Sync, when you turn it on, uses your iCloud Drive or
-        your own WebDAV server .
-        {' '}The Mac’s optional <Link href="/docs/ai">AI chat</Link>, hidden until you turn on Show AI
-        Features, signs in to an AI provider account of your own.
+        No Lamp Bible account is needed. Optional sync uses your iCloud Drive or WebDAV account.
+        The Mac’s optional <Link href="/docs/ai">AI chat</Link> uses your own AI provider account
+        and is hidden until you enable <strong>Show AI Features</strong>.
       </p>
 
       <h2>What data do you collect?</h2>
@@ -43,10 +42,9 @@ export default function Page() {
 
       <h2>Does it work offline?</h2>
       <p>
-        Completely. Bundled translations, lexicons, cross-references and reading plans — plus any
-        modules you install — are on the device. The app connects to the network only for things
-        you turn on: cloud sync, handing a passage to another Bible app, and the presentation
-        remote, which uses only your local network; on the Mac, also update checks and AI chat.
+        Yes. Bundled and installed content is stored on the device. Optional features use a
+        connection: cloud sync, external links, Mac update checks and AI chat. The presentation
+        remote uses only the local network.
       </p>
 
       <h2>Why isn’t my usual translation there?</h2>
@@ -69,15 +67,14 @@ export default function Page() {
 
       <h2>Can I get my notes out?</h2>
       <p>
-        Yes. Notes and writing export to plain markdown, a piece
-        of writing with its images and audio; modules export as <code>.lamp</code> packages. See{' '}
+        Yes. Notes and writing export as markdown. Writing exports can also include images and
+        audio; modules export as <code>.lamp</code> files. See{' '}
         <Link href="/docs/import-export">Import &amp; export</Link>.
       </p>
 
       <h2>What happens if I stop using the app?</h2>
       <p>
-        Export everything to markdown first and you keep ordinary text files that open in any
-        editor.
+        Export your notes and writing as markdown before leaving. The files open in any text editor.
       </p>
 
       <h2>Which devices does it run on?</h2>

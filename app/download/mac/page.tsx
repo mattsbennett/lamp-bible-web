@@ -66,20 +66,11 @@ export default function MacDownloadPage() {
         {isMacBeta && (
           <section className="border-b border-line">
             <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8">
-              <h2 className="font-serif text-3xl tracking-tight">A beta</h2>
+              <h2 className="font-serif text-3xl tracking-tight">Mac beta</h2>
               <p className="mt-4 text-sm leading-relaxed text-muted">
-                {site.name} for Mac is in beta. It changes from one update to the next, and you may
-                meet a bug. Once it is installed it checks for updates if you allow it, and{' '}
-                {site.name} → Check for Updates… looks at once, so there is no need to come back
-                here for a new build. If something goes wrong,{' '}
-                <a
-                  href={site.issuesUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:underline"
-                >
-                  open an issue
-                </a>{' '}
+                {site.name} for Mac is in beta and may contain bugs. Allow automatic update checks or
+                choose <strong>{site.name} → Check for Updates…</strong> to check manually. To report a problem,{' '}
+                <a href={site.issuesUrl} target="_blank" rel="noopener noreferrer">open an issue</a>{' '}
                 or email {site.email}.
               </p>
             </div>

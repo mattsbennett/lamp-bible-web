@@ -7,7 +7,7 @@ import { PlansArt } from '@/components/home/art'
 export const metadata: Metadata = {
   title: 'Reading plans',
   description:
-    'Daily reading plans with per-reading completion, reading-time estimates, plans made from what you want to read, daily reminders, age-graded quizzes and a home-screen widget.',
+    'Follow or create reading plans, track progress, set reminders and use reading-time estimates, quizzes and widgets.',
 }
 
 export default function Page() {
@@ -15,7 +15,7 @@ export default function Page() {
     <DocPage
       href="/docs/reading-plans"
       title="Reading plans"
-      intro="Follow one plan or several at once, track each reading separately, and keep today’s portion in front of you."
+      intro="Follow reading plans, track your progress and create a schedule for passages you choose."
     >
       <h2>Included companion plans</h2>
 
@@ -54,10 +54,8 @@ export default function Page() {
       </Callout>
 
       <p>
-        Plans are modules, so this list is not fixed. You can{' '}
-        <a href="#making-a-plan">make a plan</a> from what you want to read, and a plan you author
-        as a module installs exactly like the bundled ones — see{' '}
-        <Link href="/docs/modules/authoring">Authoring modules</Link>.
+        You can <a href="#making-a-plan">create a plan</a> or install one as a module.
+        See <Link href="/docs/modules/authoring">Authoring modules</Link>.
       </p>
 
       <h2>Reading time estimates</h2>
@@ -86,17 +84,16 @@ export default function Page() {
 
       <h2>Quizzes</h2>
       <p>
-        A plan can have a companion quiz module: questions tied to specific readings, graded by age
-        group. The bundled quiz has five questions a reading for each of five age groups, from young
-        children to adults. Choose a group from <strong>Questions For</strong> at the top of the
-        quiz; your choice is remembered. Each question has a theme, and the passages it cites are
-        shown beneath it as cards — swipe between them, and tap{' '}
-        <strong>Read in Context</strong> to open one in the reader.{' '}
-        <strong>Show Answer</strong> reveals the answer, and <strong>Next Question</strong> moves
-        on. The questions are for discussion and are not scored. The quiz menu
-        can <strong>Always Show Answers</strong>, for use with a group, and the quiz can be read
-        aloud. If a reading has no questions for the selected group, the app says so and suggests
-        another.
+        Quiz modules add age-graded questions to plan readings. The bundled quiz has five questions
+        per reading for each of five age groups, from young children to adults. Select a group
+        under <strong>Questions For</strong>; Lamp remembers your choice.
+      </p>
+      <p>
+        Each question has a theme and passage cards. Swipe between cards or choose{' '}
+        <strong>Read in Context</strong> to open a passage. <strong>Show Answer</strong> reveals the
+        answer; <strong>Next Question</strong> advances. There is no scoring. The menu offers{' '}
+        <strong>Always Show Answers</strong> and read aloud. If no questions are available for the
+        selected group, Lamp suggests another.
       </p>
 
       <Platform only="ios">
@@ -153,13 +150,11 @@ export default function Page() {
 
         <h3>Making a plan</h3>
         <p>
-          Choose <strong>New Plan</strong> at the end of Your Plans. On iOS 26 with Apple
-          Intelligence, <strong>Make from Description</strong> fills the form in from a
-          description; it shows only once <strong>Show AI Features</strong> is on in Settings, and
-          starts off. Either way, <strong>Preview</strong> lays out every day and its readings
-          before anything is added, with a sentence saying what is read, how fast and on which
-          days. Name the plan, tap <strong>Add</strong>, and you are following it. Swipe a plan, or
-          tap <strong>Edit</strong>, to delete it.
+          Choose <strong>New Plan</strong> under Your Plans. On iOS 26 with Apple Intelligence,{' '}
+          <strong>Make from Description</strong> fills the form from a prompt. This requires{' '}
+          <strong>Show AI Features</strong> in Settings, which is off by default. Choose{' '}
+          <strong>Preview</strong> to review the schedule, then name the plan and tap <strong>Add</strong>{' '}
+          to follow it. Swipe a plan or tap <strong>Edit</strong> to delete it.
         </p>
 
         <h3>Daily reminder</h3>
@@ -179,9 +174,8 @@ export default function Page() {
 
         <Callout title="If the widget looks empty">
           <p>
-            The widget reads from a shared data store that the app writes to. If it says no plan is
-            selected, open the app and add a plan under Plans; the widget will fill in on its next
-            refresh.
+            If the widget says no plan is selected, open Lamp and add a plan under Plans.
+            The widget updates on its next refresh.
           </p>
         </Callout>
       </Platform>
@@ -191,15 +185,16 @@ export default function Page() {
 
         <h3>Today</h3>
         <p>
-          <strong>Today</strong> is the day’s page. It shows each plan you follow with that day’s
-          readings, how many are done, and <strong>Start Reading</strong>,{' '}
-          <strong>Continue Reading</strong> or <strong>Read Again</strong>; a strip showing how the
-          week stands; and, under <strong>Pick Up Where You Left Off</strong>, the passage open in
-          the reader, the quiz on the day’s readings and the writing you last worked on. The arrows
-          and the calendar at the top show another day. Each reading shows its estimated time and
-          can be marked complete, opened in the reader, or — from its context menu — opened in an
-          external Bible app. The <strong>Lamp Bible</strong> item in the menu bar lists today’s
-          readings too.
+          <strong>Today</strong> shows your followed plans, today’s readings, completion counts
+          and weekly progress. Each plan offers <strong>Start Reading</strong>,{' '}
+          <strong>Continue Reading</strong> or <strong>Read Again</strong>.{' '}
+          <strong>Pick Up Where You Left Off</strong> links to your current passage, daily quiz
+          and last writing. Use the arrows or calendar to change days.
+        </p>
+        <p>
+          Each reading shows an estimated time. Mark it complete, open it in the reader or use its
+          context menu to open an <Link href="/docs/reader">external Bible app</Link>.
+          The <strong>Lamp Bible</strong> menu bar item also lists today’s readings.
         </p>
 
         <h3>Reading Plans and plan reading</h3>

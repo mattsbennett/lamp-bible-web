@@ -98,23 +98,18 @@ export default function Page() {
 
       <h2>Bundled and installed modules</h2>
       <p>
-        Content that ships with the app lives in a single bundled database, unpacked on first
-        launch. Everything else — modules you import, modules you create — is a separate{' '}
-        <code>.lamp</code> file in the app’s storage. The reader does not distinguish between them:
-        a commentary you built yourself appears in the tool panel’s series list next to the ones
-        that came with the app. A module you install with the same identifier as a bundled one
-        takes its place.
+        Bundled content is unpacked into one database on first launch. Imported and created
+        modules are separate <code>.lamp</code> files. Both appear together in the reader and study
+        tools. Installing a module with a bundled module’s identifier replaces that module.
       </p>
 
       <Platform only="ios">
         <h2>On iPhone and iPad</h2>
         <p>
-          The module manager is in Settings → <strong>Module Manager</strong>. It lists what is
-          installed: first, under <strong>Personal</strong>, My Writing, My Notes and your
-          highlight sets, then each type in turn. It filters by type, or by source —{' '}
-          <strong>Built In</strong> or <strong>Yours</strong> — and gives a summary of each: verse
-          counts, entry counts, how many books a commentary series covers, how many highlights a set
-          holds, how many days a plan runs.
+          Open Settings → <strong>Module Manager</strong>. Personal content appears first:
+          My Writing, My Notes and highlight sets, followed by other module types. Filter by type
+          or source (<strong>Built In</strong> or <strong>Yours</strong>). Each module shows relevant
+          counts, such as verses, entries, commentary books, highlights or plan days.
         </p>
 
         <h3>Importing</h3>
@@ -141,13 +136,10 @@ export default function Page() {
           </li>
         </ul>
         <p>
-          Books import from the <Link href="/docs/books">Books</Link> library, which also accepts a
-          book’s source JSON and compiles it on the device. Other module types install from{' '}
-          <code>.lamp</code> files only; to turn JSON into one, see{' '}
-          <Link href="/docs/modules/building">Building a .lamp file</Link>. Because{' '}
-          <code>.lamp</code> is registered as a document type, you can also open a module from Files,
-          Mail or a share sheet and it will be handed to the app. Either way, a banner says what came
-          in once it is ready to use.
+          The <Link href="/docs/books">Books</Link> library imports <code>.lamp</code> files and
+          compiles book JSON on the device. Other module types require <code>.lamp</code> files;
+          see <Link href="/docs/modules/building">Building a .lamp file</Link> to compile JSON.
+          You can also open modules from Files, Mail or a share sheet. A banner confirms the import.
         </p>
 
         <h3>Creating</h3>

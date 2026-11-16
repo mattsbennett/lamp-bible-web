@@ -59,15 +59,13 @@ export default function Page() {
 
       <h2>Precision</h2>
       <p>
-        Highlights record character offsets within a verse, not whole verses. You can mark three
-        words in the middle of a sentence and nothing else.
+        You can highlight any part of a verse, from a single character to the whole verse.
       </p>
 
       <Callout title="Why highlights belong to a translation">
         <p>
-          Since a highlight is a character range in a specific wording, it cannot be transplanted to
-          a translation that words the verse differently. Each highlight set therefore belongs to
-          one translation. Switching translations shows the highlights for that translation.
+          Highlights refer to exact character positions in a translation, so each set belongs to
+          one translation. Switching translations shows that translation’s highlights.
         </p>
       </Callout>
 
@@ -85,7 +83,7 @@ export default function Page() {
         set. “Yellow fill” becomes <em>Promises</em>. “Blue dotted underline” becomes{' '}
         <em>Questions to come back to</em>.
       </p>
-      <p>Themes help you remember your colour scheme:</p>
+      <p>Use themes to organise your highlights:</p>
       <ul>
         <li>
           Names record what each colour and style represents.
@@ -135,10 +133,9 @@ export default function Page() {
 
       <h2>Portability</h2>
       <p>
-        A highlight set is a <code>.lamp</code> module containing the verse references, character
-        offsets, styles, colours and theme names, so installing a set’s <code>.lamp</code> file
-        brings the whole set in, themes included. If your sync method is iCloud Drive or WebDAV,
-        each set syncs as its own file along with your other editable content — see{' '}
+        Exported <code>.lamp</code> files include the set’s verse references, character ranges,
+        styles, colours and themes. Installing the file imports the complete set. Each set syncs
+        as a separate file through iCloud Drive or WebDAV. See{' '}
         <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
     </DocPage>

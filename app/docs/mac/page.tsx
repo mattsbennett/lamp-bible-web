@@ -6,7 +6,7 @@ import { downloadPaths, isMacBeta, macRelease, site } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Get started on Mac',
   description:
-    'Install Lamp Bible for Mac and find your way around: the sidebar, the passage field, reader tabs, the study column, Go to Anything, and where each feature lives.',
+    'Install Lamp Bible for Mac, navigate the sidebar and reader, and set up sync.',
 }
 
 export default function Page() {
@@ -14,7 +14,7 @@ export default function Page() {
     <DocPage
       href="/docs/mac"
       title="Get started on Mac"
-      intro="The same library and the same modules as iPhone and iPad, laid out for a large screen, a keyboard and a menu bar."
+      intro="Install the Mac app and learn its navigation, reader and study tools."
     >
       <p>
         Lamp Bible for Mac is {isMacBeta ? 'in beta, as' : ''} a{' '}
@@ -22,16 +22,14 @@ export default function Page() {
         the same bundled library, installs the same <code>.lamp</code> modules, and{' '}
         <Link href="/docs/sync">syncs</Link> with your other devices. Each topic in these docs
         covers both apps, with an <strong>On the Mac</strong> section for what is different here;
-        choose <strong>Mac</strong> under <strong>Show instructions for</strong> to see only the
-        Mac’s.
+        choose <strong>Mac</strong> under <strong>Show instructions for</strong> to filter the instructions.
       </p>
 
       {isMacBeta && (
-        <Callout title="A beta">
+        <Callout title="Mac beta">
           <p>
             The Mac beta may contain bugs. It checks for
-            updates if you allow it, and <strong>Lamp Bible → Check for Updates…</strong> looks at
-            once. If something goes wrong,{' '}
+            updates if you allow it, and <strong>Lamp Bible → Check for Updates…</strong> checks immediately. If something goes wrong,{' '}
             <a href={site.issuesUrl} target="_blank" rel="noopener noreferrer">
               open an issue
             </a>{' '}
@@ -44,7 +42,7 @@ export default function Page() {
       <p>
         Download the disk image from the <Link href={downloadPaths.mac}>Mac download page</Link>,
         open it, and drag Lamp Bible into Applications. The first launch unpacks the bundled
-        library, which takes a few seconds; after that everything works offline. To use the
+        library, which takes a few seconds; the library then works offline. To use the
         library you already have on iPhone or iPad, turn on the same sync in Settings → Sync — see{' '}
         <Link href="/docs/sync#on-the-mac">Sync on the Mac</Link>.
       </p>
@@ -60,16 +58,14 @@ export default function Page() {
         </li>
       </ul>
       <p>
-        A <strong>Lamp Bible</strong> item in the menu bar shows today’s readings from the plans you
-        follow; click one to open it in the reader. Settings has its own window, grouped into
-        Reading, Content and Services; its Reader pane shows a few verses set as you choose the
-        typeface, size and spacing.
+        The <strong>Lamp Bible</strong> menu bar item lists today’s readings; click one to open it.
+        Settings opens in a separate window with Reading, Content and Services sections. The Reader
+        pane previews changes to typeface, size and spacing.
       </p>
       <p>
-        <strong>Go to Anything…</strong> (⌘K) reaches further: a passage, a Strong’s number to look
-        up or analyse, a book, writing, deck, plan or quiz by name, matches across your library, a
-        command, a section of the app or a setting. Return opens a passage in the tab you are in,
-        ⌘Return in a new tab and ⌥Return in a new window.
+        Use <strong>Go to Anything…</strong> (⌘K) to find passages, Strong’s numbers, library
+        content, commands or settings. Return opens a passage in the current tab, ⌘Return in a
+        new tab and ⌥Return in a new window.
       </p>
 
       <h2>The reader’s window</h2>
@@ -159,10 +155,10 @@ export default function Page() {
 
       <h2>Updates</h2>
       <p>
-        The Mac app updates itself. It asks before checking automatically; change that, or check
-        by hand, in Settings → Updates or with <strong>Check for Updates…</strong> in the app menu.
-        A check downloads a small feed from this website and sends nothing about you or your
-        library — see the <Link href="/privacy/apps">app privacy declaration</Link>.
+        Allow automatic update checks or check manually in Settings → Updates or with{' '}
+        <strong>Check for Updates…</strong> in the app menu. Checks download a feed from this
+        website without sending library data. See the{' '}
+        <Link href="/privacy/apps">app privacy declaration</Link>.
       </p>
     </DocPage>
   )

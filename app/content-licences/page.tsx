@@ -234,25 +234,24 @@ export default function ContentLicences() {
           </p>
           <Changes>
             <p>
-              Each word&apos;s inflected form, Strong&apos;s
-              key, dictionary form and morphology tag are carried over; the datasets&apos; other columns
-              — editions, variants, glosses, Spanish renderings and sub-meanings — are not.
-              Strong&apos;s keys are normalised to their plain form, so the disambiguated{' '}
-              <code>H7225G</code> is recorded as <code>H7225</code>, and STEPBible&apos;s{' '}
-              <code>H9xxx</code> codes for Hebrew prefixes and suffixes are not offered as lexicon keys;
-              they remain visible in the morphology tag. Morpheme divisions and attached marks are removed
-              from the Hebrew word, and the segmented form stays in the morphology tag.
+              Lamp preserves each word&apos;s inflected form, Strong&apos;s key, dictionary form and
+              morphology tag. It omits edition, variant, gloss, Spanish rendering and sub-meaning columns.
+              Strong&apos;s keys are normalised: <code>H7225G</code> becomes <code>H7225</code>.
+              STEPBible&apos;s <code>H9xxx</code> prefix and suffix codes remain in morphology tags but
+              are not used for lexicon lookups. Hebrew morpheme divisions and attached marks are removed
+              from displayed words; segmented forms remain in the morphology tags.
             </p>
             <p>
-              Each module is one text rather than the amalgamation. <code>TAGNT</code> carries the words
-              of the Nestlé-Aland editions, the reading the dataset notes as the one almost all
-              translations follow, so words read only by the Textus Receptus or by other editions are
-              absent. <code>TAHOT</code>{' '}carries the dataset&apos;s reading text: the Leningrad Codex,
-              with the scribes&apos; marginal corrections (Qere) read in place of the written text they
-              correct, and that written text (Ketiv) given in a footnote at the word. It includes the
-              dataset&apos;s restorations of Joshua 21:36–37 and the end of Nehemiah 7:68 from their
-              parallels, each footnoted, and leaves out the words the dataset reconstructs from the
-              Septuagint. Everything left out remains in the upstream dataset.
+              Each module presents one reading text. <code>TAGNT</code> uses the Nestlé-Aland readings,
+              which the dataset identifies as those followed by almost all translations. Words found
+              only in the Textus Receptus or other editions are omitted.
+            </p>
+            <p>
+              <code>TAHOT</code> uses the Leningrad Codex reading text, substituting marginal corrections
+              (Qere) for the written forms (Ketiv), which appear in footnotes. It includes the dataset&apos;s
+              restorations of Joshua 21:36–37 and the end of Nehemiah 7:68 from parallel passages, with
+              footnotes. Reconstructions from the Septuagint are omitted. All omitted data remains available
+              in the upstream dataset.
             </p>
           </Changes>
 
@@ -288,17 +287,17 @@ export default function ContentLicences() {
           </p>
           <Changes>
             <p>
-              A word spelt like a form in the Greek New Testament takes that
-              form&apos;s reading, other forms are read from the paradigms of the lexicon&apos;s
-              entries, and where a form has several readings a statistical model trained on the tagged
-              New Testament chooses one in context. Proper names the New Testament does not use carry
-              the Hebrew Strong&apos;s number of the name in the corresponding Hebrew verse, matched by
-              how the Septuagint spells Hebrew names. No other tagged Septuagint was used to make it. The program, the tagged text and its measured accuracy
-              are published at{' '}
-              <a href="https://github.com/mattsbennett/lamp-septuagint-strongs" {...externalProps}>
+              Forms found in the Greek New Testament use that reading. Other forms are derived from
+              lexicon paradigms. A statistical model trained on the tagged New Testament resolves
+              ambiguous forms in context. Names absent from the New Testament receive the Hebrew
+              Strong&apos;s number from the corresponding Hebrew verse, matched using Septuagint
+              spellings of Hebrew names. No other tagged Septuagint was used.
+            </p>
+            <p>
+              The program, tagged text and accuracy measurements are published at{' '}
+              <a href="https://github.com/mattsbennett/lamp-septuagint-strongs" target="_blank" rel="noopener noreferrer">
                 github.com/mattsbennett/lamp-septuagint-strongs
-              </a>
-              .
+              </a>.
             </p>
           </Changes>
 
@@ -401,25 +400,30 @@ export default function ContentLicences() {
           </p>
           <Changes>
             <p>
-              Entries are keyed by Strong&apos;s number
-              without leading zeros (<code>G0025</code> is <code>G25</code>), and STEPBible&apos;s
-              extended numbers keep theirs. Where STEPBible divides one number into parts that share a
-              definition, the definition is given once with the parts&apos; glosses; a part with its own
-              definition is its own sense. Scripture references are linked to Lamp&apos;s English verse
-              numbering. The Old Testament references mostly follow it but some follow the Hebrew
-              numbering; where the two number a verse differently, a reference is read as Hebrew only
-              where the word is in that reading&apos;s verse of Brenton&apos;s Greek Septuagint and not
-              in the English reading&apos;s, and never where the Hebrew reading falls on a psalm&apos;s
-              title. References tagged “1Ki” or “2Ki” where the definition prints 1 or 2 Kingdoms are
-              linked to 1 or 2 Samuel. References tagged for Esther, a code the source also uses for 1
-              and 2 Esdras and Esther&apos;s Greek additions, are linked only where the word is in that
-              verse of the Greek Esther, not counting its lettered additions. References to the
-              Apocrypha, and those neither numbering has a verse for, are left as text.
-              STEPBible&apos;s grammar codes for the article and the demonstrative pronouns are named
-              apart. The source marks “(AS)” and “(ML)” are written out as “(Abbott-Smith)” and
-              “(Middle Liddell)”. The extended Strong&apos;s and unified Strong&apos;s columns are not
-              carried over. Where a definition names the Hebrew words the Septuagint renders with the
-              word, they are also listed with their Strong&apos;s numbers, matched using
+              Entries use Strong&apos;s numbers without leading zeros (<code>G0025</code> becomes{' '}
+              <code>G25</code>); STEPBible&apos;s extended numbers are preserved. Parts of an entry that
+              share a definition are combined with their glosses. Parts with distinct definitions
+              remain separate senses.
+            </p>
+            <p>
+              Scripture references link to Lamp&apos;s English verse numbering. Some Old Testament
+              references use Hebrew numbering. When the two differ, Lamp uses the Hebrew reading only
+              if the word occurs in that verse of Brenton&apos;s Greek Septuagint and not in the English
+              reading&apos;s verse. It never uses a Hebrew reading that points to a psalm title.
+              References tagged “1Ki” or “2Ki” where the definition names 1 or 2 Kingdoms link to 1 or
+              2 Samuel.
+            </p>
+            <p>
+              The source uses its Esther code for Esther, 1 and 2 Esdras, and Esther&apos;s Greek additions.
+              Lamp links these references only when the word occurs in the corresponding Greek Esther
+              verse, excluding lettered additions. Apocryphal references and references absent from
+              both numbering schemes remain plain text.
+            </p>
+            <p>
+              Grammar codes distinguish the article from demonstrative pronouns. Source marks “(AS)”
+              and “(ML)” are expanded to “(Abbott-Smith)” and “(Middle Liddell)”. The extended Strong&apos;s
+              and unified Strong&apos;s columns are omitted. Hebrew words named in a definition as
+              Septuagint equivalents are also listed with Strong&apos;s numbers, matched using
               STEPBible&apos;s Translators Brief lexicon of Extended Strongs for Hebrew (TBESH), under
               the same licence.
             </p>
@@ -440,19 +444,18 @@ export default function ContentLicences() {
           </p>
           <Changes>
             <p>
-              The index joins Strong&apos;s numbers to the
-              entries of Open Scriptures&apos; own digitisation of BDB, and the bundled BDB is another
-              digitisation of the same lexicon. Open Scriptures&apos; entries were matched to the
-              bundled ones by their order, headwords, cited verses and glosses, and by whether an entry
-              only points to another, and each pair is given with the matched entry. Pairs whose entry
-              has no confident match are left out, and so are the index&apos;s augment letters, so{' '}
-              <code>7227a</code> and <code>7227b</code> are both <code>H7227</code>. Strong&apos;s
-              numbers the index gives no matched entry keep the Strong&apos;s numbers the BDB dataset
-              itself records, so those few pairs are not Open Scriptures&apos;. Where the dataset lists
-              a number only after another headword&apos;s, the entry is kept only if it contains the
-              word as Open Scriptures&apos; Strong&apos;s dictionary, under the same licence, spells it
-              and, where that dictionary calls the word a name, is about a name. The matching was made
-              by machine; its errors are Lamp Bible&apos;s.
+              The index links Strong&apos;s numbers to Open Scriptures&apos; digitisation of BDB;
+              Lamp bundles a different digitisation. Entries were matched by order, headword, cited
+              verses, glosses and whether an entry refers only to another entry. Each pair is attached
+              to the matched entry. Uncertain matches and augment letters are omitted: <code>7227a</code>{' '}
+              and <code>7227b</code> both become <code>H7227</code>.
+            </p>
+            <p>
+              Where the index has no matched entry, Lamp retains the BDB dataset&apos;s own Strong&apos;s
+              numbers; those pairs are not from Open Scriptures. If a number appears only after another
+              headword&apos;s number, the entry is retained only when it contains the spelling in Open
+              Scriptures&apos; Strong&apos;s dictionary and, for names, describes a name. That dictionary
+              uses the same licence. Matching was automated; any matching errors are Lamp Bible&apos;s.
             </p>
           </Changes>
 

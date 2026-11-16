@@ -7,7 +7,7 @@ import { ReaderArt } from '@/components/home/art'
 export const metadata: Metadata = {
   title: 'The reader',
   description:
-    'Translations with Strong’s tagging, word lookups, commentary and cross-references beside the text, read aloud and navigation — on iPhone and iPad, and on the Mac with tabs, Side by Side and the study column.',
+    'Read and compare translations, look up words, use study tools and listen to passages on iPhone, iPad and Mac.',
 }
 
 export default function Page() {
@@ -30,23 +30,20 @@ export default function Page() {
 
       <h2>Translations</h2>
       <p>
-        Translation pickers group translations by language, with the Hebrew and Greek last under{' '}
-        <strong>Biblical Languages</strong>, and mark those tagged with Strong’s numbers. In each
-        language the whole Bibles come first, and below a divider the texts of only part of the
-        Bible, such as Brenton’s English Septuagint.
+        Translations are grouped by language, with Hebrew and Greek under <strong>Biblical Languages</strong>{' '}
+        at the end. Complete Bibles appear before partial texts, such as Brenton’s English Septuagint.
+        Strong’s-tagged translations are marked.
       </p>
       <p>
-        Only the books a translation has are offered, so the Septuagint has no New Testament.
-        Switching translation keeps your place where the new one has it, and otherwise opens its
-        first book in the same testament. A link, search result or plan reading in a book the
-        translation lacks says so — “Brenton English Septuagint doesn’t include Matthew.” — and
-        offers it in a translation that has it, one in the same language first.
+        The picker lists only books included in the translation. Switching translations keeps
+        your place if possible; otherwise, it opens the first book in the same testament. If a link,
+        search result or plan reading refers to a missing book, Lamp offers another translation,
+        preferring one in the same language.
       </p>
       <p>
-        A translation in another language names its books as it does — <em>Génesis</em> in the
-        Reina-Valera, <em>Genèse</em> in the Segond — wherever its passage is named, and a passage
-        can be typed in those names or in English, with or without accents. Notes,
-        cross-references, commentary and the analysis keep the app’s English names.
+        Book names follow the translation’s language, such as <em>Génesis</em> in Reina-Valera
+        and <em>Genèse</em> in Segond. You can enter references using these names or English names,
+        with or without accents. Notes, cross-references, commentary and analysis use English names.
       </p>
 
       <h2>Cross-references</h2>
@@ -123,16 +120,14 @@ export default function Page() {
         </Table>
 
         <p>
-          For notes and commentary the panel’s scroll is linked to the reader both ways, so moving
-          through the chapter moves the panel with you, and the panel moves on as each verse
-          reaches the top. <strong>Unlink Scroll</strong> lets you read the two independently.
-          Scripture references in commentary open a preview you can page through, with a button to
-          go to the passage.
+          Notes and commentary scroll with the passage. Choose <strong>Unlink Scroll</strong> to
+          read them independently. Scripture references in commentary open a preview with controls
+          to browse nearby verses or open the passage.
         </p>
 
         <Callout title="When a series has no volume for a book">
           <p>
-            Commentary series rarely cover all 66 books. If the selected series has no volume for
+            If the selected series has no volume for
             the current book, the panel shows a message. Pick a different series from the panel’s
             title menu.
           </p>
@@ -151,9 +146,8 @@ export default function Page() {
           including the Hebrew and Greek texts, only the chapter number is announced.
         </p>
         <p>
-          Reading carries on with the screen locked, with controls on the Lock Screen, and pauses
-          anything else playing, such as a podcast, rather than talking over it. It speaks at your
-          reading rate, so the plan’s time estimates and the voice agree.
+          Playback continues with the screen locked and pauses other audio. Lock Screen controls
+          let you manage playback. The voice uses your reading-rate setting, matching plan time estimates.
         </p>
         <p>
           Choose a voice in Settings → Read Aloud. <strong>Automatic</strong> selects the best
@@ -197,12 +191,10 @@ export default function Page() {
 
         <h3>Handing off to another Bible app</h3>
         <p>
-          If you own a study Bible on another platform, Lamp Bible can open a passage there instead
-          of in its own reader. Supported targets are Accordance, e-Sword LT, Logos, Olive Tree and
-          YouVersion. This is a deep link — the other app must be installed, and those that are not
-          are named beneath the list rather than offered. Choose one in Settings under{' '}
-          <strong>Open Readings In</strong>; plan readings then get a button that opens them there.
-          See <Link href="/docs/reading-plans">Reading plans</Link>.
+          To open plan readings in another app, choose it under <strong>Open Readings In</strong>{' '}
+          in Settings. Lamp supports Accordance, e-Sword LT, Logos, Olive Tree and YouVersion.
+          Only installed apps can be selected; others are listed below. Each plan reading then
+          has a button to open it there. See <Link href="/docs/reading-plans">Reading plans</Link>.
         </p>
 
         <h3>Appearance</h3>
@@ -227,8 +219,7 @@ export default function Page() {
         <p>
           Text that is not a reference offers a search; a Strong’s number offers its{' '}
           <Link href="/docs/search#analysis">analysis</Link>. Use Tab to move between the field,
-          books and chapters, and arrow keys within each. <strong>Go to Anything…</strong> (⌘K)
-          reaches further — see <Link href="/docs/mac">Get started on Mac</Link>.
+          books and chapters, and arrow keys within each. <strong>Go to Anything…</strong> (⌘K) also finds library content and commands — see <Link href="/docs/mac">Get started on Mac</Link>.
         </p>
 
         <h3>Tabs and windows</h3>
@@ -332,9 +323,8 @@ export default function Page() {
             <tr>
               <td>Notes</td>
               <td>
-                Your notes on the chapter, with the selected verse’s note open to edit, its
-                highlights, a list of the chapter’s highlights to go to, and notes from installed
-                notes modules, set out with their pictures and footnotes
+                Chapter notes, the selected verse’s note and highlights, a list of all highlights in the
+                chapter, and installed notes with their pictures and footnotes
               </td>
             </tr>
             <tr>
@@ -348,12 +338,10 @@ export default function Page() {
           </tbody>
         </Table>
         <p>
-          Commentary and notes follow the reader as you scroll, and scrolling the commentary takes
-          the reader along with it, unless you turn off{' '}
-          <strong>Link Study Tool Scrolling</strong>. Pointing at a commentary’s shortened outline
-          path shows it in full. To read another translation beside the text, use Side by Side. A
-          scripture reference anywhere in the column opens a preview, with buttons to open it in the
-          current tab or a new one.
+          Commentary and notes follow the reader’s position; scrolling commentary also moves the
+          reader. Disable <strong>Link Study Tool Scrolling</strong> to scroll independently.
+          Hover over a shortened commentary outline path to see it in full. Scripture references
+          open a preview with buttons for the current tab or a new tab.
         </p>
 
         <h3>Read aloud</h3>

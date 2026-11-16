@@ -72,7 +72,7 @@ type Feature = {
 const features: Feature[] = [
   {
     title: 'Read and study',
-    body: 'Eleven public-domain and openly licensed texts — English, Spanish and French translations, the Hebrew and Greek, and the Septuagint in Greek and English. The KJV, the BSB, the Hebrew and Greek, and the Greek Septuagint are tagged with Strong’s numbers: tap a tagged word for its lexicon entry. Red letters, headings, poetry and paragraphs are kept as published.',
+    body: 'Read eleven public-domain and openly licensed texts in English, Spanish, French, Hebrew and Greek, including the Septuagint. In the KJV, BSB, Hebrew and Greek texts, and Greek Septuagint, tap tagged words for lexicon entries. Original headings, poetry, paragraphs and red letters are preserved.',
     href: '/docs/reader',
     icon: ReaderIcon,
     art: <ReaderArt />,
@@ -123,7 +123,7 @@ const features: Feature[] = [
   },
   {
     title: 'Search your library',
-    body: 'One index across translations, lexicons, commentaries, books, notes, writing, plans, quizzes and highlights — by word, part of a word, phrase or Strong’s number, narrowed by book, module, tag or highlight colour.',
+    body: 'Search your library and personal work by word, partial word, phrase or Strong’s number. Filter by book, module, tag or highlight colour.',
     href: '/docs/search',
     icon: SearchIcon,
     art: <SearchArt />,
@@ -161,7 +161,7 @@ const analysisParts: Array<{ title: string; body: string; icon: IconComponent }>
   },
   {
     title: 'In the Septuagint',
-    body: 'For a Greek word, its verses in the Greek Old Testament beside the New Testament’s, and the Hebrew words it renders there.',
+    body: 'Compare a Greek word’s use in the Old and New Testaments, and see which Hebrew words it translates.',
     icon: SeptuagintIcon,
   },
 ]
@@ -294,10 +294,9 @@ function AnalysisCard() {
             See how a word is used
           </h3>
           <p className="mt-2.5 text-sm leading-relaxed text-muted sm:text-base">
-            Open the analysis from a word’s lexicon entry or a Strong’s search, and Lamp Bible counts
-            that word across the translation: how often it occurs, how it is translated, which books use it
-            and which words occur alongside it. The King James translates ἀγάπη as “love” 86
-            times — and as “charity” 27.
+            Open word analysis from a lexicon entry or Strong’s search to see how often a word
+            occurs, how it is translated and which words occur alongside it. For example, the
+            King James Version translates ἀγάπη as “love” 86 times and “charity” 27 times.
           </p>
           <Link
             href="/docs/search#analysis"
@@ -325,9 +324,9 @@ function AnalysisCard() {
             <p className="text-sm font-medium">Word analysis on the Mac</p>
           </div>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-            The same analysis — every translation that tags the word, charts by book, section or
-            chapter, and the Septuagint in a tab of its own — opens beside a Strong’s search or
-            beside the passage you are reading, and any of its figures goes on a slide.
+            On the Mac, analysis opens beside your search or passage. Compare tagged translations,
+            view charts by book, section or chapter, and explore the Septuagint in its own tab.
+            Add any figure to a slide.
           </p>
           <div className="mt-6">
             <MacAnalysisArt />
@@ -412,7 +411,7 @@ const phoneWriting: Array<{ title: string; body: string; icon: IconComponent }> 
   },
   {
     title: 'Presentation remote',
-    body: 'Open decks made on the Mac, and run a Mac presentation as its remote, with speaker notes, a timer and black-out.',
+    body: 'View decks made on the Mac or control a Mac presentation with speaker notes, a timer and a screen blackout button.',
     icon: RemoteIcon,
   },
 ]
@@ -435,7 +434,7 @@ const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = 
   },
   {
     title: 'Workspace Skills',
-    body: 'Instructions it can follow. Three come built in: one turns the writing into slides, one checks what scripture establishes against what the writing infers, and one examines the Hebrew and Greek behind a claim.',
+    body: 'Three built-in skills create slides, review claims against scripture and examine the Hebrew or Greek behind a claim. You can add your own instructions.',
     icon: SkillIcon,
   },
 ]
@@ -444,7 +443,7 @@ function Writing() {
   const macWriting: Feature[] = [
     {
       title: 'The Mac editor',
-      body: 'Visual and Markdown editing, find and replace, a Details pane for series, tags and key scriptures, footnotes edited beside their marker, companion files as tabs, and a Revision History for every change.',
+      body: 'Edit visually or in Markdown, use find and replace, and organise drafts by series, tags and key scriptures. Edit footnotes beside their markers, open companion files in tabs and restore earlier versions from Revision History.',
       href: '/docs/writing#on-the-mac',
       icon: HistoryIcon,
       art: <MacEditorArt />,
@@ -452,7 +451,7 @@ function Writing() {
     },
     {
       title: 'Slide Studio',
-      body: 'Build a deck from the writing — scripture, quotations, charts of how a word is used, and speaker notes drawn from the manuscript — in eight layouts. Present full screen, export a PDF, and drive it from your iPhone.',
+      body: 'Create slides with scripture, quotations and word-analysis charts in eight layouts. Use your manuscript as speaker notes, present full screen, export a PDF and control the presentation from your iPhone.',
       href: '/docs/presenting',
       icon: SlidesIcon,
       art: <SlideArt />,
@@ -545,23 +544,20 @@ function Writing() {
                 Connect your AI app
               </h4>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-                With AI features on, turn on{' '}
-                <span className="text-ink">Allow other apps to read my library</span> in Settings,
-                and Claude Desktop, Codex, Cursor or opencode can search your library, read
-                passages and commentary, analyse a word, and check and draw a deck — the same
-                read-only tools a workspace agent has.
+                Enable <span className="text-ink">Allow other apps to read my library</span> in Settings
+                → AI &amp; Agents. Claude Desktop, Codex, Cursor or OpenCode can then search your library,
+                read passages and commentary, analyse words and preview decks.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-                Turn on <span className="text-ink">Allow other apps to change my writings</span> as
-                well, and an agent there can rewrite a writing’s draft too. Lamp takes the new draft
-                in when you next open that writing’s workspace, and never lets it overwrite an edit of
-                yours it hadn’t seen. With <span className="text-ink">Allow other apps to add reading
-                plans</span>, it can make you a plan over the passages you name.
+                Enable <span className="text-ink">Allow other apps to change my writings</span> to let
+                an agent edit a draft. Lamp imports it when you next open the workspace and protects
+                any changes you made in the meantime. <span className="text-ink">Allow other apps to add
+                reading plans</span> lets an agent create plans for passages you choose.
               </p>
               <p className="mt-5 text-xs leading-relaxed text-faint">
-                Claude Desktop installs Lamp in one step and asks first; the others take a snippet
-                you paste. What those apps read goes to the AI provider they use. Turning AI
-                features off withdraws their access too.
+                Claude Desktop asks for confirmation before installing the connection. Other apps use
+                a configuration snippet you paste into their settings. Content they read goes to their
+                AI provider. Turning off AI features revokes their access.
               </p>
             </div>
             <ExternalAppsArt />
@@ -581,19 +577,19 @@ function Writing() {
 const macFeatures: Array<{ title: string; body: string; href: string; icon: IconComponent }> = [
   {
     title: 'A reader built for the Mac',
-    body: 'Tabs and separate windows, a Today page with your plans and where you left off, a study column with commentary, verse notes, original language and dictionary, up to three other translations side by side, and today’s readings in the menu bar.',
+    body: 'Read in tabs or separate windows, compare up to four translations and open study tools beside the text. Today shows your plans and recent work; the menu bar gives quick access to today’s readings.',
     href: '/docs/reader#on-the-mac',
     icon: WindowsIcon,
   },
   {
     title: 'Reader Chat',
-    body: 'Ask about the chapter in front of you, or the words you have selected, and start a writing from the conversation when you want to develop an idea. Answers come from your own modules, through your own Codex, Claude Code or OpenCode account, on the model you choose. Off until you turn AI features on.',
+    body: 'Discuss a chapter or selected words using your modules and your Codex, Claude Code or OpenCode account. Choose the model and turn a conversation into a draft. Reader Chat is off until you enable AI features.',
     href: '/docs/ai',
     icon: ChatIcon,
   },
   {
     title: 'Make your own modules',
-    body: 'Drop in module JSON, see it validated, and build an integrity-checked .lamp of any of the nine types, ready to install or share.',
+    body: 'Validate module JSON and build a .lamp file to install or share. All nine module types are supported, with an integrity check before export.',
     href: '/docs/modules#on-the-mac',
     icon: ModuleIcon,
   },
@@ -657,7 +653,7 @@ function Modules() {
           <SectionHeading
             eyebrow="The module system"
             title="Every piece of content is a module"
-            body="Translations, dictionaries, commentaries, books, reading plans, quizzes, highlights, notes and writing all use the same container: a compressed SQLite package with a .lamp extension. The app treats what ships with it and what you make yourself exactly the same way."
+            body="Lamp stores library content and your work as modules. You can install, create and export .lamp files using the documented format."
           />
 
           <div className="mt-8 space-y-5 text-sm leading-relaxed text-muted">
@@ -671,12 +667,11 @@ function Modules() {
               and show it in the reader beside everything else.
             </p>
             <p>
-              Or bring what you already own.{' '}
+              You can also{' '}
               <Link href="/docs/modules/import-bible" className="text-accent hover:underline">
                 Import a Bible
               </Link>{' '}
-              as USFM, OSIS, Zefania or a SWORD module — locked ones included — and it gets the same
-              word lookups and search as the bundled translations. Long-form{' '}
+              from USFM, OSIS, Zefania or SWORD files, including locked SWORD modules with your unlock key. Imported texts support search and, where tagged, word lookups. Long-form{' '}
               <Link href="/docs/books" className="text-accent hover:underline">
                 books
               </Link>{' '}
@@ -741,8 +736,8 @@ function Privacy() {
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
         <SectionHeading
           eyebrow="Your data"
-          title="No account. No tracking. No network required."
-          body="The app has no sign-in and collects nothing about you. Bundled content is on the device after install, so the whole library works in airplane mode. The Mac app checks for updates only if you allow it."
+          title="Read offline, without tracking"
+          body="Reading needs no account or internet connection. The app has no analytics or tracking. Sync and AI are optional, and the Mac app asks before checking for updates automatically."
         />
 
         <div className="mt-12 grid gap-8 sm:grid-cols-3">

@@ -7,7 +7,7 @@ import { AnalysisArt } from '@/components/home/art'
 export const metadata: Metadata = {
   title: 'Search',
   description:
-    'Full-text search across translations, lexicons, commentaries, books, notes, writing and highlights, with filters for module, tag, Strong’s number and colour, and an analysis of how any Strong’s number is used.',
+    'Search translations and study materials by text, Strong’s number, tag or highlight colour. Analyse word usage across your library.',
 }
 
 export default function Page() {
@@ -73,9 +73,8 @@ export default function Page() {
 
       <Callout title="Search by highlight colour">
         <p>
-          If you have named a highlight colour “Promises” in a{' '}
-          <Link href="/docs/highlights">highlight theme</Link>, searching by that colour effectively
-          gives you a list of every promise you have marked while reading.
+          Name a colour “Promises” in a <Link href="/docs/highlights">highlight theme</Link>,
+          then search by that colour to find the passages you marked.
         </p>
       </Callout>
 
@@ -134,12 +133,11 @@ export default function Page() {
         searches run when you press Search and need at least two characters.
       </p>
       <p>
-        A search that names a passage — <code>John 3</code>, <code>Ps 23:1-4</code> — also offers a{' '}
-        <strong>Go to</strong> row above the results that opens it in the reader. The search still
-        runs, since “John 3” is also a phrase a commentary might contain. A passage can be typed in
-        the book names of the translation you are reading as well as in English, so with the
-        Reina-Valera <code>Juan 3:16</code> offers <strong>Go to Juan 3:16</strong>; accents can
-        be left off.
+        Enter a reference such as <code>John 3</code> or <code>Ps 23:1-4</code> to see a{' '}
+        <strong>Go to</strong> shortcut above the text results. Search also checks for the reference
+        in commentary and other content. References accept English or your translation’s book names,
+        with or without accents: in Reina-Valera, <code>Juan 3:16</code> offers{' '}
+        <strong>Go to Juan 3:16</strong>.
       </p>
 
       <Platform only="ios">
@@ -210,14 +208,15 @@ export default function Page() {
 
         <h3>Searching by Strong’s number</h3>
         <p>
-          A Strong’s search finds every verse in the translation tagged with a number such as{' '}
-          <code>H430</code> or <code>G2316</code>. In a tagged translation, type a number in the
-          Bible scope and <strong>Search Strong’s</strong> and <strong>Analyse</strong> rows appear
-          above the results; the search box does not switch by itself, since a number may be meant as
-          text. Its mode menu switches to <strong>Strong’s</strong> outright, and tapping a word’s
-          count in a lexicon entry starts a Strong’s search. In the Modules scope,{' '}
-          <strong>Strong’s Key</strong> finds the dictionary entries for a number. Zero padding does
-          not matter: <code>H07225</code> and <code>H7225</code> are the same word.
+          A Strong’s search finds verses tagged with a number such as <code>H430</code> or{' '}
+          <code>G2316</code>. In the Bible scope, enter the number and choose <strong>Search Strong’s</strong>{' '}
+          or <strong>Analyse</strong> above the results. Entering a number does not change the search
+          mode automatically. You can also select <strong>Strong’s</strong> from the mode menu or tap
+          the occurrence count in a lexicon entry.
+        </p>
+        <p>
+          In the Modules scope, use <strong>Strong’s Key</strong> to find dictionary entries.
+          Leading zeros are ignored: <code>H07225</code> and <code>H7225</code> identify the same word.
         </p>
 
       </Platform>
@@ -238,20 +237,18 @@ export default function Page() {
           highlight colour. Writing can also be filtered by date, tag and category.
         </p>
         <p>
-          Search keeps tabs too, in the same bar as the reader’s, each named after its words. A
-          search started from the reader goes to a tab already showing it, or to an empty one,
-          before it opens another. Search tabs come back when you relaunch.
+          Searches open in tabs named after the query and restore when you relaunch. Searches
+          started from the reader reuse a matching or empty tab before opening a new one.
         </p>
       </Platform>
 
       <h2 id="analysis">Analysing a Strong’s number</h2>
       <p>
-        An analysis gathers everything a translation’s tags say about one Strong’s number. It opens
-        on a summary card: the word, its transliteration, a short definition and a button to say
-        it. By default its three figures count occurrences, verses and books, with a chart of
-        occurrences by book; the sliders button chooses three of nine figures, or changes or hides
-        the chart. Options include the number of renderings and frequency per 1,000 tagged words,
-        scaled to 10,000 or more for rare words.
+        Word analysis summarises a translation’s tags for one Strong’s number. The summary card
+        shows the word, transliteration, definition and pronunciation button. By default, it counts
+        occurrences, verses and books, with a chart by book. Use the sliders button to choose
+        three of nine figures or change or hide the chart. Options include the number of renderings
+        and frequency per 1,000 tagged words, scaled to 10,000 or more for rare words.
       </p>
       <Figure caption="The analysis of G26, ἀγάπη, in the KJV: its counts, its distribution by book, and how it is translated.">
         <AnalysisArt />
@@ -261,10 +258,10 @@ export default function Page() {
         same word differently.
       </p>
       <p>
-        For a Greek word, the Septuagint’s results highlight the Greek word in each verse. Enable <strong>Greek</strong>
+        For a Greek word, the Septuagint’s results highlight the Greek word in each verse. Enable <strong>Greek</strong>{' '}
         to show the Greek text below it. Rows identify uncertain Hebrew–Greek matches; the warning
         disappears where word positions resolve the match. If you imported a Strong’s-tagged
-        English Septuagint, such as the Apostolic Bible Polyglot, <strong>English from</strong>
+        English Septuagint, such as the Apostolic Bible Polyglot, <strong>English from</strong>{' '}
         switches between it and your selected Bible. <strong>How this is counted</strong> explains
         the figures. A caption notes that the bundled Septuagint’s machine-generated tags are less
         reliable for case, number and gender than for word identification.
@@ -272,11 +269,10 @@ export default function Page() {
       <Platform only="ios">
         <h3>Analysis on iPhone and iPad</h3>
         <p>
-          Open it with <strong>Analyse</strong> beside the count of a Strong’s search’s results,
-          from the <strong>Analyse</strong> row a typed number offers, or with{' '}
-          <strong>Analyse</strong> in a <Link href="/docs/lexicons">lexicon entry</Link>. The{' '}
-          <strong>Books</strong> menu at the top narrows it to a testament, a part of the canon or{' '}
-          <strong>One Book</strong>. Below the card are:
+          Choose <strong>Analyse</strong> beside a Strong’s search count, above the results when
+          you enter a number, or in a <Link href="/docs/lexicons">lexicon entry</Link>.
+          The <strong>Books</strong> menu filters by testament, part of the canon or <strong>One Book</strong>.
+          Below the summary card are:
         </p>
         <ul>
           <li>
@@ -317,14 +313,12 @@ export default function Page() {
             verse to preview it with a button to open it in the reader.
           </li>
           <li>
-            <strong>In the Septuagint</strong> — for a Greek word, closed until you open it. Where the
-            Septuagint tags the word, as the bundled <code>LXX</code> does, it starts with the
-            word’s own use in the Greek Old Testament: its verses beside the New Testament’s, as two
-            bars that are never added together, with how often each text uses it for its length,
-            and the books it stands in. Then come the Hebrew words it translates there — the whole
-            section is <strong>Hebrew It Translates</strong> where the Septuagint is not tagged —
-            each with its verses, narrowed to those where the Septuagint uses this Greek word, ten
-            at a time, and a way to its own analysis. Tap a book to narrow those verses to it.
+            <strong>In the Septuagint</strong> — expand this section for Greek words. If the Septuagint
+            is tagged, as the bundled <code>LXX</code> is, separate bars compare Old and New Testament
+            verse counts and relative frequencies, with a breakdown by book. The counts are not combined.
+            The section also lists Hebrew words translated by this Greek word, with links to their
+            analysis and matching verses in groups of ten. Tap a book to filter the verses. For untagged
+            Septuagint texts, only <strong>Hebrew It Translates</strong> appears.
           </li>
         </ul>
       </Platform>
@@ -332,13 +326,11 @@ export default function Page() {
       <Platform only="mac">
         <h3>Analysis on the Mac</h3>
         <p>
-          The analysis opens beside a Strong’s search — choose <strong>Scripture</strong> in the
-          toolbar and type a number in the Strong’s field of the filter bar beneath it, or choose{' '}
-          <strong>Analyse</strong> when you type a number into the search box — with the occurrence
-          list to its left, each verse in full with the word marked, narrowed by anything you click
-          in the analysis. <strong>Analyse</strong>{' '}
-          on a dictionary entry opens it in the study column instead, beside the passage. It opens on
-          the same card, and its tabs are:
+          To analyse a Strong’s number, select <strong>Scripture</strong> and enter it in the filter
+          bar’s Strong’s field, or enter it in the search box and choose <strong>Analyse</strong>.
+          The analysis appears beside full verses with the word highlighted. Click an analysis figure
+          to filter those verses. From a dictionary entry, <strong>Analyse</strong> opens in the study
+          column beside your passage. Both views show the summary card and these tabs:
         </p>
         <ul>
           <li>
@@ -367,7 +359,7 @@ export default function Page() {
             each opening on its first ten verses. Click a book’s bar to narrow the verses to it.
           </li>
           <li>
-            <strong>Verses</strong> — in the study column, which has no room for a list beside it.
+            <strong>Verses</strong> — the verse list when analysis is open in the study column.
           </li>
         </ul>
         <p>

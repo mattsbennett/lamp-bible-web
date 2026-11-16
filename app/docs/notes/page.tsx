@@ -37,9 +37,8 @@ export default function Page() {
 
       <h2>Formatting and links</h2>
       <p>
-        Notes are markdown. Outside the editor a note is shown formatted, with headings, nested
-        lists, quotes, code and links, and pictures where you put them; pictures in an installed
-        notes module are shown the same way, and a note’s pictures sync with it.
+        Notes use markdown, displayed with headings, lists, quotes, code, links and inline pictures.
+        Pictures sync with their notes. Installed notes modules use the same formatting.
       </p>
       <p>
         Scripture references in a note — <code>John 3:16</code>, <code>[Rom 8:28]</code> or a{' '}
@@ -61,15 +60,13 @@ export default function Page() {
 
       <h2>Import, export and sync</h2>
       <p>
-        Notes round-trip through markdown: export a whole notes module, and import a markdown file
-        of notes into any notes module. The export carries the notes’ text; the pictures in them
-        are not exported with it. The format is documented in full on the{' '}
-        <Link href="/docs/import-export">Import &amp; export</Link> page.
+        Export a notes module as markdown or import markdown into any notes module. Exports
+        contain text only, without pictures. See <Link href="/docs/import-export">Import &amp; export</Link>{' '}
+        for the format.
       </p>
       <p>
-        Notes are covered by whichever sync method you chose. Edits merge note by note, so working
-        on different notes on two devices never collides; if the very same note changed on both,
-        you choose what to keep. See <Link href="/docs/sync">Sync &amp; backup</Link>.
+        Notes use your chosen sync method. Changes merge note by note; when a conflict needs your
+        input, Lamp asks which version to keep. See <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
 
       <Platform only="ios">
@@ -142,7 +139,7 @@ export default function Page() {
         <p>
           The <strong>Study Data</strong> menu at the foot of the Notes tab exports a book’s notes
           as JSON or a <code>.lamp</code> module, and imports study data back. Imported notes merge
-          with yours, the newer copy of each winning. When a note changed on two devices, Settings →
+          with yours, keeping the newer copy of each. When a note changed on two devices, Settings →
           Sync shows it under <strong>Needs Your Decision</strong>.
         </p>
       </Platform>

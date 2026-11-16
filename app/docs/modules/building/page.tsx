@@ -42,9 +42,8 @@ export default function Page() {
         will not accept. It must be a bare DEFLATE stream.
       </p>
       <p>
-        The file name matters too. On iPhone and iPad the app takes the module’s identifier from
-        the file name, then refuses the file if any of its rows belong to a different module. A
-        module whose ID is <code>MYBIBLEs</code> must travel as <code>MYBIBLEs.lamp</code>.
+        On iPhone and iPad, the filename supplies the module ID. The app rejects files with rows
+        belonging to another ID. Name a module with ID <code>MYBIBLEs</code> as <code>MYBIBLEs.lamp</code>.
       </p>
 
       <Callout title="Writing has two extra shapes">
@@ -123,9 +122,9 @@ conn.close()`}</code>
 
       <Callout tone="warn" title="Derive character offsets, never count them">
         <p>
-        Incorrect annotation or highlight offsets can pass database integrity checks while tagging
-        the wrong words. Calculate offsets from the text:
-      </p>
+          Incorrect annotation or highlight offsets can pass database integrity checks while tagging
+          the wrong words. Calculate offsets from the text:
+        </p>
         <pre>
           <code>{`start = text.find('God')
 end = start + len('God')`}</code>
@@ -150,7 +149,7 @@ assert zlib.decompressobj(wbits=-15).decompress(compressed) == data
 
 open('MYBIBLEs.lamp', 'wb').write(compressed)       # named after the module ID`}</code>
       </pre>
-      <p>Typical compression is 95% or better, since SQLite pages are mostly empty space.</p>
+      <p>Module databases typically compress by 95% or more.</p>
 
       <h3>4. Verify before you ship it</h3>
       <p>Read it back the way the app will, and check four things:</p>
@@ -261,24 +260,20 @@ END;`}</code>
 
       <Callout title="Keep text and annotations separate">
         <p>
-          The <code>text</code> column holds clean, unmarked prose. Everything else — Strong’s
-          numbers, red-letter marking, emphasis — lives in <code>annotations_json</code> as offsets
-          into that text. This is what lets search, display and read-aloud all work off one string
-          without stripping markup.
+          Store plain text in <code>text</code> and offset-based Strong’s numbers, red-letter marks
+          and emphasis in <code>annotations_json</code>. Search, display and read aloud can then use
+          the text without removing markup.
         </p>
       </Callout>
 
       <h3>Dictionary</h3>
       <p>
-        The one type with a <code>module_metadata</code> table. Each sense in{' '}
-        <code>senses_json</code> keeps every key the author wrote — <code>definition</code>,{' '}
-        <code>gloss</code>, <code>partOfSpeech</code>, <code>references</code>,{' '}
-        <code>septuagintHebrew</code> and any other — with its number stored as a string. Older
-        spellings are folded onto one name (<code>def</code> becomes <code>definition</code>, and{' '}
-        <code>short_definition</code>, <code>part_of_speech</code> and{' '}
-        <code>translation_usages</code> become <code>shortDefinition</code>,{' '}
-        <code>partOfSpeech</code> and <code>translationUsages</code>), and a key set to{' '}
-        <code>null</code> is left out.
+        Dictionaries use <code>module_metadata</code>. Each sense in <code>senses_json</code>{' '}
+        preserves its keys, including <code>definition</code>, <code>gloss</code>, <code>partOfSpeech</code>,{' '}
+        <code>references</code> and <code>septuagintHebrew</code>. Sense numbers are strings; null-valued
+        keys are omitted. Legacy keys are normalised: <code>def</code> becomes <code>definition</code>,{' '}
+        <code>short_definition</code> becomes <code>shortDefinition</code>, <code>part_of_speech</code>{' '}
+        becomes <code>partOfSpeech</code>, and <code>translation_usages</code> becomes <code>translationUsages</code>.
       </p>
       <pre>
         <code>{`CREATE TABLE module_metadata (
@@ -386,14 +381,14 @@ CREATE VIRTUAL TABLE book_sections_fts USING fts5(
         may be dated or placed in a series.
       </p>
       <p>
-        A notes module whose JSON has a <code>media</code> list gives <code>note_entries</code> a{' '}
-        <code>media_json</code> column, and each note lists there the media its own text refers
-        to. The column identifies modules with media. Omit it entirely for modules without media. A note’s text is Markdown, and a
-        picture in it is written <code>![caption](media/&lt;id&gt;)</code>, as a
-        writing’s is. The image and audio files themselves are not inside the{' '}
-        <code>.lamp</code>: the apps sync the ones a reader adds on their own path (see{' '}
-        <Link href="/docs/sync">Sync &amp; backup</Link>), and nothing yet delivers a published
-        notes module’s files, so its pictures arrive as references only.
+        When source JSON includes a <code>media</code> list, <code>note_entries</code> has a{' '}
+        <code>media_json</code> column listing each note’s media references. Omit the column for
+        modules without media. Notes use Markdown image syntax: <code>![caption](media/&lt;id&gt;)</code>.
+      </p>
+      <p>
+        The <code>.lamp</code> file does not contain the image or audio files. User-added media syncs
+        separately (see <Link href="/docs/sync">Sync &amp; backup</Link>). Published notes modules
+        currently have no media delivery mechanism, so imported images remain references only.
       </p>
       <pre>
         <code>{`CREATE TABLE module_meta (

@@ -59,11 +59,13 @@ export default function Page() {
 
         <h3>The library</h3>
         <p>
-          Open <strong>Write</strong> on the home screen. The library lists every piece in a collection, searchable by title, subtitle and tag, and
-          sortable by date, title or last change. Its menu filters by tag, category and date, exports,
-          and imports a piece someone sent you with <strong>Import Writing</strong>. A collection is
-          a <Link href="/docs/modules">module</Link>: you start with My Writing, and can create more
-          in the module manager and switch between them from the library’s title.
+          Open <strong>Write</strong> on the home screen. Search a collection by title, subtitle
+          or tag, and sort by date, title or last change. The menu offers filters for tag, category
+          and date, plus export and <strong>Import Writing</strong>.
+        </p>
+        <p>
+          A collection is a <Link href="/docs/modules">module</Link>. You start with My Writing;
+          create more in the module manager and switch collections from the library’s title menu.
         </p>
 
         <h3>The editor</h3>
@@ -162,16 +164,15 @@ export default function Page() {
           </tbody>
         </Table>
         <p>
-          The formatting bar keeps them in groups: text style, with the heading levels and indenting;
-          bold and italic; the two kinds of list; quotes; links; and the <strong>+</strong> menu for
-          everything placed in the text — footnotes, dividers, tables, images and audio.
+          The formatting bar groups text styles, headings, indentation, bold and italic, lists,
+          quotes and links. Use <strong>+</strong> to insert footnotes, dividers, tables, images or audio.
         </p>
 
         <h3>Inserting scripture</h3>
         <p>
           Choose <strong>Scripture Quote</strong>, then select a translation, book, chapter and
           verse range. Choose whether to include verse numbers and preview the quotation before
-          inserting it with its citation. To cite a passage without quoting it, insert a scripture
+          inserting it with its citation. To cite a passage without quoting it, insert a scripture{' '}
           <strong>Link</strong>. In Read and Present modes, the link opens a passage preview.
         </p>
 
@@ -184,24 +185,21 @@ export default function Page() {
 
         <h3>Images and audio</h3>
         <p>
-          Images are kept at full resolution; tap one to view it full screen. To record, choose{' '}
-          <strong>Record Audio</strong> — a spoken meditation, or the talk as delivered — with a
-          timer and a live waveform while you record. Recordings are AAC; imported audio can be M4A,
-          MP3, WAV or AAC. Tap an audio block to play or pause it.
+          Images retain their full resolution; tap one to view it full screen. Choose{' '}
+          <strong>Record Audio</strong> to record with a timer and live waveform. Recordings use AAC;
+          imports support M4A, MP3, WAV and AAC. Tap an audio block to play or pause.
         </p>
 
         <h3>Present mode</h3>
         <p>
-          Present mode reformats a piece for delivery from a lectern: text scaled up by a
-          multiplier you set, with extra line spacing so you can find your place while looking up,
-          and footnotes and links set aside. Text size for reading and presenting is set independently
-          of the Bible reader’s.
+          Present mode enlarges the text by a multiplier you choose, adds line spacing and hides
+          footnotes and links. Reading and presenting text sizes are independent of the Bible reader’s.
         </p>
         <Callout title="Slides">
           <p>
-            A piece turned into a slide deck in Slide Studio on a Mac shows a{' '}
-            <strong>Slides</strong> button once the deck has synced, and its deck opens on iPhone and
-            iPad to view. See <Link href="/docs/presenting">Slides &amp; presenting</Link>.
+            After a Mac-created deck syncs, its writing shows a <strong>Slides</strong> button on
+            iPhone and iPad. Tap it to view the deck. See{' '}
+            <Link href="/docs/presenting">Slides &amp; presenting</Link>.
           </p>
         </Callout>
 
@@ -220,11 +218,9 @@ export default function Page() {
           </li>
         </ul>
         <p>
-          <strong>Share as Markdown</strong> sends the text alone. Because <code>.lamp</code> is a
-          registered document type, a file someone sends you opens in Lamp Bible directly. Before
-          anything is imported you get a preview of what the file contains and choose which
-          collection it goes into; importing a file holding a whole collection brings in every entry
-          rather than just the first.
+          <strong>Share as Markdown</strong> sends text only. Open a shared <code>.lamp</code> file
+          to preview it in Lamp and choose a destination collection. If the file contains a collection,
+          all entries are imported.
         </p>
 
         <Callout title="Also plain markdown">
@@ -273,12 +269,10 @@ export default function Page() {
             <strong>Revision History</strong>, to undo a change or restore an earlier version.
           </li>
           <li>
-            Companion files — an outline, research notes — made with{' '}
-            <strong>New Markdown File…</strong> in the toolbar’s <strong>Workspace</strong> menu or
-            the <strong>+</strong> at the end of the tab bar. They open as tabs beside{' '}
-            <strong>Main Prose</strong>, drawn like the reader’s tabs; the tab bar appears once
-            there is one. Main Prose always comes first, a file with unsaved changes shows a dot
-            beside its name, and a file you opened yourself closes from its tab.
+            Create companion files, such as outlines or research notes, with{' '}
+            <strong>Workspace → New Markdown File…</strong> or <strong>+</strong> in the tab bar.
+            They open beside <strong>Main Prose</strong>, which is always first. The tab bar appears
+            when you add a file. A dot marks unsaved changes; files you opened can be closed from their tabs.
           </li>
           <li>
             An optional agent beside the draft, once AI features are on — see{' '}
