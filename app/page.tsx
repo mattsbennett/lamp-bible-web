@@ -555,7 +555,7 @@ function Writing() {
                 Connect your AI app
               </h4>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-                Enable <span className="text-ink">Allow other apps to read my library</span> in Settings
+                Enable <span className="text-ink">Allow other apps to read my library</span>{' '}in Settings
                 → AI &amp; Agents. Claude Desktop, Codex, Cursor or OpenCode can then search your library,
                 read passages and commentary, analyse words and preview decks.
               </p>

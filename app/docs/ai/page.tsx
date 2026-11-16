@@ -26,7 +26,7 @@ export default function Page() {
 
       <h2 id="turning-on">Turning it on</h2>
       <p>
-        Turn on <strong>Show AI Features</strong> in Settings → AI &amp; Agents on the Mac.
+        Turn on <strong>Show AI Features</strong>{' '}in Settings → AI &amp; Agents on the Mac.
         AI is off by default, except for libraries already using it. Turning it off hides Reader
         Chat, writing agents and plan generation, disables system Writing Tools in Lamp, and
         revokes other apps’ access to Lamp. Your chats and drafts are retained.
@@ -193,7 +193,7 @@ export default function Page() {
         <p>
           Each reader tab retains its chat across launches. Use <strong>Chats</strong> to start or
           reopen a conversation, or search its questions and replies. The list identifies chats open
-          in other tabs. Right-click a question and choose <strong>Fork From Here</strong> to start
+          in other tabs. Right-click a question and choose <strong>Fork From Here</strong>{' '}to start
           a separate conversation from that point. In Settings → AI &amp; Agents,{' '}
           <strong>Keep chats for</strong> sets retention from the last use (two months by default).
           Empty chats are discarded. Reader Chat conversations stay on the Mac and do not sync.

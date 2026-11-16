@@ -139,7 +139,7 @@ export default function AppPrivacy() {
 
           <h2 id="the-ai-features-switch">The AI features switch</h2>
           <p>
-            <strong>Show AI Features</strong> controls plan generation, system Writing Tools in Lamp,
+            <strong>Show AI Features</strong>{' '}controls plan generation, system Writing Tools in Lamp,
             and, on Mac, Reader Chat, writing agents and other apps’ access to Lamp tools. Find it
             in Settings → AI Features on iPhone and iPad, or Settings → AI &amp; Agents on Mac.
             It is off by default, except in libraries already using AI. The setting syncs across

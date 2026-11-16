@@ -247,7 +247,7 @@ export default function ContentLicences() {
               only in the Textus Receptus or other editions are omitted.
             </p>
             <p>
-              <code>TAHOT</code> uses the Leningrad Codex reading text, substituting marginal corrections
+              <code>TAHOT</code>{' '}uses the Leningrad Codex reading text, substituting marginal corrections
               (Qere) for the written forms (Ketiv), which appear in footnotes. It includes the dataset&apos;s
               restorations of Joshua 21:36–37 and the end of Nehemiah 7:68 from parallel passages, with
               footnotes. Reconstructions from the Septuagint are omitted. All omitted data remains available
