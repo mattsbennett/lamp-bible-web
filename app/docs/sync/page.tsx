@@ -231,8 +231,8 @@ export default function Page() {
 
       <h2>Upgrading from an earlier version</h2>
       <p>
-        The current version renames the writing folders: <code>Devotionals/</code> becomes{' '}
-        <code>Writing/</code> and <code>DevotionalMedia/</code> becomes <code>WritingMedia/</code>.
+        The current version moves your writing into new folders, <code>Writing/</code> and{' '}
+        <code>WritingMedia/</code>.
         The first updated device to sync moves the library itself, with nothing to choose, and
         leaves the old folders in place. A device that has not been updated stops syncing and asks
         to be updated; its edits wait on it and go up once it is.

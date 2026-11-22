@@ -38,7 +38,7 @@ export default function Page() {
               <td>
                 The writing library’s menu → <strong>Export</strong> → <strong>Export All</strong>{' '}
                 (one file each, with media) or <strong>Export to Single File</strong>. Both write to{' '}
-                <code>iCloud Drive/Lamp Bible/Export/Devotionals/</code>, so they need iCloud Drive
+                <code>iCloud Drive/Lamp Bible/Export/Writing/</code>, so they need iCloud Drive
                 sync.
               </td>
             </tr>
@@ -55,7 +55,27 @@ export default function Page() {
                 Settings → <strong>Module Manager</strong> → <strong>+</strong> → Import Module →{' '}
                 <strong>Import Notes from Markdown</strong> or{' '}
                 <strong>Import Writing from Markdown</strong>. Choose one file or a folder of
-                files, then the collection it goes into, or a new one.
+                files, then the collection it goes into, or a new one. This always adds new pieces;
+                to update pieces imported before, use Import Writing in the writing library.
+              </td>
+            </tr>
+            <tr>
+              <td>Import writing from markdown</td>
+              <td>
+                The writing library’s menu → <strong>Import Writing</strong>, then markdown files or
+                whole folders. They are{' '}
+                <a href="#writing-import">shown for review</a> before anything changes, and
+                importing them again updates the pieces they made.
+              </td>
+            </tr>
+            <tr>
+              <td>Import writing by dropping files in a folder</td>
+              <td>
+                With iCloud Drive sync, put markdown files in{' '}
+                <code>iCloud Drive/Lamp Bible/Import/Writing/</code>, with their pictures in its{' '}
+                <code>media/</code> folder. When the app opens or comes back to the foreground, it
+                offers what is new there for review. Nothing imports until you tick it, and the files
+                are left where they are.
               </td>
             </tr>
             <tr>
