@@ -276,3 +276,34 @@ export const PlugIcon: IconComponent = (p) => (
     <path d="M12 16.5V21" />
   </Icon>
 )
+
+/** The provider symbols match the ones the Mac app's AI settings show beside each provider. */
+export const CodeIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="m8.5 7.5-5 4.5 5 4.5M15.5 7.5l5 4.5-5 4.5" />
+  </Icon>
+)
+
+export const AtomIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <ellipse cx="12" cy="12" rx="9" ry="3.6" />
+    <ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)" />
+    <ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)" />
+    <path d="M12 12h.01" strokeWidth={2.6} />
+  </Icon>
+)
+
+/** A phone with a spark: a model that runs on the device. */
+export const OnDeviceIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <rect x="5.5" y="2.5" width="11" height="19" rx="2.5" />
+    <path d="m11 9 .9 2.1 2.1.9-2.1.9L11 15l-.9-2.1L8 12l2.1-.9z" />
+    <path d="M18.5 4.5v3M17 6h3" />
+  </Icon>
+)
+
+export const CheckIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="m5 12.5 4.5 4.5L19 7.5" />
+  </Icon>
+)

@@ -50,6 +50,12 @@ export const sf: Record<string, (p: P) => ReactNode> = {
       <path d="M12 7.5v9M7.5 12h9" stroke="var(--sys-on-tint, #fff)" />
     </S>
   ),
+  checkmarkCircle: (p) => (
+    <S {...p}>
+      <circle cx="12" cy="12" r="9.5" strokeWidth={1.8} />
+      <path d="m8 12.3 2.8 2.8 5.4-5.8" strokeWidth={1.8} />
+    </S>
+  ),
   checkmarkCircleFill: (p) => (
     <S {...p}>
       <circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" />
@@ -403,6 +409,44 @@ export const sf: Record<string, (p: P) => ReactNode> = {
       <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
       <circle cx="12" cy="10.5" r="2.5" />
       <path d="M7.5 17c.8-2 2.5-3 4.5-3s3.7 1 4.5 3" />
+    </S>
+  ),
+  tag: (p) => (
+    <S {...p}>
+      <path d="M3.5 4.5v6.3a2 2 0 0 0 .6 1.4l8 8a2 2 0 0 0 2.8 0l5.8-5.8a2 2 0 0 0 0-2.8l-8-8a2 2 0 0 0-1.4-.6H4.5a1 1 0 0 0-1 1z" />
+      <circle cx="8" cy="8" r="1.2" />
+    </S>
+  ),
+  noteTextBadgePlus: (p) => (
+    <S {...p}>
+      <path d="M13 20.5H6.5A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6v6" />
+      <path d="M8 8.5h8M8 12h6M18 15v6M15 18h6" />
+    </S>
+  ),
+  quoteOpening: (p) => (
+    <S {...p} solid>
+      <path d="M10 6.5C6.5 7.5 4 10.4 4 14.5c0 2.2 1.4 3.5 3.2 3.5 1.7 0 3-1.3 3-3s-1.2-2.8-2.8-2.8c-.3 0-.6 0-.8.1.4-1.8 1.8-3.3 3.6-4z" />
+      <path d="M19.5 6.5c-3.5 1-6 3.9-6 8 0 2.2 1.4 3.5 3.2 3.5 1.7 0 3-1.3 3-3s-1.2-2.8-2.8-2.8c-.3 0-.6 0-.8.1.4-1.8 1.8-3.3 3.6-4z" />
+    </S>
+  ),
+  ellipsisCircle: (p) => (
+    <S {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="7.8" cy="12" r="1.25" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="1.25" fill="currentColor" stroke="none" />
+      <circle cx="16.2" cy="12" r="1.25" fill="currentColor" stroke="none" />
+    </S>
+  ),
+  trash: (p) => (
+    <S {...p}>
+      <path d="M4 6.5h16M9.5 6.5V4.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2" />
+      <path d="M6 6.5l.9 12.6a1.5 1.5 0 0 0 1.5 1.4h7.2a1.5 1.5 0 0 0 1.5-1.4L18 6.5M10 10.5v6M14 10.5v6" />
+    </S>
+  ),
+  questionmarkBubble: (p) => (
+    <S {...p}>
+      <path d="M12 3.5c4.7 0 8.5 3.1 8.5 7s-3.8 7-8.5 7c-.9 0-1.8-.1-2.6-.3L5 19.5l1.1-3.6C4.5 14.6 3.5 12.7 3.5 10.5c0-3.9 3.8-7 8.5-7z" />
+      <path d="M10 8.6a2.1 2.1 0 1 1 2.8 2c-.5.2-.8.6-.8 1.1v.4M12 14.4h.01" />
     </S>
   ),
 }

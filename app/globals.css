@@ -201,8 +201,10 @@
     --ed-wash: rgb(0 0 0 / 0.035);
     --ed-muted: rgb(60 60 67 / 0.72);
     /* The Mac's window, sidebar, toolbar glass and cards (LampColors.swift). */
+    /* The page, the sidebar and the panes beside the page, as measured in the
+       app (2c9cecf): the panes a step back from the page, the sidebar further. */
     --mac-window: #ffffff;
-    --mac-sidebar: #ededed;
+    --mac-sidebar: #eaeaea;
     --mac-glass: #fcfcfc;
     --mac-glass-edge: rgb(0 0 0 / 0.07);
     --mac-control: #ffffff;
@@ -210,7 +212,7 @@
     --mac-bar: #f5f5f5;
     --mac-card: #f4f4f6;
     --mac-card-edge: rgb(0 0 0 / 0.1);
-    --mac-inspector: #f4f4f5;
+    --mac-inspector: #f6f6f6;
     --mac-canvas: #f6f6f6;
     --mac-track: #eeeeee;
     --mac-secondary: #59595f;
@@ -218,6 +220,17 @@
     --mac-match: rgb(255 204 0 / 0.4);
     --mac-on-match: var(--sys-label);
     --mac-under: #a9a9ab;
+    /* Lamp's own buttons (LampColors): the muted accent a surface's own action
+       wears, and the neutral tile fill under the rest. */
+    --mac-accent-muted: #bc4857;
+    --mac-tile: rgb(0 0 0 / 0.06);
+    /* A card's ground: a tint one step off whatever it is laid on (lampCardFill). */
+    --mac-card-fill: rgb(0 0 0 / 0.042);
+    /* The writing editor's review marks on an assistant's change (TipTapEditorView): an amber
+       wash with a dotted rule under it, and the ✓ and ↺ beside the paragraph in the same amber. */
+    --mac-review-wash: rgb(232 176 44 / 0.22);
+    --mac-review-rule: rgb(178 120 0 / 0.7);
+    --mac-review-ink: rgb(178 120 0 / 0.8);
     /* The Reader and Search tab bar (LibraryTabStrip): a track a shade down
        from the window, the open tab a raised white page. */
     --mac-tab-track: rgb(0 0 0 / 0.045);
@@ -290,8 +303,8 @@
       --ed-rule: rgb(255 255 255 / 0.14);
       --ed-wash: rgb(255 255 255 / 0.05);
       --ed-muted: rgb(235 235 245 / 0.66);
-      --mac-window: #232423;
-      --mac-sidebar: #272827;
+      --mac-window: #2f2f2f;
+      --mac-sidebar: #414141;
       --mac-glass: #414241;
       --mac-glass-edge: rgb(255 255 255 / 0.08);
       --mac-control: #1e1e1e;
@@ -299,7 +312,7 @@
       --mac-bar: #2a2b2a;
       --mac-card: #323235;
       --mac-card-edge: rgb(255 255 255 / 0.12);
-      --mac-inspector: #1b1b1b;
+      --mac-inspector: #282828;
       --mac-canvas: #282828;
       --mac-track: #323332;
       --mac-secondary: #bdbdc2;
@@ -307,6 +320,12 @@
       --mac-match: #4a3a0e;
       --mac-on-match: #fff2c7;
       --mac-under: #18181a;
+      --mac-accent-muted: #b04050;
+      --mac-tile: rgb(255 255 255 / 0.12);
+      --mac-card-fill: rgb(255 255 255 / 0.065);
+      --mac-review-wash: rgb(240 190 70 / 0.2);
+      --mac-review-rule: rgb(240 190 70 / 0.75);
+      --mac-review-ink: rgb(240 190 70 / 0.85);
       --mac-tab-track: rgb(0 0 0 / 0.22);
       --mac-tab-open: rgb(255 255 255 / 0.13);
       --mac-tab-edge: rgb(255 255 255 / 0.1);

@@ -75,6 +75,8 @@ export default function Page() {
       <Keys
         rows={[
           ['New writing', '⇧⌘N'],
+          ['Edit the writing / done editing', '⇧⌘E'],
+          ['Previous / next writing', '⌥⌘← / ⌥⌘→'],
           ['Save now', '⌘S'],
           ['Find / find and replace', '⌘F / ⌥⌘F'],
           ['New presentation deck', '⌥⇧⌘N'],

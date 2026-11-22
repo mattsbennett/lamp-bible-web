@@ -80,6 +80,11 @@ export default function Page() {
           other lexicon entries.
         </li>
       </ul>
+      <p>
+        <Link href="/docs/search">Search</Link> finds entries by their glosses and
+        transliterations as well as their text, and ranks them by their glosses: <em>grace</em>{' '}
+        leads with χάρις and חֵן, and <em>charis</em> finds χάρις.
+      </p>
 
       <Callout title="Following a chain">
         <p>
@@ -102,7 +107,12 @@ export default function Page() {
           Tap the speaker to hear the headword. Greek pronunciation follows the{' '}
           <strong>Greek Words</strong> setting; Hebrew uses Strong’s respelling. See{' '}
           <Link href="/docs/reader">The reader</Link>. Press and select text to look up, copy or share
-          it, or tap a link to follow it.
+          it, or tap a link to follow it. A Strong’s number linked inside an entry opens in your first
+          lexicon, skipping hidden ones.
+        </p>
+        <p>
+          Entries, and the sheets they open, use the tool panel’s typeface, size and line spacing, set
+          from the panel’s menu — see <Link href="/docs/reader">The reader</Link>.
         </p>
         <h3>Ordering and hiding</h3>
         <p>

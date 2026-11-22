@@ -60,9 +60,10 @@ export default function Page() {
 
         <h3>Word lookups</h3>
         <p>
-          Tap a tagged word to open its lexicon entry. Turn on <strong>Show Word Hints</strong>{' '}in
-          Settings → Translations &amp; Lexicons to underline every tagged word, to show which
-          words have lexicon entries.
+          Tap a tagged word to open its lexicon entry. A word you have highlighted opens its
+          highlight panel instead, where <strong>More</strong> → <strong>Look Up</strong> still
+          opens the entry. Turn on <strong>Show Word Hints</strong>{' '}in Settings → Translations
+          &amp; Lexicons to underline every tagged word, to show which words have lexicon entries.
         </p>
 
         <Figure caption="Tapping “Word” in John 1:1 opens its Strong’s entry, with buttons to search its verses and analyse it.">
@@ -71,11 +72,12 @@ export default function Page() {
 
         <h3>Verse actions</h3>
         <p>
-          Tap a verse number to highlight the whole verse or to open its note in the{' '}
-          <Link href="/docs/notes">Notes panel</Link>. Select any span of text to highlight it,
-          remove a highlight from it, or search for it; the usual Copy, Look Up and Share actions
-          are there too. Highlights are character-precise rather than whole-verse, and they are
-          stored per translation — see <Link href="/docs/highlights">Highlights</Link>.
+          Tap a verse number for <strong>Highlight</strong> and <strong>Add Note</strong>, which
+          opens its note in the <Link href="/docs/notes">Notes panel</Link>. Select any span of
+          text for <strong>Highlight</strong> and <strong>Search</strong>, beside the usual Copy,
+          Look Up and Share. Highlight opens a panel beside the words; tap a highlight to open it
+          again and change or remove it. Highlights are character-precise rather than whole-verse,
+          and they are stored per translation — see <Link href="/docs/highlights">Highlights</Link>.
         </p>
 
         <h3>The tool panel</h3>
@@ -99,14 +101,16 @@ export default function Page() {
               <td>Notes</td>
               <td>
                 Your notes for this chapter, edited in place: a chapter note first, then each verse
-                or verse-range note. See <Link href="/docs/notes">Notes</Link>.
+                or verse-range note, after a list of the chapter’s highlights. See{' '}
+                <Link href="/docs/notes">Notes</Link>.
               </td>
             </tr>
             <tr>
               <td>Commentary</td>
               <td>
                 Exposition for the current chapter from a chosen commentary series, including the
-                two bundled cross-reference sets.
+                two bundled cross-reference sets. <strong>Default Commentary</strong>{' '}in Settings
+                → Translations &amp; Lexicons sets the series opened when none is open on this device.
               </td>
             </tr>
             <tr>
@@ -114,6 +118,13 @@ export default function Page() {
               <td>
                 A writing collection, listed by its name — My Writing or another — for reading a
                 piece beside the passage it discusses.
+              </td>
+            </tr>
+            <tr>
+              <td>Chat</td>
+              <td>
+                While AI features are on, the reader chats of a Mac you have paired, to follow and
+                carry on — see <Link href="/docs/ai#paired-devices">Chats from iPhone and iPad</Link>.
               </td>
             </tr>
           </tbody>
@@ -135,7 +146,8 @@ export default function Page() {
 
         <h3>Read aloud</h3>
         <p>
-          For plan readings, the speaker button reads the passage using system voices. It
+          In plan mode, the speaker button beside the reader’s menu reads the passage using system
+          voices. It
           announces the reading and each chapter, then reads the verses without headings or verse
           numbers. Pause, skip between verses or scrub through the reading.{' '}
           <strong>Follow Along</strong> highlights the current verse and keeps it visible.
@@ -175,8 +187,7 @@ export default function Page() {
           <li>
             The menu in the bottom toolbar switches between a <strong>search</strong> field,{' '}
             <strong>History</strong>, chapter and book stepping, and — on a day with plan readings
-            — <strong>Readings</strong>, which steps through the day’s readings with their verse
-            counts, estimated time and any quiz.
+            — <strong>Readings (Today)</strong>, which starts plan mode.
           </li>
           <li>
             <strong>History</strong> keeps the last 50 chapters you visited, with back and forward
@@ -189,6 +200,34 @@ export default function Page() {
           </li>
         </ul>
 
+        <h3>Plan mode</h3>
+        <p>
+          Plan mode reads the day’s readings in order. The bottom toolbar steps aside, and the title
+          shows a checklist mark and your place, such as “· 2 of 3”. Tap the title for the plan’s
+          sheet:
+        </p>
+        <ul>
+          <li>
+            The day’s card, with how many readings and minutes there are and how many you have read.
+            If you follow more than one plan with readings that day, the plan’s name is a menu of them.
+          </li>
+          <li>
+            Each reading, which opens in place to show its length, estimated time and kind, the
+            readers’ split if a plan is shared, a <strong>Quiz</strong> chip on the one you are
+            reading, and <strong>Read</strong> on the others.
+          </li>
+          <li>
+            <strong>Choose Passage</strong> and <strong>Exit Plan Mode</strong> at the foot.
+            Choosing another passage, here or in the book picker, leaves plan mode.
+          </li>
+        </ul>
+        <p>
+          Each reading ends with <strong>Previous Reading</strong> and <strong>Next Reading</strong>{' '}
+          buttons naming them. The last ends with <strong>End of the day’s readings</strong>:{' '}
+          <strong>Done</strong> leaves plan mode, and <strong>Keep Reading</strong> goes on from
+          where the reading stopped.
+        </p>
+
         <h3>Handing off to another Bible app</h3>
         <p>
           To open plan readings in another app, choose it under <strong>Open Readings In</strong>{' '}
@@ -200,9 +239,12 @@ export default function Page() {
         <h3>Appearance</h3>
         <p>
           <strong>View Options</strong> in the reader’s menu sets the typeface — serif, the
-          default, or sans — the text size, and the <strong>Line Spacing</strong>, in points. The
-          reader’s size is set independently of the tool panel’s and of your writing’s. Light and
-          dark rendering follows the system appearance.
+          default, or sans — the text size, and the <strong>Line Spacing</strong>, in points (9 by
+          default). The tool panel has its own typeface, size and line spacing (serif and 7 by
+          default), set from the panel’s menu, or under <strong>Tool Panel</strong> in View Options
+          when it is beside the passage. Every sheet a reference or word opens — verse previews,
+          dictionary entries, commentary footnotes — follows the panel’s settings. Your writing’s
+          size is set separately. Light and dark rendering follows the system appearance.
         </p>
       </Platform>
 
@@ -242,14 +284,17 @@ export default function Page() {
 
         <h3>Layout and text</h3>
         <p>
-          The <strong>Reader Appearance</strong> menu chooses how a chapter is laid out —{' '}
+          The <strong>Appearance</strong> button chooses how a chapter is laid out —{' '}
           <strong>Continuous Paragraph Flow</strong>, <strong>Verse per Line</strong>, or{' '}
           <strong>Side by Side</strong> — along with typeface, text size and line spacing. The text
-          keeps to a comfortable line length, which grows with the text size.
+          keeps to a comfortable line length, which grows with the text size. When the window is
+          wide enough, the toolbar’s buttons show their names: <strong>History</strong>,{' '}
+          <strong>Appearance</strong>, <strong>Read Aloud</strong>, <strong>Chat</strong> and{' '}
+          <strong>Study</strong>.
         </p>
         <p>
-          Choose <strong>Side by Side</strong> in the toolbar or <strong>+</strong> beside a
-          chapter’s opening to compare up to three additional translations. Use a column’s title
+          Choose <strong>+</strong> beside a chapter’s opening, or <strong>Side by Side</strong>{' '}
+          in Appearance, to compare up to three additional translations. Use a column’s title
           menu to change its translation, make it the primary translation or remove it. The{' '}
           <strong>+</strong> beside the titles adds a column. Verses align even when translations
           number them differently. Each column retains its own highlights and translator’s notes.
@@ -287,15 +332,19 @@ export default function Page() {
 
         <h3>Verses and words</h3>
         <p>
-          Click a verse number to select the verse and open its notes in the study column.
-          Right-click a verse to <strong>Copy as Citation</strong> or highlight it. In a
-          Strong’s-tagged translation, hovering over a word shows its Strong’s number at the foot of
-          the window, and clicking opens it in the Dictionary tab.
+          Click a verse number to select the verse. If the study column is on Notes or Verse, it
+          stays there; otherwise it opens the verse’s notes, or its Verse tab. A note marker always
+          opens Notes. Select words, or click a highlight, for a bar beside them to{' '}
+          <Link href="/docs/highlights#on-the-mac">highlight</Link> them, add a note or{' '}
+          <strong>Copy as Citation</strong>. Right-click a verse to highlight it, add or edit its
+          note, copy it as a citation or show the study tools. In a Strong’s-tagged translation,
+          hovering over a word shows its Strong’s number at the foot of the window, and clicking
+          opens it in the Dictionary tab.
         </p>
 
         <h3>The study column</h3>
         <p>
-          <strong>Study Tools</strong> (⇧⌘I) opens a column beside the text, which you can widen by
+          <strong>Study</strong> (⇧⌘I) opens a column beside the text, which you can widen by
           dragging. It has four tabs, which become a pop-up menu when the column is narrow:
         </p>
         <Table>
@@ -317,14 +366,16 @@ export default function Page() {
               <td>Verse</td>
               <td>
                 The selected verse’s translation notes, its original-language words with Strong’s
-                numbers, lemmas and morphology, and its cross-references
+                numbers, lemmas and morphology, and its cross-references. Click a Strong’s number
+                for its entry in a popover, with <strong>Open in Dictionary</strong>
               </td>
             </tr>
             <tr>
               <td>Notes</td>
               <td>
-                Chapter notes, the selected verse’s note and highlights, a list of all highlights in the
-                chapter, and installed notes with their pictures and footnotes
+                Chapter notes, the selected verse’s note, the chapter’s highlights with{' '}
+                <strong>All Highlights</strong> to search them, and installed notes with their
+                pictures and footnotes
               </td>
             </tr>
             <tr>

@@ -105,12 +105,12 @@ export default function ContentLicences() {
             </thead>
             <tbody>
               <tr>
-                <td><code>ASVs</code> — American Standard Version</td>
+                <td><code>ASV</code> — American Standard Version</td>
                 <td>CrossWire SWORD module v2.0</td>
                 <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
-                <td><code>BSBs</code> — Berean Standard Bible</td>
+                <td><code>BSB</code> — Berean Standard Bible</td>
                 <td>Official Strong&apos;s USFM archive, obtained August 12, 2026</td>
                 <td>
                   <Rights kind="public">
@@ -125,7 +125,7 @@ export default function ContentLicences() {
                 <td><Rights kind="public">Public domain</Rights></td>
               </tr>
               <tr>
-                <td><code>KJVs</code> — King James Version with Strong&apos;s and morphology</td>
+                <td><code>KJV</code> — King James Version with Strong&apos;s and morphology</td>
                 <td>CrossWire KJV module v3.1</td>
                 <td>
                   <Rights kind="grant">CrossWire grant</Rights>
@@ -175,7 +175,7 @@ export default function ContentLicences() {
                 </td>
               </tr>
               <tr>
-                <td><code>WEBs</code> — World English Bible</td>
+                <td><code>WEB</code> — World English Bible</td>
                 <td>World English Bible source text</td>
                 <td>
                   <Rights kind="public">Public domain</Rights>
@@ -204,7 +204,7 @@ export default function ContentLicences() {
             CrossWire Bible Society © 2003–2023 and grants a general public licence to use the text
             for any purpose. Version 3.1 labels its distribution licence “GPL.” Its modern OSIS
             markup and New Testament Strong&apos;s tagging are CrossWire work. Lamp Bible relies on the
-            express any-purpose grant for its converted <code>KJVs</code>{' '}content while preserving the
+            express any-purpose grant for its converted <code>KJV</code>{' '}content while preserving the
             module&apos;s GPL label rather than calling the enhanced dataset public domain.
           </p>
           <p>
@@ -215,7 +215,7 @@ export default function ContentLicences() {
             , and Lamp Bible keeps the archive and its conversion script as a provenance record. Full
             contributor provenance and the original OSIS source are linked from the{' '}
             <a href="https://wiki.crosswire.org/CrossWire_KJV" {...externalProps}>CrossWire KJV project</a>.
-            Lamp Bible does not offer <code>KJVs</code> as a standalone website download.
+            Lamp Bible does not offer <code>KJV</code> as a standalone website download.
           </p>
 
           <h3>STEPBible Translators Amalgamated Hebrew OT and Greek NT</h3>

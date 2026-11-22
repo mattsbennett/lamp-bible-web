@@ -44,7 +44,7 @@ export default function Page() {
       <p>
         Yes. Bundled and installed content is stored on the device. Optional features use a
         connection: cloud sync, external links, Mac update checks and AI chat. The presentation
-        remote uses only the local network.
+        remote, and chats from an iPhone or iPad with your Mac, use only the local network.
       </p>
 
       <h2>Why isn’t my usual translation there?</h2>
@@ -91,8 +91,8 @@ export default function Page() {
       <p>
         Yes — through iCloud Drive or a WebDAV server. Your imported modules, notes, writing,
         highlights, reading progress and settings sync; the bundled library does not need to,
-        since it is already on every install. Every device sharing a library needs version 1.2 or
-        later. See <Link href="/docs/sync">Sync &amp; backup</Link>.
+        since it is already on every install. Keep every device that shares a library up to date,
+        since an older version stops syncing when the library moves to a newer layout. See <Link href="/docs/sync">Sync &amp; backup</Link>.
       </p>
 
       <h2>How do I report a bug or ask for a feature?</h2>

@@ -19,6 +19,7 @@ export function SiteFooter() {
 
         <FooterColumn title="App">
           <FooterLink href="/#features">Features</FooterLink>
+          <FooterLink href="/#ai">AI features</FooterLink>
           <FooterLink href="/#modules">Module system</FooterLink>
           <FooterLink href={downloadPaths.page}>Download</FooterLink>
           {hasMacDownload && <FooterLink href={downloadPaths.mac}>{macLabel}</FooterLink>}

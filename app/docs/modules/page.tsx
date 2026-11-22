@@ -109,7 +109,15 @@ export default function Page() {
           Open Settings → <strong>Module Manager</strong>. Personal content appears first:
           My Writing, My Notes and highlight sets, followed by other module types. Filter by type
           or source (<strong>Built In</strong> or <strong>Yours</strong>). Each module shows relevant
-          counts, such as verses, entries, commentary books, highlights or plan days.
+          counts, such as verses, entries, commentary books, highlights or plan days, and its menu’s{' '}
+          <strong>Info</strong> shows its kind, language, licence, contents and source, with its
+          identifier, file and hash under <strong>Developer Details</strong>.
+        </p>
+        <p>
+          With sync on, a module your library lists but the server does not have is marked{' '}
+          <strong>Not in Your Library</strong>, with an option to delete it. One the app could not
+          check is marked <strong>Could Not Be Checked</strong> or{' '}
+          <strong>Not Checked Just Now</strong>. Nothing is deleted without you.
         </p>
 
         <h3>Importing</h3>
@@ -177,8 +185,12 @@ export default function Page() {
         <h2>On the Mac</h2>
         <p>
           Open <strong>Modules</strong> in the sidebar to see installed content. My Writing, My Notes
-          and My Highlights appear first, followed by other module types. Each added module has a
-          menu to export or remove it. Export formats include <code>.lamp</code> and, for books,
+          and My Highlights appear first, followed by other module types; the chips under the title
+          show one kind at a time. Every module’s menu has <strong>Get Info</strong>, which opens its
+          details with a <strong>Technical Details</strong> section, and modules you added also have{' '}
+          <strong>Export Module…</strong> and <strong>Remove Module…</strong>. With sync on, a module
+          missing from the server is marked <strong>Not in Your Library</strong>, and{' '}
+          <strong>Delete…</strong> is offered only when Lamp knows it is gone. Export formats include <code>.lamp</code> and, for books,
           writing and notes, markdown. Bundled modules are labelled <strong>Built In</strong>.{' '}
           <strong>Import or Create Content</strong> (⇧⌘M) offers:
         </p>

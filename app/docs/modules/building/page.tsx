@@ -43,7 +43,7 @@ export default function Page() {
       </p>
       <p>
         On iPhone and iPad, the filename supplies the module ID. The app rejects files with rows
-        belonging to another ID. Name a module with ID <code>MYBIBLEs</code> as <code>MYBIBLEs.lamp</code>.
+        belonging to another ID. Name a module with ID <code>MYBIBLE</code> as <code>MYBIBLE.lamp</code>.
       </p>
 
       <Callout title="Writing has two extra shapes">
@@ -81,18 +81,18 @@ export default function Page() {
       <pre>
         <code>{`import json, sqlite3
 
-conn = sqlite3.connect('MYBIBLEs.db')
+conn = sqlite3.connect('MYBIBLE.db')
 conn.executescript(open('translation.sql').read())
 cur = conn.cursor()
 
 # Which module this is, and what type. The app reads this row first.
 cur.execute(
     'INSERT INTO module_format (format_version, module_type, module_id) VALUES (?, ?, ?)',
-    ('1.0', 'translation', 'MYBIBLEs'),
+    ('1.0', 'translation', 'MYBIBLE'),
 )
 cur.execute(
     'INSERT INTO translation_meta (id, name, abbreviation, language) VALUES (?, ?, ?, ?)',
-    ('MYBIBLEs', 'My Bible', 'MYBIBLE', 'en'),
+    ('MYBIBLE', 'My Bible', 'MYBIBLE', 'en'),
 )
 cur.execute(
     """INSERT INTO verses (ref, book, chapter, verse, text, annotations_json, paragraph)
@@ -139,7 +139,7 @@ end = start + len('God')`}</code>
       <pre>
         <code>{`import zlib
 
-data = open('MYBIBLEs.db', 'rb').read()
+data = open('MYBIBLE.db', 'rb').read()
 
 compressor = zlib.compressobj(level=9, wbits=-15)   # raw DEFLATE, no header
 compressed = compressor.compress(data) + compressor.flush()
@@ -147,7 +147,7 @@ compressed = compressor.compress(data) + compressor.flush()
 # Always verify the round trip before discarding the original.
 assert zlib.decompressobj(wbits=-15).decompress(compressed) == data
 
-open('MYBIBLEs.lamp', 'wb').write(compressed)       # named after the module ID`}</code>
+open('MYBIBLE.lamp', 'wb').write(compressed)       # named after the module ID`}</code>
       </pre>
       <p>Module databases typically compress by 95% or more.</p>
 
@@ -155,7 +155,7 @@ open('MYBIBLEs.lamp', 'wb').write(compressed)       # named after the module ID`
       <p>Read it back the way the app will, and check four things:</p>
 
       <pre>
-        <code>{`data = zlib.decompressobj(wbits=-15).decompress(open('MYBIBLEs.lamp','rb').read())
+        <code>{`data = zlib.decompressobj(wbits=-15).decompress(open('MYBIBLE.lamp','rb').read())
 
 assert data.startswith(b'SQLite format 3\\x00')      # it is a database
 
@@ -163,7 +163,7 @@ conn = sqlite3.connect(path_to_temp_file_containing(data))
 assert conn.execute('PRAGMA integrity_check').fetchone()[0] == 'ok'
 assert conn.execute(
     'SELECT module_type, module_id FROM module_format'
-).fetchall() == [('translation', 'MYBIBLEs')]        # one row, matching the file name
+).fetchall() == [('translation', 'MYBIBLE')]        # one row, matching the file name
 assert conn.execute('SELECT count(*) FROM verses').fetchone()[0] > 0`}</code>
       </pre>
 

@@ -25,8 +25,12 @@ import {
 import {
   AgentIcon,
   AnalysisIcon,
+  AtomIcon,
   ChatIcon,
+  CheckIcon,
+  CodeIcon,
   CompanionIcon,
+  CompassIcon,
   FolderIcon,
   FootnoteIcon,
   FormsIcon,
@@ -37,6 +41,7 @@ import {
   MicIcon,
   ModuleIcon,
   NoteIcon,
+  OnDeviceIcon,
   PanelIcon,
   PlanIcon,
   PlugIcon,
@@ -123,7 +128,7 @@ const features: Feature[] = [
   },
   {
     title: 'Search your library',
-    body: 'Search your library and personal work by word, partial word, phrase or Strong’s number. Filter by book, module, tag or highlight colour.',
+    body: 'Search your library and personal work by word, partial word, phrase or Strong’s number. Filter by book, module, tag or highlight theme, colour or style.',
     href: '/docs/search',
     icon: SearchIcon,
     art: <SearchArt />,
@@ -174,6 +179,7 @@ export default function Home() {
         <Hero />
         <Features />
         <Writing />
+        <AIFeatures />
         <MacFeatures />
         <Modules />
         <Privacy />
@@ -430,13 +436,13 @@ const phoneWriting: Array<{ title: string; body: string; icon: IconComponent }> 
 const agentParts: Array<{ title: string; body: string; icon: IconComponent }> = [
   {
     title: 'Chat',
-    body: 'Ask an agent to draft, shorten or review your writing. Choose the model and effort for each chat. Edits are saved in Revisions and can be undone.',
+    body: 'Ask an agent to draft, shorten or review your writing, with the model and effort you choose, or open the provider’s own tool in Terminal. Edits are saved in Revisions.',
     icon: ChatIcon,
   },
   {
-    title: 'Terminal',
-    body: 'Your provider’s own tool, continuing the same session.',
-    icon: TerminalIcon,
+    title: 'Review its changes',
+    body: 'Every passage the agent changed stays marked until you have read it. Clear the mark or restore the original wording, on the Mac, iPhone or iPad.',
+    icon: CheckIcon,
   },
   {
     title: 'Context',
@@ -504,7 +510,113 @@ function Writing() {
           <PhoneWritingArt />
         </div>
 
-        <div className="mt-20 overflow-hidden rounded-3xl border border-line bg-raised">
+        <div className="mt-20 grid gap-5 md:grid-cols-2">
+          {macWriting.map((feature) => (
+            <FeatureCard key={feature.title} feature={feature} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** The AI a reader brings, each signed in with its own tool; Connect… in Lamp runs the same command. */
+const aiProviders: Array<{ name: string; signIn: string; icon: IconComponent; command?: boolean }> = [
+  { name: 'Apple Intelligence', signIn: 'On the device', icon: OnDeviceIcon },
+  { name: 'OpenAI Codex', signIn: 'codex login', icon: TerminalIcon, command: true },
+  { name: 'Claude Code', signIn: 'claude auth login', icon: AgentIcon, command: true },
+  { name: 'OpenCode', signIn: 'opencode auth login', icon: CodeIcon, command: true },
+  { name: 'Google Antigravity', signIn: 'agy acp --login', icon: AtomIcon, command: true },
+]
+
+const aiPromises = [
+  'Your own plan, with no limits of ours',
+  'Credentials stay with the provider’s tool',
+  'Off until you turn it on',
+]
+
+const aiUses: Array<{ title: string; body: string; href: string; icon: IconComponent; badge: string }> = [
+  {
+    title: 'Reader Chat',
+    body: 'Discuss a chapter or selected words, with your modules to draw on. Choose the model for each chat, turn a conversation into a draft, or carry it on from a paired iPhone or iPad.',
+    href: '/docs/ai',
+    icon: ChatIcon,
+    badge: macLabel,
+  },
+  {
+    title: 'Plans from a description',
+    body: 'Describe the plan you want and Apple Intelligence fills in a new plan on the device. Preview the schedule before you follow it.',
+    href: '/docs/reading-plans',
+    icon: PlanIcon,
+    badge: 'iPhone, iPad & Mac',
+  },
+]
+
+function AIFeatures() {
+  return (
+    <section id="ai" className="border-b border-line">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
+        <SectionHeading
+          eyebrow="AI features"
+          title="Bring your own AI"
+          body="Lamp Bible doesn’t sell AI. On the Mac, use the plan you already pay for, signed in with the provider’s own tool. Apple Intelligence works on the device, and a paired iPhone or iPad can carry on your Mac’s chats."
+        />
+
+        <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
+          {aiProviders.map((provider, index) => (
+            <li
+              key={provider.name}
+              className={`flex items-center gap-3.5 bg-raised px-5 py-4 lg:flex-col lg:items-start lg:gap-2.5 xl:flex-row xl:items-center xl:gap-3.5 ${
+                index === 0 ? 'sm:col-span-2 lg:col-span-1' : ''
+              }`}
+            >
+              <provider.icon className="h-5 w-5 shrink-0 text-accent" />
+              <div className="min-w-0">
+                <p className="text-sm font-medium">{provider.name}</p>
+                <p
+                  className={`mt-0.5 truncate text-xs text-faint ${
+                    provider.command ? 'font-mono [font-variant-ligatures:none]' : ''
+                  }`}
+                >
+                  {provider.signIn}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-6 flex flex-col gap-x-8 gap-y-2.5 border-t border-line pt-6 sm:flex-row sm:flex-wrap">
+          {aiPromises.map((promise) => (
+            <p key={promise} className="flex items-center gap-2 text-sm text-muted">
+              <CheckIcon className="h-4 w-4 shrink-0 text-accent" />
+              {promise}
+            </p>
+          ))}
+        </div>
+        <p className="mt-4 text-xs leading-relaxed text-faint">
+          On the Mac, Connect… in Settings → AI &amp; Agents runs the sign-in for you. Your messages
+          go to the provider you choose, never to Lamp Bible.
+        </p>
+
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          {aiUses.map((use) => (
+            <div key={use.title} className="rounded-2xl border border-line bg-raised p-6 sm:p-7">
+              <div className="flex items-center justify-between gap-3">
+                <IconChip icon={use.icon} />
+                <Badge>{use.badge}</Badge>
+              </div>
+              <h3 className="mt-5 font-serif text-xl tracking-tight">{use.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted">{use.body}</p>
+              <Link
+                href={use.href}
+                className="mt-3 inline-block text-sm font-medium text-accent hover:underline"
+              >
+                Learn more →
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-5 overflow-hidden rounded-3xl border border-line bg-raised">
           <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
             <div>
               <div className="flex items-center justify-between gap-3">
@@ -516,13 +628,12 @@ function Writing() {
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
                 Open a workspace beside any piece of writing and work on it with the AI you already
-                use — Codex, Claude Code or OpenCode, signed in with your own account. It works on
-                the same text you do, and looks things up in your library through read-only tools.
+                use. It works on the same text you do, and looks things up in your library through
+                read-only tools.
               </p>
               <p className="mt-5 text-xs leading-relaxed text-faint">
-                AI features are off until you turn on Show AI Features in Settings → AI &amp; Agents.
                 The workspace syncs with your library, so it follows the writing to your other
-                Macs. Your messages go to the provider you choose, never to Lamp Bible.
+                Macs, and its files and review marks reach your iPhone and iPad.
               </p>
               <Link
                 href="/docs/ai"
@@ -575,11 +686,6 @@ function Writing() {
           </div>
         </div>
 
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
-          {macWriting.map((feature) => (
-            <FeatureCard key={feature.title} feature={feature} />
-          ))}
-        </div>
       </div>
     </section>
   )
@@ -593,10 +699,10 @@ const macFeatures: Array<{ title: string; body: string; href: string; icon: Icon
     icon: WindowsIcon,
   },
   {
-    title: 'Reader Chat',
-    body: 'Discuss a chapter or selected words using your modules and your Codex, Claude Code or OpenCode account. Choose the model and turn a conversation into a draft. Reader Chat is off until you enable AI features.',
-    href: '/docs/ai',
-    icon: ChatIcon,
+    title: 'Go to Anything',
+    body: 'Press ⌘K to jump to a passage, a Strong’s number, anything in your library, a command or a setting. Open a passage in a new tab or window as you go.',
+    href: '/docs/mac#finding-your-way',
+    icon: CompassIcon,
   },
   {
     title: 'Make your own modules',

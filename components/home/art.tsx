@@ -239,7 +239,7 @@ export function ReaderArt() {
             <p className="mt-[2px] flex items-baseline gap-[7px]">
               <span className={`${serif} text-[22px] leading-none`}>λόγος</span>
               <Glyph name="speakerWave2" className={`h-[10px] w-[10px] self-center ${caption}`} />
-              <span className={`text-[10.5px] italic ${caption}`}>lógos</span>
+              <span className={`${serif} text-[10.5px] italic ${caption}`}>lógos</span>
             </p>
             <div className="mt-[7px] flex gap-[5px] text-[9.5px] font-medium">
               <Chip>G3056</Chip>
@@ -256,14 +256,14 @@ export function ReaderArt() {
             <div className="mt-[5px] flex gap-[6px]">
               <span className={`w-[10px] shrink-0 text-right text-[10px] font-semibold ${caption}`}>1</span>
               <div>
-                <p className="text-[11.5px] leading-[1.5]">
+                <p className={`${serif} text-[11.5px] leading-[1.6]`}>
                   something said (including the thought); by implication, a topic (subject of
                   discourse), also reasoning (the mental faculty) or motive; by extension, a
                   computation; specially, (with the article in John) the Divine Expression (i.e.
                   Christ)
                 </p>
                 <p className={`mt-[9px] ${overline}`}>Derivation</p>
-                <p className="mt-[3px] text-[10.5px]">
+                <p className={`${serif} mt-[3px] text-[10.5px]`}>
                   from <span className="text-[color:var(--sys-purple)]">G3004 (λέγω)</span>
                 </p>
               </div>
@@ -327,7 +327,7 @@ export function HeroArt({
 /**
  * The hero on a wide screen: a MacBook with the Mac reader at Psalm 119 — the passage capsule in
  * the toolbar, tabs under it, verse 105 selected, highlighted and noted, and the study column on
- * Notes showing that verse's highlight and note.
+ * Notes showing that verse's note in its card and the chapter's highlights under it.
  */
 export function HeroLaptopArt() {
   const verses: Array<[number, ReactNode]> = [
@@ -343,7 +343,7 @@ export function HeroLaptopArt() {
     [112, 'I have inclined mine heart to perform thy statutes alway, even unto the end.'],
   ]
   return (
-    <Art label="Mac reader at Psalm 119, with John 1 and Romans 8 in other tabs. Verse 105 is highlighted, with a study note comparing it to Proverbs 6:23.">
+    <Art label="Mac reader at Psalm 119, with John 1 and Romans 8 in other tabs. Verse 105 is highlighted, and the study column’s Notes tab holds its note comparing it to Proverbs 6:23, with the chapter’s highlights listed below.">
       <div className="mx-auto w-full max-w-[44rem]">
         {/* The screen: a black bezel round the window, the camera's notch at its top. */}
         <div className="relative rounded-t-[18px] border-[9px] border-b-[11px] border-[#0c0c0d] bg-[#0c0c0d] shadow-[0_30px_60px_-30px_rgb(28_18_8/0.6)]">
@@ -390,8 +390,8 @@ export function HeroLaptopArt() {
             }
           >
             <MacTabBar tabs={[{ title: 'Psalms 119', open: true }, { title: 'John 1' }, { title: 'Romans 8' }]} />
-            <div className="grid h-[19rem] grid-cols-[minmax(0,1fr)] @lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
-              <div className="overflow-hidden bg-[var(--lamp-page)] px-[28px] pt-[16px]">
+            <div className="grid h-[19rem] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] @lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
+              <div className="overflow-hidden bg-[var(--mac-window)] px-[28px] pt-[16px]">
                 <div className="mx-auto max-w-[24rem] space-y-[6px]">
                   {verses.map(([n, text]) => (
                     <div key={n} className="relative">
@@ -410,56 +410,84 @@ export function HeroLaptopArt() {
                   ))}
                 </div>
               </div>
-              <div className={`hidden border-l ${sep} bg-[var(--mac-inspector)] @lg:block`}>
-                <div className={`flex gap-[10px] border-b ${sep} px-[12px] pt-[8px] text-[9px]`}>
+              <div className={`hidden min-h-0 flex-col overflow-hidden border-l ${sep} bg-[var(--mac-inspector)] @lg:flex`}>
+                {/* The study tools' underlined tabs, a pane header's 42pt, and the link-scrolling button. */}
+                <div className={`flex h-[30px] shrink-0 items-center gap-[10px] border-b ${sep} px-[10px] text-[9px]`}>
                   {['Commentary', 'Verse', 'Notes', 'Dictionary'].map((tab) => (
                     <span
                       key={tab}
-                      className={`border-b-[2px] pb-[4px] ${
-                        tab === 'Notes' ? 'border-[color:var(--sys-tint)] font-semibold' : 'border-transparent text-[color:var(--mac-secondary)]'
-                      }`}
+                      className={`relative pb-[4px] ${tab === 'Notes' ? 'font-semibold' : 'text-[color:var(--mac-secondary)]'}`}
                     >
                       {tab}
+                      {tab === 'Notes' && (
+                        <span className="absolute inset-x-0 bottom-0 h-[2px] rounded-full bg-[var(--sys-tint)]" />
+                      )}
                     </span>
                   ))}
                 </div>
-                <div className="space-y-[12px] px-[12px] py-[11px]">
-                  <p className="text-[12px] font-bold">Psalms 119:105</p>
-                  <div>
-                    <p className={`flex items-center gap-[4px] text-[8.5px] font-semibold ${label2}`}>
-                      <Sym name="highlighter" className="h-[9px] w-[9px]" />
-                      Highlight
-                    </p>
-                    {/* The palette the Mac offers, Yellow chosen. */}
-                    <div className="mt-[7px] flex items-center gap-[8px]">
-                      {['#FFCC00', '#34C759', '#007AFF', '#FF2D55', '#FF9500', '#AF52DE'].map((hex, i) => (
-                        <span
-                          key={hex}
-                          className={`h-[13px] w-[13px] rounded-full ${i === 0 ? 'ring-2 ring-[color:var(--sys-label2)] ring-offset-1 ring-offset-[var(--mac-inspector)]' : ''}`}
-                          style={{ backgroundColor: hex }}
-                        />
-                      ))}
-                      <Sym name="xmarkCircleFill" className={`h-[12px] w-[12px] ${label3}`} />
-                    </div>
-                  </div>
-                  <span className={`block border-t ${sep}`} />
-                  <div>
-                    <p className={`flex items-center gap-[4px] text-[8.5px] font-semibold ${label2}`}>
+                <div className="min-h-0 flex-1 space-y-[8px] overflow-hidden px-[10px] py-[8px]">
+                  {/* The verse's note, all of it in one card (lampCard). */}
+                  <div className="rounded-[9px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-card-fill)] p-[8px]">
+                    <p className="text-[12px] font-bold">Psalms 119:105</p>
+                    <p className="mt-[7px] flex items-center gap-[4px] text-[7.5px] font-semibold uppercase tracking-[0.06em] text-[color:var(--mac-secondary)]">
                       <Sym name="noteText" className="h-[9px] w-[9px]" />
                       Personal Note
                     </p>
-                    <p className="mt-[6px] rounded-[5px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-control)] px-[7px] py-[3px] text-[9.5px]">
+                    <p className="mt-[5px] rounded-[5px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-window)] px-[6px] py-[2px] text-[9px]">
                       A light for the path
                     </p>
-                    <div className="mt-[6px] rounded-[5px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-control)] px-[8px] py-[7px] text-[9.5px] leading-[1.5]">
-                      <p>
-                        Compare the image of a lamp here with{' '}
-                        <span className={blue}>Proverbs 6:23</span>.
+                    <div className="mt-[5px] overflow-hidden rounded-[5px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-window)]">
+                      <div className={`flex items-center gap-[7px] border-b ${sep} bg-[var(--mac-tab-track)] px-[5px] py-[2.5px] text-[8.5px] ${label2}`}>
+                        <span className="font-bold">B</span>
+                        <span className="font-serif italic">I</span>
+                        <Sym name="listBullet" className="h-[8px] w-[8px]" />
+                        <Sym name="listNumber" className="h-[8px] w-[8px]" />
+                        <Sym name="textQuote" className="h-[8px] w-[8px]" />
+                      </div>
+                      <p className="px-[6px] py-[4px] text-[9px] leading-[1.5]">
+                        Compare the image of a lamp here with <span className={blue}>Proverbs 6:23</span>.
                       </p>
-                      <span className="mt-[7px] block h-[4px] w-[70%] rounded-full bg-[var(--sys-fill)]" />
-                      <span className="mt-[5px] block h-[4px] w-[45%] rounded-full bg-[var(--sys-fill)]" />
+                    </div>
+                    <p className="mt-[7px] flex items-center gap-[5px] text-[8.5px]">
+                      <span className="text-[color:var(--mac-secondary)]">Covers</span>
+                      <MacCapsule menu className="!h-[15px] !text-[8px]">
+                        This verse only
+                      </MacCapsule>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="flex items-center gap-[4px] whitespace-nowrap text-[7.5px] font-semibold uppercase tracking-[0.04em] text-[color:var(--mac-secondary)]">
+                      <Sym name="highlighter" className="h-[9px] w-[9px] shrink-0" />
+                      Highlights in Psalms 119
+                      <span className={`ml-auto text-[8px] font-normal normal-case tracking-normal ${tint}`}>All Highlights</span>
+                    </p>
+                    <div className="mt-[5px] flex gap-[6px] rounded-[9px] border border-[color:var(--mac-card-edge)] bg-[var(--mac-card-fill)] px-[7px] py-[5px] text-[8px] leading-[1.4]">
+                      <span className="mt-[1px] h-[10px] w-[3px] shrink-0 rounded-[1px] bg-[#FFCC00]" />
+                      <span className="shrink-0 font-semibold tabular-nums">119:105</span>
+                      <span className="text-[color:var(--mac-secondary)]">
+                        Thy word is a lamp unto my feet, and a light unto my path.
+                      </span>
                     </div>
                   </div>
+                </div>
+                <div className={`flex shrink-0 items-center border-t ${sep} px-[10px] py-[5px]`}>
+                  <Segmented
+                    selected={1}
+                    className="!text-[8.5px]"
+                    items={[
+                      <>
+                        <Sym name="book" className="h-[8px] w-[8px]" />
+                        Read
+                      </>,
+                      <>
+                        <Sym name="squareAndPencil" className="h-[8px] w-[8px]" />
+                        Edit
+                      </>,
+                    ]}
+                  />
+                  <MacCapsule menu className="ml-auto !h-[15px] !text-[8px]">
+                    Study Data
+                  </MacCapsule>
                 </div>
               </div>
             </div>
@@ -502,8 +530,8 @@ export function StudyArt() {
             </Glass>
           </div>
           <div className="px-[14px] pt-[9px]">
-            <p className="text-[11px] font-semibold">v. 28</p>
-            <div className="mt-[3px] space-y-[3px] text-[10.5px] leading-[1.5]">
+            <p className={`${serif} text-[11.5px] font-semibold`}>v. 28</p>
+            <div className={`${serif} mt-[3px] space-y-[3px] text-[11px] leading-[1.6]`}>
               {tskRomans828.map(([keyword, references]) => (
                 <p key={keyword}>
                   {keyword}: <span className={blue}>{references}</span>
@@ -546,7 +574,7 @@ export function PlansArt() {
             <Sym name="chevronRight" className="h-[12px] w-[12px]" />
           </Glass>
           <Glass round>
-            <Sym name="playRectangleOnRectangle" className="h-[13px] w-[13px]" />
+            <Sym name="gear" className="h-[14px] w-[14px]" />
           </Glass>
         </div>
         <div className="px-[11px]">
@@ -610,98 +638,94 @@ export function PlansArt() {
   )
 }
 
+/** "Aa" as the highlight panel draws a style: on a band of the colour, or over a line of it. */
+function StyleSample({ hex, style }: { hex: string; style: 'highlight' | 'solid' | 'dashed' | 'dotted' }) {
+  const line =
+    style === 'solid'
+      ? `linear-gradient(${hex}, ${hex})`
+      : style === 'dashed'
+        ? `repeating-linear-gradient(90deg, ${hex} 0 2.9px, transparent 2.9px 4.7px)`
+        : `radial-gradient(circle, ${hex} 0.9px, transparent 1.1px) 0 0 / 2.9px 1.8px repeat-x`
+  return style === 'highlight' ? (
+    <span className={`${serif} px-[2px] text-[12px] font-medium`} style={highlightFill(hex)}>
+      Aa
+    </span>
+  ) : (
+    <span className={`${serif} relative text-[12px] font-medium`}>
+      Aa
+      <span className="absolute left-1/2 top-full h-[1.8px] w-[17px] -translate-x-1/2" style={{ background: line }} />
+    </span>
+  )
+}
+
 export function HighlightsArt() {
-  const styles: Array<{ icon: SymbolName; name: string }> = [
-    { icon: 'highlighter', name: 'Highlight' },
-    { icon: 'underline', name: 'Underline' },
-    { icon: 'underlineDashed', name: 'Dashed' },
-    { icon: 'underlineDotted', name: 'Dotted' },
+  const styles = ['highlight', 'solid', 'dashed', 'dotted'] as const
+  // The palette a library starts with (LampHighlightPalette.offeredByDefault), yellow chosen.
+  const colours = ['#FFCC00', '#34C759', '#007AFF', '#FF2D55']
+  const actions: Array<{ icon: SymbolName; name: string; red?: boolean }> = [
+    { icon: 'noteTextBadgePlus', name: 'Add Note' },
+    { icon: 'quoteOpening', name: 'Copy as Citation' },
+    { icon: 'ellipsisCircle', name: 'More' },
+    { icon: 'trash', name: 'Remove', red: true },
   ]
-  const colours = [
-    { hex: '#FFCC00', theme: 'Promises', on: true },
-    { hex: '#34C759' },
-    { hex: '#007AFF', theme: 'Calling' },
-    { hex: '#FF2D55' },
-  ]
+  const quiet = 'bg-[color-mix(in_srgb,var(--sys-label2)_12%,transparent)]'
   return (
-    <Art label="Romans 8:28 with yellow highlighting and a blue underline. The Highlights menu shows styles, sets and colours named Promises and Calling.">
+    <Art label="Romans 8:28 with “all things work together for good” highlighted in yellow. The highlight panel beside the words shows four styles, the colour palette with yellow ticked, the theme Promises, and Add Note, Copy as Citation, More and Remove.">
       <Phone>
         <ReaderHeader translation="KJV" chapter="Romans 8" />
         <Scripture className="px-[16px]">
           <V n={28} />
           And we know that <span style={highlightFill('#FFCC00')}>all things work together for good</span>{' '}
-          to them that love God, to them who are the{' '}
-          <span className="underline decoration-[#007AFF] decoration-[1.5px] underline-offset-[3px]">
-            called according to his purpose
-          </span>
-          .
+          to them that love God, to them who are the called according to his purpose.
         </Scripture>
-        <div className="absolute right-[8px] top-[64px] w-[204px] rounded-[16px] bg-[var(--lamp-menu)] p-[7px] shadow-[0_10px_30px_rgb(0_0_0/0.22)]">
-          <p className={`px-[4px] pb-[4px] text-[9.5px] font-semibold ${caption}`}>Highlights</p>
-          <div className="rounded-[11px] bg-[var(--lamp-menu-card)]">
-            <div className="grid grid-cols-4 gap-[2px] px-[5px] pt-[5px]">
-              {styles.map((s, i) => (
-                <span
-                  key={s.name}
-                  className={`flex h-[34px] flex-col items-center justify-center gap-[2px] rounded-[7px] ${
-                    i === 0
-                      ? 'border border-[color-mix(in_srgb,var(--sys-label)_40%,transparent)] bg-[color-mix(in_srgb,var(--sys-label)_10%,transparent)]'
-                      : caption
-                  }`}
-                >
-                  <Sym name={s.icon} className="h-[12px] w-[12px]" />
-                  <span className={`text-[7px] ${i === 0 ? 'font-semibold' : ''}`}>{s.name}</span>
-                </span>
-              ))}
-            </div>
-            <div className="flex items-start justify-center gap-[7px] px-[9px] pb-[8px] pt-[7px]">
-              {colours.map((c) => (
-                <span key={c.hex} className="flex w-[25px] flex-col items-center">
-                  <span
-                    className="h-[19px] w-[19px] rounded-full border-[2px]"
-                    style={{
-                      borderColor: c.hex,
-                      backgroundColor: `color-mix(in srgb, ${c.hex} var(--lamp-swatch), var(--lamp-page))`,
-                      boxShadow: c.on ? '0 0 0 2px var(--lamp-menu-card), 0 0 0 3.5px var(--sys-label)' : undefined,
-                    }}
-                  />
-                  {c.theme && <span className={`mt-[3px] text-[6px] font-medium ${label2}`}>{c.theme}</span>}
-                </span>
-              ))}
+        {/* A popover by the words, on a phone too, 304pt wide (HighlightPanel). */}
+        <div className="absolute left-1/2 top-[114px] w-[219px] -translate-x-1/2 rounded-[20px] bg-[var(--lamp-menu)] p-[12px] shadow-[0_8px_30px_rgb(0_0_0/0.22)]">
+          <span className="absolute -top-[5px] left-1/2 h-[11px] w-[11px] -translate-x-1/2 rotate-45 rounded-[2px] bg-[var(--lamp-menu)]" />
+          <div className="relative grid grid-cols-4 gap-[6px]">
+            {styles.map((style, i) => (
               <span
-                className="h-[19px] w-[19px] rounded-full"
-                style={{ background: 'conic-gradient(#ff3b30, #ffcc00, #34c759, #007aff, #af52de, #ff3b30)' }}
-              />
-            </div>
-            <div className={`flex items-center gap-[8px] border-t ${sep} mx-[9px] py-[7px] text-[10.5px]`}>
-              <Sym name="folder" className="h-[12px] w-[12px]" />
-              My Highlights
-              <Sym name="chevronUpDown" className={`ml-auto h-[9px] w-[9px] ${label2}`} />
-            </div>
-            <div className={`ml-[29px] flex items-center gap-[8px] border-t ${sep} py-[7px] text-[10.5px]`}>
-              <Sym name="highlighterSlash" className="-ml-[20px] h-[12px] w-[12px]" />
-              Hide Highlights
-            </div>
-          </div>
-          <div className="mt-[6px] rounded-[11px] bg-[var(--lamp-menu-card)]">
-            <div className="grid grid-cols-2 gap-[5px] p-[5px]">
-              {[
-                { icon: 'eyeSlash' as const, name: 'Hide Toolbars' },
-                { icon: 'panelBottom' as const, name: 'Show Tools' },
-              ].map((tile) => (
-                <span key={tile.name} className="flex h-[38px] flex-col items-center justify-center gap-[3px] rounded-[7px] bg-[var(--lamp-menu)] text-[8px] font-medium">
-                  <Sym name={tile.icon} className="h-[12px] w-[12px]" />
-                  {tile.name}
-                </span>
-              ))}
-            </div>
-            <div className={`mx-[9px] flex items-center gap-[8px] border-t ${sep} py-[7px] text-[10.5px]`}>
-              <span className="w-[12px] text-[9px] font-semibold">
-                A<span className="text-[11px]">A</span>
+                key={style}
+                className={`flex h-[29px] items-center justify-center rounded-[6px] pb-[2px] ${quiet} ${
+                  i === 0 ? 'shadow-[inset_0_0_0_1.5px_var(--sys-tint)]' : ''
+                }`}
+              >
+                <StyleSample hex={colours[0]} style={style} />
               </span>
-              View Options
-              <Sym name="chevronRight" className={`ml-auto h-[8px] w-[8px] ${label3}`} />
-            </div>
+            ))}
+          </div>
+          <div className="mt-[10px] flex items-center gap-[7px]">
+            {colours.map((hex, i) => (
+              <span key={hex} className="flex h-[23px] w-[23px] items-center justify-center rounded-full" style={{ backgroundColor: hex }}>
+                {i === 0 && <Sym name="checkmark" className="h-[9px] w-[9px] text-white" />}
+              </span>
+            ))}
+            {/* The colour well that adds a colour of your own. */}
+            <span
+              className="flex h-[21px] w-[21px] items-center justify-center rounded-full"
+              style={{ background: 'conic-gradient(#ff3b30, #ffcc00, #34c759, #5ac8fa, #007aff, #af52de, #ff3b30)' }}
+            >
+              <span className="flex h-[16px] w-[16px] items-center justify-center rounded-full bg-[var(--lamp-menu)]">
+                <span className="h-[11px] w-[11px] rounded-full bg-[#FF9500]" />
+              </span>
+            </span>
+          </div>
+          <span className={`mt-[10px] inline-flex items-center gap-[4px] rounded-full px-[9px] py-[5px] text-[11px] ${quiet}`}>
+            <span className="h-[8.5px] w-[14px] rounded-[2px] bg-[#FFCC00]" />
+            Promises
+            <Sym name="chevronUpDown" className={`h-[8px] w-[8px] ${label2}`} />
+          </span>
+          <div className={`mt-[10px] grid grid-cols-4 gap-[4px] border-t ${sep} pt-[10px]`}>
+            {actions.map((action) => (
+              <span
+                key={action.name}
+                className={`flex flex-col items-center gap-[3px] text-center text-[8px] leading-[1.15] ${
+                  action.red ? 'text-[color:var(--sys-red)]' : ''
+                }`}
+              >
+                <Sym name={action.icon} className="h-[13px] w-[13px]" />
+                {action.name}
+              </span>
+            ))}
           </div>
         </div>
       </Phone>
@@ -737,14 +761,14 @@ export function NotesArt() {
               <span className={`text-[10.5px] font-medium ${blue}`}>vv.28-30</span>
               <Sym name="ellipsis" className={`h-[11px] w-[11px] ${label2}`} />
             </div>
-            <p className="mt-[4px] text-[12px] leading-[1.55]">
+            <p className={`${serif} mt-[4px] text-[12px] leading-[1.6]`}>
               <strong>Called</strong> is the word Paul uses of himself in 1:1.
               <sup className={`ml-[1px] text-[0.7em] ${label2}`}>[1]</sup> Those he called he also
               justified — <em>the chain never breaks</em>.
             </p>
             <div className={`mt-[6px] flex gap-[5px] text-[10.5px] ${label2}`}>
               <span className="w-[16px] shrink-0 text-right text-[9.5px]">[1]</span>
-              <span>κλητός, G2822 — invited, appointed.</span>
+              <span className={serif}>κλητός, G2822 — invited, appointed.</span>
             </div>
           </div>
         </ToolPanel>
@@ -754,7 +778,7 @@ export function NotesArt() {
 }
 
 export function SearchArt() {
-  // G3056's first verses in John in the KJVs, with the words tagged with it marked.
+  // G3056's first verses in John in the KJV, with the words tagged with it marked.
   const results = [
     { ref: 'John 1:1', parts: ['In the beginning was ', 'the Word', ', and ', 'the Word', ' was with God, and ', 'the Word', ' was God.'] },
     { ref: 'John 1:14', parts: ['And ', 'the Word', ' was made flesh, and dwelt among us, (and we beheld his glory…'] },
@@ -818,7 +842,7 @@ export function SearchArt() {
 }
 
 /**
- * G26, ἀγάπη, as the KJVs tags it — the figures core's analysis gives, so the
+ * G26, ἀγάπη, as the KJV tags it — the figures core's analysis gives, so the
  * drawings agree with the apps and with each other.
  */
 const agapeRenderings = [
@@ -830,7 +854,7 @@ const agapeRenderings = [
   { text: 'the', count: 1 },
 ]
 
-/** G26's occurrences per New Testament book in the KJVs, and which core marks beyond chance. */
+/** G26's occurrences per New Testament book in the KJV, and which core marks beyond chance. */
 const agapeByBook: Array<[name: string, count: number, standing?: 'more' | 'fewer']> = [
   ['Matthew', 1, 'fewer'], ['Mark', 0, 'fewer'], ['Luke', 1, 'fewer'], ['John', 7], ['Acts', 0, 'fewer'],
   ['Romans', 9], ['1 Corinthians', 14], ['2 Corinthians', 9], ['Galatians', 3], ['Ephesians', 10, 'more'],
@@ -1021,15 +1045,9 @@ export function AnalysisArt() {
             ))}
           </div>
         </div>
-        <p className={`px-[22px] pt-[5px] text-[8.5px] leading-[1.35] ${label2}`}>
-          About 0.8 in every 1,000 tagged words of the KJV.
-        </p>
-        <div className="mx-[11px] mt-[10px] flex items-center gap-[9px] rounded-[14px] bg-[var(--sys-cell)] px-[12px] py-[7px]">
+        <div className="mx-[11px] mt-[14px] flex items-center gap-[9px] rounded-[14px] bg-[var(--sys-cell)] px-[12px] py-[9px]">
           <Glyph name="characterBookClosed" className={`h-[14px] w-[14px] shrink-0 ${tint}`} />
-          <div className="min-w-0 flex-1 leading-tight">
-            <p className="text-[12px]">Definition</p>
-            <p className={`truncate text-[9.5px] ${label2}`}>The whole entry, in each dictionary that has the word</p>
-          </div>
+          <p className="min-w-0 flex-1 text-[12px] leading-tight">Definition</p>
           <Sym name="chevronRight" className={`h-[9px] w-[9px] shrink-0 ${label3}`} />
         </div>
         <p className="px-[22px] pb-[5px] pt-[11px] text-[14px] font-bold">Translated As</p>
@@ -1318,7 +1336,35 @@ function Segmented({
   )
 }
 
-/** A bordered macOS button. */
+/**
+ * Lamp's own button at the small size: a capsule on the neutral tile fill, or in the muted accent
+ * for the one action a surface is for; a menu adds the chevron that says it opens one
+ * (LampSecondaryButtonStyle, LampProminentButtonStyle, LampMenuButtonStyle).
+ */
+function MacCapsule({
+  prominent = false,
+  menu = false,
+  className = '',
+  children,
+}: {
+  prominent?: boolean
+  menu?: boolean
+  className?: string
+  children: ReactNode
+}) {
+  return (
+    <span
+      className={`flex h-[17px] shrink-0 items-center gap-[4px] rounded-full px-[7px] text-[9px] font-medium ${
+        prominent ? 'bg-[var(--mac-accent-muted)] text-white' : 'bg-[var(--mac-tile)]'
+      } ${className}`}
+    >
+      {children}
+      {menu && <Sym name="chevronDown" className="h-[6px] w-[6px] text-[color:var(--mac-secondary)]" />}
+    </span>
+  )
+}
+
+/** A bordered macOS button, as a Settings form still draws one. */
 function MacButton({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
     <span
@@ -1329,7 +1375,7 @@ function MacButton({ children, className = '' }: { children: ReactNode; classNam
   )
 }
 
-/** A macOS pop-up button: the current choice and the up-down chevrons. */
+/** A macOS pop-up button, as a Settings form still draws one: the current choice and the up-down chevrons. */
 function MacPopUp({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
     <span className={`flex h-[19px] shrink-0 items-center gap-[6px] rounded-[6px] bg-[var(--mac-popup)] px-[7px] text-[9.5px] ${className}`}>
@@ -1339,12 +1385,12 @@ function MacPopUp({ children, className = '' }: { children: ReactNode; className
   )
 }
 
-/** A macOS switch, on in the accent colour. */
+/** A macOS switch, on in the muted accent the app tints its switches with. */
 function MacSwitch({ on = false }: { on?: boolean }) {
   return (
     <span
       className={`flex h-[14px] w-[26px] shrink-0 items-center rounded-full p-[1.5px] ${
-        on ? 'justify-end bg-[var(--sys-tint)]' : 'bg-[var(--sys-fill)]'
+        on ? 'justify-end bg-[var(--mac-accent-muted)]' : 'bg-[var(--sys-fill)]'
       }`}
     >
       <span className="h-[11px] w-[15px] rounded-full bg-white shadow-[0_1px_2px_rgb(0_0_0/0.25)]" />
@@ -1352,18 +1398,33 @@ function MacSwitch({ on = false }: { on?: boolean }) {
   )
 }
 
-/** The writing editor's toolbar: save and history, the Workspace menu, the title; then the panes. */
-function editorToolbar({ details = false, agent = false }: { details?: boolean; agent?: boolean }) {
+/**
+ * The writing editor's toolbar (DevotionalEditorView.editorToolbar): the writing list, History and
+ * the Workspace menu, the title; then the surface, Details and Assistant together, the deck, and
+ * Done in a group of its own. Names show only from 1,120pt, wider than these windows are drawn.
+ */
+function editorToolbar({
+  details = false,
+  agent = false,
+  review = false,
+}: {
+  details?: boolean
+  agent?: boolean
+  /** The "N to Review" menu, shown while the assistant's changes are marked; its icon alone at this width. */
+  review?: boolean
+}) {
   return {
     leading: (
       <>
         <MacGlass className="hidden @md:flex">
-          <ToolIcon name="save" dim />
-          <ToolIcon name="clockArrow" />
+          <ToolIcon name="sidebarLeft" />
         </MacGlass>
-        <MacGlass className="hidden gap-[2px] @md:flex">
-          <ToolIcon name="folder" />
-          <Sym name="chevronDown" className="h-[7px] w-[7px]" />
+        <MacGlass className="hidden gap-[8px] @md:flex">
+          <ToolIcon name="clockArrow" />
+          <span className="flex items-center gap-[2px]">
+            <ToolIcon name="folder" />
+            <Sym name="chevronDown" className="h-[7px] w-[7px]" />
+          </span>
         </MacGlass>
       </>
     ),
@@ -1375,20 +1436,28 @@ function editorToolbar({ details = false, agent = false }: { details?: boolean; 
         <MacGlass className="gap-[8px]">
           <ToolIcon name="infoCircle" on={details} />
           <ToolIcon name="sparkles" on={agent} />
+        </MacGlass>
+        {review && (
+          <MacGlass className="hidden @sm:flex">
+            <ToolIcon name="checkmarkCircle" />
+          </MacGlass>
+        )}
+        <MacGlass className="hidden @sm:flex">
           <ToolIcon name="slideDeck" />
         </MacGlass>
+        <MacGlass className="font-medium">Done</MacGlass>
       </>
     ),
   }
 }
 
-/** The Visual editor's formatting bar, one quiet row: style, emphasis, lists, blocks, Insert, size. */
+/** The Visual editor's formatting bar, one quiet row a pane header high: style, emphasis, lists, blocks, Insert, size. */
 function FormatBar() {
   const rule = <span className="h-[12px] w-px shrink-0 bg-[var(--sys-sep)]" />
   const icon = 'h-[11px] w-[11px] shrink-0'
   const small = `h-[7px] w-[7px] shrink-0 ${label2}`
   return (
-    <div className={`flex items-center justify-center gap-[8px] overflow-hidden whitespace-nowrap border-b ${sep} px-[10px] pb-[6px] pt-[2px] text-[9.5px]`}>
+    <div className={`flex h-[30px] shrink-0 items-center justify-center gap-[8px] overflow-hidden whitespace-nowrap border-b ${sep} px-[10px] text-[9.5px]`}>
       <span className="flex items-center gap-[6px]">
         Body <Sym name="chevronDown" className={small} />
       </span>
@@ -1439,11 +1508,11 @@ function EditorStatus() {
 
 /** The Mac writing editor with its agent workspace open beside it. */
 export function AgentWorkspaceArt() {
-  const { leading, toolbar } = editorToolbar({ agent: true })
+  const { leading, toolbar } = editorToolbar({ agent: true, review: true })
   return (
     <Art
       className="@container"
-      label="Mac editor with a draft and companion-file tabs beside an agent workspace. The workspace shows model settings, context, skills and a chat reviewing draft edits."
+      label="Mac editor with a draft and companion-file tabs beside the assistant’s workspace, connected to Claude. The sentence the assistant rewrote is marked for review, with buttons to clear the mark or restore the original wording. The setup shows the provider and model menus, context, skills and a chat about the edit."
     >
       <MacWindow title="Abide in the Vine" leading={leading} toolbar={toolbar}>
         <div className="grid grid-cols-[minmax(0,1fr)] @xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -1452,9 +1521,19 @@ export function AgentWorkspaceArt() {
             <FormatBar />
             <div className="flex-1 px-[22px] py-[14px] text-[11.5px] leading-[1.6]">
               <p className={`${serif} text-[18px] font-bold leading-tight`}>Abide in the Vine</p>
+              {/* The assistant's rewrite, marked for review as TipTapEditorView draws it: the ✓ hung
+                  in the margin to clear it, ↺ to put the original back, then the washed passage. */}
               <p className={`${serif} mt-[7px]`}>
-                Jesus connects bearing fruit with remaining in him.
-                <sup className={`ml-[1px] font-sans text-[0.75em] font-semibold ${blue}`}>[1]</sup>
+                <span className="-ml-[22px] mr-[6px] inline-flex h-[16px] w-[16px] items-center justify-center align-middle font-sans text-[10px] leading-none text-[color:var(--mac-review-ink)]">
+                  ✓
+                </span>
+                <span className="-ml-[6px] mr-[6px] inline-flex h-[16px] w-[16px] items-center justify-center align-middle font-sans text-[10px] leading-none text-[color:var(--mac-review-ink)]">
+                  ↺
+                </span>
+                <span className="border-b border-dotted border-[color:var(--mac-review-rule)] bg-[var(--mac-review-wash)]">
+                  Jesus connects bearing fruit with remaining in him.
+                  <sup className={`ml-[1px] font-sans text-[0.75em] font-semibold ${blue}`}>[1]</sup>
+                </span>
               </p>
               <div className="mt-[8px] space-y-[7px]">
                 <span className="block h-[5px] w-[94%] rounded-full bg-[var(--sys-fill)]" />
@@ -1468,14 +1547,25 @@ export function AgentWorkspaceArt() {
             <EditorStatus />
           </div>
 
-          <div className={`flex flex-col border-t ${sep} bg-[var(--mac-inspector)] @xl:border-l @xl:border-t-0`}>
-            <div className={`space-y-[5px] border-b ${sep} px-[9px] py-[6px] text-[9.5px]`}>
-              <div className="flex items-center gap-[6px]">
-                <MacPopUp>Claude</MacPopUp>
+          <div className={`flex flex-col border-0 ${sep} bg-[var(--mac-inspector)] @xl:border-l`}>
+            {/* The setup's one row, a pane header's 42pt: the agent, its model when one is chosen,
+                the writing, and whether it is connected. Open, the setup shows beneath it. */}
+            <div className={`flex h-[30px] shrink-0 items-center gap-[5px] border-y ${sep} px-[9px] text-[9px]`}>
+              <Sym name="chevronRight" className={`h-[7px] w-[7px] rotate-90 ${label2}`} />
+              <Sym name="sparkles" className={`h-[10px] w-[10px] ${label2}`} />
+              <span className="truncate font-medium">Claude · Abide in the Vine</span>
+              <span className="flex shrink-0 items-center gap-[3px] text-[color:var(--sys-green)]">
+                <Sym name="checkmarkCircleFill" className="h-[9px] w-[9px]" />
+                Connected
+              </span>
+            </div>
+            <div className={`space-y-[6px] border-b ${sep} px-[9px] py-[7px] text-[9px]`}>
+              <div className="flex items-center gap-[8px]">
+                <MacCapsule menu>Claude</MacCapsule>
                 {['Default model', 'Default effort'].map((choice) => (
-                  <span key={choice} className="flex items-center gap-[3px] font-medium">
+                  <span key={choice} className={`flex items-center gap-[3px] ${label2}`}>
                     {choice}
-                    <Sym name="chevronDown" className={`h-[6px] w-[6px] ${label2}`} />
+                    <Sym name="chevronDown" className={`h-[6px] w-[6px] ${label3}`} />
                   </span>
                 ))}
               </div>
@@ -1504,10 +1594,10 @@ export function AgentWorkspaceArt() {
                 <div className="mt-[3px] flex items-center gap-[4px]">
                   <Sym name="checkmarkCircleFill" className="h-[10px] w-[10px] text-[color:var(--sys-green)]" />
                   <span className={`text-[9px] ${label2}`}>Live sync is active</span>
-                  <MacButton className="ml-auto !h-[17px] !text-[8.5px]">
+                  <MacCapsule className="ml-auto !h-[16px] !text-[8.5px]">
                     <Sym name="clockArrow" className="h-[9px] w-[9px]" />
                     Revisions (3)
-                  </MacButton>
+                  </MacCapsule>
                 </div>
               </div>
               <div>
@@ -1537,22 +1627,9 @@ export function AgentWorkspaceArt() {
                 ))}
               </div>
             </div>
-            <div className={`flex flex-1 flex-col gap-[7px] border-t ${sep} bg-[var(--mac-control)] px-[10px] py-[7px] text-[10px] leading-[1.45]`}>
-              <div className={`flex min-w-0 items-center gap-[6px] text-[8.5px] ${label2}`}>
-                <span className="flex shrink-0 items-center gap-[3px] font-semibold">
-                  <Sym name="sparkles" className="h-[8px] w-[8px]" />
-                  Claude
-                </span>
-                {/* The folder it reads and edits, named after the writing's ID and cut in the middle. */}
-                <span className="flex min-w-0 items-center gap-[3px]">
-                  <Sym name="squareAndPencil" className="h-[8px] w-[8px] shrink-0" />
-                  <span className="truncate">8C1F2B6E-3A4D…7d2e9a1b</span>
-                </span>
-                <span className="flex shrink-0 items-center gap-[3px] text-[color:var(--sys-green)]">
-                  <Sym name="checkmarkCircleFill" className="h-[8px] w-[8px]" />
-                  Connected
-                </span>
-              </div>
+            <div className={`flex flex-1 flex-col gap-[7px] border-t ${sep} px-[10px] py-[7px] text-[10px] leading-[1.45]`}>
+              {/* The chat's own header: its identity is the setup row's, so only New Chat is left. */}
+              <Sym name="squareAndPencil" className={`-mb-[2px] ml-auto h-[10px] w-[10px] shrink-0 ${label2}`} />
               <p className="ml-auto w-fit max-w-[86%] rounded-[12px] rounded-tr-[4px] bg-[color-mix(in_srgb,var(--sys-tint)_16%,transparent)] px-[9px] py-[5px]">
                 Tighten the opening, and find where else John uses “abide”.
               </p>
@@ -1627,14 +1704,14 @@ export function MacEditorArt() {
                     <Sym name="chevronRight" className="h-[8px] w-[8px]" />
                   </MacButton>
                 </span>
-                <MacButton>Done</MacButton>
+                <MacCapsule>Done</MacCapsule>
               </div>
               <div className="flex items-center gap-[4px] pl-[50px]">
                 <span className={`flex h-[19px] min-w-0 flex-1 items-center rounded-[6px] border ${sep} bg-[var(--mac-control)] px-[6px]`}>
                   remain
                 </span>
-                <MacButton>Replace</MacButton>
-                <MacButton>Replace All</MacButton>
+                <MacCapsule>Replace</MacCapsule>
+                <MacCapsule>Replace All</MacCapsule>
               </div>
             </div>
             <div className={`${serif} flex-1 px-[18px] py-[12px] text-[11.5px] leading-[1.65]`}>
@@ -1695,10 +1772,11 @@ export function SlideArt() {
               Deck
               <Sym name="chevronDown" className="h-[7px] w-[7px]" />
             </MacGlass>
-            <MacGlass className="hidden @lg:flex">
+            <MacGlass className="hidden gap-[4px] @lg:flex">
               <ToolIcon name="qrcode" />
+              Remote
             </MacGlass>
-            <span className="flex h-[22px] items-center gap-[4px] rounded-full bg-[var(--sys-tint)] px-[10px] text-[9.5px] font-semibold text-white">
+            <span className="flex h-[22px] items-center gap-[4px] rounded-full bg-[var(--mac-accent-muted)] px-[10px] text-[9.5px] font-medium text-white">
               <Sym name="playFill" className="h-[8px] w-[8px]" />
               Play
             </span>
@@ -1775,21 +1853,17 @@ export function SlideArt() {
 }
 
 /**
- * The Reader and Search tab bar (LibraryTabBar), with one tab open: a track a
- * shade down from the window under the toolbar, the open tab a raised page,
- * and + at the end. A lone tab has no close button.
- */
-/**
- * The Mac's tab rank, shared by the reader, Search and a writing's documents:
- * the tabs split the bar, the open one raised, the + at the trailing edge.
+ * The Mac's tab rank, shared by the reader, Search and a writing's documents (LibraryTabBar): a
+ * pane header's 42pt, under the rule that closes the panes off below the toolbar; the tabs split
+ * the bar, the open one a raised 26pt tab with a 6pt gap at the ends, and + at the trailing edge.
  */
 function MacTabBar({ tabs }: { tabs: Array<{ title: string; open?: boolean }> }) {
   return (
-    <div className={`flex h-[23px] border-b ${sep} bg-[var(--mac-tab-track)] pl-[2px]`}>
+    <div className={`flex h-[30px] border-y ${sep} bg-[var(--mac-tab-track)] px-[4px]`}>
       {tabs.map((tab, i) => (
         <span key={tab.title} className="relative flex min-w-0 flex-1">
           <span
-            className={`mx-[1px] my-[2px] flex min-w-0 flex-1 items-center justify-center rounded-[5px] px-[16px] text-[8px] ${
+            className={`mx-[1px] my-[5.5px] flex min-w-0 flex-1 items-center justify-center rounded-[5px] px-[16px] text-[8px] ${
               tab.open
                 ? 'border-[0.5px] border-[color:var(--mac-tab-edge)] bg-[var(--mac-tab-open)] shadow-[0_0.5px_1px_var(--mac-tab-shadow)]'
                 : label2
@@ -1799,7 +1873,7 @@ function MacTabBar({ tabs }: { tabs: Array<{ title: string; open?: boolean }> })
           </span>
           {/* A hairline only between two tabs at rest: beside the raised one it would cut into it. */}
           {i < tabs.length - 1 && !tab.open && !tabs[i + 1].open && (
-            <span className="absolute inset-y-[6px] right-0 w-px bg-[var(--sys-sep)]" />
+            <span className="absolute inset-y-[10px] right-0 w-px bg-[var(--sys-sep)]" />
           )}
         </span>
       ))}
@@ -1810,10 +1884,6 @@ function MacTabBar({ tabs }: { tabs: Array<{ title: string; open?: boolean }> })
   )
 }
 
-/**
- * Mac search on a Strong's key, in its tab: the occurrences narrowed to 1 John
- * beside the analysis's card, on its Spread.
- */
 export function MacAnalysisArt() {
   const most = Math.max(...agapeByBook.map(([, count]) => count))
   const total = agapeByBook.reduce((sum, [, count]) => sum + count, 0)
@@ -1831,19 +1901,20 @@ export function MacAnalysisArt() {
   return (
     <Art
       className="@container"
-      label="Mac analysis of G26 in the KJV: 117 occurrences in 106 verses across 24 books. The Spread tab charts occurrences by book; the verse list is filtered to eighteen occurrences in 1 John."
+      label="Mac Search analysing G26 in the KJV: 117 occurrences in 106 verses across 24 books. The word’s analysis leads on the left, its Spread tab charting occurrences by book; beside it the verses, narrowed to eighteen occurrences in 1 John."
     >
       <MacWindow
         title="Search"
         toolbar={
           <>
+            {/* Content and Module, Lamp menus with one chevron, then the search field. */}
             <MacGlass className="hidden !px-[8px] @lg:flex">
               Scripture
-              <Sym name="chevronUpDown" className="h-[7px] w-[7px]" />
+              <Sym name="chevronDown" className={`h-[6px] w-[6px] ${label2}`} />
             </MacGlass>
-            <MacGlass className="hidden !px-[8px] @2xl:flex">
+            <MacGlass className="hidden w-[108px] !px-[8px] @2xl:flex">
               All Modules
-              <Sym name="chevronUpDown" className="h-[7px] w-[7px]" />
+              <Sym name="chevronDown" className={`ml-auto h-[6px] w-[6px] ${label2}`} />
             </MacGlass>
             <MacGlass className={`hidden w-[128px] @xl:flex ${label3}`}>
               <Sym name="magnifyingglass" className="h-[9px] w-[9px] shrink-0" />
@@ -1853,49 +1924,31 @@ export function MacAnalysisArt() {
         }
       >
         <MacTabBar tabs={[{ title: 'G26', open: true }]} />
-        <div className={`flex gap-[6px] border-b ${sep} px-[10px] py-[6px]`}>
-          <span className="hidden h-[19px] items-center gap-[4px] rounded-full bg-[var(--sys-fill)] px-[8px] text-[9px] @md:flex">
+        {/* The filters that refine Scripture, as soft chips under the toolbar. */}
+        <div className={`flex gap-[6px] border-b ${sep} px-[10px] py-[5px] text-[9px]`}>
+          <span className="hidden h-[22px] items-center gap-[4px] rounded-full border border-[color:var(--mac-card-edge)] bg-[var(--mac-tile)] px-[8px] @md:flex">
             <Sym name="book" className="h-[9px] w-[9px]" />
             All Books
-            <Sym name="chevronDown" className="h-[6px] w-[6px]" />
+            <Sym name="chevronDown" className={`h-[6px] w-[6px] ${label2}`} />
           </span>
-          <span className="flex h-[19px] w-[150px] items-center gap-[5px] rounded-full bg-[var(--sys-fill)] px-[8px] text-[9.5px]">
-            <Sym name="number" className={`h-[9px] w-[9px] ${label2}`} />
-            G26
-            <Sym name="xmarkCircleFill" className={`ml-auto h-[10px] w-[10px] ${label2}`} />
+          <span className="flex h-[22px] items-center gap-[4px] rounded-full border border-[color:var(--mac-card-edge)] bg-[var(--mac-tile)] pl-[8px] pr-[5px]">
+            <span className="flex items-center gap-[3px] text-[color:var(--mac-secondary)]">
+              <Sym name="number" className="h-[9px] w-[9px]" />
+              Strong’s
+            </span>
+            <span className={`flex h-[15px] w-[86px] items-center rounded-[4px] border ${sep} bg-[var(--mac-control)] px-[4px]`}>G26</span>
+            <Sym name="xmarkCircleFill" className="h-[10px] w-[10px] text-[color:var(--mac-secondary)]" />
           </span>
         </div>
-        <div className="grid h-[400px] grid-cols-[minmax(0,1fr)] overflow-hidden @xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-          <div className={`hidden flex-col border-r ${sep} @xl:flex`}>
-            <div className={`flex items-center gap-[5px] border-b ${sep} px-[9px] py-[5px] text-[9px] ${label2}`}>
-              <span className="whitespace-nowrap">18 of 117 occurrences</span>
-              <span className="inline-flex items-center gap-[3px] whitespace-nowrap rounded-full bg-[color-mix(in_srgb,var(--sys-tint)_22%,transparent)] px-[6px] py-[1.5px] font-medium text-[color:var(--sys-label)]">
-                in 1 John
-                <Sym name="xmarkCircleFill" className="h-[8px] w-[8px]" />
-              </span>
-              <span className="ml-auto text-[8px]">KJV</span>
-            </div>
-            <div className={`divide-y divide-[color:var(--sys-sep)] px-[9px]`}>
-              {occurrences.map((o) => (
-                <div key={o.ref} className="py-[5px]">
-                  <p className="flex items-baseline justify-between text-[10px] font-bold">
-                    {o.ref}
-                    <span className={`text-[8.5px] font-normal ${label2}`}>ἀγάπη</span>
-                  </p>
-                  {/* Scripture in the reader's serif and the text's own colour, under its reference. */}
-                  <p className={`${serif} mt-[2px] line-clamp-3 text-[10px] leading-[1.4]`}>
-                    {o.before}
-                    <span className="rounded-[2px] bg-[var(--mac-match)] font-semibold text-[color:var(--mac-on-match)]">{o.word}</span>
-                    {o.after}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
+        <div className="grid h-[400px] grid-cols-[minmax(0,1fr)] overflow-hidden @xl:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          {/* The word leads, on the left; the verses it narrows are on the right. */}
           <div className="min-w-0">
+            <p className={`flex items-center gap-[3px] px-[11px] pt-[7px] text-[9px] ${tint}`}>
+              <Sym name="chevronLeft" className="h-[8px] w-[8px]" />
+              Back to Search
+            </p>
             <div
-              className="mx-[10px] mt-[9px] rounded-[9px] p-[11px]"
+              className="mx-[10px] mt-[5px] rounded-[9px] p-[11px]"
               style={{
                 background:
                   'radial-gradient(90% 80% at 100% 0%, color-mix(in srgb, var(--sys-tint) 15%, transparent), transparent), var(--mac-card)',
@@ -1963,7 +2016,7 @@ export function MacAnalysisArt() {
               <p className={`mt-[7px] text-[9px] ${label2}`}>0.85 per 1,000 tagged words · KJV</p>
             </div>
 
-            <div className={`flex gap-[10px] border-b ${sep} px-[10px] pt-[9px] text-[9.5px]`}>
+            <div className={`flex items-end gap-[10px] border-b ${sep} px-[10px] pt-[9px] text-[9.5px]`}>
               {/* ἀγάπη stands in the Septuagint, so it has that tab too. */}
               {['Definition', 'Overview', 'Spread', 'Companions', 'Compare', 'Septuagint'].map((section) => (
                 <span
@@ -1977,29 +2030,15 @@ export function MacAnalysisArt() {
                   {section}
                 </span>
               ))}
+              {/* Spread charts one figure, so its Add to Deck sits at the end of the tabs. */}
+              <Glyph name="rectangleStackBadgePlus" className={`mb-[5px] ml-auto h-[11px] w-[11px] shrink-0 ${label2}`} />
             </div>
             <div className="px-[10px] py-[9px]">
               <div className="flex items-center gap-[7px]">
-                <MacPopUp>Books</MacPopUp>
-                <MacPopUp>Occurrences</MacPopUp>
-                <Glyph name="rectangleStackBadgePlus" className={`ml-auto h-[11px] w-[11px] ${label2}`} />
+                <MacCapsule menu>Books</MacCapsule>
+                <MacCapsule menu>Occurrences</MacCapsule>
               </div>
-              <div className={`mt-[10px] flex gap-[10px] text-[8.5px] ${label2}`}>
-                {(
-                  [
-                    ['More', 'more', '↑'],
-                    ['As expected', undefined, ''],
-                    ['Fewer', 'fewer', '↓'],
-                  ] as const
-                ).map(([name, standing, arrow]) => (
-                  <span key={name} className="flex items-center gap-[4px]">
-                    <span className="h-[6.5px] w-[10px] rounded-[2px]" style={{ backgroundColor: fill(standing) }} />
-                    {name}
-                    {arrow && <span className={`font-bold ${standing === 'more' ? tint : ''}`}>{arrow}</span>}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-[9px] space-y-[5px]">
+              <div className="mt-[10px] space-y-[5px]">
                 {agapeByBook.map(([name, count, standing]) => (
                   <div key={name} className="flex items-center gap-[6px] text-[9px]">
                     <span className="w-[62px] shrink-0 truncate text-right">{name}</span>
@@ -2021,6 +2060,52 @@ export function MacAnalysisArt() {
                   </div>
                 ))}
               </div>
+              {/* The key under the bars it reads, and what it means. */}
+              <div className={`mt-[10px] flex gap-[10px] text-[8.5px] ${label2}`}>
+                {(
+                  [
+                    ['More', 'more', '↑'],
+                    ['As expected', undefined, ''],
+                    ['Fewer', 'fewer', '↓'],
+                  ] as const
+                ).map(([name, standing, arrow]) => (
+                  <span key={name} className="flex items-center gap-[4px]">
+                    <span className="h-[6.5px] w-[10px] rounded-[2px]" style={{ backgroundColor: fill(standing) }} />
+                    {name}
+                    {arrow && <span className={`font-bold ${standing === 'more' ? tint : ''}`}>{arrow}</span>}
+                  </span>
+                ))}
+              </div>
+              <p className={`mt-[3px] text-[8px] ${label2}`}>
+                “More” and “fewer” mean beyond chance, not simply above or below average.
+              </p>
+            </div>
+          </div>
+
+          <div className={`hidden flex-col border-l ${sep} @xl:flex`}>
+            <div className={`flex items-center gap-[5px] border-b ${sep} px-[9px] py-[5px] text-[9px] ${label2}`}>
+              <span className="whitespace-nowrap">18 of 117 occurrences</span>
+              <span className="inline-flex items-center gap-[3px] whitespace-nowrap rounded-full bg-[color-mix(in_srgb,var(--sys-tint)_22%,transparent)] px-[6px] py-[1.5px] font-medium text-[color:var(--sys-label)]">
+                in 1 John
+                <Sym name="xmarkCircleFill" className="h-[8px] w-[8px]" />
+              </span>
+              <span className="ml-auto text-[8px]">KJV</span>
+            </div>
+            <div className={`divide-y divide-[color:var(--sys-sep)] px-[9px]`}>
+              {occurrences.map((o) => (
+                <div key={o.ref} className="py-[5px]">
+                  <p className="flex items-baseline justify-between text-[10px] font-bold">
+                    {o.ref}
+                    <span className={`text-[8.5px] font-normal ${label2}`}>ἀγάπη</span>
+                  </p>
+                  {/* Scripture in the reader's serif and the text's own colour, under its reference. */}
+                  <p className={`${serif} mt-[2px] line-clamp-3 text-[10px] leading-[1.4]`}>
+                    {o.before}
+                    <span className="rounded-[2px] bg-[var(--mac-match)] font-semibold text-[color:var(--mac-on-match)]">{o.word}</span>
+                    {o.after}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -2031,20 +2116,30 @@ export function MacAnalysisArt() {
 
 /** Settings → AI & Agents on the Mac, at Use Lamp in Other Apps. */
 export function ExternalAppsArt() {
-  const sidebar: Array<{ section: string; items: Array<{ icon: SymbolName; label: string; on?: boolean }> }> = [
+  const sidebar: Array<{ section: string; items: Array<{ icon: ReactNode; label: string; on?: boolean }> }> = [
+    {
+      section: 'Reading',
+      items: [
+        { icon: <Sym name="book" className="h-full w-full" />, label: 'Reader' },
+        { icon: <Glyph name="booksVertical" className="h-full w-full" />, label: 'Books' },
+        { icon: <Sym name="sidebarLeft" className="h-full w-full -scale-x-100" />, label: 'Study Sidebar' },
+        { icon: <Sym name="calendar" className="h-full w-full" />, label: 'Reading Plans' },
+      ],
+    },
     {
       section: 'Content',
       items: [
-        { icon: 'shippingbox', label: 'Modules' },
-        { icon: 'squareAndPencil', label: 'Writing' },
+        { icon: <Sym name="shippingbox" className="h-full w-full" />, label: 'Modules' },
+        { icon: <Sym name="squareAndPencil" className="h-full w-full" />, label: 'Writing' },
+        { icon: <Sym name="questionmarkBubble" className="h-full w-full" />, label: 'Quizzes' },
       ],
     },
     {
       section: 'Services',
       items: [
-        { icon: 'sparkles', label: 'AI & Agents', on: true },
-        { icon: 'circlepath', label: 'Sync' },
-        { icon: 'arrowDownCircle', label: 'Updates' },
+        { icon: <Sym name="sparkles" className="h-full w-full" />, label: 'AI & Agents', on: true },
+        { icon: <Sym name="circlepath" className="h-full w-full" />, label: 'Sync' },
+        { icon: <Sym name="arrowDownCircle" className="h-full w-full" />, label: 'Updates' },
       ],
     },
   ]
@@ -2061,11 +2156,11 @@ export function ExternalAppsArt() {
     },
     {
       name: 'Allow other apps to change my writings',
-      note: 'An agent in another app can rewrite a writing’s draft, which Lamp takes in when you next open that writing’s agent workspace. It cannot write over an edit of yours it had not seen.',
+      note: 'An agent in another app can rewrite a writing’s draft, which Lamp takes in when you next open that writing’s agent workspace. It cannot write over an edit of yours it had not seen. Your draft is sent to that app’s AI provider.',
     },
     {
       name: 'Allow other apps to add reading plans',
-      note: 'An agent in another app can ask for a reading plan over the passages you name, which Lamp lays out and adds when it next reads its library.',
+      note: 'An agent in another app can ask for a reading plan over the passages you name, which Lamp lays out and adds when it next reads its library. It adds plans and nothing else: it cannot change or remove anything already in your library.',
     },
   ]
   return (
@@ -2088,7 +2183,7 @@ export function ExternalAppsArt() {
                         item.on ? 'bg-[var(--sys-tint)] font-medium text-white' : ''
                       }`}
                     >
-                      <Sym name={item.icon} className={`h-[10px] w-[10px] shrink-0 ${item.on ? '' : tint}`} />
+                      <span className={`h-[10px] w-[10px] shrink-0 ${item.on ? '' : tint}`}>{item.icon}</span>
                       {item.label}
                     </p>
                   ))}

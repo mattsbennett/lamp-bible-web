@@ -36,7 +36,8 @@ export default function Page() {
       <h2>The home screen</h2>
       <p>
         The home screen shows today’s readings from your followed plans. Use the date at the top
-        to change days and the buttons along the bottom to open other features.
+        to change days, the gear at the top right for Settings, and the buttons along the bottom to
+        open other features.
       </p>
 
       <Table>
@@ -74,14 +75,18 @@ export default function Page() {
             </td>
           </tr>
           <tr>
-            <td>Settings</td>
+            <td>Decks</td>
             <td>
-              Sync, the module manager, translation and lexicon preferences, reading rate, read
-              aloud and reminders.
+              Slide decks made on the Mac, to view or present, and the presentation remote. See{' '}
+              <Link href="/docs/presenting">Presenting</Link>.
             </td>
           </tr>
         </tbody>
       </Table>
+      <p>
+        Settings holds sync, the module manager, translation, lexicon and commentary preferences,
+        reading rate, read aloud and reminders.
+      </p>
       <p>
         See <Link href="/docs/reading-plans">Reading plans</Link>.
         {' '}For Mac setup, see <Link href="/docs/mac">Get started on Mac</Link>. Connect both apps to the same sync location to share a library.
@@ -143,7 +148,8 @@ export default function Page() {
           the other lexicons.
         </li>
         <li>
-          Select a phrase and choose Highlight. Long-press a colour to name it by topic.
+          Select a phrase and choose <strong>Highlight</strong>, then a style and colour.
+          Long-press a colour and choose <strong>Name This Mark…</strong> to name it by topic.
         </li>
         <li>
           Choose <strong>Show Tools</strong> from the reader’s menu, switch the panel to{' '}

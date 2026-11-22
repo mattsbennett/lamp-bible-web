@@ -116,8 +116,7 @@ export default function Page() {
         </p>
         <p>
           The date at the top moves backwards and forwards a day at a time, or tap it to pick one —
-          which is how you catch up on a missed day or read ahead. The Readings menu in the reader
-          adds each reading’s verse count.
+          which is how you catch up on a missed day or read ahead.
         </p>
 
         <Figure caption="The day’s card for The Bible Companion: the day of the year, the readings and how long they take, and what is up next.">
@@ -126,13 +125,21 @@ export default function Page() {
 
         <h3>Where readings open</h3>
         <p>
-          Tapping a reading opens it in the reader, scoped to exactly the assigned verses; pulling
-          past the end moves on to the next reading. Each plan also has a{' '}
-          <strong>Start Reading</strong> button that goes through the day’s readings in order from
-          the first one you have not read, and becomes <strong>Continue Reading</strong> and then{' '}
-          <strong>Read Again</strong>. When a reading has quiz questions, a{' '}
-          <strong>Quiz Available</strong> card appears after its last verse, and the Readings menu
-          offers it too.
+          Tapping a reading opens it in the reader’s{' '}
+          <Link href="/docs/reader#plan-mode">plan mode</Link>, scoped to exactly the assigned
+          verses. Each plan also has a <strong>Start Reading</strong> button that goes through the
+          day’s readings in order from the first one you have not read, and becomes{' '}
+          <strong>Continue Reading</strong> and then <strong>Read Again</strong>.
+        </p>
+        <p>
+          Each reading ends with <strong>Previous Reading</strong> and <strong>Next Reading</strong>,
+          and pulling past the end also moves on. Tap the reader’s title for the plan’s sheet: the
+          day’s readings with their verse counts, estimated time and kind, and{' '}
+          <strong>Choose Passage</strong> and <strong>Exit Plan Mode</strong>. When a reading has quiz
+          questions, a <strong>Quiz Available</strong> card appears after its last verse, and the
+          sheet has a <strong>Quiz</strong> chip for it. After the day’s last reading,{' '}
+          <strong>End of the day’s readings</strong> offers <strong>Done</strong> or a button to keep
+          reading on from there.
         </p>
         <p>
           If you would rather read in Accordance, e-Sword LT, Logos, Olive Tree or YouVersion, choose

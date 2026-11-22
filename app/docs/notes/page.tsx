@@ -78,6 +78,12 @@ export default function Page() {
           shows the chapter note followed by verse notes in order. It scrolls with the reader, and
           its title menu switches between notes modules.
         </p>
+        <p>
+          Above the notes, <strong>Highlights in</strong> the chapter lists its{' '}
+          <Link href="/docs/highlights">highlights</Link>, each with its colour, verse, theme and
+          words; tap one to go to its verse, or <strong>All Highlights</strong> to see them all in
+          Search. Notes synced from another device appear without reopening the app.
+        </p>
         <ul>
           <li>
             <strong>Tap a note to edit it.</strong> It opens in place, with the cursor where you
@@ -129,12 +135,25 @@ export default function Page() {
       <Platform only="mac">
         <h2>On the Mac</h2>
         <p>
-          Notes are written in the study column’s <strong>Notes</strong> tab: click a verse number
-          to open its note. A note has an optional title and formatted text stored as markdown, and
-          can span verses within a chapter. Use <strong>Attach Image</strong> to add a picture,
+          Notes are written in the study column’s <strong>Notes</strong> tab. Click a verse number,
+          choose <strong>Note</strong> in the bar beside selected words, or right-click a verse for{' '}
+          <strong>Add Note</strong> or <strong>Edit Note</strong>. A verse with no note shows{' '}
+          <strong>Add a Note</strong>. A note begun from selected words starts with them quoted.
+        </p>
+        <p>
+          A note has an optional title and formatted text stored as markdown. Under{' '}
+          <strong>Covers</strong>, choose <strong>This verse only</strong> or a range such as
+          Verses 29–31 within the chapter. Use <strong>Attach Image</strong> to add a picture,
           which syncs with the note. Press <strong>⌘S</strong> to save; saving an empty note deletes
           it. Your notes show in the margin as an orange note, and notes from an installed notes
           module as a purple book.
+        </p>
+        <p>
+          The <strong>Read</strong> | <strong>Edit</strong> switch at the foot of the tab chooses
+          between reading the chapter’s notes as they read, each with a pencil to edit it, and
+          editing them, where the chapter’s other notes show their titles and first lines. Lamp
+          remembers the choice. In Edit, <strong>Highlights in</strong> the chapter lists its
+          highlights with their themes, and <strong>All Highlights</strong> opens them in Search.
         </p>
         <p>
           The <strong>Study Data</strong> menu at the foot of the Notes tab exports a book’s notes

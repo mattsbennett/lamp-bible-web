@@ -368,7 +368,7 @@ export default function Page() {
         <code>{`{
   "meta": {
     "schemaVersion": "1.0",
-    "id": "MYBIBLEs",
+    "id": "MYBIBLE",
     "type": "translation",
     "name": "My Bible",
     "abbreviation": "MYBIBLE",
@@ -419,10 +419,10 @@ export default function Page() {
         The identifier must be unique across installed modules, since it is what highlights, notes
         and settings refer to, so keep it once people are using the module. The name and
         abbreviation are what the reader shows, and need no marker for Strong’s tagging:{' '}
-        <code>features.strongs</code> says whether a translation has it. The bundled translations’
-        identifiers end in <code>s</code> where they were first built with Strong’s numbers (
-        <code>KJVs</code>, <code>BSBs</code>), and keep it even where the tags have since gone (
-        <code>WEBs</code>, <code>ASVs</code>).
+        <code>features.strongs</code> says whether a translation has it. The bundled translations
+        are keyed by their abbreviations (<code>BSB</code>, <code>KJV</code>). Earlier releases
+        keyed the Strong’s-tagged ones with a trailing <code>s</code> (<code>BSBs</code>,{' '}
+        <code>KJVs</code>), and the apps still find notes and highlights saved under those.
       </p>
 
       <h3>Annotations added at build time</h3>
@@ -438,6 +438,13 @@ export default function Page() {
         full stop. The bundled BSB uses this field to record that its spellings were copied
         from BSB translation tables by matching each verse’s Strong’s numbers.
       </p>
+      <p>
+        Where a part has several sources, each covering only some words, give each entry a{' '}
+        <code>scope</code> in the same style, such as <code>most words</code>. Lamp then lists them
+        under one sentence, “Strong’s numbers in LXX come from two sources:”, with one line for each
+        that begins with its scope. The bundled Septuagint credits one source for most words and
+        another for names the New Testament does not use.
+      </p>
 
       <h2>Worked example: highlights</h2>
       <p>
@@ -451,7 +458,7 @@ export default function Page() {
     "id": "my_highlights",
     "type": "highlights",
     "name": "My Highlights",
-    "translationId": "MYBIBLEs"
+    "translationId": "MYBIBLE"
   },
   "verses": [
     {

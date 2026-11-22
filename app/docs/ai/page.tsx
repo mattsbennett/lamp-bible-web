@@ -21,7 +21,8 @@ export default function Page() {
         <Link href="/docs/reading-plans">reading plan</Link> from a description on iPhone, iPad
         and Mac, using the on-device model. System Writing Tools are also available in the editor.
         On the Mac, Reader Chat and writing agents use your provider’s command-line tool with
-        read-only access to your library. Lamp Bible does not run an AI service.
+        read-only access to your library, and an iPhone or iPad paired with the Mac can carry on
+        its chats. Lamp Bible does not run an AI service.
       </p>
 
       <h2 id="turning-on">Turning it on</h2>
@@ -34,8 +35,9 @@ export default function Page() {
       <p>
         The switch is shared with your iPhone and iPad, where it is Settings →{' '}
         <strong>AI Features</strong> and covers making a{' '}
-        <Link href="/docs/reading-plans">reading plan</Link> from a description and the system’s
-        Writing Tools in Lamp’s text.
+        <Link href="/docs/reading-plans">reading plan</Link> from a description, the system’s
+        Writing Tools in Lamp’s text, <a href="#paired-devices">chats with your Mac</a> and review
+        marks on the assistant’s changes.
       </p>
 
       <Platform only="ios">
@@ -46,11 +48,19 @@ export default function Page() {
           <Link href="/docs/reading-plans">reading plans</Link> and system Writing Tools in the editor.
           Plan descriptions are processed on the device and are not sent to Lamp Bible.
         </p>
+        <p>
+          Paired with a Mac, the reader’s tool panel gains a <strong>Chat</strong> mode for the
+          Mac’s chats, and a piece of writing gains <strong>Ask the Assistant</strong> — see{' '}
+          <a href="#paired-devices">Chats from iPhone and iPad</a> and{' '}
+          <Link href="/docs/writing">Writing</Link>. Turn on{' '}
+          <strong>Mark the assistant’s changes for review</strong> under Writing in the same settings
+          to keep what the assistant changed marked until you have read it.
+        </p>
       </Platform>
 
       <Platform only="mac">
         <h2>Setting up</h2>
-        <p>Three providers are supported. Each needs its command-line tool installed and signed in:</p>
+        <p>Four providers are supported. Each needs its command-line tool installed and signed in:</p>
         <Table>
           <thead>
             <tr>
@@ -81,6 +91,13 @@ export default function Page() {
               </td>
               <td>In a terminal, with whichever provider you configure</td>
             </tr>
+            <tr>
+              <td>Google Antigravity</td>
+              <td>
+                <code>agy</code>
+              </td>
+              <td>In a terminal, with a link to open and a code to paste back. Chat only</td>
+            </tr>
           </tbody>
         </Table>
         <p>
@@ -90,6 +107,11 @@ export default function Page() {
           provider’s own sign-in. Lamp Bible never reads or stores your credentials; they stay with
           the tool. The tool must be on your login shell’s path, which is where installers normally
           put it.
+        </p>
+        <p>
+          For Claude Code, Codex and OpenCode, the list and an empty chat also show how much of your
+          plan’s usage limits you have used. The tool asks its provider when Settings or an empty chat
+          opens and the last answer is more than five minutes old; <strong>Refresh</strong> asks again.
         </p>
 
         <h3>What the AI may see</h3>
@@ -118,13 +140,14 @@ export default function Page() {
             <tr>
               <td>Include personal writing, notes, and highlights</td>
               <td>Off</td>
-              <td>Lets the tools read your own notes, highlights and writing too</td>
+              <td>Lets the tools read your own notes, highlights and writing, and your other chats, too</td>
             </tr>
           </tbody>
         </Table>
         <p>
           Library tools can search and read passages, commentary, dictionaries, books, plans and
-          quizzes, and analyse Strong’s numbers. They can read personal study content if you enable it.
+          quizzes, and analyse Strong’s numbers. They can read personal study content and your other
+          Reader Chat and writing chats if you enable it.
           Creating writings, replacing drafts from other apps and adding plans require separate
           permissions, all off by default. See <a href="#start-writing">Reader Chat</a> and{' '}
           <a href="#other-apps">Using Lamp in other apps</a>. Use <strong>Test Module Tools</strong>{' '}
@@ -133,12 +156,15 @@ export default function Page() {
 
         <h3 id="model">Provider, model and effort</h3>
         <p>
-          Use the menus at the top of a chat to choose its provider, model and effort. The model
-          menu offers the provider’s default and model aliases, such as <code>opus</code>,{' '}
+          Click the row at the top of a chat, which names its provider, model and passage, to show
+          the provider, model and effort menus. The row opens by itself when the provider is not
+          connected. The model menu offers the provider’s default and model aliases, such as <code>opus</code>,{' '}
           <code>sonnet</code> and <code>haiku</code> for Claude Code. Choose{' '}
           <strong>Other Model…</strong> to enter a name, which Lamp passes to the provider unchanged.
           Claude Code offers effort levels from low to max; Codex accepts a typed value; OpenCode
-          lists the variants supported by its installed tool. Each chat has its own settings.
+          lists the variants supported by its installed tool. Antigravity takes a model ID from{' '}
+          <code>agy models</code> and a thinking level from low to max. Each chat has its own
+          settings.
         </p>
 
         <h2 id="skills">Study skills</h2>
@@ -155,19 +181,19 @@ export default function Page() {
           </li>
           <li>
             <strong>original-languages</strong> examines Hebrew or Greek words and their parsing,
-            compares translations and checks claims about the original text. It consults TBESG first
-            for Greek and BDB for Hebrew, and traces Greek words to the Hebrew they translate in the Septuagint.
+            compares translations and checks claims about the original text, and traces Greek words to
+            the Hebrew they translate in the Septuagint.
           </li>
         </ul>
         <p>
           Both skills instruct agents to assess claims against scripture. They look passages up rather than quoting from memory,
-          report a commentary’s view as that commentary’s, and distinguish the contents of your library from evidence for an interpretation. Reader Chat and writing agents have both;{' '}
+          report a commentary’s view as that commentary’s, and distinguish the contents of your library from evidence for an interpretation. They use a module you name, otherwise the bundled TAHOT, TAGNT, BDB and TBESG, and mention once any other module you have that bears on the question. Reader Chat and writing agents have both;{' '}
           <a href="#other-apps">other apps</a> get them as prompts.
         </p>
 
         <h2>Reader Chat</h2>
         <p>
-          <strong>Reader Chat</strong> (⇧⌘J, or the speech-bubble button) opens beside the reader
+          <strong>Reader Chat</strong> (⇧⌘J, or <strong>Chat</strong> in the toolbar) opens beside the reader
           once AI is on.
           Ask about the chapter on screen, or name any other passage. It answers from your modules
           through the read-only tools, and cannot edit files or run commands.
@@ -176,12 +202,13 @@ export default function Page() {
           Each message includes your current chapter, translation, selected verse and selected words
           with their verse references. Enabling <strong>Include personal writing, notes, and highlights</strong>{' '}
           also sends your notes and highlights for that chapter. When disabled, the chat is told that
-          this content is not shared. A line below the chapter name lists what the next message will include.
+          this content is not shared. The card under the row at the top of the chat lists what the
+          next message will include.
         </p>
         <p>
           The chat looks only in the modules your Module Access setting allows, so a module you have
-          hidden stays out of its answers unless you choose all installed modules. A line at the top
-          of the chat says what it can reach.
+          hidden stays out of its answers unless you choose all installed modules. The same card says
+          what it can reach.
         </p>
         <p>
           Replies appear as they are generated. Claude Code also shows its current tool and passage;
@@ -191,15 +218,22 @@ export default function Page() {
           quitting the app.
         </p>
         <p>
+          If a reply fails or you stop it, queued messages wait until you choose{' '}
+          <strong>Send Them</strong>. A reply stops when you reach a usage limit, or after ten minutes
+          with no word from the provider, and the chat warns you as you near a limit. A chat billed to
+          an API key rather than your subscription says so. Quitting Lamp stops replies in progress.
+        </p>
+        <p>
           Each reader tab retains its chat across launches. Use <strong>Chats</strong> to start or
           reopen a conversation, or search its questions and replies. The list identifies chats open
           in other tabs. Right-click a question and choose <strong>Fork From Here</strong>{' '}to start
           a separate conversation from that point. In Settings → AI &amp; Agents,{' '}
           <strong>Keep chats for</strong> sets retention from the last use (two months by default).
-          Empty chats are discarded. Reader Chat conversations stay on the Mac and do not sync.
+          Empty chats are discarded. Reader Chat conversations stay on the Mac and do not sync, though
+          a <a href="#paired-devices">paired iPhone or iPad</a> can follow them.
         </p>
         <p id="start-writing">
-          Choose <strong>Start a Writing</strong> in the chat header to create a document and copy
+          Choose <strong>Start a Writing</strong> at the end of the chat’s top row to create a document and copy
           the conversation into its agent chat. To copy only part, right-click a question and choose{' '}
           <strong>Start a Writing from Here…</strong>. The chats are independent after copying:
           Reader Chat stays on this Mac, while the writing’s chat syncs. The new chat marks the end of the copied conversation; the original links to writings created from it.
@@ -212,17 +246,22 @@ export default function Page() {
 
         <h2>Writing with an agent</h2>
         <p>
-          Choose <strong>Agent</strong> in the writing editor to open the document’s workspace.
-          The editor and agent share the draft. Changes are saved in <strong>Revisions</strong>,
+          Choose <strong>Assistant</strong> in the writing editor’s toolbar to open the document’s
+          workspace. A row at the top names the provider, model and writing and whether it is
+          connected; click it to show the setup: provider, model, effort, Chat or Terminal, the
+          draft, context and skills. It opens by itself when the provider needs connecting. The
+          editor and agent share the draft. Changes are saved in <strong>Revisions</strong>,
           where you can undo them or restore an earlier version. If you and the agent edit a file
           at the same time, you choose which version to keep. The agent receives the active filename
           and selected text, so you can select a paragraph and ask about it.
         </p>
         <ul>
           <li>
-            <strong>Chat</strong> shows the workspace folder the agent can read and edit. Edits appear
-            in the draft and are saved in Revisions. Claude Code requests permissions in chat, with{' '}
+            <strong>Chat</strong> is where you talk to the agent; an empty chat suggests a few ways
+            to start. Edits appear in the draft and are saved in Revisions. Claude Code requests permissions in chat, with{' '}
             <strong>Allow</strong>, <strong>Always Allow</strong> for that request type, and <strong>Deny</strong>.
+            Antigravity never asks: Lamp allows its own tools and edits inside the workspace, and
+            refuses commands, the web and anything outside the workspace.
             New messages queue while the agent works; closing the pane does not stop it.
             <p>
               Right-click a question and choose <strong>Undo This Turn…</strong> to restore the draft
@@ -232,7 +271,7 @@ export default function Page() {
           </li>
           <li>
             <strong>Terminal</strong> runs the provider’s own tool directly, continuing the same
-            session, for anything the chat does not offer.
+            session, for anything the chat does not offer. Antigravity runs in Chat only.
           </li>
           <li>
             <strong>Context</strong> holds files you add for the agent to read — sources, a previous
@@ -248,14 +287,43 @@ export default function Page() {
         </ul>
         <p>
           The workspace — companion files, context, skills, revisions and the conversation — syncs
-          with your library, so it follows the writing to your other Macs.
+          with your library, so it follows the writing to your other Macs, and its documents reach
+          iPhone and iPad.
         </p>
+
+        <h3 id="review">Reviewing the assistant’s changes</h3>
+        <p>
+          Turn on <strong>Mark the assistant’s changes for review</strong> in Settings → AI &amp;
+          Agents to keep every passage the assistant changes marked until you have read it. A later
+          change marks it again, and what you clear stays cleared on all your devices.
+        </p>
+        <ul>
+          <li>
+            The toolbar shows how many are left, such as <strong>3 to Review</strong>. Its menu has{' '}
+            <strong>Mark Selection as Reviewed</strong>, <strong>Mark All as Reviewed</strong>,{' '}
+            <strong>Restore Original Wording…</strong>, <strong>Next Change</strong> and{' '}
+            <strong>Previous Change</strong>.
+          </li>
+          <li>
+            In the visual editor, ✓ beside a paragraph clears its marks, and ↺ shows the passage now
+            and as it was, with a button to restore it. In Markdown, right-click a marked passage.
+          </li>
+          <li>
+            Restoring asks first, and ⌘Z undoes it. The assistant is told what you put back, so it
+            does not make the same change again. A passage you have edited since cannot be restored;
+            mark it as reviewed instead.
+          </li>
+          <li>
+            Companion documents are marked too, including one the assistant wrote from scratch.
+          </li>
+        </ul>
 
         <Callout tone="warn" title="What a writing agent sees">
           <p>
             A writing agent can always read its document, metadata, companion files and added context,
-            regardless of the personal-content setting. It can also use web search or shell commands
-            when permitted by its provider tool’s settings. Building decks requires Python 3;
+            and is told which of its changes you have not yet reviewed, regardless of the
+            personal-content setting. It can also use web search or shell commands when permitted by
+            its provider tool’s settings, except with Antigravity. Building decks requires Python 3;
             macOS offers to install it on first use.
           </p>
         </Callout>
@@ -333,8 +401,15 @@ export default function Page() {
           an empty writing or one with a draft. No Lamp conversation is copied into it.
         </p>
         <p>
-          With personal content allowed, it can also read the writings that have an agent workspace —
-          any writing whose Agent pane you have opened. With{' '}
+          An agent can also prepare writing for import: it checks markdown files against your
+          library without changing anything, and with <strong>Allow agents to start a writing</strong>{' '}
+          on, sends them to Lamp’s import review, where nothing is imported until you tick it. See{' '}
+          <Link href="/docs/import-export#writing-import">Import &amp; export</Link>.
+        </p>
+        <p>
+          With personal content allowed, it can also read your Reader Chat and writing chats, and the
+          writings that have an agent workspace —
+          any writing whose Assistant you have opened. With{' '}
           <strong>Allow other apps to change my writings</strong> on, it can replace one’s draft:
         </p>
         <ul>
@@ -350,12 +425,42 @@ export default function Page() {
         </ul>
       </Platform>
 
+      <h2 id="paired-devices">Chats from iPhone and iPad</h2>
+      <p>
+        An iPhone or iPad can read and carry on the Mac’s chats while Lamp Bible is open on the Mac.
+        The chats run on the Mac, with its provider and the same library access as a chat there. The
+        two connect over your local network, encrypted, and nothing passes through anyone else’s
+        servers.
+      </p>
+      <ol>
+        <li>
+          On the Mac, open Settings → AI &amp; Agents. Under <strong>Chats on iPhone and iPad</strong>,
+          turn on <strong>Allow chats from paired devices</strong> and choose{' '}
+          <strong>Pair a Device…</strong> to show a code.
+        </li>
+        <li>
+          On the iPhone or iPad, with AI features on, switch the reader’s tool panel to{' '}
+          <strong>Chat</strong>. Once it finds the Mac, tap <strong>Scan Pairing Code</strong>, or type
+          the code, and tap <strong>Pair</strong>. A code works once.
+        </li>
+      </ol>
+      <p>
+        The panel then lists the Mac’s reader chats and writing chats to read and continue, or you
+        can ask about the passage you are on to start one. Chats about a writing from a module are
+        read-only. <strong>Choose Another Mac</strong> and <strong>Forget This Mac</strong> change the
+        pairing; on the Mac, <strong>Forget</strong> removes a device. In a piece of writing,{' '}
+        <strong>Ask the Assistant</strong> sends your question to that writing’s assistant on the
+        Mac, and its changes arrive with your library’s next sync.
+      </p>
+
       <h2>Privacy</h2>
       <p>
         Apple Intelligence processes plan descriptions on the device. On the Mac, Reader Chat
-        and writing agents send messages and retrieved content to your chosen provider under its
-        terms and privacy policy. No provider tool starts unless you connect a provider. Content
-        read by another AI app goes to that app’s provider under its terms.
+        and writing agents send messages and retrieved content to your chosen provider — OpenAI,
+        Anthropic, Google, or the one OpenCode is set up for — under its terms and privacy policy.
+        No provider tool starts unless you connect a provider, and usage checks go from the tool to
+        its own provider. A paired iPhone or iPad talks only to your Mac, over the local network. Content read by another AI app, including your chats when personal content
+        is allowed, goes to that app’s provider under its terms.
       </p>
       <p>
         Lamp Bible does not operate or proxy these services and does not receive your conversations.

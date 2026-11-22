@@ -107,6 +107,17 @@ export default function Page() {
                 or <code>.lamp</code>.
               </td>
             </tr>
+            <tr>
+              <td>Bring in Word, Pages or notes-app documents</td>
+              <td>
+                With AI on, <strong>Import or Create Content</strong> → <strong>Or have an agent
+                prepare the files</strong>. Copy its prompt into an app you have{' '}
+                <Link href="/docs/ai#other-apps">allowed to read your library</Link>, such as Claude
+                Code or Codex, with the folder they are in. The agent converts them and sends them
+                back for the same review before anything is imported. It needs{' '}
+                <strong>Allow agents to start a writing</strong>.
+              </td>
+            </tr>
           </tbody>
         </Table>
       </Platform>
@@ -246,12 +257,14 @@ For God so loved the world...`}</code>
 
       <h2>Writing</h2>
       <p>
-        A single piece of writing is ordinary markdown with YAML frontmatter. Everything except{' '}
-        <code>title</code> is optional.
+        A single piece of writing is ordinary markdown with YAML frontmatter, and every field is
+        optional. Without a <code>title</code>, the opening <code>#</code> heading or the file name
+        is used.
       </p>
 
       <pre>
         <code>{`---
+id: "finding-peace"
 title: "Finding Peace in the Storm"
 subtitle: "When life feels overwhelming"
 author: "Pastor Michael"
@@ -263,7 +276,6 @@ series:
   order: 1
 keyScriptures:
   - ref: "Mark 4:39"
-    sv: 41004039
 ---
 
 ## Summary
@@ -293,7 +305,13 @@ Life brings unexpected storms...[^wind]
         <code>exhortation</code>, <code>reflection</code>, <code>study</code> and{' '}
         <code>prayer</code>; anything else is kept as written, and values that differ only in case
         count as one. An older file’s <code>sermon</code> is read as <code>exhortation</code>. Each piece has one category and any number of <code>tags</code>. A{' '}
-        <code>## Summary</code> section at the top becomes the piece’s summary.
+        <code>## Summary</code> section at the top becomes the piece’s summary. A key scripture
+        needs only its <code>ref</code>.
+      </p>
+      <p>
+        <code>id</code> is what lets a later import find the same piece. Without one, the piece
+        takes an id from its place in the folder you import, so importing that folder again still
+        finds it. Each id must be unique.
       </p>
 
       <h3>Several pieces in one file</h3>
@@ -332,12 +350,33 @@ Life brings unexpected storms...`}</code>
         </li>
       </ul>
 
-      <h3>Import behaviour</h3>
+      <h3 id="writing-import">Import behaviour</h3>
+      <p>
+        Nothing changes until you confirm. The import first lists what it will do with each piece:
+      </p>
       <ul>
-        <li>Each file becomes one piece; a folder of files becomes that many.</li>
-        <li>Imports always add new pieces, so importing twice creates duplicates.</li>
-        <li>Media files are copied into the app’s storage.</li>
+        <li>
+          <strong>New</strong> and <strong>updated</strong> pieces are ticked; a file you have not
+          changed since the last import is left as it is.
+        </li>
+        <li>
+          A <strong>conflict</strong>, where the piece was edited in Lamp after the file was saved,
+          waits for you to tick it.
+        </li>
+        <li>
+          A file that cannot be imported is listed with the reason: a repeated or invalid id, no
+          text, a missing picture or recording, or text that is not UTF-8. Raw HTML, unknown
+          frontmatter fields and footnotes with no text are imported with a warning.
+        </li>
       </ul>
+      <p>
+        Each file becomes one piece, and a Lamp export of several pieces becomes that many. A folder
+        imports every markdown file inside it, unless it holds a <code>lamp-import.json</code>{' '}
+        naming the ones to take: <code>{'{"writings": [{"file": "talk.md"}]}'}</code>. Pictures and
+        recordings are found by their links within the folder and copied into the app’s storage.
+        On the Mac, a <code>talk.lampdeck</code> beside <code>talk.md</code> becomes that piece’s
+        slide deck, and <strong>Undo Last Writing Import</strong> reverses an import.
+      </p>
 
       <h2>Media</h2>
       <p>
@@ -355,11 +394,11 @@ Life brings unexpected storms...`}</code>
         <tbody>
           <tr>
             <td>Images</td>
-            <td>JPEG, PNG, GIF, WebP, HEIC</td>
+            <td>JPEG, PNG, GIF, WebP, HEIC, HEIF, TIFF, BMP</td>
           </tr>
           <tr>
             <td>Audio</td>
-            <td>M4A (recommended), MP3, WAV, AAC, OGG</td>
+            <td>M4A (recommended), MP3, WAV, AAC, AIFF, CAF, FLAC</td>
           </tr>
         </tbody>
       </Table>

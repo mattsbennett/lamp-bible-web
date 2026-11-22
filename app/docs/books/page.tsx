@@ -83,14 +83,23 @@ export default function Page() {
       <Platform only="mac">
         <h2>On the Mac</h2>
         <p>
-          Open <strong>Books</strong> in the sidebar for three resizable columns: the library,
-          contents and text. Use <strong>Group Books</strong> to change genre grouping. You can search
-          within a book, bookmark sections and set the typeface, size and spacing. Bookmarks and your
-          position within a paragraph sync between Macs.
+          Open <strong>Books</strong> in the sidebar for the shelf, with <strong>Continue Reading</strong>{' '}
+          naming the section you left each book in. <strong>Group</strong> in the toolbar changes
+          how the shelf is grouped, and <strong>Add Book</strong> installs one. The search field
+          matches title, author, editor, publisher, description, edition, ISBN, year, tag or genre,
+          with your words free to fall in different fields.
         </p>
         <p>
-          <strong>Open in Book Reader</strong> opens a separate window. <strong>Share Section</strong>{' '}
-          copies a section link. Use ⌥⌘← and ⌥⌘→ to move between sections.
+          Choose a book to read it with its contents beside the page; <strong>All Books</strong>{' '}
+          goes back to the shelf. You can search within a book, bookmark sections and set the
+          typeface, size and spacing. Bookmarks and your position within a paragraph sync between
+          Macs. A book’s menu on the shelf offers <strong>Book Information</strong>, and{' '}
+          <strong>Remove Book…</strong> for books you added.
+        </p>
+        <p>
+          <strong>Open in Window</strong> opens the book in a separate window.{' '}
+          <strong>Share Section</strong> copies a section link. Use ⌥⌘← and ⌥⌘→ to move between
+          sections.
         </p>
       </Platform>
 

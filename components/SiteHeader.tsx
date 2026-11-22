@@ -5,6 +5,7 @@ import { DownloadLink, HeaderNav, MobileMenu, type NavItem } from '@/components/
 
 const nav: NavItem[] = [
   { href: '/#features', label: 'Features' },
+  { href: '/#ai', label: 'AI' },
   { href: '/#modules', label: 'Modules' },
   { href: '/docs', label: 'Docs' },
   { href: '/privacy', label: 'Privacy' },

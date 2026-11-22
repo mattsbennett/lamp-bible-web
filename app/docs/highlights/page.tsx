@@ -90,7 +90,12 @@ export default function Page() {
         </li>
         <li>
           Filter{' '}
-          <Link href="/docs/search">search</Link> by colour to find passages you marked with it.
+          <Link href="/docs/search">search</Link> by theme, colour or style to find the passages you
+          marked with it.
+        </li>
+        <li>
+          Apply a theme to set its colour and style in one step. The highlight controls list the
+          themes you used most recently first.
         </li>
       </ul>
       <p>
@@ -101,33 +106,60 @@ export default function Page() {
       <Platform only="ios">
         <h2>On iPhone and iPad</h2>
         <p>
-          Tap a verse number to highlight the whole verse, or select any span of text and choose
-          Highlight. The highlight controls in the reader’s menu start with yellow, green, blue and
-          pink; <strong>+</strong> adds any colour from the system colour picker. Drag colours to
-          put the ones you use most first — the rest fold into an overflow control — and long-press
-          one to remove it. The same controls choose the active set; the module manager creates,
-          renames and deletes sets.
+          Tap a verse number and choose <strong>Highlight</strong> to mark the whole verse, or
+          select any span of text, across verses if you like, and choose{' '}
+          <strong>Highlight</strong>. A panel opens beside the words, and each choice applies at
+          once:
         </p>
+        <ul>
+          <li>Four <strong>Aa</strong> samples choose the style.</li>
+          <li>
+            The colour row starts with yellow, green, blue and pink; <strong>+</strong> adds any colour
+            from the system colour picker. Long-press a colour to choose{' '}
+            <strong>Name This Mark…</strong> or <strong>Remove from Palette</strong>.
+          </li>
+          <li>
+            <strong>Themes</strong> lists the set’s themes, the ones you used last first. A theme sets
+            colour and style together.
+          </li>
+          <li>
+            <strong>Add Note</strong>, <strong>Copy as Citation</strong>, <strong>More</strong> (Look
+            Up, Search, Copy and the highlight set) and <strong>Remove</strong>.
+          </li>
+        </ul>
         <p>
-          To add a theme, long-press a colour in the highlight controls and choose{' '}
-          <strong>Add Theme</strong>; the name then shows under that colour.
+          Tap an existing highlight to open its panel again. A new highlight replaces any lying wholly
+          inside it. The reader’s menu chooses the active set and shows or hides highlights; the module
+          manager creates, renames and deletes sets.
         </p>
       </Platform>
 
       <Platform only="mac">
         <h2>On the Mac</h2>
         <p>
-          Right-click a verse to highlight it. To highlight part of a verse, choose{' '}
-          <strong>Highlight Words…</strong>, then a set, style and colour or a theme. You can also
-          save a new theme here. Existing highlights each have a <strong>Remove</strong> button.{' '}
-          <strong>Delete Set…</strong> deletes the set and all its highlights across translations.{' '}
-          <strong>Remove Highlight</strong> in a verse’s menu clears your highlights on that verse,
-          leaving installed module highlights intact.
+          Select words, or click a highlight, and a bar appears beside them with four styles, the
+          colours, and a theme menu that names the theme in use. It also has{' '}
+          <strong>Note</strong>, <strong>Copy as Citation</strong> and{' '}
+          <strong>More Highlight Options</strong>, and <strong>Remove</strong> on a highlight you
+          clicked.
         </p>
         <p>
-          The study column’s Notes tab shows the selected verse’s highlights and lists the
-          chapter’s highlights to go to. Its <strong>Study Data</strong> menu exports a
-          translation’s highlights as JSON or a <code>.lamp</code> module, and imports them back.
+          Right-click a verse, or selected words, for the same colours, a <strong>Theme</strong>{' '}
+          submenu, <strong>Remove Highlight</strong>, and <strong>Add Note</strong> or{' '}
+          <strong>Edit Note</strong>. Remove Highlight clears your highlights there, leaving
+          installed module highlights intact.
+        </p>
+        <p>
+          <strong>More Highlight Options</strong> opens a sheet to choose the highlight set, with{' '}
+          <strong>New Set…</strong> and <strong>Delete Set…</strong>, apply a theme, pick a style and
+          colour, and <strong>Save Theme…</strong>. Delete Set deletes the set and all its highlights
+          across translations.
+        </p>
+        <p>
+          In Edit, the study column’s Notes tab lists the chapter’s highlights, with the words marked
+          and their themes; click one to go to it, or <strong>All Highlights</strong> to see every
+          highlight in Search. Its <strong>Study Data</strong> menu exports a translation’s highlights
+          as JSON or a <code>.lamp</code> module, and imports them back.
         </p>
       </Platform>
 

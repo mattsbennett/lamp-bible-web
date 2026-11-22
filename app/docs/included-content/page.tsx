@@ -23,8 +23,7 @@ export default function Page() {
       </p>
       <p>
         Lamp omits the machine-aligned Strong’s tags from the World English Bible and American
-        Standard Version because many identify neighbouring words. Their module IDs retain the{' '}
-        <code>s</code> suffix to preserve links to notes and highlights. Spanish and French source
+        Standard Version because many identify neighbouring words. Spanish and French source
         files also include Strong’s tags, but these are omitted because the publisher provides
         no source or licence for them.
       </p>
@@ -41,7 +40,7 @@ export default function Page() {
         <tbody>
           <tr>
             <td>
-              <code>BSBs</code>
+              <code>BSB</code>
             </td>
             <td>Berean Standard Bible</td>
             <td>Yes</td>
@@ -49,7 +48,7 @@ export default function Page() {
           </tr>
           <tr>
             <td>
-              <code>KJVs</code>
+              <code>KJV</code>
             </td>
             <td>CrossWire King James Version v3.1</td>
             <td>Yes</td>
@@ -57,7 +56,7 @@ export default function Page() {
           </tr>
           <tr>
             <td>
-              <code>ASVs</code>
+              <code>ASV</code>
             </td>
             <td>American Standard Version</td>
             <td>—</td>
@@ -65,7 +64,7 @@ export default function Page() {
           </tr>
           <tr>
             <td>
-              <code>WEBs</code>
+              <code>WEB</code>
             </td>
             <td>World English Bible</td>
             <td>—</td>

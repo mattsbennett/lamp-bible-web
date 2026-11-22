@@ -42,7 +42,8 @@ export default function Page() {
       <p>
         Download the disk image from the <Link href={downloadPaths.mac}>Mac download page</Link>,
         open it, and drag Lamp Bible into Applications. The first launch unpacks the bundled
-        library, which takes a few seconds; the library then works offline. To use the
+        library, which takes a few seconds, and the first launch after an update can take longer
+        while it prepares the library again. The library then works offline. To use the
         library you already have on iPhone or iPad, turn on the same sync in Settings → Sync — see{' '}
         <Link href="/docs/sync#on-the-mac">Sync on the Mac</Link>.
       </p>
@@ -51,7 +52,8 @@ export default function Page() {
       <p>The sidebar holds everything:</p>
       <ul>
         <li>
-          <strong>Study</strong> — Today, Reader, Books, Reading Plans, Writing, Quizzes and Search.
+          <strong>Study</strong> — Today, Reader, Books, Reading Plans, Writing, Presentations,
+          Quizzes and Search.
         </li>
         <li>
           <strong>Library</strong> — Modules, and <strong>Import or Create…</strong> at the bottom.
@@ -69,6 +71,10 @@ export default function Page() {
       </p>
 
       <h2>The reader’s window</h2>
+      <p>
+        Toolbar buttons show their names when the window is wide enough, and icons alone when it is
+        not.
+      </p>
       <ul>
         <li>
           <strong>The passage in the toolbar</strong> — click it, or press ⌘L, to go somewhere
@@ -80,12 +86,13 @@ export default function Page() {
           scripture.
         </li>
         <li>
-          <strong>The study column</strong> (⇧⌘I) beside the text: commentary, the selected verse’s
-          notes and original language, your notes and highlights, and the dictionary.
+          <strong>The study column</strong> (<strong>Study</strong> in the toolbar, ⇧⌘I) beside the
+          text: commentary, the selected verse’s notes and original language, your notes and
+          highlights, and the dictionary.
         </li>
         <li>
-          <strong>Reader Chat</strong> (⇧⌘J), once AI features are on — see{' '}
-          <Link href="/docs/ai">AI features</Link>.
+          <strong>Reader Chat</strong> (<strong>Chat</strong> in the toolbar, ⇧⌘J), once AI features
+          are on — see <Link href="/docs/ai">AI features</Link>.
         </li>
       </ul>
 
@@ -109,7 +116,7 @@ export default function Page() {
               Write a <Link href="/docs/notes#on-the-mac">note</Link> or{' '}
               <Link href="/docs/highlights#on-the-mac">highlight</Link>
             </td>
-            <td>The study column’s Notes tab, or right-click a verse</td>
+            <td>Select words, use the study column’s Notes tab, or right-click a verse</td>
           </tr>
           <tr>
             <td>
@@ -133,7 +140,10 @@ export default function Page() {
             <td>
               Build <Link href="/docs/presenting">slides</Link>
             </td>
-            <td>Slide Studio: File → New Presentation Deck, or Build Presentation Deck</td>
+            <td>
+              Presentations in the sidebar, or File → New Presentation Deck, or Build Presentation
+              Deck from a writing
+            </td>
           </tr>
           <tr>
             <td>

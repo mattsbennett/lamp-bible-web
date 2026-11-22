@@ -21,6 +21,7 @@ const sections = [
   { id: 'the-ai-features-switch', title: 'The AI features switch' },
   { id: 'software-updates-on-mac', title: 'Software updates on Mac' },
   { id: 'ai-chat-on-mac', title: 'AI chat on Mac' },
+  { id: 'chats-from-iphone-and-ipad', title: 'Chats from iPhone and iPad' },
   { id: 'children', title: 'Children' },
   { id: 'contact-and-changes', title: 'Contact and changes' },
 ]
@@ -36,7 +37,7 @@ export default function AppPrivacy() {
           <h1 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
             Lamp Bible app privacy
           </h1>
-          <p className="mt-3 text-muted">Last updated November 15, 2026.</p>
+          <p className="mt-3 text-muted">Last updated November 21, 2026.</p>
         </header>
 
         <section aria-labelledby="at-a-glance" className="mt-8 rounded-2xl border border-line bg-sunken p-6">
@@ -81,8 +82,8 @@ export default function AppPrivacy() {
           <p>
             The apps store modules, reading progress, notes, writing, highlights and settings locally.
             They access photos, the camera and recordings when you add media; the camera also scans
-            presentation pairing codes. WebDAV passwords and presentation pairings are stored only
-            in the device’s Keychain. SWORD unlock keys are used once and not stored. You can delete
+            pairing codes from your Mac. WebDAV passwords and pairings with your Mac, for presenting
+            and for chats, are stored only in the device’s Keychain. SWORD unlock keys are used once and not stored. You can delete
             individual content in the app and remove local app data by deleting the app.
           </p>
 
@@ -96,8 +97,9 @@ export default function AppPrivacy() {
             Your chosen provider&apos;s privacy policy and retention practices apply.
           </p>
           <p>
-            Sync includes notes and writing with their media, highlights, reading progress, settings
-            and imported modules, including imported Bibles. Lamp Bible compresses these files but
+            Sync includes notes and writing with their media, a writing’s other documents and review
+            marks, highlights, reading progress, settings, slide decks, the Mac’s writing workspaces
+            and agent conversations, and imported modules, including imported Bibles. Lamp Bible compresses these files but
             does not encrypt them; protection depends on your storage provider.
           </p>
           <p>
@@ -140,7 +142,9 @@ export default function AppPrivacy() {
           <h2 id="the-ai-features-switch">The AI features switch</h2>
           <p>
             <strong>Show AI Features</strong>{' '}controls plan generation, system Writing Tools in Lamp,
-            and, on Mac, Reader Chat, writing agents and other apps’ access to Lamp tools. Find it
+            review marks on an assistant’s changes, and Reader Chat and writing agents: on the Mac
+            itself, and from an iPhone or iPad paired with it. On the Mac it also controls other apps’
+            access to Lamp tools. Find it
             in Settings → AI Features on iPhone and iPad, or Settings → AI &amp; Agents on Mac.
             It is off by default, except in libraries already using AI. The setting syncs across
             devices. Turning it off retains chats and drafts.
@@ -159,18 +163,28 @@ export default function AppPrivacy() {
 
           <h2 id="ai-chat-on-mac">AI chat on Mac</h2>
           <p>
-            Mac AI features use a provider’s command-line tool that you install and sign in to.
-            Lamp starts the tool but does not read or store provider credentials. Messages and module
-            content retrieved by the agent go to that provider under its terms and privacy policy.
-            Lamp Bible does not operate or proxy the service and does not receive conversations.
+            Mac AI features use a provider’s command-line tool that you install and sign in to:
+            OpenAI Codex, Claude Code, OpenCode or Google Antigravity. Lamp starts the tool but does
+            not read or store provider credentials. Messages and module content retrieved by the agent
+            go to that provider under its terms and privacy policy. Lamp Bible does not operate or
+            proxy the service and does not receive conversations.
+          </p>
+          <p>
+            To show how much of your plan you have used, Lamp asks the Claude Code, Codex or OpenCode
+            tool, which asks its own provider. This happens when Settings or an empty chat opens and
+            the last answer is more than five minutes old, or when you choose Refresh; never on a
+            timer. For Antigravity, Lamp reads the tool’s settings file on your Mac to check that it
+            will ask before acting, and sends nothing to check its sign-in.
           </p>
           <p>
             Reader Chat messages include the current chapter, translation, selected verse and selected
             text. Writing agents receive the active file and selected text. Both use the modules
             allowed by <strong>Module Access</strong>. Personal notes, highlights and other writings
             are shared only if enabled in Settings → AI &amp; Agents. When enabled, Reader Chat also
-            sends notes and highlights for the current chapter. A writing agent always has access
-            to its document and workspace files, regardless of that setting.
+            sends notes and highlights for the current chapter, and agents can read your other Reader
+            Chat and writing chats. A writing agent always has access to its document and workspace
+            files, and is told which of its changes you have not yet reviewed, regardless of that
+            setting.
           </p>
           <p>
             Writing-agent workspaces and conversations sync with the library. Reader Chat conversations
@@ -178,10 +192,28 @@ export default function AppPrivacy() {
             writing’s workspace, where it syncs.
           </p>
           <p>
-            If you connect another AI app, content it reads through Lamp’s tools goes to its provider
-            under that app’s and provider’s terms. The same module and personal-content settings apply.
+            If you connect another AI app, content it reads through Lamp’s tools, including your chats
+            when personal content is allowed, goes to its provider under that app’s and provider’s
+            terms. The same module and personal-content settings apply.
             Editing writings, adding plans and starting writings each require separate permission,
             all off by default.
+          </p>
+
+          <h2 id="chats-from-iphone-and-ipad">Chats from iPhone and iPad</h2>
+          <p>
+            With <strong>Allow chats from paired devices</strong> on in the Mac’s Settings → AI &amp;
+            Agents, an iPhone or iPad paired with it can read and continue the Mac’s chats and ask its
+            writing assistant about a piece. The chats still run on the Mac, which sends messages to
+            your AI provider as above.
+          </p>
+          <p>
+            The phone finds the Mac through Bonjour or nearby peer-to-peer discovery, with
+            local-network permission and without using the internet. Pairing uses a code shown on the
+            Mac, scanned or typed, and each connection is encrypted with its own keys. The phone sends
+            its device name, your message, the passage and translation in view and, for a writing, the
+            writing and any words you selected; it receives chat titles and messages. While the setting
+            is on, the Mac advertises “Lamp Bible on” followed by its computer name on the local
+            network. Nothing is sent to Lamp Bible.
           </p>
 
           <h2 id="children">Children</h2>

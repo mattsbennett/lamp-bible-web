@@ -30,6 +30,13 @@ export default function Page() {
           built from a writing stays linked to it.
         </p>
         <p>
+          <strong>Presentations</strong> in the sidebar shows every deck as covers or a list. Filter
+          by <strong>All</strong>, <strong>From Writing</strong> or <strong>Standalone</strong>,
+          search with <strong>Find a deck</strong>, sort by recent change or title, or start one with{' '}
+          <strong>New Deck</strong>. A deck’s menu offers <strong>Open in Slide Studio</strong> and,
+          for one built from a writing, <strong>Show Writing</strong>.
+        </p>
+        <p>
           Use the slide list to reorder, duplicate, hide or delete slides. The inspector has two panes:{' '}
           <strong>Slide</strong> contains layout previews, content and <strong>Skip while presenting</strong>;{' '}
           <strong>Deck</strong> sets the title, aspect ratio (16:9 or 4:3), typeface and theme.{' '}
@@ -92,13 +99,16 @@ export default function Page() {
           (such as <code>NT</code> or <code>Matthew-John</code>), rendering, form or grammatical value.
           Group counts by book, section, rendering, form, grammar, translation or associated word.
           Choose bars, columns in Bible order, a chapter grid, proportions, or a headword card above
-          book columns.
+          book columns. A chart by translation compares every tagged translation; turn on{' '}
+          <strong>Include the Hebrew and Greek Texts</strong> in its translation menu to add them.
         </p>
         <p>
           Charts use the same library data as <Link href="/docs/search#analysis">word analysis</Link>{' '}
           and match the slide’s colours. A key marks statistically unusual book frequencies, and a
           caption identifies tags added during module creation. To reuse an analysis figure,
-          choose <strong>Add to Deck</strong> on that figure.
+          choose <strong>Add to Deck</strong>: at the end of the tab row for Spread, Compare and
+          Companions, or beside the figure in Overview and the Septuagint tab, whose Testaments chart
+          counts verses rather than occurrences.
         </p>
         <p>
           Slide Studio checks decks as you edit. Errors prevent saving, exporting and playback.
@@ -169,11 +179,12 @@ export default function Page() {
         </p>
         <ol>
           <li>
-            On the Mac, choose <strong>Pair Remote</strong> in Slide Studio. It shows a QR code and a
+            On the Mac, choose <strong>Remote</strong> in Slide Studio’s toolbar. It shows a QR code and a
             sixteen-letter code.
           </li>
           <li>
-            On the phone, tap the remote button at the top of the home screen. The Mac appears under{' '}
+            On the phone, open <strong>Decks</strong> on the home screen and tap the remote button in
+            its toolbar. The Mac appears under{' '}
             <strong>Nearby</strong>; choose it, then <strong>Scan QR Code</strong> or type the code.
           </li>
           <li>
@@ -222,8 +233,10 @@ export default function Page() {
 
       <Platform only="ios">
         <p>
-          Open <strong>Slide Decks</strong> in the Write library’s menu, or tap a document’s{' '}
-          <strong>Slides</strong> button. Decks display full screen, in landscape on iPhone, with
+          Open <strong>Decks</strong> on the home screen or <strong>Slide Decks</strong> in the Write
+          library’s menu, or tap a document’s <strong>Slides</strong> button. Search decks and the
+          writings they came from, filter by <strong>From Writing</strong> or{' '}
+          <strong>Standalone</strong>, and sort by recent change or title. Decks display full screen, in landscape on iPhone, with
           presenter notes and a slide list for navigation. Hidden slides are skipped.
         </p>
       </Platform>

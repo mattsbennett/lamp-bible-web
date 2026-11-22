@@ -61,7 +61,10 @@ export default function Page() {
         <p>
           Open <strong>Write</strong> on the home screen. Search a collection by title, subtitle
           or tag, and sort by date, title or last change. The menu offers filters for tag, category
-          and date, plus export and <strong>Import Writing</strong>.
+          and date, <strong>Slide Decks</strong>, export and <strong>Import Writing</strong>, which
+          takes markdown files or whole folders, shown for{' '}
+          <Link href="/docs/import-export#writing-import">review</Link> before anything changes, or{' '}
+          <code>.lamp</code> files. Pull down the list to sync.
         </p>
         <p>
           A collection is a <Link href="/docs/modules">module</Link>. You start with My Writing;
@@ -105,7 +108,37 @@ export default function Page() {
         </Table>
         <p>
           The editor stores your original markdown and preserves it when you switch editing modes. Edits save a few seconds after you stop typing,
-          and an icon in the toolbar shows when they have synced.
+          and an icon in the toolbar shows when they have synced. The app never saves over a newer
+          copy: if the piece changed on another device or by the assistant while you were editing,
+          your edits are kept as a separate piece, “<em>title</em> (your edits)”.
+        </p>
+
+        <h3>Other files</h3>
+        <p>
+          A piece written on the Mac can keep other files beside it, such as an outline, notes or
+          sources. They sync to iPhone and iPad: Read mode lists them under{' '}
+          <strong>Other Files</strong> after the text, and <strong>Files</strong> opens them in any
+          mode. Each opens in a plain-text editor, so nothing the Mac wrote is reformatted.{' '}
+          <strong>Add File</strong> creates one; deleting one deletes it on your other devices too.
+        </p>
+
+        <h3>Asking the assistant</h3>
+        <p>
+          With AI features on and an iPhone or iPad{' '}
+          <Link href="/docs/ai#paired-devices">paired with your Mac</Link>, the speech-bubble button
+          in a piece’s bottom bar opens <strong>Ask the Assistant</strong>. The assistant works on the
+          piece in Lamp Bible on your Mac, with any words you selected, and what it changes arrives
+          with your library’s next sync.
+        </p>
+        <p>
+          With <strong>Mark the assistant’s changes for review</strong> on in Settings → AI
+          Features, the passages it changed stay marked until you have read them. Tap ✓ beside a
+          paragraph to clear its marks. The bottom bar counts what is left, with{' '}
+          <strong>Mark Selection as Reviewed</strong>, <strong>Mark All as Reviewed</strong>,{' '}
+          <strong>Next Change</strong>, <strong>Previous Change</strong> and{' '}
+          <strong>Restore Original Wording</strong>, which shows the original before putting it
+          back. Marks are drawn in Visual Edit and in a piece’s other files. See{' '}
+          <Link href="/docs/ai#review">Reviewing the assistant’s changes</Link>.
         </p>
 
         <h3>What the visual editor offers</h3>
@@ -242,8 +275,12 @@ export default function Page() {
       <Platform only="mac">
         <h2>On the Mac</h2>
         <p>
-          On the Mac, writing opens in its own editor window. Beyond what the iPhone and iPad
-          editor does, it adds:
+          On the Mac, <strong>Edit</strong> (⇧⌘E) opens a writing in place in the main window, and
+          the sidebar folds away while you work; <strong>Done</strong> at the end of the toolbar, or
+          ⇧⌘E again, returns to the list. The list stays beside the editor until the Assistant opens,
+          then folds behind <strong>List</strong>. A new writing (⇧⌘N) opens the same way, or in a
+          window of its own when no library window is in front. Beyond what the iPhone and iPad
+          editor does, the Mac editor adds:
         </p>
         <ul>
           <li>
@@ -275,16 +312,26 @@ export default function Page() {
             when you add a file. A dot marks unsaved changes; files you opened can be closed from their tabs.
           </li>
           <li>
-            An optional agent beside the draft, once AI features are on — see{' '}
-            <Link href="/docs/ai">AI features</Link>.
+            The <strong>Assistant</strong>, an AI agent beside the draft once AI features are on, with
+            the passages it changed
+            marked until you have read them — see <Link href="/docs/ai">AI features</Link> and{' '}
+            <Link href="/docs/ai#review">Reviewing the assistant’s changes</Link>.
           </li>
         </ul>
         <p>
-          Writing saves automatically after you stop typing; ⌘S saves immediately. The Writing list
-          supports sorting, grouping and filtering. Press ⌘F to search the selected document’s
-          preview. Controls above the preview navigate between documents, open the editor, share
-          markdown and change text appearance. <strong>Hide Writing List</strong> expands the
-          preview; <strong>Present</strong> displays it full screen.
+          Writing saves automatically after you stop typing; File → Save (⌘S) saves immediately. The
+          Writing list has a search field, category chips with counts and{' '}
+          <strong>Sort and Group</strong>; each row shows an excerpt, the date and the reading time.
+          Press ⌘F to search the selected document’s preview. Controls above the preview navigate
+          between documents, open the editor, share markdown and change text appearance. Below the prose, the preview lists the writing’s{' '}
+          <strong>Other Files</strong>, each folded under its name. <strong>Hide Writing List</strong>{' '}
+          expands the preview; <strong>Present</strong> displays it full screen.
+        </p>
+        <p>
+          If a newer version arrives from another device while a writing is open, it is shown at once
+          unless you have typed since. If you have, your edits are kept as a separate writing, “
+          <em>title</em> (your edits)”, and <strong>Open Your Edits</strong> in the status bar opens
+          it.
         </p>
         <p>
           Export one document as a <code>.lamp</code> file from its menu, or a collection as

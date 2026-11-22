@@ -65,7 +65,8 @@ export default function Page() {
         <li>
           Your settings: translation and text size, hidden translations and lexicons, lexicon order,
           word hints, highlight colours, reading rate, reminder, how many readers share a plan,
-          quiz age group, writing text size, and whether AI features are shown.
+          quiz age group, writing text size, default commentary, whether AI features are shown, and
+          whether an assistant’s changes are marked for review.
         </li>
         <li>
           Modules you imported yourself — translations, dictionaries, commentaries, books, plans and
@@ -75,7 +76,11 @@ export default function Page() {
         <li>Slide decks made on a Mac, which iPhone and iPad receive to view.</li>
         <li>
           Each writing’s agent workspace on the Mac — companion files, context, skills, revisions
-          and the agent conversation.
+          and the agent conversation. Its documents, such as an outline or notes, also reach iPhone
+          and iPad, where you can read and edit them.
+        </li>
+        <li>
+          Review marks on an assistant’s changes to your writing, and which ones you have cleared.
         </li>
       </ul>
 
@@ -85,8 +90,9 @@ export default function Page() {
         <li>Your WebDAV password and the choice of sync method.</li>
         <li>
           Search and navigation history, where you are in each book, the active highlight set and
-          style, the read-aloud voice and how Greek words are said, the reader’s typeface and line
-          spacing, the tool panel’s position, and what a word analysis’s card shows.
+          style, the read-aloud voice and how Greek words are said, the reader’s and the tool panel’s
+          typeface and line spacing, the tool panel’s position, and what a word analysis’s card
+          shows.
         </li>
       </ul>
 
@@ -95,7 +101,8 @@ export default function Page() {
         Sync runs when the app opens and each time you return to it, a few seconds after you stop
         editing, and once more as you leave it if anything is waiting to go. While the app is open it
         also checks every half-minute for changes from your other devices. <strong>Sync Now</strong>{' '}
-        starts a sync and reports any errors.
+        starts a sync and reports any errors. On iPhone and iPad, pulling down the writing list,
+        Books, the module manager or Slide Decks syncs first.
       </p>
       <p>
         Sync processes files separately, reporting failed transfers while continuing with the rest.
@@ -112,8 +119,9 @@ export default function Page() {
         <code>{`Lamp Bible/
 ├── lamp-bible.lampsync      settings, progress, and the list of library files
 ├── Notes/notes.lamp         My Notes
-├── Devotionals/             your writing collections
-├── DevotionalMedia/         their images and audio
+├── Writing/                 your writing collections
+├── WritingMedia/            their images and audio
+├── WritingReview/           review marks on an assistant’s changes
 ├── NoteMedia/               pictures in notes, by notes module
 ├── Highlights/              one file per highlight set
 ├── Translations/            modules you imported, by type
@@ -123,7 +131,7 @@ export default function Page() {
 ├── BookMedia/               images in the books you imported
 ├── Plans/
 ├── Quizzes/
-└── Workspaces/              slide decks and other Mac workspace files`}</code>
+└── Workspaces/              slide decks, and each writing’s Mac workspace and documents`}</code>
       </pre>
       <Callout tone="warn" title="Leave the folder to the app">
         <p>
@@ -198,6 +206,13 @@ export default function Page() {
         waiting does not upload until you choose.
       </p>
       <p>
+        A document in a writing’s workspace syncs as its own file. If two devices changed it, the
+        server’s copy keeps the name and this device’s edits are kept beside it as{' '}
+        <code>name (edits from device, date).md</code>. A piece of writing that changes elsewhere
+        while you are typing in it is never saved over: your edits are kept as a separate piece,
+        “<em>title</em> (your edits)”.
+      </p>
+      <p>
         Highlight sets merge individual highlights. Missing highlights are added; only recorded
         deletions remove them. The latest change determines set and theme names. Settings,
         reading completions and followed plans also merge individually, with the latest change
@@ -207,12 +222,21 @@ export default function Page() {
       <h2>Deletions</h2>
       <p>
         Deletions of notes, writings, highlights, themes and your modules or plans sync to other
-        devices. An entry edited elsewhere after deletion is kept. A file missing from the server
-        is not treated as deleted. Deletion records last 180 days; a device offline for longer
-        can restore those files when it reconnects.
+        devices, as do deleted documents in a writing’s workspace; deleting a writing deletes its
+        documents and review marks too. An entry edited elsewhere after deletion is kept. A file
+        missing from the server is not treated as deleted: the module manager marks the module{' '}
+        <strong>Not in Your Library</strong> rather than removing it, and offers to delete it. Deletion records last 180 days; a device offline for longer can
+        restore those files when it reconnects.
       </p>
 
       <h2>Upgrading from an earlier version</h2>
+      <p>
+        The current version renames the writing folders: <code>Devotionals/</code> becomes{' '}
+        <code>Writing/</code> and <code>DevotionalMedia/</code> becomes <code>WritingMedia/</code>.
+        The first updated device to sync moves the library itself, with nothing to choose, and
+        leaves the old folders in place. A device that has not been updated stops syncing and asks
+        to be updated; its edits wait on it and go up once it is.
+      </p>
       <p>
         Version 1.2 changed how a library is laid out, and earlier versions cannot read the new
         layout. Update Lamp Bible on <strong>every</strong> device that shares a library before
@@ -254,8 +278,9 @@ export default function Page() {
         </p>
         <p>
           The Mac also syncs slide decks and their pictures, and each writing’s agent workspace —
-          companion files, context, skills, revisions and agent conversations. Reader tabs, history
-          and Reader Chat conversations stay on each Mac.
+          companion files, context, skills, revisions and agent conversations. Its documents and
+          review marks reach iPhone and iPad too. Reader tabs, history and Reader Chat conversations
+          stay on each Mac.
         </p>
       </Platform>
 
