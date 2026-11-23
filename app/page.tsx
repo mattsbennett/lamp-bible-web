@@ -473,7 +473,7 @@ function Writing() {
     },
     {
       title: 'Slide Studio',
-      body: 'Create slides with scripture, quotations and word-analysis charts in eight layouts. Use your manuscript as speaker notes, present full screen, export a PDF and control the presentation from your iPhone.',
+      body: 'Create slides with scripture, quotations, word-analysis charts, timelines and maps of the places a passage names, in seven themes. Bring a slide in a part at a time, use your manuscript as speaker notes, present full screen, export a PDF and control the presentation from your iPhone.',
       href: '/docs/presenting',
       icon: SlidesIcon,
       art: <SlideArt />,

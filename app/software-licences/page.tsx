@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const externalProps = { target: '_blank', rel: 'noopener noreferrer' } as const
 
+/** lamp-bible-core reads Markdown with swift-markdown, so both apps ship these two. */
+const markdownPackages: Array<{ name: string; version: string; licence: string; url: string }> = [
+  { name: 'swift-cmark', version: '0.9.0', licence: 'BSD 2-Clause and MIT', url: 'https://github.com/swiftlang/swift-cmark' },
+  { name: 'swift-markdown', version: '0.9.0', licence: 'Apache 2.0', url: 'https://github.com/swiftlang/swift-markdown' },
+]
+
 /**
  * Swift packages in the Mac app and its lamp-mcp helper. Generated notices live in the Mac repo
  * (scripts/generate_third_party_notices.py); keep this list in step with its README.txt. The
@@ -25,6 +31,7 @@ const macPackages: Array<{ name: string; version: string; licence: string; url: 
   { name: 'Swift Atomics', version: '1.3.1', licence: 'Apache 2.0', url: 'https://github.com/apple/swift-atomics' },
   { name: 'Swift Collections', version: '1.6.0', licence: 'Apache 2.0', url: 'https://github.com/apple/swift-collections' },
   { name: 'Swift System', version: '1.8.0', licence: 'Apache 2.0', url: 'https://github.com/apple/swift-system' },
+  ...markdownPackages,
   { name: 'SwiftLog', version: '1.15.0', licence: 'Apache 2.0', url: 'https://github.com/apple/swift-log' },
   { name: 'SwiftNIO', version: '2.101.3', licence: 'Apache 2.0', url: 'https://github.com/apple/swift-nio' },
   { name: 'SwiftTerm', version: '1.20.0', licence: 'MIT', url: 'https://github.com/migueldeicaza/SwiftTerm' },
@@ -44,7 +51,7 @@ export default function SoftwareLicences() {
           <p className="mt-3 max-w-3xl text-lg leading-relaxed text-muted">
             Open-source components used by the current Lamp Bible apps.
           </p>
-          <p className="mt-3 text-sm text-faint">Last reviewed October 28, 2026.</p>
+          <p className="mt-3 text-sm text-faint">Last reviewed November 23, 2026.</p>
         </header>
 
         <div className="doc mt-10">
@@ -78,6 +85,18 @@ export default function SoftwareLicences() {
                 <td>Apache 2.0</td>
                 <td><a href="https://github.com/realm/realm-swift" {...externalProps}>Source</a></td>
               </tr>
+              {markdownPackages.map((p) => (
+                <tr key={p.name}>
+                  <td>{p.name}</td>
+                  <td>{p.version}</td>
+                  <td>{p.licence}</td>
+                  <td>
+                    <a href={p.url} {...externalProps}>
+                      Source
+                    </a>
+                  </td>
+                </tr>
+              ))}
               <tr>
                 <td>Tiptap packages</td>
                 <td>3.18.0</td>
@@ -139,7 +158,8 @@ export default function SoftwareLicences() {
 
           <h2>Reference data</h2>
           <p>
-            Both apps use this data to align verses across different numbering systems.
+            Both apps use this data: the versifications to align verses across different numbering
+            systems, and the places and land to draw maps on slides.
           </p>
           <Table>
             <thead>
@@ -157,8 +177,32 @@ export default function SoftwareLicences() {
                 <td>MIT</td>
                 <td><a href="https://github.com/sillsdev/libpalaso" {...externalProps}>Source</a></td>
               </tr>
+              <tr>
+                <td>OpenBible.info Bible Geocoding Data</td>
+                <td>Commit 7eb18a5</td>
+                <td>CC BY 4.0</td>
+                <td><a href="https://github.com/openbibleinfo/Bible-Geocoding-Data" {...externalProps}>Source</a></td>
+              </tr>
+              <tr>
+                <td>Natural Earth land, lakes, rivers and shaded relief</td>
+                <td>Layers 4.1.0–5.1.1; relief 2.0.0</td>
+                <td>Public domain</td>
+                <td><a href="https://www.naturalearthdata.com" {...externalProps}>Source</a></td>
+              </tr>
             </tbody>
           </Table>
+          <p>
+            The places on slide maps are adapted from OpenBible.info’s data, licensed under the{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" {...externalProps}>
+              Creative Commons Attribution 4.0 International licence
+            </a>
+            . For each place named in the Bible, Lamp Bible keeps only its name, other names,
+            likeliest location, the confidence in that location, its kind and the first verse that
+            names it. A location OpenBible.info took from OpenStreetMap or Google is not used; the
+            place takes its next identification, or is left out. The land, water and relief are made
+            with Natural Earth, cut to the region from 25°W to 180°E and 10°N to 75°N, with
+            reservoirs and canals left out. Every map credits both on its face.
+          </p>
         </div>
       </main>
       <SiteFooter />

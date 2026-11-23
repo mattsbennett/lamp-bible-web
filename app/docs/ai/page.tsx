@@ -149,7 +149,8 @@ export default function Page() {
         </Table>
         <p>
           Library tools can search and read passages, commentary, dictionaries, books, plans and
-          quizzes, and analyse Strong’s numbers. They can read personal study content and your other
+          quizzes, analyse Strong’s numbers, and look up places for a map slide. They can read
+          personal study content and your other
           Reader Chat and writing chats if you enable it.
           Creating writings, replacing drafts from other apps and adding plans require separate
           permissions, all off by default. See <a href="#start-writing">Reader Chat</a> and{' '}
@@ -307,10 +308,15 @@ export default function Page() {
         </p>
         <ul>
           <li>
-            The toolbar shows how many are left, such as <strong>3 to Review</strong>. Its menu has{' '}
-            <strong>Mark Selection as Reviewed</strong>, <strong>Mark All as Reviewed</strong>,{' '}
-            <strong>Restore Original Wording…</strong>, <strong>Next Change</strong> and{' '}
-            <strong>Previous Change</strong>.
+            The toolbar shows how many passages are left, such as <strong>3 to Review</strong>. Its
+            menu has <strong>Mark Selection as Reviewed</strong>,{' '}
+            <strong>Mark All as Reviewed</strong>, <strong>Restore Original Wording…</strong>,{' '}
+            <strong>Next Change</strong> and <strong>Previous Change</strong>.
+          </li>
+          <li>
+            Marks show while you edit; the preview shows the writing as it reads. If the visual
+            editor cannot mark some passages in place, the count shows a warning, and Markdown
+            shows every one.
           </li>
           <li>
             In the visual editor, ✓ beside a paragraph clears its marks, and ↺ shows the passage now
@@ -456,7 +462,8 @@ export default function Page() {
       <p>
         The panel then lists the Mac’s reader chats and writing chats to read and continue, or you
         can ask about the verse you are on to start one; each message goes with the verse and
-        translation in view. Replies appear as they are written, and the stop button beside the field ends one.
+        translation in view. Replies appear as they are written, laid out with their headings, lists,
+        quotations, code and tables, and the stop button beside the field ends one.
         Chats about a writing from a module are read-only. <strong>Choose Another Mac</strong> and{' '}
         <strong>Forget This Mac</strong> change the pairing; on the Mac, <strong>Forget</strong>{' '}
         removes a device.

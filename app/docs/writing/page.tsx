@@ -86,7 +86,7 @@ export default function Page() {
           <tbody>
             <tr>
               <td>Read</td>
-              <td>Reading it back, with its own text size</td>
+              <td>Reading it back, with its own text size; web and email addresses are links</td>
             </tr>
             <tr>
               <td>Visual Edit</td>
@@ -116,10 +116,14 @@ export default function Page() {
         <h3>Other files</h3>
         <p>
           A piece written on the Mac can keep other files beside it, such as an outline, notes or
-          sources. They sync to iPhone and iPad: Read mode lists them under{' '}
-          <strong>Other Files</strong> after the text, and <strong>Files</strong> opens them in any
-          mode. Each opens in a plain-text editor, so nothing the Mac wrote is reformatted.{' '}
-          <strong>Add File</strong> creates one; deleting one deletes it on your other devices too.
+          sources. They sync to iPhone and iPad, where the <strong>Files</strong> button in the
+          bottom bar opens them in any mode. A Markdown file opens in the piece’s own editor, so it
+          reads exactly as the piece does, with its links, footnotes and pictures; tap{' '}
+          <strong>Edit</strong> to change it, or <strong>More</strong> →{' '}
+          <strong>Edit Markdown Source</strong> to edit it as written. A file you open and leave is never rewritten, and if it
+          changes on another device while you edit, you can keep yours as a copy. A plain-text file
+          opens in its own reader. <strong>Add File</strong> creates one; deleting one deletes it on
+          your other devices too.
         </p>
 
         <h3>Asking the assistant</h3>
@@ -138,7 +142,9 @@ export default function Page() {
           <strong>Mark Selection as Reviewed</strong>, <strong>Mark All as Reviewed</strong>,{' '}
           <strong>Next Change</strong>, <strong>Previous Change</strong> and{' '}
           <strong>Restore Original Wording</strong>, which shows the original before putting it
-          back. Marks are drawn in Visual Edit and in a piece’s other files. See{' '}
+          back. Marks are drawn while you edit, in Visual Edit and in a piece’s other files;
+          reading shows the piece as it reads. If some changes can’t be shown, the count says so;
+          they are still counted, and Mark All as Reviewed clears them too. See{' '}
           <Link href="/docs/ai#review">Reviewing the assistant’s changes</Link>.
         </p>
 
@@ -323,10 +329,14 @@ export default function Page() {
           Writing saves automatically after you stop typing; File → Save (⌘S) saves immediately. The
           Writing list has a search field, category chips with counts and{' '}
           <strong>Sort and Group</strong>; each row shows an excerpt, the date and the reading time.
-          Press ⌘F to search the selected document’s preview. Controls above the preview navigate
-          between documents, open the editor, share markdown and change text appearance. Below the prose, the preview lists the writing’s{' '}
-          <strong>Other Files</strong>, each folded under its name. <strong>Hide Writing List</strong>{' '}
-          expands the preview; <strong>Present</strong> displays it full screen.
+          The preview shows a writing in the editor’s own page, read-only, so it reads exactly as it
+          does while you write it, with footnotes where they stand and web and email addresses as
+          links. A line above the title gives the category, author, date and reading time, and a
+          menu of the writing’s files: choose <strong>Main Prose</strong>, the outline, the notes or
+          another file to read it in place. Press ⌘F to search what the preview shows. Controls
+          above the preview navigate between documents, open the editor, share markdown and change
+          text appearance. <strong>Hide Writing List</strong> expands the preview;{' '}
+          <strong>Present</strong> displays it full screen.
         </p>
         <p>
           If a newer version arrives from another device while a writing is open, it is shown at once

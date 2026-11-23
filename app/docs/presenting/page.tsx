@@ -38,9 +38,10 @@ export default function Page() {
         </p>
         <p>
           Use the slide list to reorder, duplicate, hide or delete slides. The inspector has two panes:{' '}
-          <strong>Slide</strong> contains layout previews, content and <strong>Skip while presenting</strong>;{' '}
-          <strong>Deck</strong> sets the title, aspect ratio (16:9 or 4:3), typeface and theme.{' '}
-          <strong>Lamp Dark</strong> and <strong>Parchment</strong> preview your first slide.
+          <strong>Slide</strong> contains layout previews, the slide’s form,{' '}
+          <strong>Skip while presenting</strong>, how it is revealed, its background and its content;{' '}
+          <strong>Deck</strong> sets the title, aspect ratio (16:9 or 4:3), transition, theme and
+          typefaces.
         </p>
         <p>
           Decks save automatically. <strong>Undo Edit</strong> and <strong>Redo Edit</strong> group
@@ -60,7 +61,12 @@ export default function Page() {
           <tbody>
             <tr>
               <td>Title, Closing</td>
-              <td>Opening and closing slides, optionally with passages under the heading</td>
+              <td>
+                Opening and closing slides, optionally with passages under the heading. As a{' '}
+                <strong>Statement</strong>, the heading is as large as the slide allows; as a{' '}
+                <strong>Word</strong>, a Hebrew or Greek word is set large over its transliteration
+                and gloss
+              </td>
             </tr>
             <tr>
               <td>Title &amp; Body</td>
@@ -75,8 +81,12 @@ export default function Page() {
               <td>A quotation from another source, with its citation</td>
             </tr>
             <tr>
-              <td>Two Columns</td>
-              <td>Two passages or lists to compare, each column with its own heading</td>
+              <td>Columns</td>
+              <td>
+                Up to four passages or lists to compare, each with its own heading.{' '}
+                <strong>Mark where the columns differ</strong> draws the words one column has and
+                the others lack in the accent
+              </td>
             </tr>
             <tr>
               <td>Image</td>
@@ -91,9 +101,14 @@ export default function Page() {
         <p>
           <strong>Choose Scripture</strong> inserts a passage and citation from an installed
           translation. Slides display typographic quotation marks and ellipses while preserving your
-          source text. Background images are blurred and tinted behind text for legibility. You can
-          add accessibility descriptions to images.
+          source text. Background images are blurred and tinted behind text for legibility; click a
+          background picture’s subject to set its <strong>Focus</strong>, which the crop keeps in
+          view, or <strong>Centre</strong> to reset it. <strong>Tint</strong> draws a picture in the
+          theme’s colours: <strong>Duotone</strong> in its accent and ground, or{' '}
+          <strong>Muted</strong>, quieted toward the ground. You can add accessibility descriptions
+          to images.
         </p>
+
         <p>
           To chart a Strong’s number, enter the number and translation. Optionally limit the books
           (such as <code>NT</code> or <code>Matthew-John</code>), rendering, form or grammatical value.
@@ -116,6 +131,63 @@ export default function Page() {
           by the layout, but do not block these actions.
         </p>
 
+        <h3>Themes and backgrounds</h3>
+        <p>
+          Seven themes, <strong>Lamp Dark</strong>, <strong>Parchment</strong>,{' '}
+          <strong>Olive Grove</strong>, <strong>Linen</strong>, <strong>Harbour</strong>,{' '}
+          <strong>Vespers</strong> and <strong>Nocturne</strong>, are each shown drawn on your first
+          slide. Applying one keeps your typefaces and highlight names, and recolours each highlight
+          in the hue it had. <strong>Headings</strong> can take their own typeface, apart from{' '}
+          <strong>Body</strong>. A slide’s <strong>Background</strong> can be the theme’s, its{' '}
+          <strong>Accent</strong>, <strong>Inverse</strong> or any other colour, for a section
+          break; Slide Studio says when the words would be hard to read on it.
+        </p>
+
+        <h3>Timelines, structures and maps</h3>
+        <p>
+          A list’s <strong>Figure</strong> draws its lines another way:
+        </p>
+        <ul>
+          <li>
+            <strong>Timeline</strong>: one event per line, a date, a spaced dash and what happened,
+            such as “c. 1000 BC — David king in Jerusalem”. Turn on{' '}
+            <strong>Zoom in a few events at a time</strong> for a long one: the slide shows the
+            whole timeline, each click moves in and along it, and the last click zooms back out.
+          </li>
+          <li>
+            <strong>Chiasm</strong>: one member per line, lettered A, B … B′, A′ and stepped in
+            toward the centre.
+          </li>
+          <li>
+            <strong>Parallel</strong>: lines in pairs, each answered by the line set beneath it.
+          </li>
+          <li>
+            <strong>Map</strong>: one place per line, as OpenBible.info names it, with what the map
+            should call it after a dash, such as “Antioch 2 — Pisidian Antioch”. Each line shows
+            whether the place was found, with the first verse naming it, is uncertain, or was not
+            found, so a name that won’t draw is caught while you write.
+          </li>
+        </ul>
+        <p>
+          A map draws the land around its places in the deck’s colours, with lakes, rivers and
+          shaded relief, each place marked and named and an uncertain site as an open ring.{' '}
+          <strong>Join the places as a route</strong> draws a line from each place to the next, as
+          for a journey. Coastlines are today’s. Maps cover Europe and Russia to the Pacific, North
+          Africa, the Near East, Arabia and Persia, and credit OpenBible.info and Natural Earth on
+          their face; see <Link href="/software-licences">Software licences</Link>. Figures are
+          drawn on the text layouts; on a title or in a column the lines stay a list.
+        </p>
+
+        <h3>Revealing a slide</h3>
+        <p>
+          <strong>Reveal one part at a time</strong> brings in each passage, list item or column on
+          a click, and a timeline or map one event or place at a time.{' '}
+          <strong>Light up emphasis last</strong> gives emphasised words their colour on a click of
+          their own. The inspector says how many clicks the slide takes. Parts still to come are
+          laid out in place, so nothing moves as each arrives. The deck’s{' '}
+          <strong>Transition</strong> dissolves between slides or cuts, and with Reduce Motion on
+          nothing animates.
+        </p>
         <h3>Speaker notes from your manuscript</h3>
         <p>
           Enter <strong>Presenter Notes</strong> for each slide, or enable <strong>Follow the writing</strong>.
@@ -126,7 +198,8 @@ export default function Page() {
         <Callout title="Let an agent draft it">
           <p>
             A writing’s <Link href="/docs/ai">agent workspace</Link> includes a skill that builds a
-            deck from the writing, checks it and imports it into Slide Studio, ready to edit.
+            deck from the writing, checks it and imports it into Slide Studio, ready to edit. For a
+            map, it looks up which places will draw, and never invents a location.
           </p>
         </Callout>
 
@@ -144,11 +217,11 @@ export default function Page() {
           </thead>
           <tbody>
             <tr>
-              <td>Go forward</td>
+              <td>Next part or slide</td>
               <td>→, ↓, Page Down, Space, Return, or click</td>
             </tr>
             <tr>
-              <td>Go back</td>
+              <td>Previous slide, complete</td>
               <td>←, ↑, Page Up, ⇧Space or Delete</td>
             </tr>
             <tr>
@@ -193,7 +266,8 @@ export default function Page() {
           </li>
         </ol>
         <p>
-          The remote shows the current slide, next slide when space allows, presenter notes with
+          The remote shows the current slide as far into its reveal as the room has seen, the next
+          slide when space allows, presenter notes with
           adjustable text size, slide number and elapsed time. Tap the slide or <strong>Next</strong>{' '}
           to advance. Use <strong>Previous</strong> or <strong>Choose slide</strong> to navigate, or
           black out the audience screen. Images appear as placeholders on the remote.
@@ -237,7 +311,9 @@ export default function Page() {
           library’s menu, or tap a document’s <strong>Slides</strong> button. Search decks and the
           writings they came from, filter by <strong>From Writing</strong> or{' '}
           <strong>Standalone</strong>, and sort by recent change or title. Decks display full screen, in landscape on iPhone, with
-          presenter notes and a slide list for navigation. Hidden slides are skipped.
+          presenter notes and a slide list for navigation. A swipe brings a slide’s next part or the
+          next slide, swiping back returns to the previous slide complete, and slides dissolve as
+          they do on the Mac. Hidden slides are skipped.
         </p>
       </Platform>
     </DocPage>
