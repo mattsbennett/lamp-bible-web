@@ -50,6 +50,18 @@ export const sf: Record<string, (p: P) => ReactNode> = {
       <path d="M12 7.5v9M7.5 12h9" stroke="var(--sys-on-tint, #fff)" />
     </S>
   ),
+  arrowUpCircleFill: (p) => (
+    <S {...p}>
+      <circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" />
+      <path d="M12 16.8V7.6M7.9 11.6 12 7.5l4.1 4.1" stroke="var(--sys-on-tint, #fff)" strokeWidth={2.2} />
+    </S>
+  ),
+  stopCircleFill: (p) => (
+    <S {...p}>
+      <circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" />
+      <rect x="8.6" y="8.6" width="6.8" height="6.8" rx="1.2" fill="var(--sys-on-tint, #fff)" stroke="none" />
+    </S>
+  ),
   checkmarkCircle: (p) => (
     <S {...p}>
       <circle cx="12" cy="12" r="9.5" strokeWidth={1.8} />

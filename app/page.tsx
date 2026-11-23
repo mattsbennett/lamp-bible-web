@@ -14,6 +14,7 @@ import {
   MacAnalysisArt,
   MacEditorArt,
   NotesArt,
+  PhoneChatArt,
   PhoneWritingArt,
   PlansArt,
   ReaderArt,
@@ -26,6 +27,7 @@ import {
   AgentIcon,
   AnalysisIcon,
   AtomIcon,
+  BellIcon,
   ChatIcon,
   CheckIcon,
   CodeIcon,
@@ -40,8 +42,10 @@ import {
   type IconComponent,
   MicIcon,
   ModuleIcon,
+  NetworkIcon,
   NoteIcon,
   OnDeviceIcon,
+  PairedIcon,
   PanelIcon,
   PlanIcon,
   PlugIcon,
@@ -52,6 +56,7 @@ import {
   SeptuagintIcon,
   ShareIcon,
   SkillIcon,
+  SlidersIcon,
   SlidesIcon,
   SyncIcon,
   TableIcon,
@@ -535,20 +540,27 @@ const aiPromises = [
   'Off until you turn it on',
 ]
 
-const aiUses: Array<{ title: string; body: string; href: string; icon: IconComponent; badge: string }> = [
+/** What Reader Chat does beyond the Mac's own window: the phone carries it on, and either can choose and be told. */
+const chatParts: Array<{ title: string; body: string; icon: IconComponent }> = [
   {
-    title: 'Reader Chat',
-    body: 'Discuss a chapter or selected words, with your modules to draw on. Choose the model for each chat, turn a conversation into a draft, or carry it on from a paired iPhone or iPad.',
-    href: '/docs/ai',
-    icon: ChatIcon,
-    badge: macLabel,
+    title: 'On iPhone and iPad',
+    body: 'Pair one with your Mac and the reader’s Chat panel follows its chats, or starts one about the verse you’re on. A piece of writing can ask its assistant too.',
+    icon: PairedIcon,
   },
   {
-    title: 'Plans from a description',
-    body: 'Describe the plan you want and Apple Intelligence fills in a new plan on the device. Preview the schedule before you follow it.',
-    href: '/docs/reading-plans',
-    icon: PlanIcon,
-    badge: 'iPhone, iPad & Mac',
+    title: 'Choose who answers',
+    body: 'Pick the provider, model and effort for each chat, on the Mac or from the phone.',
+    icon: SlidersIcon,
+  },
+  {
+    title: 'Told when it’s done',
+    body: 'A notification when a reply you aren’t watching finishes. With Lamp closed on the phone, your Mac tells it through your iCloud.',
+    icon: BellIcon,
+  },
+  {
+    title: 'Over your own network',
+    body: 'The phone talks only to your Mac, over your Wi-Fi, or Tailscale when you’re away, encrypted end to end.',
+    icon: NetworkIcon,
   },
 ]
 
@@ -559,7 +571,7 @@ function AIFeatures() {
         <SectionHeading
           eyebrow="AI features"
           title="Bring your own AI"
-          body="Lamp Bible doesn’t sell AI. On the Mac, use the plan you already pay for, signed in with the provider’s own tool. Apple Intelligence works on the device, and a paired iPhone or iPad can carry on your Mac’s chats."
+          body="Lamp Bible doesn’t sell AI. On the Mac, use the plan you already pay for, signed in with the provider’s own tool. Apple Intelligence works on the device, and your iPhone or iPad can chat through your Mac."
         />
 
         <ul className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
@@ -597,23 +609,57 @@ function AIFeatures() {
           go to the provider you choose, never to Lamp Bible.
         </p>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {aiUses.map((use) => (
-            <div key={use.title} className="rounded-2xl border border-line bg-raised p-6 sm:p-7">
+        <div className="mt-14 overflow-hidden rounded-3xl border border-line bg-raised">
+          <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+            <div className="p-7 sm:p-10">
               <div className="flex items-center justify-between gap-3">
-                <IconChip icon={use.icon} />
-                <Badge>{use.badge}</Badge>
+                <IconChip icon={ChatIcon} />
+                <Badge>Mac, iPhone &amp; iPad</Badge>
               </div>
-              <h3 className="mt-5 font-serif text-xl tracking-tight">{use.title}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-muted">{use.body}</p>
+              <h3 className="mt-5 font-serif text-2xl tracking-tight sm:text-3xl">Reader Chat</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+                Discuss a chapter or selected words, with your modules to draw on. Chats run on your
+                Mac with the AI you sign in to there, and turn into a draft when you’re ready to write.
+              </p>
+              <ul className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+                {chatParts.map((part) => (
+                  <li key={part.title} className="flex gap-3.5">
+                    <IconChip icon={part.icon} size="sm" />
+                    <div>
+                      <p className="text-sm font-medium">{part.title}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-muted">{part.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
               <Link
-                href={use.href}
-                className="mt-3 inline-block text-sm font-medium text-accent hover:underline"
+                href="/docs/ai#paired-devices"
+                className="mt-8 inline-block text-sm font-medium text-accent hover:underline"
               >
-                Learn more →
+                Chats from iPhone and iPad →
               </Link>
             </div>
-          ))}
+            <div className="flex items-end justify-center border-t border-line bg-sunken px-5 pt-8 sm:px-10 lg:border-l lg:border-t-0 lg:pt-12">
+              <PhoneChatArt />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-5 flex flex-col gap-4 rounded-2xl border border-line bg-raised p-6 sm:flex-row sm:items-start sm:gap-5 sm:p-7">
+          <IconChip icon={PlanIcon} />
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+              <h3 className="font-serif text-xl tracking-tight">Plans from a description</h3>
+              <Badge>iPhone, iPad &amp; Mac</Badge>
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              Describe the plan you want and Apple Intelligence fills in a new plan on the device.
+              Preview the schedule before you follow it.{' '}
+              <Link href="/docs/reading-plans" className="font-medium text-accent hover:underline">
+                Learn more →
+              </Link>
+            </p>
+          </div>
         </div>
 
         <div className="mt-5 overflow-hidden rounded-3xl border border-line bg-raised">

@@ -307,3 +307,36 @@ export const CheckIcon: IconComponent = (p) => (
     <path d="m5 12.5 4.5 4.5L19 7.5" />
   </Icon>
 )
+
+/** A phone in front of a laptop: an iPhone or iPad paired with the Mac. */
+export const PairedIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M12.5 16.5H3.5l-1 2.5h10M4.5 16.5v-10a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1" />
+    <rect x="15" y="9.5" width="6.5" height="11" rx="1.5" />
+    <path d="M17.5 18h1.5" />
+  </Icon>
+)
+
+export const SlidersIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M4 7h9M17 7h3M4 12h3M11 12h9M4 17h11M19 17h1" />
+    <circle cx="15" cy="7" r="2" />
+    <circle cx="9" cy="12" r="2" />
+    <circle cx="17" cy="17" r="2" />
+  </Icon>
+)
+
+export const BellIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z" />
+    <path d="M10 20.5a2 2 0 0 0 4 0" />
+  </Icon>
+)
+
+/** Wi-Fi's arcs: the network the phone and Mac share. */
+export const NetworkIcon: IconComponent = (p) => (
+  <Icon {...p}>
+    <path d="M3 9.5a13 13 0 0 1 18 0M6 13a8 8 0 0 1 12 0M9 16.5a3.5 3.5 0 0 1 6 0" />
+    <path d="M12 19.5h.01" strokeWidth={2.4} />
+  </Icon>
+)

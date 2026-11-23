@@ -127,8 +127,9 @@ export default function Page() {
           With AI features on and an iPhone or iPad{' '}
           <Link href="/docs/ai#paired-devices">paired with your Mac</Link>, the speech-bubble button
           in a piece’s bottom bar opens <strong>Ask the Assistant</strong>. The assistant works on the
-          piece in Lamp Bible on your Mac, with any words you selected, and what it changes arrives
-          with your library’s next sync.
+          piece in Lamp Bible on your Mac, with any words you selected. Your latest edits are sent
+          first, and what it changes arrives with your library’s next sync. The row over the field
+          names who answers; tap it to choose the provider, model and effort.
         </p>
         <p>
           With <strong>Mark the assistant’s changes for review</strong> on in Settings → AI

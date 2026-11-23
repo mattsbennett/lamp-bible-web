@@ -44,7 +44,8 @@ export default function Page() {
       <p>
         Yes. Bundled and installed content is stored on the device. Optional features use a
         connection: cloud sync, external links, Mac update checks and AI chat. The presentation
-        remote, and chats from an iPhone or iPad with your Mac, use only the local network.
+        remote uses only the local network, and chats from an iPhone or iPad go only to your Mac,
+        over the local network or Tailscale.
       </p>
 
       <h2>Why isn’t my usual translation there?</h2>
@@ -85,6 +86,15 @@ export default function Page() {
         </a>
         , and Mac, as a <Link href={downloadPaths.mac}>direct download</Link> for{' '}
         {macRelease.minimumOS}.{isMacBeta && ' The Mac app is in beta.'}
+      </p>
+
+      <h2>Can I use AI chat on iPhone or iPad?</h2>
+      <p>
+        Yes, through your Mac. Pair the iPhone or iPad with Lamp Bible on the Mac, and the reader’s
+        Chat panel can read, continue and start the Mac’s chats, choose who answers and ask a
+        writing’s assistant, at home or over Tailscale. The chats run on
+        the Mac, with the provider you sign in to there. See{' '}
+        <Link href="/docs/ai#paired-devices">Chats from iPhone and iPad</Link>.
       </p>
 
       <h2>Can I sync between my devices?</h2>

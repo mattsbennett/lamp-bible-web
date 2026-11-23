@@ -21,8 +21,8 @@ export default function Page() {
         <Link href="/docs/reading-plans">reading plan</Link> from a description on iPhone, iPad
         and Mac, using the on-device model. System Writing Tools are also available in the editor.
         On the Mac, Reader Chat and writing agents use your provider’s command-line tool with
-        read-only access to your library, and an iPhone or iPad paired with the Mac can carry on
-        its chats. Lamp Bible does not run an AI service.
+        read-only access to your library, and an iPhone or iPad paired with the Mac can read,
+        continue and start its chats. Lamp Bible does not run an AI service.
       </p>
 
       <h2 id="turning-on">Turning it on</h2>
@@ -36,8 +36,8 @@ export default function Page() {
         The switch is shared with your iPhone and iPad, where it is Settings →{' '}
         <strong>AI Features</strong> and covers making a{' '}
         <Link href="/docs/reading-plans">reading plan</Link> from a description, the system’s
-        Writing Tools in Lamp’s text, <a href="#paired-devices">chats with your Mac</a> and review
-        marks on the assistant’s changes.
+        Writing Tools in Lamp’s text, <a href="#paired-devices">chats with your Mac</a> and their{' '}
+        <a href="#notifications">notifications</a>, and review marks on the assistant’s changes.
       </p>
 
       <Platform only="ios">
@@ -50,11 +50,14 @@ export default function Page() {
         </p>
         <p>
           Paired with a Mac, the reader’s tool panel gains a <strong>Chat</strong> mode for the
-          Mac’s chats, and a piece of writing gains <strong>Ask the Assistant</strong> — see{' '}
+          Mac’s chats, with the provider, model and effort yours to choose, and a piece of writing
+          gains <strong>Ask the Assistant</strong> — see{' '}
           <a href="#paired-devices">Chats from iPhone and iPad</a> and{' '}
           <Link href="/docs/writing">Writing</Link>. Turn on{' '}
           <strong>Mark the assistant’s changes for review</strong> under Writing in the same settings
-          to keep what the assistant changed marked until you have read it.
+          to keep what the assistant changed marked until you have read it, and{' '}
+          <strong>Notify when a chat finishes a turn</strong> under Notifications to hear when a
+          reply is done — see <a href="#notifications">Notifications</a>.
         </p>
       </Platform>
 
@@ -162,9 +165,9 @@ export default function Page() {
           <code>sonnet</code> and <code>haiku</code> for Claude Code. Choose{' '}
           <strong>Other Model…</strong> to enter a name, which Lamp passes to the provider unchanged.
           Claude Code offers effort levels from low to max; Codex accepts a typed value; OpenCode
-          lists the variants supported by its installed tool. Antigravity takes a model ID from{' '}
-          <code>agy models</code> and a thinking level from low to max. Each chat has its own
-          settings.
+          lists the variants supported by its installed tool. Antigravity lists the models your plan
+          offers by name, and the effort menu shows the thinking levels of the model chosen, which
+          differ by model; some have none. Each chat has its own settings.
         </p>
 
         <h2 id="skills">Study skills</h2>
@@ -174,10 +177,14 @@ export default function Page() {
         </p>
         <ul>
           <li>
-            <strong>sola-scriptura</strong> assesses claims against quoted scripture. For a single
-            claim, it explains whether the text establishes it. For a draft, it classifies each claim
-            as stated, entailed, inferred, imported, unsupported or contrary, and ranks findings by
-            their importance to the argument.
+            <strong>sola-scriptura</strong> assesses claims against quoted scripture, which it
+            receives as God’s inspired word and its own authority, read by the rest of scripture. For
+            a single claim, it explains whether the text establishes it. For a draft, it classifies
+            each claim as stated, entailed, inferred, imported, unsupported or contrary, and ranks
+            findings by their importance to the argument. A reading drawn from an echo, a pattern or
+            a type is graded by how well the texts carry it, from drawn to not shown, and questions
+            of prophecy follow principles credited to Jonathan Burke’s{' '}
+            <em>More Sure Word of Prophecy</em>, each checked against the texts it rests on.
           </li>
           <li>
             <strong>original-languages</strong> examines Hebrew or Greek words and their parsing,
@@ -213,7 +220,8 @@ export default function Page() {
         <p>
           Replies appear as they are generated. Claude Code also shows its current tool and passage;
           completed replies list the tools used beneath your question. Replies continue when you
-          close the chat, switch to Study Tools or leave the reader. Messages sent during a reply
+          close the chat, switch to Study Tools or leave the reader, and a{' '}
+          <a href="#notifications">notification</a> can tell you when one finishes. Messages sent during a reply
           are queued. You can edit, prioritise or remove queued messages, and the queue survives
           quitting the app.
         </p>
@@ -427,10 +435,10 @@ export default function Page() {
 
       <h2 id="paired-devices">Chats from iPhone and iPad</h2>
       <p>
-        An iPhone or iPad can read and carry on the Mac’s chats while Lamp Bible is open on the Mac.
-        The chats run on the Mac, with its provider and the same library access as a chat there. The
-        two connect over your local network, encrypted, and nothing passes through anyone else’s
-        servers.
+        An iPhone or iPad can read, continue and start the Mac’s chats while Lamp Bible is open on
+        the Mac. The chats run on the Mac, with its providers and the same library access as a chat
+        there. The two connect over your local network, or over Tailscale when you are away. The
+        connection is encrypted between the two devices, and nothing passes through Lamp Bible.
       </p>
       <ol>
         <li>
@@ -440,17 +448,79 @@ export default function Page() {
         </li>
         <li>
           On the iPhone or iPad, with AI features on, switch the reader’s tool panel to{' '}
-          <strong>Chat</strong>. Once it finds the Mac, tap <strong>Scan Pairing Code</strong>, or type
-          the code, and tap <strong>Pair</strong>. A code works once.
+          <strong>Chat</strong>, and allow Local Network access when asked. Once it finds the Mac,
+          tap <strong>Scan Pairing Code</strong>, or type the code, and tap <strong>Pair</strong>. A
+          code works once.
         </li>
       </ol>
       <p>
         The panel then lists the Mac’s reader chats and writing chats to read and continue, or you
-        can ask about the passage you are on to start one. Chats about a writing from a module are
-        read-only. <strong>Choose Another Mac</strong> and <strong>Forget This Mac</strong> change the
-        pairing; on the Mac, <strong>Forget</strong> removes a device. In a piece of writing,{' '}
-        <strong>Ask the Assistant</strong> sends your question to that writing’s assistant on the
-        Mac, and its changes arrive with your library’s next sync.
+        can ask about the verse you are on to start one; each message goes with the verse and
+        translation in view. Replies appear as they are written, and the stop button beside the field ends one.
+        Chats about a writing from a module are read-only. <strong>Choose Another Mac</strong> and{' '}
+        <strong>Forget This Mac</strong> change the pairing; on the Mac, <strong>Forget</strong>{' '}
+        removes a device.
+      </p>
+      <p>
+        Tailscale does not carry the local network’s discovery, so over a tailnet the device
+        reaches the Mac by address instead. With the Mac on your tailnet, Settings → AI &amp;
+        Agents shows its address under <strong>Over Tailscale</strong>, and the pairing code
+        carries it, so a device that scanned the code can reach the Mac anywhere on the tailnet
+        with nothing typed. Otherwise, tap <strong>Connect by Address…</strong> below the list of
+        Macs in the Chat panel and type the address as the Mac shows it. The phone looks nearby
+        first; when the Mac does not show within a few seconds, it tries the addresses it knows for
+        that Mac, and uses one only once the Mac there proves it is the one paired. Addresses are
+        listed under the Mac’s name, and touching and holding one offers{' '}
+        <strong>Forget Address</strong>. Lamp listens on its own port, 47381, so the address stays
+        the same; if another app holds that port, the address shows the port Lamp was given
+        instead, which changes when Lamp next opens. Pairing over Tailscale works as it does nearby.
+      </p>
+      <p>
+        The row over the message field names the provider, the model and what the chat is about, as
+        the row over a chat on the Mac does. Tap it for the provider, model and effort menus — the
+        names each provider offers, its default, or one you type — and a card saying what each
+        message is sent with. A choice in an open chat changes the chat on the Mac too, once any
+        reply has finished; over a new chat, it is what the chat starts with. The row opens by
+        itself when the provider is not signed in on the Mac, which is where you sign in.
+      </p>
+      <p>
+        In a piece of writing, <strong>Ask the Assistant</strong> sends your question, with any words
+        you selected, to that writing’s assistant on the Mac. Your latest edits are sent first, and
+        what the assistant changes arrives with your library’s next sync.
+      </p>
+      <p>
+        When you come back to Lamp after the connection has dropped, the phone finds the same Mac
+        again and reconnects to it alone, never to another that happens to show. If it cannot, the
+        panel says so, with <strong>Try Again</strong> and <strong>Choose Another Mac</strong>.
+      </p>
+
+      <h2 id="notifications">Notifications</h2>
+      <p>
+        A reply can take minutes. Turn on <strong>Notify when a chat finishes a turn</strong>, under
+        Notifications in Settings → AI &amp; Agents on the Mac or Settings → AI Features on iPhone
+        and iPad, to be told when one finishes while you are elsewhere. Lamp asks for the system’s
+        permission when you turn it on. Nothing is sent for a chat on screen, or for a reply you
+        stopped.
+      </p>
+      <ul>
+        <li>
+          On the Mac, it covers Reader Chat and writing assistants, in Chat or in Terminal, but not a
+          turn a phone asked for. A reply stopped by a usage limit, or after ten minutes with no word
+          from the provider, is told, since it needs you. Click the notification to go back to the
+          chat, or to the writing with its assistant open. Each chat keeps one notification, the
+          latest.
+        </li>
+        <li>
+          On iPhone and iPad, it covers the chats you asked from that device. Tap it to open the
+          reader chat in a sheet, or the writing with its assistant open. While Lamp is open the
+          phone hears the end itself. With Lamp closed, the Mac tells it through iCloud, when both
+          are signed in to the same account, so your other devices on that account may show it too.
+        </li>
+      </ul>
+      <p>
+        <strong>Show the start of the reply</strong> puts the reply’s opening words in the
+        notification. Turn it off to keep them out of Notification Center. The Mac’s setting also
+        decides whether those words go into iCloud for the phone at all.
       </p>
 
       <h2>Privacy</h2>
@@ -459,8 +529,10 @@ export default function Page() {
         and writing agents send messages and retrieved content to your chosen provider — OpenAI,
         Anthropic, Google, or the one OpenCode is set up for — under its terms and privacy policy.
         No provider tool starts unless you connect a provider, and usage checks go from the tool to
-        its own provider. A paired iPhone or iPad talks only to your Mac, over the local network. Content read by another AI app, including your chats when personal content
-        is allowed, goes to that app’s provider under its terms.
+        its own provider. A paired iPhone or iPad talks only to your Mac, over your local network or
+        Tailscale. With Lamp closed on the phone, a finished turn reaches it
+        through your own iCloud account. Content read by another AI app, including your chats when
+        personal content is allowed, goes to that app’s provider under its terms.
       </p>
       <p>
         Lamp Bible does not operate or proxy these services and does not receive your conversations.

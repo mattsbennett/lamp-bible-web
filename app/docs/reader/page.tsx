@@ -123,8 +123,9 @@ export default function Page() {
             <tr>
               <td>Chat</td>
               <td>
-                While AI features are on, the reader chats of a Mac you have paired, to follow and
-                carry on — see <Link href="/docs/ai#paired-devices">Chats from iPhone and iPad</Link>.
+                While AI features are on, the reader chats of a Mac you have paired, to read,
+                continue and start, choosing who answers — see{' '}
+                <Link href="/docs/ai#paired-devices">Chats from iPhone and iPad</Link>.
               </td>
             </tr>
           </tbody>

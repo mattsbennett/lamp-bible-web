@@ -37,7 +37,7 @@ export default function AppPrivacy() {
           <h1 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
             Lamp Bible app privacy
           </h1>
-          <p className="mt-3 text-muted">Last updated November 21, 2026.</p>
+          <p className="mt-3 text-muted">Last updated November 22, 2026.</p>
         </header>
 
         <section aria-labelledby="at-a-glance" className="mt-8 rounded-2xl border border-line bg-sunken p-6">
@@ -208,12 +208,37 @@ export default function AppPrivacy() {
           </p>
           <p>
             The phone finds the Mac through Bonjour or nearby peer-to-peer discovery, with
-            local-network permission and without using the internet. Pairing uses a code shown on the
-            Mac, scanned or typed, and each connection is encrypted with its own keys. The phone sends
-            its device name, your message, the passage and translation in view and, for a writing, the
-            writing and any words you selected; it receives chat titles and messages. While the setting
-            is on, the Mac advertises “Lamp Bible on” followed by its computer name on the local
-            network. Nothing is sent to Lamp Bible.
+            local-network permission, or connects to the address the Mac shows for a Tailscale
+            network you set up, in which case Tailscale’s own terms apply to the traffic it carries.
+            The Mac reads its tailnet addresses from its own network settings and does not contact
+            Tailscale. A scanned pairing code carries those addresses, or you type one; the phone keeps
+            the addresses it uses on that device only, with which pairing each answered to, and
+            never the Mac’s secret. Pairing uses a code
+            shown on the Mac, scanned or typed, and each connection is encrypted with its own keys
+            between the two devices. The phone sends its device name, your message, the passage and
+            translation in view, the provider, model and effort you choose and, for a writing, the
+            writing and any words you selected; it receives chat titles and messages, and each
+            provider’s models and whether it is signed in on the Mac. While the setting is on, the
+            Mac advertises “Lamp Bible on” followed by its computer name on the local network, and
+            listens for connections on port 47381, or another port the system gives if that one is taken.
+            Nothing is sent to Lamp Bible.
+          </p>
+
+          <h3 id="chat-notifications">Chat notifications</h3>
+          <p>
+            With <strong>Notify when a chat finishes a turn</strong> on, a finished reply is shown as
+            a notification on the device, with its opening words unless{' '}
+            <strong>Show the start of the reply</strong> is off. On the Mac the notification is made
+            on the Mac itself.
+          </p>
+          <p>
+            For each turn a paired iPhone or iPad asks for, a Mac signed in to iCloud saves a small
+            record in your own iCloud private database, so that the phone can be told the turn has
+            ended even with Lamp closed. The record names the pairing and the chat, and holds the chat’s title, how
+            the turn ended and, only while the Mac’s <strong>Show the start of the reply</strong> is
+            on, the reply’s opening words. Each chat’s record replaces its last, and the Mac deletes
+            records more than a day old. They are stored by Apple under its iCloud terms, and your
+            other devices signed in to the same account may show them. Lamp Bible cannot read them.
           </p>
 
           <h2 id="children">Children</h2>

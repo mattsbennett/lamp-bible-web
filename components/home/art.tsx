@@ -545,6 +545,123 @@ export function StudyArt() {
   )
 }
 
+/** UIKit's activity indicator at its small size: eight spokes fading round. */
+function Spinner() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-[11px] w-[11px]">
+      {Array.from({ length: 8 }, (_, i) => (
+        <line
+          key={i}
+          x1="10"
+          y1="2.5"
+          x2="10"
+          y2="6.5"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          opacity={0.25 + (0.75 * i) / 7}
+          transform={`rotate(${i * 45} 10 10)`}
+        />
+      ))}
+    </svg>
+  )
+}
+
+/**
+ * The reader's Chat panel on iPhone (AgentRemotePanel): a Mac's reader chat followed and carried
+ * on from the phone, under its Chats header; the folded row over the composer naming who answers
+ * (AgentChatSetupBar), and the composer that sends the verse in view with each message.
+ */
+export function PhoneChatArt() {
+  return (
+    <Art label="iPhone reader at John 3 with the Chat panel open on a reader chat from the Mac: the question “Does ‘born again’ mean ‘from above’?”, Claude’s answer on ἄνωθεν in John 3:31 and 19:23, and a follow-up on “water” in verse 5 being thought about; a folded row naming Claude, opus and John 3:3, and a field to ask about John 3:3 with a stop button.">
+      <Phone height="h-[500px] lg:h-[560px]">
+        <ReaderHeader translation="KJV" chapter="John 3" />
+        <Scripture className="px-[16px] pt-[2px]">
+          <V n={3} />
+          Jesus answered and said unto him, Verily, verily, I say unto thee, Except a man be born
+          again, he cannot see the kingdom of God.
+        </Scripture>
+        <ToolPanel top="top-[154px]">
+          <div className="flex h-[calc(100%-6px)] flex-col">
+            <div className="flex items-center gap-2 px-[9px] pt-[4px]">
+              <Glass className="!h-[26px] gap-[4px] !px-[10px]">
+                <span className="text-[10px] font-medium">Chat</span>
+                <Sym name="chevronUpDown" className="h-[8px] w-[8px]" />
+              </Glass>
+              <Glass round className="ml-auto !h-[26px] !w-[26px]">
+                <Sym name="ellipsis" className="h-[11px] w-[11px]" />
+              </Glass>
+            </div>
+            <div className="mt-[5px] flex items-baseline gap-[6px] bg-[var(--sys-glass)] px-[11.5px] py-[5px]">
+              <span className={`flex items-center gap-[2px] text-[10.5px] font-medium ${tint}`}>
+                <Sym name="chevronLeft" className="h-[9px] w-[9px] self-center" />
+                Chats
+              </span>
+              <span className="ml-auto min-w-0 text-right leading-tight">
+                <span className="block truncate text-[10.5px] font-semibold">
+                  Does “born again” mean “from above”?
+                </span>
+                <span className={`block text-[8.5px] ${caption}`}>Claude Code</span>
+              </span>
+            </div>
+            {/* The transcript keeps to its newest, as the panel scrolls to the end. */}
+            <div className="flex min-h-0 flex-1 flex-col justify-end gap-[10px] overflow-hidden px-[11.5px] pb-[8px]">
+              <div className="flex justify-end pl-[29px]">
+                <p
+                  className={`${serif} rounded-[11.5px] bg-[color-mix(in_srgb,var(--sys-tint)_15%,transparent)] px-[9px] py-[6px] text-[11px] leading-[1.45]`}
+                >
+                  Does “born again” mean “from above”?
+                </p>
+              </div>
+              <div className={`${serif} space-y-[6px] text-[11px] leading-[1.55]`}>
+                <p>
+                  The word is <em>ἄνωθεν</em> (G509), which can mean either. John uses it of place:
+                  “He that cometh from above is above all” (3:31), and of the coat “woven from the
+                  top throughout” (19:23).
+                </p>
+                <p>
+                  Nicodemus hears “again” — “can he enter the second time…?” (3:4) — and Jesus
+                  answers with a birth “of the Spirit” (3:5–8): a birth from God.
+                </p>
+              </div>
+              <div className="flex justify-end pl-[29px]">
+                <p
+                  className={`${serif} rounded-[11.5px] bg-[color-mix(in_srgb,var(--sys-tint)_15%,transparent)] px-[9px] py-[6px] text-[11px] leading-[1.45]`}
+                >
+                  And “water”, in verse 5?
+                </p>
+              </div>
+              <p className={`flex items-center gap-[6px] text-[9.5px] ${caption}`}>
+                <Spinner />
+                Thinking…
+              </p>
+            </div>
+            <div className="bg-[var(--sys-glass)] px-[11.5px] pt-[6px]">
+              <div className="flex min-h-[20px] items-center gap-[6px]">
+                <Sym name="chevronRight" className={`h-[8px] w-[8px] ${caption}`} />
+                <Sym name="sparkles" className={`h-[10px] w-[10px] ${caption}`} />
+                <span className="truncate text-[10.5px] font-medium">Claude · opus · John 3:3</span>
+              </div>
+              <div className="flex items-end gap-[6px] pb-[10px] pt-[6px]">
+                <span
+                  className={`flex h-[27px] flex-1 items-center rounded-[13px] border-[0.5px] ${sep} bg-[var(--sys-cell)] px-[9px] text-[12px] ${label3}`}
+                >
+                  Ask about John 3:3…
+                </span>
+                {/* A reply running: the stop button stands where send does. */}
+                <span className="flex h-[27px] w-[24.5px] items-center justify-center">
+                  <Sym name="stopCircleFill" className={`h-[24.5px] w-[24.5px] ${tint}`} />
+                </span>
+              </div>
+            </div>
+          </div>
+        </ToolPanel>
+      </Phone>
+    </Art>
+  )
+}
+
 /** The plan's warm ground (HeroBackground in ReadingsView). */
 const heroGround: CSSProperties = {
   background:
