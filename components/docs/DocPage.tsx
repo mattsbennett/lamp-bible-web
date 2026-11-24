@@ -128,12 +128,12 @@ function AdjacentLink({
 
 /**
  * One of the site's drawings of the app, set in a docs page: the device rising from the foot of
- * a quiet panel, with a caption under it.
+ * a quiet panel, or a window or slides shown `whole`, with a caption under it.
  */
-export function Figure({ caption, children }: { caption: string; children: ReactNode }) {
+export function Figure({ caption, whole = false, children }: { caption: string; whole?: boolean; children: ReactNode }) {
   return (
     <figure className="overflow-hidden rounded-2xl border border-line">
-      <div className="h-72 overflow-hidden bg-sunken px-6 pt-7 sm:h-80">{children}</div>
+      <div className={whole ? 'bg-sunken p-4 sm:p-6' : 'h-72 overflow-hidden bg-sunken px-6 pt-7 sm:h-80'}>{children}</div>
       <figcaption className="border-t border-line bg-raised px-4 py-2.5 text-sm text-muted">{caption}</figcaption>
     </figure>
   )

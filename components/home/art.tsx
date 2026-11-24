@@ -14,6 +14,17 @@
  */
 import type { CSSProperties, ReactNode } from 'react'
 import { Sym, type SymbolName } from './sf'
+import {
+  MapSlide,
+  ScriptureSlide,
+  StatementSlide,
+  serifHeadings,
+  slideThemes,
+  StructureSlide,
+  themeNamed,
+  TimelineSlide,
+  TitleSlide,
+} from './slides'
 
 const label2 = 'text-[color:var(--sys-label2)]'
 const label3 = 'text-[color:var(--sys-label3)]'
@@ -1867,6 +1878,65 @@ export function MacEditorArt() {
   )
 }
 
+/** Slide Studio's toolbar: Undo and Redo Edit, the Deck menu, Remote and Play. */
+const studioToolbar = (
+  <>
+    <MacGlass className="hidden gap-[9px] @sm:flex">
+      <ToolIcon name="uturnBackward" />
+      <ToolIcon name="uturnForward" />
+    </MacGlass>
+    <MacGlass className="hidden gap-[4px] @md:flex">
+      <ToolIcon name="rectangleStack" />
+      Deck
+      <Sym name="chevronDown" className="h-[7px] w-[7px]" />
+    </MacGlass>
+    <MacGlass className="hidden gap-[4px] @lg:flex">
+      <ToolIcon name="qrcode" />
+      Remote
+    </MacGlass>
+    <span className="flex h-[22px] items-center gap-[4px] rounded-full bg-[var(--mac-accent-muted)] px-[10px] text-[9.5px] font-medium text-white">
+      <Sym name="playFill" className="h-[8px] w-[8px]" />
+      Play
+    </span>
+  </>
+)
+
+/**
+ * The slide's notes under the canvas, following the writing: the phrase the slide begins at, and
+ * the passage of the manuscript it is spoken over, opening with that phrase.
+ */
+function StudioNotes({ begins, children }: { begins?: string; children?: ReactNode }) {
+  return (
+    <div className={`border-t ${sep} px-[10px] py-[6px] text-[9px]`}>
+      <div className="flex items-center gap-[5px]">
+        <Sym name="personCropRectangle" className="h-[11px] w-[11px]" />
+        <span className="font-semibold">Presenter Notes</span>
+        <span className="ml-auto hidden items-center gap-[5px] @sm:flex">
+          Follow the writing
+          <MacSwitch on />
+        </span>
+      </div>
+      <p className={`mt-[3px] text-[8.5px] ${label2}`}>
+        Begins at{' '}
+        {begins ? <>“{begins}”</> : <span className={label3}>the first words this slide is spoken over</span>}
+      </p>
+      <p className={`mt-[3px] rounded-[6px] border ${sep} bg-[var(--mac-control)] px-[7px] py-[4px] leading-[1.45]`}>
+        {children ?? <span className={label2}>This slide is silent. Give it an opening phrase to speak over it.</span>}
+      </p>
+    </div>
+  )
+}
+
+/** Slide Studio's status line, under the canvas and the inspector: saved, with nothing to fix. */
+function StudioStatus() {
+  return (
+    <div className={`flex items-center gap-[4px] border-t ${sep} px-[10px] py-[4px] text-[8.5px] ${label2}`}>
+      <Sym name="checkmarkCircleFill" className="h-[9px] w-[9px] text-[color:var(--sys-green)]" />
+      Saved
+    </div>
+  )
+}
+
 /** Slide Studio: the deck's slides, a Scripture slide in the Lamp Dark theme, and its notes. */
 export function SlideArt() {
   const thumbs = [{ n: 1 }, { n: 2, on: true }, { n: 3 }]
@@ -1876,30 +1946,7 @@ export function SlideArt() {
       className="@container"
       label="Mac Slide Studio with a John 15:5 scripture slide, a slide list and speaker notes linked to the manuscript."
     >
-      <MacWindow
-        title="Abide in the Vine"
-        toolbar={
-          <>
-            <MacGlass className="hidden gap-[9px] @sm:flex">
-              <ToolIcon name="uturnBackward" />
-              <ToolIcon name="uturnForward" />
-            </MacGlass>
-            <MacGlass className="hidden gap-[4px] @md:flex">
-              <ToolIcon name="rectangleStack" />
-              Deck
-              <Sym name="chevronDown" className="h-[7px] w-[7px]" />
-            </MacGlass>
-            <MacGlass className="hidden gap-[4px] @lg:flex">
-              <ToolIcon name="qrcode" />
-              Remote
-            </MacGlass>
-            <span className="flex h-[22px] items-center gap-[4px] rounded-full bg-[var(--mac-accent-muted)] px-[10px] text-[9.5px] font-medium text-white">
-              <Sym name="playFill" className="h-[8px] w-[8px]" />
-              Play
-            </span>
-          </>
-        }
-      >
+      <MacWindow title="Abide in the Vine" toolbar={studioToolbar}>
         <div className="grid grid-cols-[92px_minmax(0,1fr)]">
           <div className={`flex flex-col border-r ${sep} bg-[var(--mac-sidebar)]`}>
             <div className={`border-b ${sep} px-[8px] pb-[6px] pt-[2px] leading-tight`}>
@@ -1944,27 +1991,371 @@ export function SlideArt() {
                 </div>
               </div>
             </div>
-            <div className={`border-t ${sep} px-[10px] py-[6px] text-[9px]`}>
-              <div className="flex items-center gap-[5px]">
-                <Sym name="personCropRectangle" className="h-[11px] w-[11px]" />
-                <span className="font-semibold">Presenter Notes</span>
-                <span className="ml-auto hidden items-center gap-[5px] @sm:flex">
-                  Follow the writing
-                  <MacSwitch on />
-                </span>
-              </div>
-              <p className={`mt-[3px] text-[8.5px] ${label2}`}>Begins at “I am the vine”</p>
-              <p className={`mt-[3px] rounded-[6px] border ${sep} bg-[var(--mac-control)] px-[7px] py-[4px] leading-[1.45]`}>
-                <span className="underline decoration-[color:var(--sys-tint)]">I am the vine</span> introduces the image of Jesus as the vine and his disciples as branches.
-              </p>
-            </div>
-            <div className={`flex items-center gap-[4px] border-t ${sep} px-[10px] py-[4px] text-[8.5px] ${label2}`}>
-              <Sym name="checkmarkCircleFill" className="h-[9px] w-[9px] text-[color:var(--sys-green)]" />
-              Saved
-            </div>
+            <StudioNotes begins="I am the vine">
+              <span className="underline decoration-[color:var(--sys-tint)]">I am the vine</span> introduces the image of Jesus as the vine and his disciples as branches.
+            </StudioNotes>
+            <StudioStatus />
           </div>
         </div>
       </MacWindow>
+    </Art>
+  )
+}
+
+/**
+ * The deck the Slide Studio drawings below are made from: a talk on Acts 13–14, in Parchment, its
+ * headings in System Serif over the body's Lamp Rounded.
+ */
+const sentOut = { title: 'Sent Out', theme: themeNamed('Parchment'), headings: serifHeadings }
+
+/** Its slides, as the rail and the canvas draw them; the rail shows the first four of six. */
+function sentOutSlide(n: number, id: string) {
+  const { theme, headings } = sentOut
+  switch (n) {
+    case 1:
+      return <TitleSlide theme={theme} headings={headings} title="Sent Out" subtitle="Acts 13–14" />
+    case 2:
+      return (
+        <ScriptureSlide
+          theme={theme}
+          headings={headings}
+          lines={['“Separate me Barnabas and Saul for', 'the work whereunto I have called', 'them.”']}
+          citation="Acts 13:2"
+        />
+      )
+    case 3:
+      return <MapSlide id={id} theme={theme} headings={headings} />
+    default:
+      return (
+        <StatementSlide theme={theme} headings={headings} lines={['Through much', 'tribulation']} />
+      )
+  }
+}
+
+/**
+ * The slide rail: the deck's title, which chooses another deck, its count, and the slides
+ * numbered beside their thumbnails, the selected one on a soft tile.
+ */
+function StudioRail({ selected, className = '' }: { selected: number; className?: string }) {
+  return (
+    <div className={`flex-col border-r ${sep} bg-[var(--mac-sidebar)] ${className}`}>
+      <div className={`border-b ${sep} px-[8px] pb-[6px] pt-[2px] leading-tight`}>
+        <p className="flex items-center text-[9.5px] font-semibold">
+          <span className="truncate">{sentOut.title}</span>
+          <Sym name="chevronUpDown" className={`ml-auto h-[7px] w-[7px] shrink-0 ${label2}`} />
+        </p>
+        <p className={`text-[8px] ${label2}`}>6 slides</p>
+      </div>
+      <div className="space-y-[2px] p-[4px]">
+        {[1, 2, 3, 4].map((n) => (
+          <div
+            key={n}
+            className={`flex gap-[4px] rounded-[6px] p-[3px] ${n === selected ? 'bg-[color-mix(in_srgb,var(--sys-label)_10%,transparent)]' : ''}`}
+          >
+            <span className={`w-[9px] shrink-0 pt-[1px] text-right text-[7.5px] tabular-nums ${n === selected ? '' : label2}`}>{n}</span>
+            <div className="min-w-0 flex-1 overflow-hidden rounded-[3px] ring-1 ring-[color:var(--sys-sep)]">
+              {sentOutSlide(n, `rail-${n}`)}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className={`mt-auto flex items-center border-t ${sep} px-[6px] py-[5px]`}>
+        <MacCapsule className="!px-[5px] !text-[8px]">
+          <Sym name="plus" className="h-[7px] w-[7px]" />
+          Add Slide
+        </MacCapsule>
+      </div>
+    </div>
+  )
+}
+
+/** The inspector's two panes, Slide and Deck, the chosen one raised in the text's colour. */
+function InspectorTabs({ deck = false }: { deck?: boolean }) {
+  return (
+    <div className="flex gap-[3px] rounded-full bg-[color-mix(in_srgb,var(--sys-label)_4%,transparent)] p-[2px]">
+      {['Slide', 'Deck'].map((pane) => {
+        const chosen = (pane === 'Deck') === deck
+        return (
+          <span
+            key={pane}
+            className={`flex h-[19px] flex-1 items-center justify-center rounded-full text-[9px] ${
+              chosen ? 'bg-[color-mix(in_srgb,var(--sys-label)_9%,transparent)] font-semibold' : 'text-[color:var(--mac-secondary)]'
+            }`}
+          >
+            {pane}
+          </span>
+        )
+      })}
+    </div>
+  )
+}
+
+/** A small Lamp segmented picker: a quiet track, the chosen segment raised (LampSegmentedPicker). */
+function InspectorSegmented({ items, selected }: { items: string[]; selected: number }) {
+  return (
+    <span className="flex w-fit gap-[1px] rounded-full bg-[var(--sys-fill)] p-[1.5px] text-[7.5px] font-medium">
+      {items.map((item, i) => (
+        <span
+          key={item}
+          className={`rounded-full px-[4.5px] py-[1.5px] ${i === selected ? 'bg-[var(--mac-control)] shadow-[0_1px_2px_rgb(0_0_0/0.14)]' : ''}`}
+        >
+          {item}
+        </span>
+      ))}
+    </span>
+  )
+}
+
+/** A macOS checkbox, checked in the muted accent Slide Studio tints its toggles with. */
+function Checkbox({ on = false, children }: { on?: boolean; children: ReactNode }) {
+  return (
+    <span className="flex items-center gap-[5px] text-[9px]">
+      <span
+        className={`flex h-[10px] w-[10px] shrink-0 items-center justify-center rounded-[3px] ${
+          on ? 'bg-[var(--mac-accent-muted)] text-white' : `border ${sep} bg-[var(--mac-control)]`
+        }`}
+      >
+        {on && <Sym name="checkmark" className="h-[7px] w-[7px]" />}
+      </span>
+      {children}
+    </span>
+  )
+}
+
+/** A block's role, the heading of its editor: a menu, with Remove Content at the end of its row. */
+function BlockRole({ children }: { children: string }) {
+  return (
+    <span className="flex items-center gap-[3px] text-[9px] font-semibold">
+      {children}
+      <Sym name="chevronDown" className={`h-[6px] w-[6px] ${label2}`} />
+      <Sym name="minusCircle" className="ml-auto h-[10px] w-[10px] text-[color:var(--sys-red)]" />
+    </span>
+  )
+}
+
+/** A block's text, in a rounded editor on the window's ground. */
+function BlockText({ children }: { children: ReactNode }) {
+  return (
+    <div className={`rounded-[5px] border ${sep} bg-[var(--mac-control)] px-[5px] py-[3px] text-[9px] leading-[1.45]`}>
+      {children}
+    </div>
+  )
+}
+
+/**
+ * Slide Studio with Paul's first journey on a map slide: the inspector's Slide pane scrolled to the
+ * body block drawn as a map, each of its lines matched to a place with the first verse naming it.
+ */
+export function SlideStudioMapArt() {
+  const stops = [
+    'Antioch (Antioch 1), Acts 6:5',
+    'Seleucia, Acts 13:4',
+    'Salamis, Acts 13:5',
+    'Paphos, Acts 13:6',
+    'Perga, Acts 13:13',
+    'Pisidian Antioch (Antioch 2), Acts 13:14',
+    'Iconium, Acts 13:51',
+    'Lystra, Acts 14:6',
+    'Derbe, Acts 14:6',
+  ]
+  return (
+    <SlideStudio
+      label="Mac Slide Studio with a slide titled “The first journey”: a map of Paul’s first journey from Antioch to Derbe, its places marked and joined as a route over the land, lakes and rivers, credited to OpenBible.info and Natural Earth. The inspector shows the body’s Figure set to Map, Join the places as a route turned on, and each line matched to a place with the first verse naming it."
+      selected={3}
+      notes={
+        <StudioNotes begins="Sent out by the Spirit">
+          <span className="underline decoration-[color:var(--sys-tint)]">Sent out by the Spirit</span>, Barnabas and Saul go
+          down to Seleucia and sail for Cyprus.
+        </StudioNotes>
+      }
+      inspector={
+        <div className="space-y-[6px] px-[11px] pb-[10px] pt-[8px]">
+          <BlockRole>Body</BlockRole>
+          <InspectorSegmented items={['Text', 'Bullets', 'Numbers']} selected={0} />
+          <p className="pt-[2px] text-[9px] text-[color:var(--mac-secondary)]">Figure</p>
+          <InspectorSegmented items={['None', 'Timeline', 'Chiasm', 'Parallel', 'Map']} selected={4} />
+          <p className={`text-[7.5px] leading-[1.35] ${label2}`}>
+            One place per line, as OpenBible.info names it. After a dash, what the map should call it —
+            “Antioch 2 — Pisidian Antioch”.
+          </p>
+          <Checkbox on>Join the places as a route</Checkbox>
+          <div className="space-y-[2px]">
+            {stops.map((stop) => (
+              <p key={stop} className="flex items-start gap-[4px] text-[7.5px] leading-[1.3] text-[color:var(--mac-secondary)]">
+                <Sym name="mappinCircleFill" className="mt-[0.5px] h-[8px] w-[8px] shrink-0 text-[color:var(--mac-accent-muted)]" />
+                {stop}
+              </p>
+            ))}
+          </div>
+          <p className={`text-[7px] leading-[1.35] ${label2}`}>
+            Places from OpenBible.info, land from Natural Earth; both are credited on the map.
+            Coastlines are today’s.
+          </p>
+          {/* The lines themselves, running on below the window's edge. */}
+          <div className="h-[24px] overflow-hidden">
+            <BlockText>
+              Antioch 1<br />Seleucia<br />Salamis<br />Paphos
+            </BlockText>
+          </div>
+        </div>
+      }
+    >
+      {sentOutSlide(3, 'canvas-map')}
+    </SlideStudio>
+  )
+}
+
+/**
+ * Slide Studio with the inspector's Deck pane: the deck's first slide drawn in each of Lamp's seven
+ * themes, the chosen one outlined, and the heading and body typefaces.
+ */
+export function SlideStudioThemesArt() {
+  const row = (label: string, control: ReactNode) => (
+    <div className="flex items-center gap-[6px]">
+      <span className="w-[46px] shrink-0 text-right text-[9px] text-[color:var(--mac-secondary)]">{label}</span>
+      {control}
+    </div>
+  )
+  return (
+    <SlideStudio
+      label="Mac Slide Studio with the inspector’s Deck pane: the deck’s title, its widescreen aspect and dissolve transition, its first slide, “Sent Out”, drawn in each of the seven themes with Parchment chosen, and headings in System Serif over a Lamp Rounded body."
+      selected={1}
+      notes={<StudioNotes />}
+      inspector={
+        <div className="space-y-[7px] px-[11px] pb-[10px] pt-[9px]">
+          {row(
+            'Title',
+            <span className={`flex h-[17px] min-w-0 flex-1 items-center rounded-[5px] border ${sep} bg-[var(--mac-control)] px-[5px] text-[9px]`}>
+              Sent Out
+            </span>,
+          )}
+          {row('Aspect', <MacPopUp className="min-w-0 flex-1 !text-[8.5px]">Widescreen (16:9)</MacPopUp>)}
+          {row('Transition', <MacPopUp className="min-w-0 flex-1 !text-[8.5px]">Dissolve</MacPopUp>)}
+          <p className="pt-[2px] text-[9px] text-[color:var(--mac-secondary)]">Theme</p>
+          <div className="grid grid-cols-3 gap-x-[6px] gap-y-[6px]">
+            {slideThemes.map((theme) => {
+              const chosen = theme.name === sentOut.theme.name
+              return (
+                <div key={theme.name} className="min-w-0 text-center">
+                  <div
+                    className={`overflow-hidden rounded-[4px] ${
+                      chosen ? 'ring-[1.5px] ring-[color-mix(in_srgb,var(--sys-label)_70%,transparent)]' : 'ring-1 ring-[color:var(--sys-sep)]'
+                    }`}
+                  >
+                    <TitleSlide theme={theme} headings={sentOut.headings} title="Sent Out" subtitle="Acts 13–14" />
+                  </div>
+                  <p className={`mt-[3px] truncate text-[7.5px] ${chosen ? 'font-semibold' : label2}`}>{theme.name}</p>
+                </div>
+              )
+            })}
+          </div>
+          {row('Headings', <MacCapsule menu className="!text-[8.5px]">System Serif</MacCapsule>)}
+          {row('Body', <MacCapsule menu className="!text-[8.5px]">Lamp Rounded</MacCapsule>)}
+        </div>
+      }
+    >
+      {sentOutSlide(1, 'canvas-title')}
+    </SlideStudio>
+  )
+}
+
+/**
+ * Slide Studio's window around one state of the deck: the rail, from the widest; the canvas with
+ * the selected slide and its notes; the inspector beside them, or under them, cut short, where the
+ * window is narrow; and the status line. The inspector is scrolled as far as `inspector` begins.
+ */
+function SlideStudio({
+  label,
+  selected,
+  notes,
+  inspector,
+  children,
+}: {
+  label: string
+  selected: number
+  notes: ReactNode
+  inspector: ReactNode
+  children: ReactNode
+}) {
+  return (
+    <Art className="@container" label={label}>
+      <MacWindow title={sentOut.title} toolbar={studioToolbar}>
+        <div className="grid grid-cols-[minmax(0,1fr)] @xl:grid-cols-[82px_minmax(0,1fr)]">
+          <StudioRail selected={selected} className="hidden @xl:flex" />
+          <div className="flex min-w-0 flex-col">
+            <div className="grid grid-cols-[minmax(0,1fr)] @lg:grid-cols-[minmax(0,1fr)_198px]">
+              <div className="flex min-w-0 flex-col">
+                <div className="flex flex-1 items-center bg-[var(--mac-canvas)] px-[16px] py-[14px]">
+                  <div className="w-full shadow-[0_3px_9px_rgb(0_0_0/0.16)]">{children}</div>
+                </div>
+                {notes}
+              </div>
+              <div className={`border-t ${sep} bg-[var(--mac-window)] @lg:border-l @lg:border-t-0`}>
+                <div className="flex max-h-[260px] flex-col overflow-hidden @lg:max-h-none">
+                  <div className={`border-b ${sep} px-[11px] py-[7px]`}>
+                    <InspectorTabs deck={selected === 1} />
+                  </div>
+                  {inspector}
+                </div>
+              </div>
+            </div>
+            <StudioStatus />
+          </div>
+        </div>
+      </MacWindow>
+    </Art>
+  )
+}
+
+/**
+ * Three slides whose lists Lamp draws as figures: a timeline, in Olive Grove; a chiasm, in Linen;
+ * and parallel lines, in Nocturne.
+ */
+export function SlideFiguresArt() {
+  const framed = 'overflow-hidden rounded-[6px] shadow-[0_4px_12px_rgb(0_0_0/0.18)] ring-1 ring-[color:var(--line)]'
+  return (
+    <Art
+      className="space-y-4"
+      label="Three slides drawn as figures. A timeline of the united kingdom, in Olive Grove: Saul anointed king about 1050 BC, David king in Hebron and then Jerusalem, Solomon beginning the temple and the kingdom dividing about 931 BC. A chiasm of Mark 2:27, in Linen, lettered A, B, B′, A′ and stepped in toward the centre. And parallel lines from Psalm 19:1–2, in Nocturne, each line answered by the one set beneath it."
+    >
+      <div className={framed}>
+        <TimelineSlide
+          theme={themeNamed('Olive Grove')}
+          title="The united kingdom"
+          events={[
+            { date: 'c. 1050 BC', event: ['Saul anointed', 'king'] },
+            { date: 'c. 1010 BC', event: ['David king in', 'Hebron'] },
+            { date: 'c. 1003 BC', event: ['David king in', 'Jerusalem'] },
+            { date: 'c. 966 BC', event: ['Solomon begins', 'the temple'] },
+            { date: 'c. 931 BC', event: ['The kingdom', 'divides'] },
+          ]}
+        />
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className={framed}>
+          <StructureSlide
+            theme={themeNamed('Linen')}
+            title="Made for man"
+            figure="chiasm"
+            lines={['The sabbath was made', 'for man,', 'and not man', 'for the sabbath.']}
+            citation="Mark 2:27"
+          />
+        </div>
+        <div className={framed}>
+          <StructureSlide
+            theme={themeNamed('Nocturne')}
+            title="The heavens declare"
+            figure="parallel"
+            lines={[
+              'The heavens declare the glory of God;',
+              'and the firmament sheweth his handywork.',
+              'Day unto day uttereth speech,',
+              'and night unto night sheweth knowledge.',
+            ]}
+            citation="Psalm 19:1–2"
+          />
+        </div>
+      </div>
     </Art>
   )
 }

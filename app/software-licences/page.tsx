@@ -17,7 +17,7 @@ const markdownPackages: Array<{ name: string; version: string; licence: string; 
 ]
 
 /**
- * Swift packages in the Mac app and its lamp-mcp helper. Generated notices live in the Mac repo
+ * Swift packages in the Mac app and its lamp-mcp helper, then the deck skill's three.js. Generated notices live in the Mac repo
  * (scripts/generate_third_party_notices.py); keep this list in step with its README.txt. The
  * generator also writes the reference-data notices it reads out of lamp-bible-core, so check
  * that section of the README too.
@@ -39,6 +39,8 @@ const macPackages: Array<{ name: string; version: string; licence: string; url: 
   // script). Update this row if the author publishes a licence.
   { name: 'SwiftUIEKtensions', version: '0.4.0', licence: 'No licence published', url: 'https://github.com/EnesKaraosman/SwiftUIEKtensions' },
   { name: 'SwiftyChat', version: '4.1.1', licence: 'Apache 2.0', url: 'https://github.com/EnesKaraosman/SwiftyChat' },
+  // Not a Swift package: the deck skill carries it, and lamp-mcp's render_animation loads it.
+  { name: 'three.js', version: '0.170.0', licence: 'MIT', url: 'https://github.com/mrdoob/three.js' },
 ]
 
 export default function SoftwareLicences() {
@@ -128,8 +130,9 @@ export default function SoftwareLicences() {
           <p>
             The Mac app uses the same writing editor as the iPhone and iPad app, so the editor
             components above apply to it too. It also includes these Swift packages, in the app
-            and its <code>lamp-mcp</code> helper. Their complete licence texts, and any NOTICE
-            files, open from Help → Third-Party Notices.
+            and its <code>lamp-mcp</code> helper, and three.js, with which the helper draws a deck
+            agent’s animations. Their complete licence texts, and any NOTICE files, open from Help →
+            Third-Party Notices.
           </p>
           <Table>
             <thead>

@@ -289,7 +289,8 @@ export default function Page() {
           <li>
             <strong>Workspace Skills</strong> are instructions the agent can follow. Three are built
             in: <strong>build-lamp-deck</strong>, which turns the writing into a{' '}
-            <Link href="/docs/presenting">Slide Studio deck</Link>, and the two{' '}
+            <Link href="/docs/presenting">Slide Studio deck</Link> and can render an animation into a
+            slide’s video, and the two{' '}
             <a href="#skills">study skills</a>, which can audit the draft. You can write your own,
             and add one you wrote for another writing.
           </li>

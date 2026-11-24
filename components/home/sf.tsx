@@ -74,6 +74,13 @@ export const sf: Record<string, (p: P) => ReactNode> = {
       <path d="m7.5 12.3 3 3 6-6.3" stroke="var(--sys-on-tint, #fff)" strokeWidth={2.4} />
     </S>
   ),
+  mappinCircleFill: (p) => (
+    <S {...p}>
+      <circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="9.2" r="3.7" fill="var(--sys-on-tint, #fff)" stroke="none" />
+      <path d="M12 12.5v6" stroke="var(--sys-on-tint, #fff)" strokeWidth={1.6} />
+    </S>
+  ),
   circle: (p) => <S {...p}><circle cx="12" cy="12" r="9.5" strokeWidth={1.8} /></S>,
   bookFill: (p) => (
     <S solid {...p}>

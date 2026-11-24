@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Platform } from '@/components/docs/Platform'
-import { DocPage, Callout, Table } from '@/components/docs/DocPage'
+import { DocPage, Callout, Figure, Table } from '@/components/docs/DocPage'
+import { SlideFiguresArt, SlideStudioMapArt, SlideStudioThemesArt } from '@/components/home/art'
 
 export const metadata: Metadata = {
   title: 'Slides & presenting',
@@ -108,6 +109,18 @@ export default function Page() {
           <strong>Muted</strong>, quieted toward the ground. You can add accessibility descriptions
           to images.
         </p>
+        <p>
+          A picture can also move while its slide is presented. Set its <strong>Motion</strong> to{' '}
+          <strong>Drift</strong> and it closes in by 3% over a minute and back, too slowly to see
+          it move. <strong>Choose Video…</strong> sets a short clip to play in the picture’s place,
+          silent and looping, and makes its first frame the picture. Lamp plays .mp4, .mov and
+          .m4v files up to 100 MB, and offers to save a smaller copy of a larger one, silent and at
+          most 1080p, leaving your original as it is. A slide plays one video, and{' '}
+          <strong>Remove Video</strong> keeps the picture. Thumbnails, Slide Studio, PDFs, the
+          iPhone and iPad, and Reduce Motion show the picture still. The words over a drifting
+          picture read wherever it moves; over a video they are coloured for its first frame, so
+          choose a clip that stays quiet behind them.
+        </p>
 
         <p>
           To chart a Strong’s number, enter the number and translation. Optionally limit the books
@@ -142,6 +155,12 @@ export default function Page() {
           <strong>Accent</strong>, <strong>Inverse</strong> or any other colour, for a section
           break; Slide Studio says when the words would be hard to read on it.
         </p>
+        <Figure
+          whole
+          caption="The Deck pane draws the deck’s first slide in each theme. This deck is in Parchment, with its headings in System Serif."
+        >
+          <SlideStudioThemesArt />
+        </Figure>
 
         <h3>Timelines, structures and maps</h3>
         <p>
@@ -168,6 +187,12 @@ export default function Page() {
             found, so a name that won’t draw is caught while you write.
           </li>
         </ul>
+        <Figure
+          whole
+          caption="A timeline in Olive Grove, a chiasm in Linen and parallel lines in Nocturne, each written one entry to a line."
+        >
+          <SlideFiguresArt />
+        </Figure>
         <p>
           A map draws the land around its places in the deck’s colours, with lakes, rivers and
           shaded relief, each place marked and named and an uncertain site as an open ring.{' '}
@@ -177,6 +202,12 @@ export default function Page() {
           their face; see <Link href="/software-licences">Software licences</Link>. Figures are
           drawn on the text layouts; on a title or in a column the lines stay a list.
         </p>
+        <Figure
+          whole
+          caption="Paul’s first journey as a map, joined as a route. Each line names a place, and the inspector shows the verse that first names it."
+        >
+          <SlideStudioMapArt />
+        </Figure>
 
         <h3>Revealing a slide</h3>
         <p>
@@ -199,7 +230,10 @@ export default function Page() {
           <p>
             A writing’s <Link href="/docs/ai">agent workspace</Link> includes a skill that builds a
             deck from the writing, checks it and imports it into Slide Studio, ready to edit. For a
-            map, it looks up which places will draw, and never invents a location.
+            map, it looks up which places will draw, and never invents a location. Where a picture
+            cannot carry a moment, such as a model turning or a route being traced, it can write
+            an animation, which Lamp draws a frame at a time into a looping video and a still for
+            a picture. Nothing the agent wrote runs while you present.
           </p>
         </Callout>
 
